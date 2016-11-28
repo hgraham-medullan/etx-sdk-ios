@@ -10,6 +10,8 @@
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		08783D371DECA97600A08343 /* AuthSvc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D361DECA97600A08343 /* AuthSvc.swift */; };
+		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		08783D241DEC927800A08343 /* EngaugeTxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EngaugeTxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D291DEC927900A08343 /* EngaugeTxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngaugeTxTests.swift; sourceTree = "<group>"; };
 		08783D2B1DEC927900A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08783D361DECA97600A08343 /* AuthSvc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSvc.swift; sourceTree = "<group>"; };
+		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +75,10 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				08783D351DEC9D3700A08343 /* Auth */,
 				08783D1E1DEC927800A08343 /* EngaugeTx.h */,
 				08783D1F1DEC927800A08343 /* Info.plist */,
+				08783D381DECAA3B00A08343 /* EngaugeTx.swift */,
 			);
 			path = EngaugeTx;
 			sourceTree = "<group>";
@@ -84,6 +90,14 @@
 				08783D2B1DEC927900A08343 /* Info.plist */,
 			);
 			path = EngaugeTxTests;
+			sourceTree = "<group>";
+		};
+		08783D351DEC9D3700A08343 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				08783D361DECA97600A08343 /* AuthSvc.swift */,
+			);
+			name = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +162,7 @@
 				TargetAttributes = {
 					08783D1A1DEC927800A08343 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					08783D231DEC927800A08343 = {
@@ -196,6 +211,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
+				08783D371DECA97600A08343 /* AuthSvc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +337,7 @@
 		08783D301DEC927900A08343 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -331,6 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -338,6 +357,7 @@
 		08783D311DEC927900A08343 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -356,6 +376,7 @@
 		08783D331DEC927900A08343 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = EngaugeTxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTxTests;
@@ -367,6 +388,7 @@
 		08783D341DEC927900A08343 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = EngaugeTxTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTxTests;
