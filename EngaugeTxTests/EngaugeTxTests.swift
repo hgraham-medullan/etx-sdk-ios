@@ -11,9 +11,11 @@ import XCTest
 
 class EngaugeTxTests: XCTestCase {
     
+    var authSvc: AuthSvc!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.authSvc = AuthSvc()
     }
     
     override func tearDown() {
@@ -21,9 +23,12 @@ class EngaugeTxTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLoginWithUsername() {
+        let username: String = "sean"
+        let password: String = "P@ssw0rd"
+        authSvc.loginUserWithUsername(username, password: password) { (data: TxModel, err: TxError) in
+            
+        }
     }
     
     func testPerformanceExample() {

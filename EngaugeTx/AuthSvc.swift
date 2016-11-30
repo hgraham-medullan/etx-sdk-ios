@@ -22,9 +22,9 @@ public class AuthSvc {
      Login with username
      - parameter username: The user's username
      - parameter password: The user's password
-     ---
+     - parameter completion: Callback when the request completes
      */
-    public func loginUserWithUsername(_ username: String, password: String) {
+    public func loginUserWithUsername(_ username: String, password: String, completion: (TxModel, TxError) -> Void) {
         
     }
     
@@ -32,9 +32,9 @@ public class AuthSvc {
      Login with email address
      - parameter email: The user's email address
      - parameter password: The user's password
-     ---
+     - parameter completion: Callback when the request completes
      */
-    public func loginUserWithEmail(_ email: String, password: String) {
+    public func loginUserWithEmail(_ email: String, password: String, completion: (TxModel, TxError) -> Void) {
         
     }
 }

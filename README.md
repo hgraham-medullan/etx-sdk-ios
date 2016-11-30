@@ -1,6 +1,8 @@
 # EnguageTx iOS SDK
 
-## Install using CocoaPods
+## Getting Started
+
+### CocoaPods
 ```
 platform :ios, "8.0"
 source 'https://gitlab.com/engaugetx/EngaugeTxPodSpecs.git'
@@ -12,4 +14,4 @@ end
 ```
 
 ## Documentation
-Our docs can be found here: [docs](https://github.com/medullan/etx-sdk-ios/docs)
+Our docs can be found here: [docs](https://medullan.github.io/etx-sdk-ios/)
