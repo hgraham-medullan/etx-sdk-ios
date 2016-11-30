@@ -27,7 +27,7 @@ class EngaugeTxTests: XCTestCase {
         let username: String = "sean"
         let password: String = "P@ssw0rd"
         authSvc.loginUserWithUsername(username, password: password) { (data: TxModel, err: TxError) in
-            
+            // TODO: Assertions
         }
     }
     

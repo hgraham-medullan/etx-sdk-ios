@@ -18,13 +18,14 @@ public class AuthSvc {
         
     }
     
-    /**
-     Login with username
-     - parameter username: The user's username
-     - parameter password: The user's password
-     - parameter completion: Callback when the request completes
-     */
-    public func loginUserWithUsername(_ username: String, password: String, completion: (TxModel, TxError) -> Void) {
+    /// Login with username
+    ///
+    /// - parameter username: The user's username
+    /// - parameter password: The user's password
+    /// - parameter completion: Callback when the request completes
+    /// - parameter obj: The TX object
+    /// - parameter err: The error object
+    public func loginUserWithUsername(_ username: String, password: String, completion: (_ obj: TxModel, _ err: TxError) -> Void) {
         
     }
     
@@ -33,8 +34,10 @@ public class AuthSvc {
      - parameter email: The user's email address
      - parameter password: The user's password
      - parameter completion: Callback when the request completes
+     - parameter object: The TX object
+     - parameter err: The error object
      */
-    public func loginUserWithEmail(_ email: String, password: String, completion: (TxModel, TxError) -> Void) {
+    public func loginUserWithEmail(_ email: String, password: String, completion: (_ object: TxModel, _ err: TxError) -> Void) {
         
     }
 }
