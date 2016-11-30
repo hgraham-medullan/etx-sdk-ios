@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080520E91DEF078600245C4D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 080520E41DEF078600245C4D /* LICENSE */; };
+		080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		080520E41DEF078600245C4D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EngaugeTx.podspec; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
+				080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */,
+				080520E41DEF078600245C4D /* LICENSE */,
 				08783D1D1DEC927800A08343 /* EngaugeTx */,
 				08783D281DEC927800A08343 /* EngaugeTxTests */,
 				08783D1C1DEC927800A08343 /* Products */,
@@ -194,6 +200,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				080520E91DEF078600245C4D /* LICENSE in Resources */,
+				080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +424,7 @@
 				08783D311DEC927900A08343 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08783D321DEC927900A08343 /* Build configuration list for PBXNativeTarget "EngaugeTxTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +433,7 @@
 				08783D341DEC927900A08343 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
