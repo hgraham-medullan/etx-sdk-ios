@@ -1,0 +1,12 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/seanhoilett/Loom/iOS/EngaugeTx/EngaugeTx/AuthSvc.swift",
+      "line": 17,
+      "symbol": "AuthSvc.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/seanhoilett/Loom/iOS/EngaugeTx"
+}
