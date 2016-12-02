@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>EngaugeTx  Reference</title>
+    <title>Protocols  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,7 +10,7 @@
     
   </head>
   <body>
-    <a title="EngaugeTx  Reference"></a>
+    <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">EngaugeTx Docs</a> (39% documented)</p>
@@ -20,7 +20,7 @@
       <p id="breadcrumbs">
         <a href="index.html">EngaugeTx Reference</a>
         <img id="carat" src="img/carat.png" />
-        EngaugeTx  Reference
+        Protocols  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -56,39 +56,44 @@
       <article class="main-content">
         <section>
           <section class="section">
-            
-            <a href='#enguagetx-ios-sdk' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='enguagetx-ios-sdk'>EnguageTx iOS SDK</h1>
-<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='getting-started'>Getting Started</h2>
-<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
-<pre class="highlight plaintext"><code>platform :ios, "8.0"
-source 'https://gitlab.com/engaugetx/EngaugeTxPodSpecs.git'
+            <h1>Protocols</h1>
+            <p>The following protocols are available globally.</p>
 
-target 'EnguageTxSampleIosApp' do
-  use_frameworks!
-  pod 'EngaugeTx', '~&gt; 0.0.1'
-end
-</code></pre>
-<a href='#using-the-sdk' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='using-the-sdk'>Using the SDK</h3>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P9EngaugeTx20EngaugeTxAppDelegate"></a>
+                    <a name="//apple_ref/swift/Protocol/EngaugeTxAppDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9EngaugeTx20EngaugeTxAppDelegate">EngaugeTxAppDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol to be extended by the app delegate to be able to bootstrap your
+application with EngaugeTx</p>
 
-<p>Start by implementing the <code>EngaugeTxAppDelegate</code> protocol and conforming to 
-it by defining the <code>engaugeTx</code> instance variable.
-<code>
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, EngaugeTxAppDelegate {
-  var window: UIWindow?
-  var engaugeTx: EngaugeTxApplication?
-</code></p>
+                        <a href="Protocols/EngaugeTxAppDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">EngaugeTxAppDelegate</span></code></pre>
 
-<p>Then instatiate it with an instance of <code>EngaugeTxApplication</code></p>
-<pre class="highlight plaintext"><code>func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {
-  engaugeTx = EngaugeTxApplication()
-  return true
-}
-</code></pre>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
-
-<p>Our docs can be found here: <a href="https://medullan.github.io/etx-sdk-ios/">docs</a></p>
-
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
