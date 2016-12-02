@@ -14,14 +14,13 @@ end
 ```
 
 ### Using the SDK
-Start by implmenting the ```EngaugeTxAppDelegate``` protocol and conforming to 
-it defining the instance variable.
+Start by implementing the ```EngaugeTxAppDelegate``` protocol and conforming to 
+it by defining the ```engaugeTx``` instance variable.
 ```
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, EngaugeTxAppDelegate {
-
-var window: UIWindow?
-var engaugeTx: EngaugeTxApplication?
+  var window: UIWindow?
+  var engaugeTx: EngaugeTxApplication?
 ```
 
 Then instatiate it with an instance of ```EngaugeTxApplication```

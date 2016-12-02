@@ -68,12 +68,18 @@ public class EngaugeTxApplication {
     }
     
     static func getValueForKey(key: String) -> String? {
+        return getValueForKey(key: key, plistFileName: CONFIG_FILENAME)
+    }
+    
+    static func getValueForKey(key: String, plistFileName: String) -> String? {
         var value: String?
-        if let path = Bundle.main.path(forResource: CONFIG_FILENAME, ofType: CONFIG_FILE_TYPE) {
-            if let keys = NSDictionary(contentsOfFile: path), let keyValue = keys.value(forKey: key) {
-                value = keyValue as? String
-                print(keyValue)
-            }
+        guard let path = Bundle.main.path(forResource: plistFileName, ofType: CONFIG_FILE_TYPE) else {
+            print("The file was not found")
+            return nil
+        }
+        print("The path \(path)")
+        if let keys = NSDictionary(contentsOfFile: path), let keyValue = keys.value(forKey: key) {
+            value = keyValue as? String
         }
         return value
     }

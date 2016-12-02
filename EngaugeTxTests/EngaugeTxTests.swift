@@ -26,7 +26,8 @@ class EngaugeTxTests: XCTestCase {
     func testLoginWithUsername() {
         let username: String = "sean"
         let password: String = "P@ssw0rd"
-        authSvc.loginUserWithUsername(username, password: password) { (data: TxModel, err: TxError) in
+        authSvc.loginUserWithUsername(username, password: password) {
+            (data: TxModel, err: TxError) in
             // TODO: Assertions
         }
     }
@@ -36,6 +37,16 @@ class EngaugeTxTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testGetValueForKeyWhenTheKeyDoesNotExist() {
+        let valueForNonExistentKey = EngaugeTxApplication.getValueForKey(key: "non-existent-key")
+        XCTAssertEqual(valueForNonExistentKey, nil)
+    }
+    
+    func testGetValueForKeyWhenFileDoesNotExist() {
+        let valueForNonExistentKey = EngaugeTxApplication.getValueForKey(key: "non-existent-key", plistFileName: "Info")
+        XCTAssertEqual(valueForNonExistentKey, nil)
     }
     
 }

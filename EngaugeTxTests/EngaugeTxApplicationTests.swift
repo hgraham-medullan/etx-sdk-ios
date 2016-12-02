@@ -11,7 +11,11 @@ import XCTest
 
 class EngaugeTxApplicationTests: XCTestCase {
     
-    var engaugeTxApllication: EngaugeTxApplication!
+    var engaugeTxApllication: EngaugeTxApplication?
+    let testAppId: String = "test-app-id"
+    let testClientKey: String = "test-client-key"
+    let testBaseUrl: String = "test-base-url"
+    let defaultBaseUrl: String = "https://api.eu1.engaugetx.com/v1"
     
     override func setUp() {
         super.setUp()
@@ -19,10 +23,26 @@ class EngaugeTxApplicationTests: XCTestCase {
     
     func testPrimaryInitializer() {
         self.engaugeTxApllication = EngaugeTxApplication()
-        //
+        XCTAssertEqual(self.engaugeTxApllication?.baseUrl, defaultBaseUrl, "Default base URL mismatch")
+    }
+    
+    func testInitializationWithAppIdAndClientKey() {
+        self.engaugeTxApllication = EngaugeTxApplication(appId: testAppId, clientKey: testClientKey)
+        XCTAssertEqual(testAppId, self.engaugeTxApllication?.appId)
+        XCTAssertEqual(testClientKey, self.engaugeTxApllication?.clientKey)
+    }
+    
+    func testInitializationWithAppIdClientKeyAndBaseUrl() {
+        self.engaugeTxApllication = EngaugeTxApplication(appId: testAppId, clientKey: testClientKey, baseUrl: testBaseUrl)
+    
+        XCTAssertEqual(testAppId, self.engaugeTxApllication?.appId)
+        XCTAssertEqual(testClientKey, self.engaugeTxApllication?.clientKey)
+        XCTAssertEqual(testBaseUrl, self.engaugeTxApllication?.baseUrl)
+        
     }
     
     override func tearDown() {
         super.tearDown()
+        self.engaugeTxApllication = nil
     }
 }
