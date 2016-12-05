@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 /**
  Protocol to be extended by the app delegate to be able to bootstrap your
@@ -43,6 +44,13 @@ public class EngaugeTxApplication {
         self.baseUrl = baseUrl
         self.appId = appId
         self.clientKey = clientKey
+        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        defaultHeaders["app-id"] = appId
+        defaultHeaders["client-key"] = clientKey
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = defaultHeaders
+        
+        let _ = Alamofire.SessionManager(configuration: configuration)
     }
     
     /**
@@ -82,5 +90,23 @@ public class EngaugeTxApplication {
             value = keyValue as? String
         }
         return value
+    }
+    
+    func testCall(don: @escaping (String) ->Void) {
+        let headers: HTTPHeaders = [
+            "Authorization": "thqvTvYIqTPFCIYmTKz2YM397vYLVlTHwrWVPS2GsJTvA4DhVxYr8DJEJewwIXVt",
+            "Accept": "application/json"
+        ]
+        Alamofire.request( self.baseUrl + "/users/57f3d6999ba8b300cfd604ed", headers: headers).responseJSON { response in
+            print(response.request)  // original URL request
+            print(response.response) // HTTP URL response
+            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+            }
+            don("Done")
+        }
     }
 }

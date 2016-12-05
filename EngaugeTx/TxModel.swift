@@ -8,6 +8,17 @@
 
 import Foundation
 
-public class TxModel {
-    
+public class ETXModel:PropertyNames {
+    var id: String = ""
+}
+
+protocol PropertyNames {
+    func propertyNames() -> [String]
+}
+
+extension PropertyNames
+{
+    func propertyNames() -> [String] {
+        return Mirror(reflecting: self).children.flatMap { $0.label }
+    }
 }

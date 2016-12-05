@@ -13,11 +13,18 @@
 		083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE511DF0685D00A3CB8D /* TxModel.swift */; };
 		083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE531DF0687F00A3CB8D /* TxError.swift */; };
 		083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */; };
+		083DEEB61DF1D83E00A3CB8D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 083DEEB51DF1D83E00A3CB8D /* Podfile */; };
+		083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */; };
+		083DEEBA1DF203F900A3CB8D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEB91DF203F800A3CB8D /* User.swift */; };
+		083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBB1DF21EF000A3CB8D /* UserService.swift */; };
+		083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08783D371DECA97600A08343 /* AuthSvc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D361DECA97600A08343 /* AuthSvc.swift */; };
 		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
+		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
+		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +44,11 @@
 		083DEE511DF0685D00A3CB8D /* TxModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxModel.swift; sourceTree = "<group>"; };
 		083DEE531DF0687F00A3CB8D /* TxError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxError.swift; sourceTree = "<group>"; };
 		083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxApplicationTests.swift; sourceTree = "<group>"; };
+		083DEEB51DF1D83E00A3CB8D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxModelTests.swift; sourceTree = "<group>"; };
+		083DEEB91DF203F800A3CB8D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		083DEEBB1DF21EF000A3CB8D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +57,12 @@
 		08783D2B1DEC927900A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08783D361DECA97600A08343 /* AuthSvc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSvc.swift; sourceTree = "<group>"; };
 		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
+		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
+		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
+		7840D80D020613A0A323F417 /* Pods-EngaugeTxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTxTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A1E2BD6AD938D29CAFFD9363 /* Pods-EngaugeTxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTxTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */,
+				8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,12 +89,15 @@
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
+				083DEEB51DF1D83E00A3CB8D /* Podfile */,
 				0805212D1DEF2A6800245C4D /* README.md */,
 				080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */,
 				080520E41DEF078600245C4D /* LICENSE */,
 				08783D1D1DEC927800A08343 /* EngaugeTx */,
 				08783D281DEC927800A08343 /* EngaugeTxTests */,
 				08783D1C1DEC927800A08343 /* Products */,
+				ACEA3926C27F54D1E3FADCA2 /* Pods */,
+				4DBBDE8C41B28DFC338673AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +129,8 @@
 				08783D291DEC927900A08343 /* EngaugeTxTests.swift */,
 				08783D2B1DEC927900A08343 /* Info.plist */,
 				083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */,
+				083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */,
+				083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";
@@ -114,8 +139,30 @@
 			isa = PBXGroup;
 			children = (
 				08783D361DECA97600A08343 /* AuthSvc.swift */,
+				083DEEB91DF203F800A3CB8D /* User.swift */,
+				083DEEBB1DF21EF000A3CB8D /* UserService.swift */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		4DBBDE8C41B28DFC338673AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */,
+				393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ACEA3926C27F54D1E3FADCA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */,
+				4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */,
+				7840D80D020613A0A323F417 /* Pods-EngaugeTxTests.debug.xcconfig */,
+				A1E2BD6AD938D29CAFFD9363 /* Pods-EngaugeTxTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,10 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08783D2F1DEC927900A08343 /* Build configuration list for PBXNativeTarget "EngaugeTx" */;
 			buildPhases = (
+				C032F08ADFC41248DAA26897 /* [CP] Check Pods Manifest.lock */,
 				08783D161DEC927800A08343 /* Sources */,
 				08783D171DEC927800A08343 /* Frameworks */,
 				08783D181DEC927800A08343 /* Headers */,
 				08783D191DEC927800A08343 /* Resources */,
+				99CF089D3D210FB3938250D8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,9 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08783D321DEC927900A08343 /* Build configuration list for PBXNativeTarget "EngaugeTxTests" */;
 			buildPhases = (
+				F73FAD52D41D4D311651F35B /* [CP] Check Pods Manifest.lock */,
 				08783D201DEC927800A08343 /* Sources */,
 				08783D211DEC927800A08343 /* Frameworks */,
 				08783D221DEC927800A08343 /* Resources */,
+				6CA73C83C164E03CAF84E6CA /* [CP] Embed Pods Frameworks */,
+				1E5E2D13A530C760784D603B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -212,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083DEEB61DF1D83E00A3CB8D /* Podfile in Resources */,
 				080520E91DEF078600245C4D /* LICENSE in Resources */,
 				080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */,
 			);
@@ -226,13 +279,93 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1E5E2D13A530C760784D603B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CA73C83C164E03CAF84E6CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99CF089D3D210FB3938250D8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C032F08ADFC41248DAA26897 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F73FAD52D41D4D311651F35B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		08783D161DEC927800A08343 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
 				0805212E1DEF2A6800245C4D /* README.md in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
+				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				08783D371DECA97600A08343 /* AuthSvc.swift in Sources */,
@@ -243,6 +376,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
+				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,
 			);
@@ -360,6 +495,7 @@
 		};
 		08783D301DEC927900A08343 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -380,6 +516,7 @@
 		};
 		08783D311DEC927900A08343 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -399,6 +536,7 @@
 		};
 		08783D331DEC927900A08343 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7840D80D020613A0A323F417 /* Pods-EngaugeTxTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = EngaugeTxTests/Info.plist;
@@ -411,6 +549,7 @@
 		};
 		08783D341DEC927900A08343 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1E2BD6AD938D29CAFFD9363 /* Pods-EngaugeTxTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = EngaugeTxTests/Info.plist;
