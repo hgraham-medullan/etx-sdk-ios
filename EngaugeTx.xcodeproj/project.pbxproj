@@ -18,6 +18,7 @@
 		083DEEBA1DF203F900A3CB8D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEB91DF203F800A3CB8D /* User.swift */; };
 		083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBB1DF21EF000A3CB8D /* UserService.swift */; };
 		083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */; };
+		083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEC11DF5B03800A3CB8D /* UserRepository.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 		083DEEB91DF203F800A3CB8D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		083DEEBB1DF21EF000A3CB8D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
+		083DEEC11DF5B03800A3CB8D /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				08783D361DECA97600A08343 /* AuthSvc.swift */,
 				083DEEB91DF203F800A3CB8D /* User.swift */,
 				083DEEBB1DF21EF000A3CB8D /* UserService.swift */,
+				083DEEC11DF5B03800A3CB8D /* UserRepository.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
+				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				08783D371DECA97600A08343 /* AuthSvc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,9 @@ import Foundation
  Provides authentication to the EnguageTx Platform
  */
 public class UserService: AuthSvc {
+    
+    private static let KEY_ACCESS_TOKEN = "accessToken"
+    
     /// Login with username
     ///
     /// - parameter username: The user's username
