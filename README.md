@@ -30,11 +30,12 @@ Create ```EngaugeTx.plist``` file with the following contents
 </plist>
 ```
 Properties that can be specified
-| Property  | Type   | Description                                                                                | Status   |
-| --------- |:------:| -----------                                                                                |:--------:|
-| appId     | string | Your application's ID                                                                      | required |
-| clientKey | string | Your application's client key                                                              | required |
-| baseUrl   | string | The base URL to the EnguageTx instance. **Default:** https://api.staging.eu1.engaugetx.com | optional |
+
+| Property  | Type   | Description                                                                                   | Status   |
+| --------- |:------:| :-----------                                                                                  |:--------:|
+| appId     | string | Your application's ID                                                                         | required |
+| clientKey | string | Your application's client key                                                                 | required |
+| baseUrl   | string | The base URL to the EnguageTx instance. **Default:** https://api.staging.eu1.engaugetx.com/v1 | optional |
 
 Start by implementing the ```EngaugeTxAppDelegate``` protocol and conforming to 
 it by defining the ```engaugeTx``` instance variable.
