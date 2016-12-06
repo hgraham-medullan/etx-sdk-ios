@@ -23,12 +23,12 @@ class UserServiceTest: XCTestCase {
     
     func testLoginWithUsername() {
         let username: String = "sean"
-        let password: String = "P@ssw0rd"
+        let password: String = "Bigfun21!"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         
         self.userSvc.loginUserWithUsername(username, password: password) {
-            (user: User?, err: TxError?) in
+            (user: ETXUser?, err: ETXError?) in
             successfulUserLoginExpectation.fulfill()
             XCTAssertEqual(user?.username, username)
         }
@@ -42,12 +42,12 @@ class UserServiceTest: XCTestCase {
     
     func testSuccessfulLoginWithUsername() {
         let username: String = "sean"
-        let password: String = "P@ssw0rd"
+        let password: String = "Bigfun21!"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         
         self.userSvc.loginUserWithUsername(username, password: password) {
-            (user: User?, err: TxError?) in
+            (user: ETXUser?, err: ETXError?) in
             successfulUserLoginExpectation.fulfill()
             XCTAssertEqual(user?.username, username)
         }
@@ -61,11 +61,11 @@ class UserServiceTest: XCTestCase {
     
     func testSuccessfulLoginWithEmail() {
         let email: String = "sean@medullan.com"
-        let password: String = "P@ssw0rd"
+        let password: String = "Bigfun21!"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         self.userSvc.loginUserWithEmail(email, password: password) {
-            (user: User?, err: TxError?) in
+            (user: ETXUser?, err: ETXError?) in
             successfulUserLoginExpectation.fulfill()
             XCTAssertEqual(user?.email, email)
         }

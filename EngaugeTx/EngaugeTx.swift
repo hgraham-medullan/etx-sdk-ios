@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 /**
  Protocol to be extended by the app delegate to be able to bootstrap your
@@ -26,31 +25,24 @@ public protocol EngaugeTxAppDelegate {
  Representation of you application in the EngaugeTx platform
  */
 public class EngaugeTxApplication {
-    var appId: String
-    var clientKey: String
-    var baseUrl: String
+    static var appId: String!
+    static var clientKey: String!
+    static var baseUrl: String!
     
-    static let KEY_APP_ID: String = "appId"
-    static let KEY_CLIENT_KEY: String = "clientKey"
-    static let KEY_BASE_URL: String = "baseUrl"
-    static let CONFIG_FILENAME = "EngaugeTx"
-    static let CONFIG_FILE_TYPE = "plist"
-    static let DEFAULT_BASE_URL = "https://api.eu1.engaugetx.com/v1"
+    private static let KEY_APP_ID: String = "appId"
+    private static let KEY_CLIENT_KEY: String = "clientKey"
+    private static let KEY_BASE_URL: String = "baseUrl"
+    private static let CONFIG_FILENAME = "EngaugeTx"
+    private static let CONFIG_FILE_TYPE = "plist"
+    private static let DEFAULT_BASE_URL = "https://api.eu1.engaugetx.com/v1"
     
     /**
      
      */
     public init(appId: String, clientKey: String, baseUrl: String) {
-        self.baseUrl = baseUrl
-        self.appId = appId
-        self.clientKey = clientKey
-        var defaultHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        defaultHeaders["app-id"] = appId
-        defaultHeaders["client-key"] = clientKey
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = defaultHeaders
-        
-        let _ = Alamofire.SessionManager(configuration: configuration)
+        EngaugeTxApplication.baseUrl = baseUrl
+        EngaugeTxApplication.appId = appId
+        EngaugeTxApplication.clientKey = clientKey
     }
     
     /**
@@ -90,23 +82,5 @@ public class EngaugeTxApplication {
             value = keyValue as? String
         }
         return value
-    }
-    
-    func testCall(don: @escaping (String) ->Void) {
-        let headers: HTTPHeaders = [
-            "Authorization": "thqvTvYIqTPFCIYmTKz2YM397vYLVlTHwrWVPS2GsJTvA4DhVxYr8DJEJewwIXVt",
-            "Accept": "application/json"
-        ]
-        Alamofire.request( self.baseUrl + "/users/57f3d6999ba8b300cfd604ed", headers: headers).responseJSON { response in
-            print(response.request)  // original URL request
-            print(response.response) // HTTP URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-            }
-            don("Done")
-        }
     }
 }

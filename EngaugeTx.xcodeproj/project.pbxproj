@@ -10,6 +10,9 @@
 		080520E91DEF078600245C4D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 080520E41DEF078600245C4D /* LICENSE */; };
 		080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */; };
 		0805212E1DEF2A6800245C4D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0805212D1DEF2A6800245C4D /* README.md */; };
+		081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */; };
+		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
+		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
 		083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE511DF0685D00A3CB8D /* TxModel.swift */; };
 		083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE531DF0687F00A3CB8D /* TxError.swift */; };
 		083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */; };
@@ -19,6 +22,7 @@
 		083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBB1DF21EF000A3CB8D /* UserService.swift */; };
 		083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */; };
 		083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEC11DF5B03800A3CB8D /* UserRepository.swift */; };
+		083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEC31DF6033100A3CB8D /* UserCredentials.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +46,9 @@
 		080520E41DEF078600245C4D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EngaugeTx.podspec; sourceTree = "<group>"; };
 		0805212D1DEF2A6800245C4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEmailCredentialsTests.swift; sourceTree = "<group>"; };
+		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		083DEE511DF0685D00A3CB8D /* TxModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxModel.swift; sourceTree = "<group>"; };
 		083DEE531DF0687F00A3CB8D /* TxError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxError.swift; sourceTree = "<group>"; };
 		083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxApplicationTests.swift; sourceTree = "<group>"; };
@@ -51,6 +58,7 @@
 		083DEEBB1DF21EF000A3CB8D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
 		083DEEC11DF5B03800A3CB8D /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		083DEEC31DF6033100A3CB8D /* UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		081222811DF6FC3100586B7D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +137,7 @@
 				08783D381DECAA3B00A08343 /* EngaugeTx.swift */,
 				083DEE511DF0685D00A3CB8D /* TxModel.swift */,
 				083DEE531DF0687F00A3CB8D /* TxError.swift */,
+				081222861DF701A700586B7D /* Repository.swift */,
 			);
 			path = EngaugeTx;
 			sourceTree = "<group>";
@@ -128,6 +145,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				081222811DF6FC3100586B7D /* Auth */,
 				08783D291DEC927900A08343 /* EngaugeTxTests.swift */,
 				08783D2B1DEC927900A08343 /* Info.plist */,
 				083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */,
@@ -144,6 +162,8 @@
 				083DEEB91DF203F800A3CB8D /* User.swift */,
 				083DEEBB1DF21EF000A3CB8D /* UserService.swift */,
 				083DEEC11DF5B03800A3CB8D /* UserRepository.swift */,
+				083DEEC31DF6033100A3CB8D /* UserCredentials.swift */,
+				081222881DF7025600586B7D /* AuthError.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -370,7 +390,10 @@
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
+				081222891DF7025600586B7D /* AuthError.swift in Sources */,
+				083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
+				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				08783D371DECA97600A08343 /* AuthSvc.swift in Sources */,
 			);
@@ -384,6 +407,7 @@
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,
+				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,31 @@
 //
 
 import Foundation
+import Siesta
+import ObjectMapper
 
-public class ETXModel:PropertyNames {
-    var id: String = ""
+public class ETXModel: Mappable {
+    
+    var id: String? = ""
+    
+    public init() {
+        
+    }
+
+    required public init?(map: Map) {
+        
+    }
+    /// This function is where all variable mappings should occur. It is executed by Mapper during the mapping (serialization and deserialization) process.
+    public func mapping(map: Map) {
+        id <- map["id"]
+    }
 }
 
 protocol PropertyNames {
     func propertyNames() -> [String]
 }
 
-extension PropertyNames
+extension JSONConvertible
 {
     func propertyNames() -> [String] {
         return Mirror(reflecting: self).children.flatMap { $0.label }

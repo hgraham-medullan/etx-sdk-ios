@@ -12,13 +12,13 @@ import Alamofire
 
 class TxModelTests: XCTestCase {
     
-    func testGetPropertyNames() {
-        let m: TxModel = TxModel()
-        print(m.propertyNames());
-        
-        let u: User = User()
-        print(u.propertyNames());
-        
-    }
+//    func testGetPropertyNames() {
+//        let m: ETXModel = ETXModel()
+//        print(m.propertyNames());
+//        
+//        let u: ETXUser = ETXUser()
+//        print(u.propertyNames());
+//        
+//    }
     
 }

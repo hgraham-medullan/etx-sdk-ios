@@ -7,44 +7,49 @@
 //
 
 import Foundation
-import Alamofire
-class UserRepository {
+import Siesta
+import ObjectMapper
+
+class UserRepository: Repository<ETXUser> {
     
-    let headers: HTTPHeaders
+    var users: Resource { return resource("/users") }
     
     init() {
-        headers = [
-            "Authorization": "thqvTvYIqTPFCIYmTKz2YM397vYLVlTHwrWVPS2GsJTvA4DhVxYr8DJEJewwIXVt",
-            "Accept": "application/json"
-        ]
+        super.init(resourcePath: "/users")
     }
     
-    func login(don: @escaping (String) ->Void) {
-        // TODO: clear auth token before login
-        Alamofire.request( EngaugeTxApplication.DEFAULT_BASE_URL + "/users/57f3d6999ba8b300cfd604ed").responseJSON { response in
-            print(response.request)  // original URL request
-            print(response.response) // HTTP URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-                let defaults = UserDefaults.standard
-                defaults.set("the-token", forKey: "accessToken")
-
+    private func login(credentials: UserCredentials, completion: @escaping (String) ->Void) {
+        let r = self.users.child("/login").withParam("include", "user").request(.post, json: credentials.toJSON())
+        r.onFailure { (err) in
+            if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
+                print("Auth err")
+            } else  {
+                print("Oops \(err.httpStatusCode)")
             }
-            don("Done")
+        }
+        r.onSuccess { (obj) in
+            print(obj.content)
+        }
+        r.onCompletion { (res) in
+            completion(res.response.description)
+            
         }
     }
     
-    func getAccessToken() -> String? {
-        let defaults = UserDefaults.standard
-        return defaults.string(forKey: "accessToken")
+    func loginWithEmail(_ email: String, password: String, done: @escaping (String) ->Void) {
+        let userCredentials = UserEmailCredentials(email, password: password)
+        self.login(credentials: userCredentials, completion: done)
+    }
+    
+    func loginWithUsername(_ username: String, password: String, done: @escaping (String) ->Void) {
+        let userCredentials = UsernameCredentials(username, password: password)
+        self.login(credentials: userCredentials, completion: done)
     }
     
     func logout() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "accessToken")
+        self.wipeResources()
     }
 
 }

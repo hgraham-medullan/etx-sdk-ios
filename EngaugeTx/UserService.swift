@@ -13,6 +13,13 @@ import Foundation
  */
 public class UserService: AuthSvc {
     
+    let userRepository: UserRepository
+    
+    override public init() {
+        self.userRepository = UserRepository()
+        super.init()
+    }
+    
     private static let KEY_ACCESS_TOKEN = "accessToken"
     
     /// Login with username
@@ -37,9 +44,11 @@ public class UserService: AuthSvc {
      - parameter object: The TX object
      - parameter err: The error object
      */
-    public func loginUserWithEmail(_ email: String, password: String, completion: (_ object: ETXUser?, _ err: ETXError?) -> Void) {
-        let user: ETXUser = ETXUser()
-        user.email = email
-        completion(user, nil)
+    public func loginUserWithEmail(_ email: String, password: String, completion: @escaping (_ object: ETXUser?, _ err: ETXError?) -> Void) {
+        self.userRepository.loginWithEmail(email, password: password) {
+            resp in
+            print(resp)
+            completion(nil, nil)
+        }
     }
 }

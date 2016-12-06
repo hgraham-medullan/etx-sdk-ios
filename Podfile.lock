@@ -1,12 +1,24 @@
 PODS:
   - Alamofire (4.2.0)
+  - ObjectMapper (2.2.1)
+  - Siesta (1.0.1):
+    - Siesta/Core (= 1.0.1)
+  - Siesta/Alamofire (1.0.1):
+    - Alamofire (> 4)
+    - Siesta/Core
+  - Siesta/Core (1.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - ObjectMapper (~> 2.2)
+  - Siesta (>= 1.0.1)
+  - Siesta/Alamofire (>= 1.0.1)
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  Siesta: c7195fc65376360c76a27ce7bb64e0f1ce099a20
 
-PODFILE CHECKSUM: 393b550fea611d6163cc2b7c831772983ce88e15
+PODFILE CHECKSUM: a679f78b547aa8d01cf79a4088b3a4e6ebfed167
 
 COCOAPODS: 1.1.1
