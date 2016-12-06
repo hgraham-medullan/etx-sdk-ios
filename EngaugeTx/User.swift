@@ -23,6 +23,12 @@ public class ETXUser: ETXModel {
         super.init(map: map)
     }
     
+    public init(x: Any) {
+        super.init()
+        let d = (x as! [String:Any])
+        let u:ETXUser? = Mapper<ETXUser>().map(JSON: d)
+    }
+    
     public override func mapping(map: Map) {
         super.mapping(map: map)
         firstName <- map["firstName"]

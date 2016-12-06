@@ -16,8 +16,9 @@ end
 
 ### Using the SDK
 Create ```EngaugeTx.plist``` file with the following contents
-<?xml version="1.0" encoding="UTF-8"?>
+
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -40,7 +41,9 @@ Properties that can be specified
 
 Start by implementing the ```EngaugeTxAppDelegate``` protocol and conforming to 
 it by defining the ```engaugeTx``` instance variable.
+
 ```
+import EngaugeTx
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, EngaugeTxAppDelegate {
   var window: UIWindow?

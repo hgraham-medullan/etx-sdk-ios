@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class ETXError: NSError {
+public class ETXError {
     
 }

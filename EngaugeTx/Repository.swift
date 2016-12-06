@@ -8,6 +8,7 @@
 
 import Foundation
 import Siesta
+import ObjectMapper
 
 class Repository<T: ETXModel> : Service, ResourceObserver {
     
@@ -29,15 +30,20 @@ class Repository<T: ETXModel> : Service, ResourceObserver {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
         configure {
-            //$0.headers["Authorization"] = ""
+            
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
-            // "743f932a6fecf5cc30730c2385d6e7c7"
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
-            //"b7fd395de3739fd6bc36d459ac47ec5e642a0331"
+            $0.headers["Authorization"] = self.getAccessToken()
         }
         
-        configureTransformer(resourcePath) {  // Path supports wildcards
-            ETXUser(map: $0.content)         // Create models however you like
+        //configureTransformer("", contentTransform: (Entity<τ_0_0>) throws -> τ_0_1?)
+        configureTransformer("/users/**") {
+            //(entity in)
+            //print("Transforming")
+            //ETXUser(x: $0.content)
+            //Mapper<T>().map(JSON: $0.content)
+            Mapper<T>().map(JSON: $0.content)
+            
         }
         self.etxResource.addObserver(self)
 //        self.etxResource.addObserver(owner: self) {

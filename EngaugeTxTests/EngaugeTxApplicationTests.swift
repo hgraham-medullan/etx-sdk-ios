@@ -24,21 +24,21 @@ class EngaugeTxApplicationTests: XCTestCase {
     
     func testPrimaryInitializer() {
         self.engaugeTxApllication = EngaugeTxApplication()
-        XCTAssertEqual(self.engaugeTxApllication?.baseUrl, defaultBaseUrl, "Default base URL mismatch")
+        XCTAssertEqual(EngaugeTxApplication.baseUrl, defaultBaseUrl, "Default base URL mismatch")
     }
     
     func testInitializationWithAppIdAndClientKey() {
         self.engaugeTxApllication = EngaugeTxApplication(appId: testAppId, clientKey: testClientKey)
-        XCTAssertEqual(testAppId, self.engaugeTxApllication?.appId)
-        XCTAssertEqual(testClientKey, self.engaugeTxApllication?.clientKey)
+        XCTAssertEqual(testAppId, EngaugeTxApplication.appId)
+        XCTAssertEqual(testClientKey, EngaugeTxApplication.clientKey)
     }
     
     func testInitializationWithAppIdClientKeyAndBaseUrl() {
         self.engaugeTxApllication = EngaugeTxApplication(appId: testAppId, clientKey: testClientKey, baseUrl: testBaseUrl)
     
-        XCTAssertEqual(testAppId, self.engaugeTxApllication?.appId)
-        XCTAssertEqual(testClientKey, self.engaugeTxApllication?.clientKey)
-        XCTAssertEqual(testBaseUrl, self.engaugeTxApllication?.baseUrl)
+        XCTAssertEqual(testAppId, EngaugeTxApplication.appId)
+        XCTAssertEqual(testClientKey, EngaugeTxApplication.clientKey)
+        XCTAssertEqual(testBaseUrl, EngaugeTxApplication.baseUrl)
         
     }
     

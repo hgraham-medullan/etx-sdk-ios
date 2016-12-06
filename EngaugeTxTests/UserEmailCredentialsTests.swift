@@ -25,12 +25,12 @@ class UserEmailCredentialsTests: XCTestCase {
         let email: String = "sean@medullan.com"
         let password: String = "P@ssw0rd"
         
-        let expected: [String:String] = ["email": email, "password": password]
+        let jsonString = "{\"password\":\"\(password)\",\"email\":\"\(email)\"}"
         
-        let m: Map = Map(mappingType: .fromJSON, JSON: expected)
-        let userEmailCredentials = UserEmailCredentials(map: m)
-        print(userEmailCredentials)
+        let expected = UserEmailCredentials(email, password: password)
+        let actual: UserEmailCredentials = UserEmailCredentials(JSONString: jsonString)!
         
-        //XCTAssertEqual(expected, userEmailCredentials.toJSON() as! [String: String])
+        XCTAssertEqual(expected.email, actual.email)
+        XCTAssertEqual(expected.password, actual.password)
     }
 }

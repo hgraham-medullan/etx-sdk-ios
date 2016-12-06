@@ -8,28 +8,39 @@
 
 import Foundation
 
-protocol AuthenticationError {
+/**
+ Failure when a user tries to authenticate
+ */
+public class ETXAuthenticationError: ETXError {
+    public var reason: Reason
     
+    /**
+    */
+    public init(_ reason: Reason) {
+        self.reason = reason
+    }
 }
 
-/**
- Maximum login attempts reached, please wait 30 minutes before retrying
- */
-public class MaxLoginAttemptsReached: AuthenticationError { }
-
-/**
- The email address on the account is not yet verified
- */
-public class EmailNotVerified: AuthenticationError { }
-
-
-/**
- The account has been disabled
- */
-public class AccountDisabled: AuthenticationError { }
-
-
-/**
- Invalid username and password combination
- */
-public class InvalidUsernameOrPassword: AuthenticationError { }
+public extension ETXAuthenticationError {
+    public enum Reason {
+        /**
+         Maximum login attempts reached, please wait 30 minutes before retrying
+         */
+        case MaxLoginAttemptsReached
+        
+        /**
+         The email address on the account is not yet verified
+         */
+        case EmailNotVerified
+        
+        /**
+         The account has been disabled
+         */
+        case AccountDisabled
+        
+        /**
+         Invalid username and password combination
+         */
+        case InvalidUsernameOrPassword
+    }
+}

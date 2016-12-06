@@ -22,7 +22,7 @@ class UserServiceTest: XCTestCase {
     }
     
     func testLoginWithUsername() {
-        let username: String = "sean"
+        let username: String = "sean@medullan.com"
         let password: String = "Bigfun21!"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
@@ -41,7 +41,7 @@ class UserServiceTest: XCTestCase {
     }
     
     func testSuccessfulLoginWithUsername() {
-        let username: String = "sean"
+        let username: String = "sean@medullan.com"
         let password: String = "Bigfun21!"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")

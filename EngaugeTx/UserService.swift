@@ -29,11 +29,9 @@ public class UserService: AuthSvc {
     /// - parameter completion: Callback when the request completes
     /// - parameter obj: The TX object
     /// - parameter err: The error object
-    public func loginUserWithUsername(_ username: String, password: String, completion: (_ obj: ETXUser?, _ err: ETXError?) -> Void) {
-        
-        let user: ETXUser = ETXUser()
-        user.username = username
-        completion(user, nil)
+    public func loginUserWithUsername(_ username: String, password: String, completion: @escaping (_ user: ETXUser?, _ err: ETXError?) -> Void) {
+    
+        self.userRepository.loginWithUsername(username, password: password, done: completion)
     }
     
     /**
@@ -45,10 +43,6 @@ public class UserService: AuthSvc {
      - parameter err: The error object
      */
     public func loginUserWithEmail(_ email: String, password: String, completion: @escaping (_ object: ETXUser?, _ err: ETXError?) -> Void) {
-        self.userRepository.loginWithEmail(email, password: password) {
-            resp in
-            print(resp)
-            completion(nil, nil)
-        }
+        self.userRepository.loginWithEmail(email, password: password, done: completion)
     }
 }
