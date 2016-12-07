@@ -102,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */,
+				083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -152,7 +153,6 @@
 				08783D2B1DEC927900A08343 /* Info.plist */,
 				083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */,
 				083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */,
-				083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";

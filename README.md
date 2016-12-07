@@ -61,4 +61,4 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 
 ## Documentation
-Our docs can be found here: [docs](https://medullan.github.io/etx-sdk-ios/)
+Our docs can be found here: [docs](http://iosdocs.engaugetx.com/)

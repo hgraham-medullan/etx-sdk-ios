@@ -34,7 +34,7 @@ public class EngaugeTxApplication {
     private static let KEY_BASE_URL: String = "baseUrl"
     private static let CONFIG_FILENAME = "EngaugeTx"
     private static let CONFIG_FILE_TYPE = "plist"
-    private static let DEFAULT_BASE_URL = "https://api.eu1.engaugetx.com/v1"
+    private static let DEFAULT_BASE_URL = "https://etx-paas-dev.herokuapp.com/v1"
     
     /**
      

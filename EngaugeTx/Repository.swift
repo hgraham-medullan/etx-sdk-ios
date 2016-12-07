@@ -10,16 +10,12 @@ import Foundation
 import Siesta
 import ObjectMapper
 
-class Repository<T: ETXModel> : Service, ResourceObserver {
+class Repository<T: ETXModel> : Service {
     
     private let KEY_HEADER_APP_ID: String = "app-id"
     private let KEY_HEADER_CLIENT_KEY: String = "client-key"
     private let KEY_HEADER_AUTHORIZATION: String = "Authorization"
-    
-    public func resourceChanged(_ resource: Resource, event: ResourceEvent) {
-        print("The resource changed")
-    }
-    
+    private let KEY_DEFAULTS_ACCESS_TOKEN: String = "accessToken"
     
     var resourcePath: String
     var etxResource: Resource {
@@ -33,25 +29,13 @@ class Repository<T: ETXModel> : Service, ResourceObserver {
             
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
-            $0.headers["Authorization"] = self.getAccessToken()
+            $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
         }
-        
-        //configureTransformer("", contentTransform: (Entity<τ_0_0>) throws -> τ_0_1?)
+    
         configureTransformer("/users/**") {
-            //(entity in)
-            //print("Transforming")
-            //ETXUser(x: $0.content)
-            //Mapper<T>().map(JSON: $0.content)
             Mapper<T>().map(JSON: $0.content)
             
         }
-        self.etxResource.addObserver(self)
-//        self.etxResource.addObserver(owner: self) {
-//            resource, _ in
-//            if let m: T = self.etxResource.typedContent() {
-//                print(m)
-//            }
-//        }
     }
     
     func save(model: T) {
@@ -80,6 +64,16 @@ class Repository<T: ETXModel> : Service, ResourceObserver {
     
     func getAccessToken() -> String? {
         let defaults = UserDefaults.standard
-        return defaults.string(forKey: "accessToken")
+        return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+    }
+    
+    func saveAccessToken(_ accessToken: String?) {
+        let defaults = UserDefaults.standard
+        defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+    }
+
+    func deleteAccessToken() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
     }
 }

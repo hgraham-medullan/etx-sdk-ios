@@ -7,7 +7,20 @@
 //
 
 import Foundation
+import ObjectMapper
 
-public class ETXError {
+public class ETXError: Mappable {
+    
+    var code: String = ""
+    
+    public init() { }
+    
+    public required init?(map: Map) {
+        //super.init(map: map)
+    }
+    
+    public func mapping(map: Map) {
+        code <- map["error.code"]
+    }
     
 }

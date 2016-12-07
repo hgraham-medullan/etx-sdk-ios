@@ -21,16 +21,22 @@ class UserRepository: Repository<ETXUser> {
         }
     }
     
-    private func login(credentials: UserCredentials, completion: @escaping (ETXUser?, ETXError?) ->Void) {
+    private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (ETXUser?, ETXError?) ->Void) {
         
         let req = self.users.child("/login").withParam("include", "user").request(.post, json: credentials.toJSON())
         req.onFailure { (err) in
+            var authErr: ETXAuthenticationError? = nil
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
             if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
+                authErr = ETXAuthenticationError(reasonRawValue: (etxError?.code)!)
                 print("Auth err")
-            } else  {
-                print("Oops \(err.httpStatusCode)")
             }
-            completion(nil, ETXAuthenticationError(.InvalidUsernameOrPassword))
+            if let authErr = authErr {
+                completion(nil, authErr)
+            } else {
+                completion(nil, etxError)
+            }
+            
         }
         
         req.onSuccess { (obj) in
@@ -45,25 +51,19 @@ class UserRepository: Repository<ETXUser> {
 //        }
     }
     
-    func loginWithEmail(_ email: String, password: String, done: @escaping (ETXUser?, ETXError?) ->Void) {
+    func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (ETXUser?, ETXError?) ->Void) {
+        self.deleteAccessToken()
         let userCredentials = UserEmailCredentials(email, password: password)
-        self.login(credentials: userCredentials, completion: done)
+        self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    func loginWithUsername(_ username: String, password: String, done: @escaping (ETXUser?, ETXError?) ->Void) {
+    func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (ETXUser?, ETXError?) ->Void) {
         let userCredentials = UsernameCredentials(username, password: password)
-        self.login(credentials: userCredentials, completion: done)
-    }
-    
-    
-    private func saveAccessToken(_ accessToken: String?) {
-        let defaults = UserDefaults.standard
-        defaults.set(accessToken, forKey: "accessToken")
+        self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
     func logout() {
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "accessToken")
+        self.deleteAccessToken()
         self.wipeResources()
     }
 

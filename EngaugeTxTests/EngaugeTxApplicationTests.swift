@@ -16,7 +16,7 @@ class EngaugeTxApplicationTests: XCTestCase {
     let testAppId: String = "test-app-id"
     let testClientKey: String = "test-client-key"
     let testBaseUrl: String = "test-base-url"
-    let defaultBaseUrl: String = "https://api.eu1.engaugetx.com/v1"
+    let defaultBaseUrl: String = "https://etx-paas-dev.herokuapp.com/v1"
     
     override func setUp() {
         super.setUp()
