@@ -14,16 +14,17 @@ import ObjectMapper
  */
 public class ETXAuthenticationError: ETXError {
     
+    /**
+     The reason for the authentication failure
+    */
     public var reason: Reason?
     
-    /**
-    */
-    public init(_ reason: Reason) {
+    init(_ reason: Reason) {
         self.reason = reason
         super.init()
     }
     
-    public convenience init?(reasonRawValue: String) {
+    convenience init?(reasonRawValue: String) {
         let reason: Reason? = Reason(rawValue: reasonRawValue)
         if let reason: Reason = reason {
             self.init(reason)
@@ -32,12 +33,19 @@ public class ETXAuthenticationError: ETXError {
         }
     }
     
+    /**
+     Create an instance from a Map
+    */
     public required init?(map: Map) {
         super.init(map: map)
     }
 }
 
 public extension ETXAuthenticationError {
+    
+    /**
+     Possible list of reasons for authentication failure
+    */
     public enum Reason: String {
         /**
          Maximum login attempts reached, please wait 30 minutes before retrying

@@ -9,26 +9,48 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents a user of an application on the platform
+ */
 public class ETXUser: ETXModel {
-    var firstName: String = ""
-    var lastName: String = ""
-    var username: String = ""
-    var email: String = ""
     
+    /**
+     The user's first name
+     */
+    public var firstName: String = ""
+    
+    /**
+     The user's last name
+     */
+    public var lastName: String = ""
+    
+    /**
+     The username of the user
+     */
+    public var username: String = ""
+    
+    /**
+     The user's email address
+     */
+    public var email: String = ""
+    
+    /**
+     Creates a instance of ETXUser
+     */
     public override init() {
         super.init()
     }
     
+    /**
+     Creates a instance of ETXUser
+     */
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    public init(x: Any) {
-        super.init()
-        let d = (x as! [String:Any])
-        let u:ETXUser? = Mapper<ETXUser>().map(JSON: d)
-    }
-    
+    /**
+     Creates a instance of ETXUser from map
+     */
     public override func mapping(map: Map) {
         super.mapping(map: map)
         firstName <- map["firstName"]

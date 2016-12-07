@@ -29,14 +29,12 @@ class UserRepository: Repository<ETXUser> {
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
             if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
                 authErr = ETXAuthenticationError(reasonRawValue: (etxError?.code)!)
-                print("Auth err")
             }
             if let authErr = authErr {
                 completion(nil, authErr)
             } else {
                 completion(nil, etxError)
             }
-            
         }
         
         req.onSuccess { (obj) in

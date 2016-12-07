@@ -11,26 +11,29 @@ import Foundation
 /**
  Provides authentication to the EnguageTx Platform
  */
-public class UserService: AuthSvc {
-    
-    let userRepository: UserRepository
-    
-    override public init() {
-        self.userRepository = UserRepository()
-        super.init()
-    }
+open class ETXUserService {
     
     private static let KEY_ACCESS_TOKEN = "accessToken"
     
-    /// Login with username
-    ///
-    /// - parameter username: The user's username
-    /// - parameter password: The user's password
-    /// - parameter completion: Callback when the request completes
-    /// - parameter obj: The TX object
-    /// - parameter err: The error object
-    public func loginUserWithUsername(_ username: String, password: String, rememberMe: Bool, completion: @escaping (_ user: ETXUser?, _ err: ETXError?) -> Void) {
+    let userRepository: UserRepository
     
+    /**
+     Create an instance of ETXUserService
+     */
+    public init() {
+        self.userRepository = UserRepository()
+    }
+    
+    /** Login with username
+     - parameter username: The user's username
+     - parameter password: The user's password
+     - parameter rememberMe: Allows for an extended user session
+     - parameter completion: Callback when the request completes
+     - parameter object: The TX object
+     - parameter err: The error object
+     */
+    public func loginUserWithUsername(_ username: String, password: String, rememberMe: Bool, completion: @escaping (_ user: ETXUser?, _ err: ETXError?) -> Void) {
+        
         self.userRepository.loginWithUsername(username, password: password, rememberMe: rememberMe, done: completion)
     }
     
@@ -38,6 +41,7 @@ public class UserService: AuthSvc {
      Login with email address
      - parameter email: The user's email address
      - parameter password: The user's password
+     - parameter rememberMe: Allows for an extended user session
      - parameter completion: Callback when the request completes
      - parameter object: The TX object
      - parameter err: The error object

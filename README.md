@@ -59,6 +59,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-
+    
 ## Documentation
-Our docs can be found here: [docs](http://iosdocs.engaugetx.com/)
+Our docs can be found here: [docs](https://iosdocs.engaugetx.com/index.html)
+engaugetxdev Eng@ug3TxD3v

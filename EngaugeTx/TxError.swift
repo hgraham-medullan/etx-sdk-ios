@@ -9,9 +9,15 @@
 import Foundation
 import ObjectMapper
 
+/**
+ An error response from the EngaugeTx Platform
+ */
 public class ETXError: Mappable {
     
-    var code: String = ""
+    /**
+     The error code
+     */
+    public var code: String = ""
     
     public init() { }
     

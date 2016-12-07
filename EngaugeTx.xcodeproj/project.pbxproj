@@ -27,7 +27,6 @@
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		08783D371DECA97600A08343 /* AuthSvc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D361DECA97600A08343 /* AuthSvc.swift */; };
 		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
@@ -67,7 +66,6 @@
 		08783D241DEC927800A08343 /* EngaugeTxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EngaugeTxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D291DEC927900A08343 /* EngaugeTxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngaugeTxTests.swift; sourceTree = "<group>"; };
 		08783D2B1DEC927900A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08783D361DECA97600A08343 /* AuthSvc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSvc.swift; sourceTree = "<group>"; };
 		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +158,6 @@
 		08783D351DEC9D3700A08343 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				08783D361DECA97600A08343 /* AuthSvc.swift */,
 				083DEEB91DF203F800A3CB8D /* User.swift */,
 				083DEEBB1DF21EF000A3CB8D /* UserService.swift */,
 				083DEEC11DF5B03800A3CB8D /* UserRepository.swift */,
@@ -398,7 +395,6 @@
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
-				08783D371DECA97600A08343 /* AuthSvc.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

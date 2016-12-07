@@ -11,11 +11,8 @@ import XCTest
 
 class EngaugeTxTests: XCTestCase {
     
-    var authSvc: AuthSvc!
-    
     override func setUp() {
         super.setUp()
-        self.authSvc = AuthSvc()
     }
     
     override func tearDown() {

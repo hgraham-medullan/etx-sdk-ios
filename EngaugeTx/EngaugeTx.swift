@@ -15,7 +15,7 @@ import Foundation
 public protocol EngaugeTxAppDelegate {
     
     /**
-     
+     Reference to the EngaugeTx Application
      */
     var engaugeTx: EngaugeTxApplication? { get set }
     
@@ -34,10 +34,13 @@ public class EngaugeTxApplication {
     private static let KEY_BASE_URL: String = "baseUrl"
     private static let CONFIG_FILENAME = "EngaugeTx"
     private static let CONFIG_FILE_TYPE = "plist"
-    private static let DEFAULT_BASE_URL = "https://etx-paas-dev.herokuapp.com/v1"
+    private static let DEFAULT_BASE_URL = "https://api.us1.engaugetx.com/v1"
     
     /**
-     
+     Create an instance of an EngaugeTx Application
+     - parameter appId: The application's ID
+     - parameter clientKey: The application's client key
+     - parameter baseUrl: The base url to the EngaugeTx API. Defaults to https://api.us1.engaugetx.com/v1
      */
     public init(appId: String, clientKey: String, baseUrl: String) {
         EngaugeTxApplication.baseUrl = baseUrl
@@ -47,7 +50,6 @@ public class EngaugeTxApplication {
     
     /**
      Sets up an EngaugeTx Application with your credentials
-     
      - parameter appId: The application's ID
      - parameter clientKey: The application's client Key
      */
