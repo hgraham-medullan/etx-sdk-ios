@@ -15,11 +15,12 @@ class UserServiceTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.app = EngaugeTxApplication(appId: "743f932a6fecf5cc30730c2385d6e7c7", clientKey: "b7fd395de3739fd6bc36d459ac47ec5e642a0331")
+        self.app = EngaugeTxApplication(appId: "e8b836cd6d20f3431e0fbcb54196360b", clientKey: "7c2759273aaf770093f92e0accca965255fac0d1")
         self.userSvc = ETXUserService()
     }
     
     override func tearDown() {
+        self.app =  nil
         self.userSvc = nil
     }
     
