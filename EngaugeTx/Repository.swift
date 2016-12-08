@@ -16,6 +16,8 @@ class Repository<T: ETXModel> : Service {
     private let KEY_HEADER_CLIENT_KEY: String = "client-key"
     private let KEY_HEADER_AUTHORIZATION: String = "Authorization"
     private let KEY_DEFAULTS_ACCESS_TOKEN: String = "accessToken"
+    private let KEY_DEFAULTS_USER_ID: String = "userId"
+    private let KEY_DEFAULTS_CURRENT_USER: String = "currentUser"
     
     var resourcePath: String
     var etxResource: Resource {
@@ -67,13 +69,16 @@ class Repository<T: ETXModel> : Service {
         return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
     }
     
-    func saveAccessToken(_ accessToken: String?) {
+    func saveCurrentUser(_ accessToken: ETXAccessToken?) {
         let defaults = UserDefaults.standard
-        defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        let currentUser: [String: String?] =
+            [KEY_DEFAULTS_USER_ID: accessToken?.userId,
+             KEY_DEFAULTS_ACCESS_TOKEN: accessToken?.id]
+        defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
     }
 
-    func deleteAccessToken() {
+    func deleteCurrentUser() {
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        defaults.removeObject(forKey: self.KEY_DEFAULTS_CURRENT_USER)
     }
 }

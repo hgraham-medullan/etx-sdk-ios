@@ -87,6 +87,24 @@ class UserServiceTest: XCTestCase {
             }
         }
     }
-
+    
+    func testLoginWithUnverifiedEmail() {
+        let email: String = "sean+unverified@medullan.com"
+        let password: String = "P@ssw0rd"
+        
+        let userLoginExpectation = expectation(description: "User login attempt successsful")
+        
+        self.userSvc.loginUserWithEmail(email, password: password, rememberMe: false) {
+            (user: ETXUser?, err: ETXError?) in
+            let err:ETXAuthenticationError = err as! ETXAuthenticationError
+            XCTAssertEqual(ETXAuthenticationError.Reason.EmailNotVerified, err.reason!)
+            userLoginExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("User login call failed: \(error)")
+            }
+        }
+    }
     
 }

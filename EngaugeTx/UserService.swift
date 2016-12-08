@@ -49,4 +49,15 @@ open class ETXUserService {
     public func loginUserWithEmail(_ email: String, password: String, rememberMe: Bool, completion: @escaping (_ object: ETXUser?, _ err: ETXError?) -> Void) {
         self.userRepository.loginWithEmail(email, password: password, rememberMe: rememberMe, done: completion)
     }
+    
+    public func logout(completion: ()->Void) {
+        self.userRepository.logout()
+        completion()
+    }
+    
+    public func getCurrentUser(completion:(ETXUser?)->Void) {
+        print(self.userRepository.getAccessToken())
+        completion(nil)
+    }
+    
 }

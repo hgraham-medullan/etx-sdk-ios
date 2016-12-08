@@ -40,7 +40,7 @@ class UserRepository: Repository<ETXUser> {
         req.onSuccess { (obj) in
             
             let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
-            self.saveAccessToken(accessToken.id)
+            self.saveCurrentUser(accessToken)
             completion(accessToken.user, nil)
         }
 //        req.onCompletion { (res) in
@@ -50,7 +50,7 @@ class UserRepository: Repository<ETXUser> {
     }
     
     func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (ETXUser?, ETXError?) ->Void) {
-        self.deleteAccessToken()
+        self.deleteCurrentUser()
         let userCredentials = UserEmailCredentials(email, password: password)
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
@@ -61,7 +61,7 @@ class UserRepository: Repository<ETXUser> {
     }
     
     func logout() {
-        self.deleteAccessToken()
+        self.deleteCurrentUser()
         self.wipeResources()
     }
 

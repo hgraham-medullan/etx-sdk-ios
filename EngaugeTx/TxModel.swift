@@ -35,13 +35,13 @@ public class ETXModel: Mappable {
     }
 }
 
-protocol PropertyNames {
-    func propertyNames() -> [String]
-}
+//protocol PropertyNames {
+//    func propertyNames() -> [String]
+//}
 
-extension JSONConvertible
-{
-    func propertyNames() -> [String] {
-        return Mirror(reflecting: self).children.flatMap { $0.label }
-    }
-}
+//extension JSONConvertible
+//{
+//    func propertyNames() -> [String] {
+//        return Mirror(reflecting: self).children.flatMap { $0.label }
+//    }
+//}
