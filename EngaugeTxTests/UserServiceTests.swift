@@ -32,8 +32,8 @@ class UserServiceTest: XCTestCase {
         
         self.userSvc.loginUserWithUsername(username, password: password, rememberMe: false) {
             (user: ETXUser?, err: ETXError?) in
-            successfulUserLoginExpectation.fulfill()
             XCTAssertEqual(user?.username, username)
+            successfulUserLoginExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 10) { error in
@@ -50,8 +50,8 @@ class UserServiceTest: XCTestCase {
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         self.userSvc.loginUserWithEmail(email, password: password, rememberMe: false) {
             (user: ETXUser?, err: ETXError?) in
+            XCTAssertEqual(user?.email, email, "The user login email should match the email on the user returned")
             successfulUserLoginExpectation.fulfill()
-            XCTAssertEqual(user?.email, email)
         }
         
         waitForExpectations(timeout: 10) { error in
