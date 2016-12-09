@@ -63,9 +63,11 @@ open class ETXUserService {
     /**
      Create an application user
      - parameter user: The user to be created
-     - parameter completion: Callback when the request completes
+     - parameter completion: Callback when the request completes. Supplies the ```ETXUser``` object and an ```ETXError``` object 
+     - parameter user: The registered user. Only the user ID is accessible until the user confirms their email address. This will be ```nil``` if registration failed
+     - parameter err: Error containing details as to the registration process failed. This will be ```nil``` if registration was successful
      */
-    public func createUser(_ user: ETXUser, completion: @escaping (ETXUser?, ETXError?)->Void) {
+    public func createUser(_ user: ETXUser, completion: @escaping (_ user: ETXUser?, _ err: ETXError?)->Void) {
         self.userRepository.save(model: user){
             (user, err) in
             completion(user, err)
