@@ -11,9 +11,9 @@ import Siesta
 import ObjectMapper
 
 /// Represents a data object stored on the EngaugeTx Platform
-public class ETXModel: Mappable {
+open class ETXModel: Mappable {
     
-    var id: String? = ""
+    var id: String? = nil
     
     public init() {
         

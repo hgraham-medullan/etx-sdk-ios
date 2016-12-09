@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import EngaugeTx
+import ObjectMapper
 
 class UserServiceTest: XCTestCase {
     var app: EngaugeTxApplication!
@@ -100,6 +101,66 @@ class UserServiceTest: XCTestCase {
             XCTAssertEqual(ETXAuthenticationError.Reason.EmailNotVerified, err.reason!)
             userLoginExpectation.fulfill()
         }
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("User login call failed: \(error)")
+            }
+        }
+    }
+    
+    class Caregiver: ETXUser {
+        var badgeId: String = ""
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            badgeId <- map["badgeId"]
+        }
+        
+    }
+    
+    func xtestCreateUser() {
+        let caregiver: Caregiver = Caregiver(email: "sean+caregiver@medullan.com", username: "sean+caregiver@medullan.com", password: "P@ssw0rd")
+        caregiver.badgeId = "badgeno."
+        caregiver.firstName = "Sean Caregiver"
+        caregiver.lastName = "Hoilett"
+        
+        let userCreateExpectation = expectation(description: "User login attempt successsful")
+        
+        self.userSvc.createUser(caregiver) {
+            (user, err) in
+            XCTAssertNil(err)
+            print(err)
+            userCreateExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1000) { error in
+            if let error = error {
+                XCTFail("User login call failed: \(error)")
+            }
+        }
+        
+    }
+    
+
+    func testCreateUserWhenTheEmailIsAlreadyInUse() {
+        let user: ETXUser = ETXUser(email: "sean@medullan.com",
+                                    username: "sean@medullan.com",
+                                    password: "P@ssw0rd")
+        user.firstName = "Sean"
+        user.lastName = "Hoilett"
+        
+        let userCreateExpectation = expectation(description: "User login attempt successsful")
+        
+        self.userSvc.createUser(user) {
+            (user, err) in
+            XCTAssertNotNil(err)
+            XCTAssertEqual(400, err?.statusCode)
+            let codes: [String:Any] = err?.details?["codes"] as! [String : Any]
+            XCTAssertNotNil(codes)
+            XCTAssertTrue((codes["email"] as! [String]).contains("uniqueness"))
+            userCreateExpectation.fulfill()
+        }
+        
         waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")

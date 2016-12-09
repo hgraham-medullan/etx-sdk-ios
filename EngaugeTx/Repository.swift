@@ -10,7 +10,7 @@ import Foundation
 import Siesta
 import ObjectMapper
 
-class Repository<T: ETXModel> : Service {
+class Repository<T> : Service where T: ETXModel {
     
     private let KEY_HEADER_APP_ID: String = "app-id"
     private let KEY_HEADER_CLIENT_KEY: String = "client-key"
@@ -34,33 +34,41 @@ class Repository<T: ETXModel> : Service {
             $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
         }
     
-        configureTransformer("/users/**") {
+        configureTransformer(resourcePath) {
             Mapper<T>().map(JSON: $0.content)
-            
         }
     }
     
-    func save(model: T) {
+    func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
-            self.update(model: model)
+            self.update(model: model, completion: completion)
         } else {
-            let _ = self.etxResource.request(.post, json: model as! JSONConvertible)
+            //let m = model.toJSON()
+            let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
+            req.onFailure({ (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                completion(nil, etxError)
+            })
+            req.onSuccess({ (m) in
+                let n = (m.content as! T)
+                completion(n, nil)
+            })
         }
     }
     
-    private func update(model: T) {
+    private func update(model: T, completion: (T?, ETXError?)-> Void) {
         if let id = model.id {
-            let _ = self.etxResource.child(id).request(.put, json: model as! JSONConvertible)
+            let _ = self.etxResource.child(id).request(.put, json: ((model as? ETXModel)?.toJSON())!)
         }
     }
     
-    func delete(model: T) {
+    func delete(model: T, completion: (ETXError)) {
         if let id = model.id {
             let _  = self.etxResource.child(id).request(.delete)
         }
     }
     
-    func get(id: String) -> Void {
+    func get(id: String, completion: (T, ETXError)) -> Void {
         let _  = self.etxResource.child(id)
     }
     

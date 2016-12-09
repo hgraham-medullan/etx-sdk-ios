@@ -12,39 +12,59 @@ import ObjectMapper
 /**
  Represents a user of an application on the platform
  */
-public class ETXUser: ETXModel {
+open class ETXUser: ETXModel {
     
     /**
      The user's first name
      */
-    public var firstName: String = ""
+    public var firstName: String?
     
     /**
      The user's last name
      */
-    public var lastName: String = ""
+    public var lastName: String?
     
     /**
      The username of the user
      */
-    public var username: String = ""
+    public var username: String
     
     /**
      The user's email address
      */
-    public var email: String = ""
+    public var email: String
     
-    /**
-     Creates a instance of ETXUser
-     */
-    public override init() {
+    var password: String
+    
+    public init(email: String, username: String, password: String) {
+        self.email = email
+        self.username = username
+        self.password = password
         super.init()
     }
     
     /**
      Creates a instance of ETXUser
      */
+    //    public override init() {
+    //        super.init()
+    //    }
+    
+    /**
+     Creates a instance of ETXUser
+     */
     required public init?(map: Map) {
+        self.email = ""
+        self.username = ""
+        self.password = ""
+        do {
+            try self.password = map.value("password")
+            try self.username = map.value("username")
+            try self.email = map.value("email")
+        }
+        catch {
+            print("Err occured")
+        }
         super.init(map: map)
     }
     
@@ -57,5 +77,6 @@ public class ETXUser: ETXModel {
         lastName <- map["lastName"]
         username <- map["username"]
         email <- map["email"]
+        password <- map["password"]
     }
 }

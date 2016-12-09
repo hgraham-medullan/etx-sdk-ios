@@ -56,8 +56,20 @@ open class ETXUserService {
     }
     
     public func getCurrentUser(completion:(ETXUser?)->Void) {
-        print(self.userRepository.getAccessToken())
+        print(self.userRepository.getAccessToken() ?? "no token")
         completion(nil)
+    }
+    
+    /**
+     Create an application user
+     - parameter user: The user to be created
+     - parameter completion: Callback when the request completes
+     */
+    public func createUser(_ user: ETXUser, completion: @escaping (ETXUser?, ETXError?)->Void) {
+        self.userRepository.save(model: user){
+            (user, err) in
+            completion(user, err)
+        }
     }
     
 }
