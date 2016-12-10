@@ -37,7 +37,7 @@ Properties that can be specified
 | --------- |:------:| :-----------                                                                                  |:--------:|
 | appId     | string | Your application's ID                                                                         | required |
 | clientKey | string | Your application's client key                                                                 | required |
-| baseUrl   | string | The base URL to the EnguageTx instance. **Default:** https://api.staging.eu1.engaugetx.com/v1 | optional |
+| baseUrl   | string | The base URL to the EnguageTx instance. **Default:** https://api.us1.engaugetx.com/v1 | optional |
 
 Start by implementing the ```EngaugeTxAppDelegate``` protocol and conforming to 
 it by defining the ```engaugeTx``` instance variable.
@@ -62,4 +62,3 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     
 ## Documentation
 Our docs can be found here: [docs](https://iosdocs.engaugetx.com/index.html)
-engaugetxdev Eng@ug3TxD3v
