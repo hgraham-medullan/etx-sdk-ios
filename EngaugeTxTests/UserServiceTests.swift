@@ -76,7 +76,7 @@ class UserServiceTest: XCTestCase {
         }
     }
     
-    func testLoginWithInvalidEmailCredentials() {
+    func xtestLoginWithInvalidEmailCredentials() {
         let email: String = "sean@medullan.com"
         let password: String = "badpwd"
         
