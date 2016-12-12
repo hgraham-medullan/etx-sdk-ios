@@ -8,6 +8,8 @@ jazzy --min-acl public
 echo "Navigating to docs dir"
 cd docs
 pwd
+git config --global user.name "Medullan Platform Solutions"
+git config --global user.email "mps@medullan.com"
 git add . 
 git commit -m "Release"
 echo "Deploying docs..."
@@ -18,5 +20,7 @@ pwd
 echo "Docs successfully deployed."
 
 echo "Deploying the pod..."
-#pod repo add EngaugeTxPodSpecs https://github.com/medullan/engauge-tx-pod-specs.git
-#pod repo push EngaugeTxPodSpecs EngaugeTx.podspec --allow-warnings
+pod repo add EngaugeTxPodSpecs https://github.com/medullan/engauge-tx-pod-specs.git
+pod repo push EngaugeTxPodSpecs EngaugeTx.podspec --allow-warnings
+
+
