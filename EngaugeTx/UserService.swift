@@ -38,7 +38,7 @@ open class ETXUserService {
     }
     
     /**
-     Login with email address
+     Login with email address.
      - parameter email: The user's email address
      - parameter password: The user's password
      - parameter rememberMe: Allows for an extended user session
