@@ -24,7 +24,7 @@ open class ETXUserService {
         self.userRepository = UserRepository()
     }
     
-    /** Login with username
+    /** Login with username.
      - parameter username: The user's username
      - parameter password: The user's password
      - parameter rememberMe: Allows for an extended user session
@@ -38,7 +38,7 @@ open class ETXUserService {
     }
     
     /**
-     Login with email address
+     Login with email address.
      - parameter email: The user's email address
      - parameter password: The user's password
      - parameter rememberMe: Allows for an extended user session
