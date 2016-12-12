@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/medullan/etx-sdk-ios.svg?style=svg&circle-token=34d00690cd532c2b68f6c8a264045fb65c9c177c)](https://circleci.com/gh/medullan/etx-sdk-ios)
+
 # EnguageTx iOS SDK
 
 ## Getting Started

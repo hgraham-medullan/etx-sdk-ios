@@ -46,23 +46,4 @@ class EngaugeTxApplicationTests: XCTestCase {
         super.tearDown()
         self.engaugeTxApllication = nil
     }
-    
-    
-    func testTestCall() {
-//        let exp = expectation(description: "bhgg h ")
-        self.engaugeTxApllication = EngaugeTxApplication(appId: "743f932a6fecf5cc30730c2385d6e7c7", clientKey: "b7fd395de3739fd6bc36d459ac47ec5e642a0331")
-//        self.engaugeTxApllication?.testCall() {
-//            res in
-//            print(res)
-//            exp.fulfill()
-//        }
-//        testCall
-        
-//        waitForExpectations(timeout: 10) { error in
-//            if let error = error {
-//                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
-//            }
-//        }
-        
-    }
 }
