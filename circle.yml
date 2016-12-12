@@ -1,0 +1,12 @@
+machine:
+    xcode:
+        version: 8.0
+dependencies:
+    pre:
+        - gem install jazzy
+deployment:
+    release:
+        tag: /[0-9]+(\.[0-9]+)*/
+        owner: medullan
+        commands:
+         - ./deploy_release.sh 
