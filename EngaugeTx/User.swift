@@ -34,7 +34,10 @@ open class ETXUser: ETXModel {
      */
     public var email: String
     
-    var password: String
+    /**
+     The user's Password
+     */
+    public var password: String
     
     public init(email: String, username: String, password: String) {
         self.email = email
@@ -71,7 +74,7 @@ open class ETXUser: ETXModel {
     /**
      Creates a instance of ETXUser from map
      */
-    public override func mapping(map: Map) {
+    open override func mapping(map: Map) {
         super.mapping(map: map)
         firstName <- map["firstName"]
         lastName <- map["lastName"]

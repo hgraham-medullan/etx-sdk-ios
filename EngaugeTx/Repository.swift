@@ -43,10 +43,10 @@ class Repository<T> : Service where T: ETXModel {
         if let _ = model.id {
             self.update(model: model, completion: completion)
         } else {
-            //let m = model.toJSON()
             let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
             req.onFailure({ (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                etxError?.rawJson = err.jsonDict
                 completion(nil, etxError)
             })
             req.onSuccess({ (m) in

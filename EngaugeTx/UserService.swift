@@ -50,6 +50,7 @@ open class ETXUserService {
         self.userRepository.loginWithEmail(email, password: password, rememberMe: rememberMe, done: completion)
     }
     
+    
     public func logout(completion: ()->Void) {
         self.userRepository.logout()
         completion()
@@ -61,16 +62,40 @@ open class ETXUserService {
     }
     
     /**
-     Create an application user
+     Create an application user. Only the user's ID will be available on successful registration.
+     You can create your own user object by extending the the ```ETXUser``` model
+     e.g.
+     
+     ```
+     class Caregiver: ETXUser {
+        var badgeId: String = ""
+     
+        // How your object should map to JSON and vice versa
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            badgeId <- map["badgeId"]
+        }
+     }
+     ```
+     
+     Mapping to and from JSON is leveraged using 
+     [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
+     See [the documentation](https://github.com/Hearst-DD/ObjectMapper#the-basics) 
+     on best practices on how to map your fields.
+     
      - parameter user: The user to be created
      - parameter completion: Callback when the request completes. Supplies the ```ETXUser``` object and an ```ETXError``` object 
      - parameter user: The registered user. Only the user ID is accessible until the user confirms their email address. This will be ```nil``` if registration failed
-     - parameter err: Error containing details as to the registration process failed. This will be ```nil``` if registration was successful
+     - parameter err: Error containing details as to the registration process failed. This will be ```nil``` if registration was successful. Details about the error can be found in the ```details``` property and will contain a Dictionary of validation errors. 
      */
-    public func createUser(_ user: ETXUser, completion: @escaping (_ user: ETXUser?, _ err: ETXError?)->Void) {
+    public func createUser(_ user: ETXUser, completion: @escaping (_ user: ETXUser?, _ err: ETXRegistrationError?)->Void) {
         self.userRepository.save(model: user){
             (user, err) in
-            completion(user, err)
+            if let err = err, let rawJson = err.rawJson {
+                completion(user, ETXRegistrationError(JSON: rawJson))
+            } else {
+                    completion(user, nil)
+            }
         }
     }
     

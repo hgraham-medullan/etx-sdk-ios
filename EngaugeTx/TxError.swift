@@ -46,6 +46,8 @@ public class ETXError: Mappable {
         //super.init(map: map)
     }
     
+    var rawJson: [String: Any]?
+    
     public func mapping(map: Map) {
         code <- map["error.code"]
         statusCode <- map["error.statusCode"]

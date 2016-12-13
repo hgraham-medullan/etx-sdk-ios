@@ -30,7 +30,7 @@ open class ETXModel: Mappable {
      This function is where all variable mappings should occur. It is executed
      by Mapper during the mapping (serialization and deserialization) process.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         id <- map["id"]
     }
 }
