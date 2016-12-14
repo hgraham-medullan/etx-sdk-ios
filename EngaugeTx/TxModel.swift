@@ -11,9 +11,14 @@ import Siesta
 import ObjectMapper
 
 /// Represents a data object stored on the EngaugeTx Platform
-public class ETXModel: Mappable {
+open class ETXModel: Mappable {
     
-    var id: String? = ""
+    /**
+     The model's ID
+    */
+    public var id: String? = nil
+    
+    var rawJson: [String:Any]?
     
     public init() {
         
@@ -23,14 +28,14 @@ public class ETXModel: Mappable {
      Create an instance from a Map
      */
     required public init?(map: Map) {
-        
+        self.rawJson = map.JSON
     }
     
     /**
      This function is where all variable mappings should occur. It is executed
      by Mapper during the mapping (serialization and deserialization) process.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         id <- map["id"]
     }
 }
