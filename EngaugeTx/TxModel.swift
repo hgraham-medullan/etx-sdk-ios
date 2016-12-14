@@ -13,7 +13,12 @@ import ObjectMapper
 /// Represents a data object stored on the EngaugeTx Platform
 open class ETXModel: Mappable {
     
-    var id: String? = nil
+    /**
+     The model's ID
+    */
+    public var id: String? = nil
+    
+    var rawJson: [String:Any]?
     
     public init() {
         
@@ -23,7 +28,7 @@ open class ETXModel: Mappable {
      Create an instance from a Map
      */
     required public init?(map: Map) {
-        
+        self.rawJson = map.JSON
     }
     
     /**

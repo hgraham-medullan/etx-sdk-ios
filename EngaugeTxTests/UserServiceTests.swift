@@ -12,7 +12,7 @@ import ObjectMapper
 
 class UserServiceTest: XCTestCase {
     var app: EngaugeTxApplication!
-    var userSvc: ETXUserService!
+    var userSvc: ETXUserService<ETXUser>!
     
     override func setUp() {
         super.setUp()
@@ -29,7 +29,7 @@ class UserServiceTest: XCTestCase {
      Failing on the CI server for some unknown reason. Spent enough time
      trying to figure it out and coming up blank. Will resume at a another time
      */
-    func xtestLoginWithValidUsernameCredentials() {
+    func testLoginWithValidUsernameCredentials() {
         let username: String = "sean@medullan.com"
         let password: String = "P@ssw0rd"
         
@@ -59,7 +59,7 @@ class UserServiceTest: XCTestCase {
      Failing on the CI server for some unknown reason. Spent enough time
      trying to figure it out and coming up blank. Will resume at a another time
     */
-    func xtestLoginWithValidEmailCredentials() {
+    func testLoginWithValidEmailCredentials() {
         let email: String = "sean@medullan.com"
         let password: String = "P@ssw0rd"
         
@@ -77,7 +77,7 @@ class UserServiceTest: XCTestCase {
         }
     }
     
-    func xtestLoginWithInvalidEmailCredentials() {
+    func testLoginWithInvalidEmailCredentials() {
         let email: String = "sean@medullan.com"
         let password: String = "badpwd"
         
@@ -125,10 +125,12 @@ class UserServiceTest: XCTestCase {
     
     class TestUser: ETXUser {
         var isTestUser: Bool = true
+        var oldName:  String?
         
         override func mapping(map: Map) {
             super.mapping(map: map)
             isTestUser <- map["isTestUser"]
+            oldName <- map["oldName"]
         }
         
     }
@@ -146,6 +148,7 @@ class UserServiceTest: XCTestCase {
         let testUser: TestUser = TestUser(email: email, username: username, password: "P@ssw0rd")
         testUser.firstName = "Sean Caregiver"
         testUser.lastName = "Hoilett"
+        testUser.oldName = "Old Name"
         
         let userCreateExpectation = expectation(description: "User creation successsful")
         
@@ -190,4 +193,38 @@ class UserServiceTest: XCTestCase {
         }
     }
     
+    func testGetCurrentUserWhenTheUserExtendETXUser() {
+        
+        
+        let email: String = "sean+extendedUser@medullan.com"
+        let password: String = "P@ssw0rd"
+        let firstName: String = "Extended"
+        let lastName: String = "User"
+        let oldName: String = "Old Name"
+        
+        let successfulUserLoginExpectation = expectation(description: "User login is successsful")
+        let getCurrentUserExpectation = expectation(description: "Get current user successfully")
+        
+        self.userSvc.loginUserWithEmail(email, password: password, rememberMe: false) {
+            (user: ETXUser?, err: ETXError?) in
+            XCTAssertNotNil(user, "The user did not successfully login")
+            successfulUserLoginExpectation.fulfill()
+            
+            let testUserService = ETXUserService<TestUser>()
+            testUserService.getCurrentUser { (testUser) in
+                XCTAssertNotNil(testUser)
+                XCTAssertEqual(testUser?.email, email)
+                XCTAssertEqual(testUser?.firstName, firstName)
+                XCTAssertEqual(testUser?.lastName, lastName)
+                XCTAssertEqual(testUser?.oldName, oldName)
+                getCurrentUserExpectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
 }

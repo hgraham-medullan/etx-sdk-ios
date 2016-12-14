@@ -68,6 +68,7 @@ open class ETXUser: ETXModel {
         catch {
             print("Err occured")
         }
+        
         super.init(map: map)
     }
     
