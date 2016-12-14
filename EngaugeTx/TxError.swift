@@ -17,7 +17,28 @@ public class ETXError: Mappable {
     /**
      The error code
      */
-    public var code: String = ""
+    public var code: String?
+    
+    /**
+     The error name
+     */
+    public var name: String?
+    
+    /**
+     Summary of the errir that occurred
+     */
+    public var message: String?
+    
+    /**
+     The response HTTP status code
+     */
+    public var statusCode: Int?
+    
+    /**
+     Additional details about the error
+     */
+    public var details: [String: Any]?
+    
     
     public init() { }
     
@@ -25,8 +46,14 @@ public class ETXError: Mappable {
         //super.init(map: map)
     }
     
+    var rawJson: [String: Any]?
+    
     public func mapping(map: Map) {
         code <- map["error.code"]
+        statusCode <- map["error.statusCode"]
+        details <- map["error.details"]
+        message <- map["error.message"]
+        name <- map["error.name"]
     }
     
 }

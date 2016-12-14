@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		080520E91DEF078600245C4D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 080520E41DEF078600245C4D /* LICENSE */; };
 		080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */; };
-		0805212E1DEF2A6800245C4D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0805212D1DEF2A6800245C4D /* README.md */; };
 		081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */; };
 		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
 		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
@@ -29,6 +28,8 @@
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
+		08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53A71E003A26008B5D0E /* RegistrationError.swift */; };
+		08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
@@ -46,7 +47,6 @@
 /* Begin PBXFileReference section */
 		080520E41DEF078600245C4D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EngaugeTx.podspec; sourceTree = "<group>"; };
-		0805212D1DEF2A6800245C4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEmailCredentialsTests.swift; sourceTree = "<group>"; };
 		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		08783D2B1DEC927900A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
+		08FE53A71E003A26008B5D0E /* RegistrationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationError.swift; sourceTree = "<group>"; };
+		08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationErrorTests.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */,
 				083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */,
+				08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -112,7 +115,6 @@
 			children = (
 				08EC60E41DF98B6500235E5C /* circle.yml */,
 				083DEEB51DF1D83E00A3CB8D /* Podfile */,
-				0805212D1DEF2A6800245C4D /* README.md */,
 				080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */,
 				080520E41DEF078600245C4D /* LICENSE */,
 				08783D1D1DEC927800A08343 /* EngaugeTx */,
@@ -167,6 +169,7 @@
 				083DEEC31DF6033100A3CB8D /* UserCredentials.swift */,
 				081222881DF7025600586B7D /* AuthError.swift */,
 				0812228A1DF73A2900586B7D /* ETXAccessToken.swift */,
+				08FE53A71E003A26008B5D0E /* RegistrationError.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -390,7 +393,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
-				0805212E1DEF2A6800245C4D /* README.md in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
@@ -400,6 +402,7 @@
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
+				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +415,7 @@
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,
 				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,
+				08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
