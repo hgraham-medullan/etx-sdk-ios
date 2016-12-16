@@ -61,7 +61,7 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
-    func delete(model: T, completion: (ETXError)) {
+    func delete(model: T, completion: (ETXError?) -> Void) {
         if let id = model.id {
             let _  = self.etxResource.child(id).request(.delete)
         }
