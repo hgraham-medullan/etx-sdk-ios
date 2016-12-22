@@ -27,7 +27,7 @@ class UserServiceTest: ETXTestCase {
      Failing on the CI server for some unknown reason. Spent enough time
      trying to figure it out and coming up blank. Will resume at a another time
      */
-    func xtestLoginWithValidUsernameCredentials() {
+    func testLoginWithValidUsernameCredentials() {
         let username: String = "sean@medullan.com"
         let password: String = "P@ssw0rd"
         
@@ -57,7 +57,7 @@ class UserServiceTest: ETXTestCase {
      Failing on the CI server for some unknown reason. Spent enough time
      trying to figure it out and coming up blank. Will resume at a another time
     */
-    func xtestLoginWithValidEmailCredentials() {
+    func testLoginWithValidEmailCredentials() {
         let email: String = "sean@medullan.com"
         let password: String = "P@ssw0rd"
         
@@ -75,7 +75,7 @@ class UserServiceTest: ETXTestCase {
         }
     }
     
-    func xtestLoginWithInvalidEmailCredentials() {
+    func testLoginWithInvalidEmailCredentials() {
         let email: String = "sean@medullan.com"
         let password: String = "badpwd"
         
@@ -191,7 +191,7 @@ class UserServiceTest: ETXTestCase {
         }
     }
     
-    func xtestGetCurrentUserWhenTheUserExtendETXUser() {
+    func testGetCurrentUserWhenTheUserExtendETXUser() {
         
         
         let email: String = "sean+extendedUser@medullan.com"

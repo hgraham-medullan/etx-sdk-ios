@@ -22,7 +22,7 @@ class GenericDataServiceTests: ETXTestCase {
         }
     }
     
-    class VitalService: GenericDataService<Vital> { }
+    class VitalService: ETXGenericDataService<Vital> { }
     
     var sampleVital: Vital!
     var userSvc: ETXUserService<ETXUser>!
@@ -59,7 +59,7 @@ class GenericDataServiceTests: ETXTestCase {
     class Vitals: ETXGenericDataObject { }
     func testExtendedGenericDataServiceWhenNotInitializedWithClassName() {
         
-        class VitalsService: GenericDataService<Vitals> { }
+        class VitalsService: ETXGenericDataService<Vitals> { }
         
         let expectedClassName = "Vitals"
         let vitalsService = VitalsService()
@@ -68,7 +68,7 @@ class GenericDataServiceTests: ETXTestCase {
     
     func testExtendedGenericDataServiceWhenInitializedWithClassName() {
         let className = "VitalMeasurements"
-        class VitalMeasurementsService: GenericDataService<Vitals> {
+        class VitalMeasurementsService: ETXGenericDataService<Vitals> {
             init() { super.init(modelName: "VitalMeasurements") }
         }
         

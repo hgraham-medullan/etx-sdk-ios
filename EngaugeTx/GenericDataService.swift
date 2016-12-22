@@ -12,7 +12,10 @@ import ObjectMapper
 /**
  Provides the ability to manage Generic Data Objects
  */
-open class GenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
+open class ETXGenericDataService<T: ETXGenericDataObject>: /*ETXDataService<T>,*/ ETXDataService {
+    
+    var repository: Repository<T>
+    
     var modelName: String
     
     /**
@@ -21,7 +24,7 @@ open class GenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
      */
     init(modelName: String) {
         self.modelName = modelName
-        super.init(repository: GenericDataObjectRepository<T>(className: self.modelName))
+        self.repository = GenericDataObjectRepository<T>(className: self.modelName)
     }
     
     /**
@@ -31,21 +34,35 @@ open class GenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
         self.init(modelName: String(describing: T.self))
     }
     
-    override public func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
-        super.findById(id) {
+    /**
+     Find a model by it's ID
+     - parameter id: The ID of the model
+     - parameter completion: Callback when the request completes
+     - parameter model: The model, if found.
+     - parameter err: If an error occurred while finding the item
+     */
+    public func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
+        self.repository.getById(id) {
             (model, err) in
             self.extractFromResultProperty(model, err, completion)
         }
     }
     
-    override public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    /**
+     Save a model
+     - parameter model: The model to be saved
+     - parameter completion: Callback when the request completes
+     - parameter model: The model, if found.
+     - parameter err: If an error occurred while savinga the item
+     */
+    public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
-            super.save(model: model) {
+            self.repository.save(model: model) {
                 (model, err) in
                 self.extractFromResultProperty(model, err, completion)
             }
         } else {
-            super.save(model: model, completion: completion)
+            self.repository.save(model: model, completion: completion)
         }
     }
     
@@ -57,6 +74,6 @@ open class GenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
             completion(model, err)
         }
     }
-
+    
     
 }

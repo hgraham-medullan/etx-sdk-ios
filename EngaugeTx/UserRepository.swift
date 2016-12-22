@@ -51,11 +51,15 @@ class UserRepository<T: ETXUser>: Repository<T> {
     
     func saveCurrentUser(_ accessToken: ETXAccessToken?) {
         let defaults = UserDefaults.standard
-        let currentUser: [String: String?] =
-            [KEY_DEFAULTS_USER_ID: accessToken?.userId,
-             KEY_DEFAULTS_ACCESS_TOKEN: accessToken?.id]
-        self.setAccessToken(accessToken?.id)
-        defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
+        self.deleteCurrentUser()
+        if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
+            let currentUser: [String: String] =
+                [KEY_DEFAULTS_USER_ID: userId,
+                 KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
+            self.setAccessToken(accessToken)
+            defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
+        }
+        
     }
     
     func getCurrentUserId() -> String? {

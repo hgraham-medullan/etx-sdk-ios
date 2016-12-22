@@ -7,13 +7,31 @@
 //
 
 import Foundation
-open class ETXDataService <T: ETXModel> {
+
+
+/**
+ cvxcv
+ */
+protocol ETXDataService {
+    associatedtype T: ETXModel
     
-    var repository: Repository<T>
+    var repository: Repository<T> { get set }
     
-    init(repository: Repository<T>) {
-        self.repository = repository
-    }
+    func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void)
+    
+    func findWhere(_ filter: String, completion: @escaping ([T]?, ETXError?) -> Void)
+    
+    func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void)
+    
+    func delete(model: T, completion: @escaping (ETXError?) -> Void)
+    
+    func save(model: T, completion: @escaping (T?, ETXError?) -> Void)
+}
+
+/**
+ asdsdsdasd
+ */
+ extension ETXDataService {
     
     /**
      Find a model by it's ID
@@ -62,7 +80,7 @@ open class ETXDataService <T: ETXModel> {
     }
     
     /**
-     Save a model
+     Save a modely
      - parameter model: The model to be saved
      - parameter completion: Callback when the request completes
      - parameter model: The model, if found.
@@ -70,10 +88,6 @@ open class ETXDataService <T: ETXModel> {
      */
     public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         self.repository.save(model: model, completion: completion)
-    }
-    
-    public func findAll(){
-        
     }
 
 }
