@@ -34,6 +34,9 @@
 		08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53AF1E01BC48008B5D0E /* GenericDataObjectTests.swift */; };
 		08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B11E02FAD0008B5D0E /* GenericDataService.swift */; };
 		08FE53B41E0392C5008B5D0E /* GenericDataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B31E0392C5008B5D0E /* GenericDataServiceTests.swift */; };
+		08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */; };
+		08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B71E043A21008B5D0E /* ETXDataService.swift */; };
+		08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B91E04412B008B5D0E /* ETXTestCase.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +82,9 @@
 		08FE53AF1E01BC48008B5D0E /* GenericDataObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObjectTests.swift; sourceTree = "<group>"; };
 		08FE53B11E02FAD0008B5D0E /* GenericDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataService.swift; sourceTree = "<group>"; };
 		08FE53B31E0392C5008B5D0E /* GenericDataServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataServiceTests.swift; sourceTree = "<group>"; };
+		08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObjectRepository.swift; sourceTree = "<group>"; };
+		08FE53B71E043A21008B5D0E /* ETXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXDataService.swift; sourceTree = "<group>"; };
+		08FE53B91E04412B008B5D0E /* ETXTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXTestCase.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 				083DEE511DF0685D00A3CB8D /* TxModel.swift */,
 				083DEE531DF0687F00A3CB8D /* TxError.swift */,
 				081222861DF701A700586B7D /* Repository.swift */,
+				08FE53B71E043A21008B5D0E /* ETXDataService.swift */,
 			);
 			path = EngaugeTx;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 				08783D2B1DEC927900A08343 /* Info.plist */,
 				083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */,
 				083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */,
+				08FE53B91E04412B008B5D0E /* ETXTestCase.swift */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 			children = (
 				08FE53AC1E01A428008B5D0E /* GenericDataObject.swift */,
 				08FE53B11E02FAD0008B5D0E /* GenericDataService.swift */,
+				08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */,
 			);
 			name = GenericDataObject;
 			sourceTree = "<group>";
@@ -430,6 +439,8 @@
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */,
+				08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */,
+				08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,
@@ -440,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */,
 				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,

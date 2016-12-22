@@ -33,9 +33,9 @@ class Repository<T> : Service where T: ETXModel {
             $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
         }
     
-        configureTransformer(resourcePath) {
-            Mapper<T>().map(JSON: $0.content)
-        }
+//        configureTransformer(resourcePath) {
+//            Mapper<T>().map(JSON: $0.content)
+//        }
     }
     
     func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
@@ -49,21 +49,39 @@ class Repository<T> : Service where T: ETXModel {
                 completion(nil, etxError)
             })
             req.onSuccess({ (m) in
-                let n = (m.content as! T)
-                completion(n, nil)
+                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                completion(model, nil)
             })
         }
     }
     
-    private func update(model: T, completion: (T?, ETXError?)-> Void) {
+    func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
         if let id = model.id {
-            let _ = self.etxResource.child(id).request(.put, json: ((model as? ETXModel)?.toJSON())!)
+            let req = self.etxResource.child(id).request(.put, json: ((model as? ETXModel)?.toJSON())!)
+            req.onFailure({ (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                etxError?.rawJson = err.jsonDict
+                completion(nil, etxError)
+            })
+            req.onSuccess({ (m) in
+                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                completion(model, nil)
+            })
         }
     }
     
-    func delete(model: T, completion: (ETXError?) -> Void) {
+    func delete(model: T, completion: @escaping (ETXError?) -> Void) {
         if let id = model.id {
-            let _  = self.etxResource.child(id).request(.delete)
+            let req  = self.etxResource.child(id).request(.delete)
+            req.onFailure({ (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                etxError?.rawJson = err.jsonDict
+                completion(etxError)
+            })
+            
+            req.onSuccess({ (m) in
+                completion(nil)
+            })
         }
     }
     
@@ -80,8 +98,38 @@ class Repository<T> : Service where T: ETXModel {
         })
     }
     
+    func findWhere(_ filter: String?, completion: @escaping ([T]?, ETXError?) -> Void) {
+        let req = self.etxResource.withParam("filter", "{}").request(.get)
+        
+        req.onFailure({ (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            etxError?.rawJson = err.jsonDict
+            completion(nil, etxError)
+        })
+        
+        req.onSuccess({ (m) in
+            var models: [T]?
+            if let content = m.content as? [String : Any], let result: [[String : Any]] = content["result"] as! [[String : Any]]?  {
+                models = Mapper<T>().mapArray(JSONObject: result)
+            } else {
+                models = Mapper<T>().mapArray(JSONArray: [m.content as! [String : Any]])
+            }
+            completion(models, nil)
+        })
+    }
+    
     func getAccessToken() -> String? {
         let defaults = UserDefaults.standard
         return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+    }
+    
+    func setAccessToken(_ accessToken: String?) {
+        let defaults = UserDefaults.standard
+        defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+    }
+    
+    func deleteAccessToken() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
     }
 }

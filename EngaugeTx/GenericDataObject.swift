@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 /**
- 
+ Use Generic Data Objects to store data that is unique to your application
  */
 open class ETXGenericDataObject: ETXModel {
     
@@ -22,6 +22,10 @@ open class ETXGenericDataObject: ETXModel {
         super.init(map: map)
     }
     
+    /**
+     Describes how the object should be desearialized
+     - parameter map:
+     */
     override open func mapping(map: Map) {
         super.mapping(map: map)
     }

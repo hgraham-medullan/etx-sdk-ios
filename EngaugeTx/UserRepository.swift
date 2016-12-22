@@ -25,7 +25,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
-        
+        self.deleteCurrentUser()
         let req = self.users.child("/login").withParam("include", "user").request(.post, json: credentials.toJSON())
         req.onFailure { (err) in
             var authErr: ETXAuthenticationError? = nil
@@ -54,6 +54,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
         let currentUser: [String: String?] =
             [KEY_DEFAULTS_USER_ID: accessToken?.userId,
              KEY_DEFAULTS_ACCESS_TOKEN: accessToken?.id]
+        self.setAccessToken(accessToken?.id)
         defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
     }
     
@@ -65,6 +66,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     func deleteCurrentUser() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: self.KEY_DEFAULTS_CURRENT_USER)
+        self.deleteAccessToken()
     }
     
     func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
