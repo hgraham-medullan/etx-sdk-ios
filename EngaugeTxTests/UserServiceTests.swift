@@ -154,6 +154,7 @@ class UserServiceTest: ETXTestCase {
             (user, err) in
             XCTAssertNil(err, "An error should not be present")
             XCTAssertNotNil(user?.id, "The user object should contain an ID")
+            XCTAssertNil(user?.lastName, "Only the userId is populated as part of the registration process")
             userCreateExpectation.fulfill()
         }
         

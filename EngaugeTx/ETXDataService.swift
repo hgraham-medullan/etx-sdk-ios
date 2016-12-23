@@ -76,5 +76,4 @@ open class ETXDataService<T: ETXModel> {
     public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         self.repository.save(model: model, completion: completion)
     }
-
 }
