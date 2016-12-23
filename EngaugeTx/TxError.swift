@@ -25,7 +25,7 @@ public class ETXError: Mappable {
     public var name: String?
     
     /**
-     Summary of the errir that occurred
+     Summary of the error that occurred
      */
     public var message: String?
     
@@ -43,7 +43,7 @@ public class ETXError: Mappable {
     public init() { }
     
     public required init?(map: Map) {
-        //super.init(map: map)
+        
     }
     
     var rawJson: [String: Any]?

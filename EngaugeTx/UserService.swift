@@ -83,21 +83,21 @@ open class ETXUserService<T: ETXUser> {
      
      ```
      class Caregiver: ETXUser {
-     var badgeId: String = ""
+        var badgeId: String = ""
      
-     // How your object should map to JSON and vice versa
-     override func mapping(map: Map) {
-     super.mapping(map: map)
-     badgeId <- map["badgeId"]
-     }
+        // How your object should map to JSON and vice versa
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            badgeId <- map["badgeId"]
+        }
      }
      
      let userSvc = ETXUserService<Caregiver>()
      let caregiver: Caregiver = Caregiver(..)
      caregiver.badgeId = "FE200"
      userSvc.createUser(testUser) {
-     (...) in
-     // code
+        (...) in
+        // code
      }
      
      ```
@@ -113,6 +113,7 @@ open class ETXUserService<T: ETXUser> {
      - parameter err: Error containing details as to the registration process failed. This will be ```nil``` if registration was successful. Details about the error can be found in the ```details``` property and will contain a Dictionary of validation errors.
      */
     public func createUser(_ user: T, completion: @escaping (_ user: T?, _ err: ETXRegistrationError?)->Void) {
+        self.userRepository.logout()
         self.userRepository.save(model: user){
             (user, err) in
             if let err = err, let rawJson = err.rawJson {

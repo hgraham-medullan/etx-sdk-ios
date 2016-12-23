@@ -25,7 +25,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
-        
+        self.deleteCurrentUser()
         let req = self.users.child("/login").withParam("include", "user").request(.post, json: credentials.toJSON())
         req.onFailure { (err) in
             var authErr: ETXAuthenticationError? = nil
@@ -51,10 +51,15 @@ class UserRepository<T: ETXUser>: Repository<T> {
     
     func saveCurrentUser(_ accessToken: ETXAccessToken?) {
         let defaults = UserDefaults.standard
-        let currentUser: [String: String?] =
-            [KEY_DEFAULTS_USER_ID: accessToken?.userId,
-             KEY_DEFAULTS_ACCESS_TOKEN: accessToken?.id]
-        defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
+        self.deleteCurrentUser()
+        if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
+            let currentUser: [String: String] =
+                [KEY_DEFAULTS_USER_ID: userId,
+                 KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
+            self.setAccessToken(accessToken)
+            defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
+        }
+        
     }
     
     func getCurrentUserId() -> String? {
@@ -65,6 +70,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     func deleteCurrentUser() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: self.KEY_DEFAULTS_CURRENT_USER)
+        self.deleteAccessToken()
     }
     
     func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {

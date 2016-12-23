@@ -26,6 +26,7 @@ open class ETXModel: Mappable {
     
     /**
      Create an instance from a Map
+     - parameter map: The Map object
      */
     required public init?(map: Map) {
         self.rawJson = map.JSON
