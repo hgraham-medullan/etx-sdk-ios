@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- cvxcv
+
  */
 protocol ETXDataService {
     associatedtype T: ETXModel
@@ -29,7 +29,7 @@ protocol ETXDataService {
 }
 
 /**
- asdsdsdasd
+ 
  */
  extension ETXDataService {
     

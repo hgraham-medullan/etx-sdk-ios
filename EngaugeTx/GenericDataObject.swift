@@ -11,8 +11,8 @@ import ObjectMapper
 
 /**
  Use Generic Data Objects to store data that is unique to your application
- ```
  
+ ```
  class DoctorVisit: ETXGenericDataObject {
     var visitDate: Date?
  
@@ -22,11 +22,24 @@ import ObjectMapper
     }
  }
  
+ class DoctorVisitService: ETXGenericDataService<DoctorVisit> {
+    // Do some logic
+ }
+ 
+ let doctorVisitSvc = DoctorVisitService()
+ doctorVisitSvc.findAll {
+    (doctorVisits, err) in
+    guard let doctorVisits = doctorVisits else {
+        // do err handling
+        return
+    }
+ 
+    print(doctorVisits)
+ }
  
  ```
+ 
  */
-
-
 
 open class ETXGenericDataObject: ETXModel {
     

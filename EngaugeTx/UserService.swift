@@ -83,21 +83,21 @@ open class ETXUserService<T: ETXUser> {
      
      ```
      class Caregiver: ETXUser {
-     var badgeId: String = ""
+        var badgeId: String = ""
      
-     // How your object should map to JSON and vice versa
-     override func mapping(map: Map) {
-     super.mapping(map: map)
-     badgeId <- map["badgeId"]
-     }
+        // How your object should map to JSON and vice versa
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            badgeId <- map["badgeId"]
+        }
      }
      
      let userSvc = ETXUserService<Caregiver>()
      let caregiver: Caregiver = Caregiver(..)
      caregiver.badgeId = "FE200"
      userSvc.createUser(testUser) {
-     (...) in
-     // code
+        (...) in
+        // code
      }
      
      ```

@@ -69,7 +69,7 @@ class GenericDataServiceTests: ETXTestCase {
     func testExtendedGenericDataServiceWhenInitializedWithClassName() {
         let className = "VitalMeasurements"
         class VitalMeasurementsService: ETXGenericDataService<Vitals> {
-            init() { super.init(modelName: "VitalMeasurements") }
+            init() { try! super.init(modelName: "VitalMeasurements") }
         }
         
         let vitalMeasurementsService = VitalMeasurementsService()
@@ -221,5 +221,23 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
     }
+    
+    func testModelNameValidatorWhenClassNameIsValid() {
+        XCTAssertTrue(ETXGenericDataService.isValidClassName("ValidClassName"))
+        XCTAssertTrue(ETXGenericDataService.isValidClassName("ValidClassName1"))
+        XCTAssertTrue(ETXGenericDataService.isValidClassName("validClassName"))
+        XCTAssertTrue(ETXGenericDataService.isValidClassName("Valid_Class_Name"))
+    }
+    
+    func testModelNameValidatorWhenClassNameIsInvalid() {
+        XCTAssertFalse(ETXGenericDataService.isValidClassName("1InvalidClassName"))
+        XCTAssertFalse(ETXGenericDataService.isValidClassName("Invalid-ClassName"))
+        XCTAssertFalse(ETXGenericDataService.isValidClassName(""))
+        XCTAssertFalse(ETXGenericDataService.isValidClassName(" "))
+        XCTAssertFalse(ETXGenericDataService.isValidClassName(" Invalid-ClassName"))
+        XCTAssertFalse(ETXGenericDataService.isValidClassName("Invalid.ClassName"))
+    }
+    
+    
     
 }
