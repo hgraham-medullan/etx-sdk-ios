@@ -40,9 +40,7 @@ import ObjectMapper
  ```
  
  */
-open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService {
-    
-    var repository: Repository<T>
+open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
     
     var modelName: String
     
@@ -53,7 +51,7 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService {
     public init(modelName: String) throws {
         if ETXGenericDataService.isValidClassName(modelName) == true {
             self.modelName = modelName
-            self.repository = GenericDataObjectRepository<T>(className: self.modelName)
+            super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
         } else {
             throw ETXInvalidModelNameError()
         }
@@ -62,8 +60,9 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService {
     /**
      Create an instance GenericDataService
      */
-    public convenience init() {
-        try! self.init(modelName: String(describing: T.self))
+    public init() {
+        self.modelName = String(describing: T.self)
+        super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
     }
     
     /**
@@ -73,8 +72,8 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService {
      - parameter model: The model, if found.
      - parameter err: If an error occurred while finding the item
      */
-    public func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
-        self.repository.getById(id) {
+    override public func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
+        super.findById(id) {
             (model, err) in
             self.extractFromResultProperty(model, err, completion)
         }
@@ -87,14 +86,14 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService {
      - parameter model: The model, if found.
      - parameter err: If an error occurred while savinga the item
      */
-    public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    override public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
-            self.repository.save(model: model) {
+            super.save(model: model) {
                 (model, err) in
                 self.extractFromResultProperty(model, err, completion)
             }
         } else {
-            self.repository.save(model: model, completion: completion)
+            super.save(model: model, completion: completion)
         }
     }
     

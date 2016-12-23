@@ -42,7 +42,7 @@ class GenericDataServiceTests: ETXTestCase {
             loginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: 20) {
             (err) in
             print("Login expectation timeout \(err)")
         }
@@ -69,7 +69,7 @@ class GenericDataServiceTests: ETXTestCase {
     func testExtendedGenericDataServiceWhenInitializedWithClassName() {
         let className = "VitalMeasurements"
         class VitalMeasurementsService: ETXGenericDataService<Vitals> {
-            init() { try! super.init(modelName: "VitalMeasurements") }
+            override init() { try! super.init(modelName: "VitalMeasurements") }
         }
         
         let vitalMeasurementsService = VitalMeasurementsService()

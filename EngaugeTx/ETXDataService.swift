@@ -10,28 +10,15 @@ import Foundation
 
 
 /**
-
+ Service that provides CRUD operations on a model
  */
-protocol ETXDataService {
-    associatedtype T: ETXModel
+open class ETXDataService<T: ETXModel> {
     
-    var repository: Repository<T> { get set }
+    var repository: Repository<T>!
     
-    func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void)
-    
-    func findWhere(_ filter: String, completion: @escaping ([T]?, ETXError?) -> Void)
-    
-    func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void)
-    
-    func delete(model: T, completion: @escaping (ETXError?) -> Void)
-    
-    func save(model: T, completion: @escaping (T?, ETXError?) -> Void)
-}
-
-/**
- 
- */
- extension ETXDataService {
+    init(repository: Repository<T>) {
+        self.repository = repository
+    }
     
     /**
      Find a model by it's ID
