@@ -66,7 +66,7 @@ open class ETXUser: ETXModel {
             try self.email = map.value("email")
         }
         catch {
-            print("Err occured")
+            print("Err occured while mapping to an ETXUser")
         }
         
         super.init(map: map)
