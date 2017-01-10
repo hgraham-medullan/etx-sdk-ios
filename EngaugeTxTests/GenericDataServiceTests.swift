@@ -60,19 +60,21 @@ class GenericDataServiceTests: ETXTestCase {
     
     func testGenericObjectWithDefaultModelName() {
         
-        let expectedClassName = "GenericObjectWithDefaultClassName"
-        XCTAssertEqual(expectedClassName, GenericObjectWithDefaultModelName.modelName)
+        let expectedClassName = "GenericObjectWithDefaultModelName"
+        let genericObjectWithDefaultModelName = GenericObjectWithDefaultModelName()
+        XCTAssertEqual(expectedClassName, genericObjectWithDefaultModelName.modelName)
     }
     
     class GenericObjectWithCustomModelName: ETXGenericDataObject {
-        override class var modelName: String {
+        override var modelName: String {
             return "CustomModel"
         }
     }
     
     func testGenericObjectWithCustomModelName() {
         let className = "CustomModel"
-        XCTAssertEqual(className, GenericObjectWithCustomModelName.modelName)
+        let genericObjectWithCustomModelName = GenericObjectWithCustomModelName()
+        XCTAssertEqual(className, genericObjectWithCustomModelName.modelName)
     }
     
     func testGenericDataObjectCreation() {
@@ -107,8 +109,8 @@ class GenericDataServiceTests: ETXTestCase {
             (err) in
             let vitalId = v.id
             saveVitalExpectation.fulfill()
-            
-            Vital.findById(vitalId!) {
+            let vital: Vital = Vital()
+            vital.findById(vitalId!) {
                 (vital, err) in
                 XCTAssertNotNil(vital)
                 XCTAssertEqual(vitalId, vital?.id)
@@ -172,7 +174,8 @@ class GenericDataServiceTests: ETXTestCase {
                 XCTAssertNil(err, "Should not error when deleting a valid item")
                 deleteVitalExpectation.fulfill()
                 
-                Vital.findById(vitalId) {
+                let vital = Vital()
+                vital.findById(vitalId) {
                     (vital, err) in
                     XCTAssertNil(vital)
                     XCTAssertNotNil(err)
@@ -247,18 +250,6 @@ class GenericDataServiceTests: ETXTestCase {
         XCTAssertFalse(ETXGenericDataService.isValidClassName(" "))
         XCTAssertFalse(ETXGenericDataService.isValidClassName(" Invalid-ClassName"))
         XCTAssertFalse(ETXGenericDataService.isValidClassName("Invalid.ClassName"))
-    }
-    
-    func testX() {
-        class Hgfj: ETXGenericDataObject {
-        }
-        //XCTAssertEqual("Hgfj", Hgfj.getModelName())
-    }
-
-    func testY() {
-        //typealias FG = type(of: z())
-        //print(type(of: z()))
-        //XCTAssertEqual("z", z.modelName)
     }
 }
     

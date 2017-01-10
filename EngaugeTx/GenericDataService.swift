@@ -61,7 +61,7 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
      Create an instance GenericDataService
      */
     public init() {
-        self.modelName = T.modelName //String(describing: T.self)
+        self.modelName = String(describing: T.self)
         super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
     }
     

@@ -45,18 +45,12 @@ import ObjectMapper
 
 open class ETXGenericDataObject: ETXModel {
     
-    open class var modelName: String {
-        return String(describing: self)
+    open var modelName: String {
+        return String(describing: (Mirror(reflecting: self)).subjectType)
     }
     
-    private static func getModelName() -> String {
-        print(self.modelName)
-        print(modelName)
-        return modelName
-    }
-    
-    private static var dataSvc: ETXGenericDataService<ETXGenericDataObject> {
-        return try! ETXGenericDataService<ETXGenericDataObject>(modelName: getModelName())
+    private var dataSvc: ETXGenericDataService<ETXGenericDataObject> {
+        return try! ETXGenericDataService<ETXGenericDataObject>(modelName: self.modelName)
     }
     
     override init() {
@@ -80,7 +74,7 @@ open class ETXGenericDataObject: ETXModel {
     }
     
     public func save(completion: @escaping (ETXError?) -> Void) {
-        ETXGenericDataObject.dataSvc.save(model: self) {
+        self.dataSvc.save(model: self) {
             (model, err) in
             if let model = model {
                 let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
@@ -91,7 +85,7 @@ open class ETXGenericDataObject: ETXModel {
     }
     
     public func delete(completion: @escaping (ETXError?) -> Void) {
-        ETXGenericDataObject.dataSvc.delete(model: self) {
+        self.dataSvc.delete(model: self) {
             (err) in
             if err == nil {
                 self.id = nil
@@ -100,12 +94,12 @@ open class ETXGenericDataObject: ETXModel {
         }
     }
     
-    public class func findById(_ id: String, completion: @escaping (ETXGenericDataObject?, ETXError?)->Void) {
-        ETXGenericDataObject.dataSvc.findById(id, completion: completion)
+    public func findById(_ id: String, completion: @escaping (ETXGenericDataObject?, ETXError?)->Void) {
+        self.dataSvc.findById(id, completion: completion)
     }
     
-    public class func findByWhere(filter: String, completion: @escaping ([ETXGenericDataObject]?, ETXError?)->Void) {
-        ETXGenericDataObject.dataSvc.findWhere(filter, completion: completion)
+    public func findWhere(filter: String, completion: @escaping ([ETXGenericDataObject]?, ETXError?)->Void) {
+        self.dataSvc.findWhere(filter, completion: completion)
     }
     
 }
