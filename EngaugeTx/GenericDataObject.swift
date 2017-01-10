@@ -41,7 +41,23 @@ import ObjectMapper
  
  */
 
+
+
 open class ETXGenericDataObject: ETXModel {
+    
+    open class var modelName: String {
+        return String(describing: self)
+    }
+    
+    private static func getModelName() -> String {
+        print(self.modelName)
+        print(modelName)
+        return modelName
+    }
+    
+    private static var dataSvc: ETXGenericDataService<ETXGenericDataObject> {
+        return try! ETXGenericDataService<ETXGenericDataObject>(modelName: getModelName())
+    }
     
     override init() {
         super.init()
@@ -61,6 +77,35 @@ open class ETXGenericDataObject: ETXModel {
      */
     override open func mapping(map: Map) {
         super.mapping(map: map)
+    }
+    
+    public func save(completion: @escaping (ETXError?) -> Void) {
+        ETXGenericDataObject.dataSvc.save(model: self) {
+            (model, err) in
+            if let model = model {
+                let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
+                self.mapping(map: map)
+            }
+            completion(err)
+        }
+    }
+    
+    public func delete(completion: @escaping (ETXError?) -> Void) {
+        ETXGenericDataObject.dataSvc.delete(model: self) {
+            (err) in
+            if err == nil {
+                self.id = nil
+            }
+            completion(err)
+        }
+    }
+    
+    public class func findById(_ id: String, completion: @escaping (ETXGenericDataObject?, ETXError?)->Void) {
+        ETXGenericDataObject.dataSvc.findById(id, completion: completion)
+    }
+    
+    public class func findByWhere(filter: String, completion: @escaping ([ETXGenericDataObject]?, ETXError?)->Void) {
+        ETXGenericDataObject.dataSvc.findWhere(filter, completion: completion)
     }
     
 }

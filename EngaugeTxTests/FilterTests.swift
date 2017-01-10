@@ -103,7 +103,15 @@ class FilterTests: XCTestCase {
             return wf
         }
         
-        private func or() {
+        private func or(filters: [WhereFilter]) {
+            
+        }
+        
+        private func and(filters: [WhereFilter]) {
+            
+        }
+        
+        func limit(_ limit: Int) {
             
         }
         
@@ -145,11 +153,50 @@ class FilterTests: XCTestCase {
     }
     
     func testUrl() {
-        let url = URL(string: "/?q=searc&b=1")
-        print(url?.query)
+        let c1 = WhereCondition()
+        c1.where("age").gt("21")
+    }
+    
+    class SearchFilter {
+        var whereCondtions: [WhereCondition]?
         
-//        let urlR = URLRequest(url: )
+        func limit(_ limit: Int) {
+            
+        }
         
-        print(url)
+        func toString() -> String {
+            var s = ""
+            for condition in self.whereCondtions! {
+                s = s + "filter[where]" + condition.toString() + "&"
+            }
+            return s
+        }
+    }
+    
+    class WhereCondition {
+        
+        class Comp {
+            var comparator: WhereFilter.Comparator!
+            func gt(_ value: String) {
+                self.comparator = .gt
+            }
+        }
+        
+        var property: String!
+        var comparator: String!
+        var value: String!
+        
+        var comp: Comp!
+        
+        func `where`(_ prop: String) -> Comp {
+            self.property = prop
+            self.comp = Comp()
+            return self.comp
+        }
+        
+        func toString() -> String {
+            return "[\(self.property)][\(self.comp.comparator)]=\(self.value)"
+            ///weapons?filter[where][effectiveRange][gt]=900&filter[limit]=3
+        }
     }
 }

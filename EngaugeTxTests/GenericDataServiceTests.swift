@@ -15,7 +15,7 @@ class GenericDataServiceTests: ETXTestCase {
     
     class Vital: ETXGenericDataObject {
         var reading: Double?
-        
+    
         override func mapping(map: Map) {
             super.mapping(map: map)
             reading <- map["reading"]
@@ -56,33 +56,34 @@ class GenericDataServiceTests: ETXTestCase {
     }
     
     
-    class Vitals: ETXGenericDataObject { }
-    func testExtendedGenericDataServiceWhenNotInitializedWithClassName() {
+    class GenericObjectWithDefaultModelName: ETXGenericDataObject { }
+    
+    func testGenericObjectWithDefaultModelName() {
         
-        class VitalsService: ETXGenericDataService<Vitals> { }
-        
-        let expectedClassName = "Vitals"
-        let vitalsService = VitalsService()
-        XCTAssertEqual(expectedClassName, vitalsService.modelName)
+        let expectedClassName = "GenericObjectWithDefaultClassName"
+        XCTAssertEqual(expectedClassName, GenericObjectWithDefaultModelName.modelName)
     }
     
-    func testExtendedGenericDataServiceWhenInitializedWithClassName() {
-        let className = "VitalMeasurements"
-        class VitalMeasurementsService: ETXGenericDataService<Vitals> {
-            override init() { try! super.init(modelName: "VitalMeasurements") }
+    class GenericObjectWithCustomModelName: ETXGenericDataObject {
+        override class var modelName: String {
+            return "CustomModel"
         }
-        
-        let vitalMeasurementsService = VitalMeasurementsService()
-        XCTAssertEqual(className, vitalMeasurementsService.modelName)
+    }
+    
+    func testGenericObjectWithCustomModelName() {
+        let className = "CustomModel"
+        XCTAssertEqual(className, GenericObjectWithCustomModelName.modelName)
     }
     
     func testGenericDataObjectCreation() {
         
         let vitalExpectation = expectation(description: "Successful vital")
-        vitalSvc.save(model: sampleVital) {
-            (vital, err) in
-            XCTAssertNotNil(vital?.id)
-            XCTAssertEqual(vital?.reading, self.sampleVital.reading)
+        let v = Vital()
+        v.reading = 200
+        v.save(){
+            (err) in
+            XCTAssertNotNil(v.id)
+            XCTAssertEqual(v.reading, 200)
             XCTAssertNil(err, "Should not result in an error")
             vitalExpectation.fulfill()
         }
@@ -98,15 +99,20 @@ class GenericDataServiceTests: ETXTestCase {
         let getVitalExpectation = expectation(description: "Get a vital by ID")
         let saveVitalExpectation = expectation(description: "Save a vital")
         
-        vitalSvc.save(model: sampleVital) {
-            (vital, err) in
-            let vitalId = vital?.id
+        let vitalReading: Double = 200
+        let v = Vital()
+        v.reading = vitalReading
+        
+        v.save {
+            (err) in
+            let vitalId = v.id
             saveVitalExpectation.fulfill()
             
-            self.vitalSvc.findById(vitalId!) {
+            Vital.findById(vitalId!) {
                 (vital, err) in
                 XCTAssertNotNil(vital)
                 XCTAssertEqual(vitalId, vital?.id)
+                XCTAssertEqual(vitalReading, v.reading)
                 getVitalExpectation.fulfill()
             }
         }
@@ -121,19 +127,22 @@ class GenericDataServiceTests: ETXTestCase {
     
     func testUpdateGenericDataObject() {
         let updateVitalExpectation = expectation(description: "Update a vital by ID")
-        
         let saveVitalExpectation = expectation(description: "Save a vital")
         
-        vitalSvc.save(model: sampleVital) {
-            (vital, err) in
+        let vitalReading: Double = 200
+        let v = Vital()
+        v.reading = vitalReading
+        
+        v.save {
+            (err) in
             saveVitalExpectation.fulfill()
+            XCTAssertEqual(vitalReading, v.reading)
+            let newReading: Double = 240
+            v.reading = newReading
             
-            vital?.reading = 240
-            
-            self.vitalSvc.save(model: vital!) {
-                (updatedVital, err) in
-                XCTAssertEqual(vital?.id, updatedVital?.id)
-                XCTAssertEqual(vital?.reading, updatedVital?.reading)
+            v.save {
+                (err) in
+                XCTAssertEqual(newReading, v.reading)
                 updateVitalExpectation.fulfill()
             }
         }
@@ -150,18 +159,20 @@ class GenericDataServiceTests: ETXTestCase {
         let deleteVitalExpectation = expectation(description: "Delete a vital by ID")
         let findVitalExpectation = expectation(description: "Find a vital by ID")
         
-        vitalSvc.save(model: sampleVital) {
-            (vital, err) in
-            let vitalId: String = (vital?.id!)!
+        let v = Vital()
+        
+        v.save {
+            (err) in
+            let vitalId: String = v.id!
             
             saveVitalExpectation.fulfill()
             
-            self.vitalSvc.delete(model: vital!) {
+            v.delete {
                 (err) in
                 XCTAssertNil(err, "Should not error when deleting a valid item")
                 deleteVitalExpectation.fulfill()
                 
-                self.vitalSvc.findById(vitalId) {
+                Vital.findById(vitalId) {
                     (vital, err) in
                     XCTAssertNil(vital)
                     XCTAssertNotNil(err)
@@ -185,7 +196,7 @@ class GenericDataServiceTests: ETXTestCase {
         let vital = Vital()
         vital.id = vitalId
         
-        vitalSvc.delete(model: vital) {
+        vital.delete {
             (err) in
             XCTAssertNotNil(err, "Should error when deleting a non-existent item")
             XCTAssertEqual(404, err?.statusCode)
@@ -238,6 +249,16 @@ class GenericDataServiceTests: ETXTestCase {
         XCTAssertFalse(ETXGenericDataService.isValidClassName("Invalid.ClassName"))
     }
     
-    
-    
+    func testX() {
+        class Hgfj: ETXGenericDataObject {
+        }
+        //XCTAssertEqual("Hgfj", Hgfj.getModelName())
+    }
+
+    func testY() {
+        //typealias FG = type(of: z())
+        //print(type(of: z()))
+        //XCTAssertEqual("z", z.modelName)
+    }
 }
+    
