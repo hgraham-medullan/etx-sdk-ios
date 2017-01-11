@@ -46,9 +46,9 @@ class WhereCondition: Condition {
     func toJson() -> [String: Any] {
         var q = [String:Any]()
         if self.comp.comparator == .eq {
-            q[self.property] = self.comp.value
+            q[self.property] = self.comp.value!
         } else {
-            q[self.property] = [self.comp.comparator.rawValue : self.comp.value]
+            q[self.property] = [self.comp.comparator.rawValue : self.comp.value!]
         }
         return q
     }

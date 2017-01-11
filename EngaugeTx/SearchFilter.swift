@@ -74,7 +74,8 @@ public class SearchFilter {
         if let customFilter = self.customFilter {
             jsonString = customFilter
         } else {
-            jsonString = self.toJson().printJson()
+            let dictionary = self.toJson()
+            jsonString = dictionary.printJson()
         }
         return jsonString
     }
