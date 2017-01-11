@@ -12,7 +12,7 @@ import Foundation
 /**
  Service that provides CRUD operations on a model
  */
-open class ETXDataService<T: ETXModel> {
+class ETXDataService<T: ETXModel> {
     
     var repository: Repository<T>!
     
@@ -58,7 +58,7 @@ open class ETXDataService<T: ETXModel> {
      - parameter completion: Callback when the request completes
      - parameter err: If an error occurred while deleting the item
      */
-    public func delete(model: T, completion: @escaping (ETXError?) -> Void) {
+    func delete(model: T, completion: @escaping (ETXError?) -> Void) {
         guard let modelId = model.id, modelId.isEmpty != true else {
             completion(ETXError())
             return
@@ -67,13 +67,13 @@ open class ETXDataService<T: ETXModel> {
     }
     
     /**
-     Save a modely
+     Save a model
      - parameter model: The model to be saved
      - parameter completion: Callback when the request completes
      - parameter model: The model, if found.
      - parameter err: If an error occurred while savinga the item
      */
-    public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         self.repository.save(model: model, completion: completion)
     }
 }

@@ -8,195 +8,96 @@
 
 import Foundation
 import XCTest
+@testable import EngaugeTx
+import ObjectMapper
 
 class FilterTests: XCTestCase {
     
-    class Combinator {
+    func testWhenConditionUsesGreaterThan() {
+        let searchFilter = SearchFilter(conditions: [
+            WhereCondition(property: "age", comparator: .gt, value: 20)
+        ])
         
-        var parentFilter: Filter
+        let expectedJsonString: String = "{\"where\":{\"age\":{\"gt\":20}}}"
         
-        init(parentFilter: Filter) {
-            self.parentFilter = parentFilter
-        }
-        
-        func or(_ filter: WhereFilter) {
-            
-        }
-        
-        func and(_ propertyName: String) -> WhereFilter  {
-            return WhereFilter(propertyName: propertyName, parentFilter: self.parentFilter)
-        }
+        XCTAssertEqual(expectedJsonString, searchFilter.toJsonString())
     }
     
-    class WhereFilter {
+    func testWhenConditionUsesGreaterThanOrEqualTo() {
+        let searchFilter = SearchFilter(conditions: [
+            WhereCondition(property: "age", comparator: .gte, value: 20)
+            ])
         
-        enum Comparator: String {
-            case gt = "gt"
-            case gte
-            case lt
-            case lte
-            case eq
-        }
+        let expectedJsonString: String = "{\"where\":{\"age\":{\"gte\":20}}}"
         
-        var propertyName: String
-        var comparator: Comparator?
-        var value: String?
-        var parentFilter: Filter
-        
-        var itemAdded: ((_ comparator: Comparator,  _ value: String) -> Void)?
-        
-        let combinator: Combinator
-        
-        init(propertyName: String, parentFilter: Filter) {
-            self.propertyName = propertyName
-            self.parentFilter = parentFilter
-            self.combinator = Combinator(parentFilter: parentFilter)
-            self.parentFilter.whereFilters.append(self)
-        }
-        
-        func gt() -> Combinator {
-            return combinator
-        }
-        func gte() -> Combinator {
-            return combinator
-        }
-        func lt() -> Combinator {
-            return combinator
-        }
-        func lte() -> Combinator {
-            return combinator
-        }
-        
-        func eq(_ val: String) -> Combinator {
-            fireAddItem(.eq, val)
-            return combinator
-        }
-        
-        func fireAddItem(_ comparator: Comparator, _ value: String) {
-            self.comparator = comparator
-            self.value = value
-            if let itemAdded = itemAdded {
-                itemAdded(comparator, value)
-            }
-
-        }
-        
-        func toString() -> String {
-            guard let comparator = self.comparator, let value = self.value else {
-                    return ""
-            }
-            return "filter[where][\(propertyName)]=\(value)"
-            
-        }
-
-        
+        XCTAssertEqual(expectedJsonString, searchFilter.toJsonString())
     }
     
-    class Filter {
-        var whereFilters: [WhereFilter] = [WhereFilter]()
+    func testWhenConditionUsesLessThan() {
+        let searchFilter = SearchFilter(conditions: [
+            WhereCondition(property: "age", comparator: .lt, value: 20)
+            ])
         
-        //var json: [String: Any] = [String: Any]()
+        let expectedJsonString: String = "{\"where\":{\"age\":{\"lt\":20}}}"
         
-        func Where(_ property: Any) -> WhereFilter {
-            //json["where"] = property
-            let wf = WhereFilter(propertyName: property as! String, parentFilter: self)
-            return wf
-        }
-        
-        private func or(filters: [WhereFilter]) {
-            
-        }
-        
-        private func and(filters: [WhereFilter]) {
-            
-        }
-        
-        func limit(_ limit: Int) {
-            
-        }
-        
-        func toString() -> String {
-            var f = ""
-            var i: Int = 0
-            for whereFilter in whereFilters {
-                print(index)
-                if i>0 {
-                    f = f + "&"
-                }
-                f = f + whereFilter.toString()
-                print(whereFilter.toString())
-                i = i + 1
-            }
-            return f
-        }
+        XCTAssertEqual(expectedJsonString, searchFilter.toJsonString())
     }
     
-    func testFilterWhenThereAreThreeMultipleConditionsUsingAnd() {
-        let filter = Filter()
-        filter.Where("firstName").eq("sean").and("lastName").eq("Hoilett")
-        let expectedString = "filter[where][firstName]=sean&filter[where][lastName]=Hoilett"
-        XCTAssertEqual(expectedString, filter.toString())
+    func testWhenConditionUsesLessThanorEqualTo() {
+        let searchFilter = SearchFilter(conditions: [
+            WhereCondition(property: "age", comparator: .lte, value: 20)
+            ])
+        
+        let expectedJsonString: String = "{\"where\":{\"age\":{\"lte\":20}}}"
+        
+        XCTAssertEqual(expectedJsonString, searchFilter.toJsonString())
     }
     
-    func testFilterWhenThereAreTwoMultipleConditionsUsingAnd() {
-        let filter = Filter()
-        filter.Where("firstName").eq("sean").and("lastName").eq("Hoilett")
-        let expectedString = "filter[where][firstName]=sean&filter[where][lastName]=Hoilett"
-        XCTAssertEqual(expectedString, filter.toString())
+    func testWhenFilterUsesLimiting() {
+        let searchFilter = SearchFilter()
+        searchFilter.setLimit(20)
+        XCTAssertEqual("{\"limit\":20}", searchFilter.toJsonString())
     }
     
-    func testFilterWhenThereIsOnlyOneCondition() {
-        let filter = Filter()
-        filter.Where("firstName").eq("sean")
-        let expectedString = "filter[where][firstName]=sean"
-        XCTAssertEqual(expectedString, filter.toString())
+    func testWhenFilterUsesLimitingWithACondition() {
+        let searchFilter = SearchFilter(conditions: [
+            WhereCondition(property: "age", comparator: .lte, value: 20)
+            ])
+        searchFilter.setLimit(20)
+        XCTAssertEqual("{\"where\":{\"age\":{\"lte\":20}},\"limit\":20}", searchFilter.toJsonString())
     }
     
-    func testUrl() {
-        let c1 = WhereCondition()
-        c1.where("age").gt("21")
+    func testWhenFilterUsesAndCombination() {
+        let olderThan64 = WhereCondition(property: "age", comparator: .gt, value: 64)
+        let females = WhereCondition(property: "gender", comparator: .eq, value: "female")
+        
+        let femaleRetirees = CombinedCondition(combineType: .and, conditions: [females, olderThan64])
+        
+        let searchFilter = SearchFilter(conditions: [
+            femaleRetirees
+        ])
+        
+        // https://loopback.io/doc/en/lb2/Where-filter.html#and--or
+        XCTAssertEqual("{\"where\":{\"and\":[{\"gender\":{\"eq\":\"female\"}},{\"age\":{\"gt\":64}}]}}", searchFilter.toJsonString())
     }
     
-    class SearchFilter {
-        var whereCondtions: [WhereCondition]?
+    func testWhenFilterUsesAndCombinationWithOr() {
+        let olderThan64 = WhereCondition(property: "age", comparator: .gt, value: 64)
+        let females = WhereCondition(property: "gender", comparator: .eq, value: "female")
+        let femaleRetirees = CombinedCondition(combineType: .and, conditions: [females, olderThan64])
         
-        func limit(_ limit: Int) {
-            
-        }
+        let olderThan59 = WhereCondition(property: "age", comparator: .gt, value: 59)
+        let males = WhereCondition(property: "gender", comparator: .eq, value: "male")
+        let maleRetirees = CombinedCondition(combineType: .and, conditions: [males, olderThan59])
         
-        func toString() -> String {
-            var s = ""
-            for condition in self.whereCondtions! {
-                s = s + "filter[where]" + condition.toString() + "&"
-            }
-            return s
-        }
-    }
-    
-    class WhereCondition {
+        let allRetirees = CombinedCondition(combineType: .or, conditions: [maleRetirees, femaleRetirees])
         
-        class Comp {
-            var comparator: WhereFilter.Comparator!
-            func gt(_ value: String) {
-                self.comparator = .gt
-            }
-        }
+        let searchFilter = SearchFilter(conditions: [
+            allRetirees
+            ])
         
-        var property: String!
-        var comparator: String!
-        var value: String!
-        
-        var comp: Comp!
-        
-        func `where`(_ prop: String) -> Comp {
-            self.property = prop
-            self.comp = Comp()
-            return self.comp
-        }
-        
-        func toString() -> String {
-            return "[\(self.property)][\(self.comp.comparator)]=\(self.value)"
-            ///weapons?filter[where][effectiveRange][gt]=900&filter[limit]=3
-        }
+        // https://loopback.io/doc/en/lb2/Where-filter.html#and--or
+        XCTAssertEqual("{\"where\":{\"or\":[{\"and\":[{\"gender\":{\"eq\":\"male\"}},{\"age\":{\"gt\":59}}]},{\"and\":[{\"gender\":{\"eq\":\"female\"}},{\"age\":{\"gt\":64}}]}]}}", searchFilter.toJsonString())
+        print(searchFilter.toJsonString())
     }
 }

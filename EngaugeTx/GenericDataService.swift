@@ -40,7 +40,7 @@ import ObjectMapper
  ```
  
  */
-open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
+public class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
     
     var modelName: String
     
@@ -86,7 +86,7 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
      - parameter model: The model, if found.
      - parameter err: If an error occurred while savinga the item
      */
-    override public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    override func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
             super.save(model: model) {
                 (model, err) in

@@ -23,6 +23,11 @@
 		083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */; };
 		083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEC11DF5B03800A3CB8D /* UserRepository.swift */; };
 		083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEEC31DF6033100A3CB8D /* UserCredentials.swift */; };
+		084A24431E267CFC003BBCAB /* Condtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24421E267CFC003BBCAB /* Condtion.swift */; };
+		084A24451E267D2D003BBCAB /* WhereCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24441E267D2D003BBCAB /* WhereCondition.swift */; };
+		084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24461E267D6A003BBCAB /* CombinedCondition.swift */; };
+		084A24491E267D8C003BBCAB /* SearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24481E267D8C003BBCAB /* SearchFilter.swift */; };
+		084A244B1E267E2F003BBCAB /* Comparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A244A1E267E2F003BBCAB /* Comparator.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,6 +74,11 @@
 		083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceTests.swift; sourceTree = "<group>"; };
 		083DEEC11DF5B03800A3CB8D /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		083DEEC31DF6033100A3CB8D /* UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
+		084A24421E267CFC003BBCAB /* Condtion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Condtion.swift; sourceTree = "<group>"; };
+		084A24441E267D2D003BBCAB /* WhereCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereCondition.swift; sourceTree = "<group>"; };
+		084A24461E267D6A003BBCAB /* CombinedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedCondition.swift; sourceTree = "<group>"; };
+		084A24481E267D8C003BBCAB /* SearchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilter.swift; sourceTree = "<group>"; };
+		084A244A1E267E2F003BBCAB /* Comparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparator.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +136,18 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
+		084A24411E267CD5003BBCAB /* DataFilter */ = {
+			isa = PBXGroup;
+			children = (
+				084A24421E267CFC003BBCAB /* Condtion.swift */,
+				084A24441E267D2D003BBCAB /* WhereCondition.swift */,
+				084A24461E267D6A003BBCAB /* CombinedCondition.swift */,
+				084A24481E267D8C003BBCAB /* SearchFilter.swift */,
+				084A244A1E267E2F003BBCAB /* Comparator.swift */,
+			);
+			name = DataFilter;
+			sourceTree = "<group>";
+		};
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +175,7 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				084A24411E267CD5003BBCAB /* DataFilter */,
 				08FE53AB1E01A405008B5D0E /* GenericDataObject */,
 				08783D351DEC9D3700A08343 /* Auth */,
 				08783D1E1DEC927800A08343 /* EngaugeTx.h */,
@@ -432,6 +455,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */,
+				084A24491E267D8C003BBCAB /* SearchFilter.swift in Sources */,
 				08FE53AD1E01A428008B5D0E /* GenericDataObject.swift in Sources */,
 				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
@@ -439,6 +464,7 @@
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				081222891DF7025600586B7D /* AuthError.swift in Sources */,
 				083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */,
+				084A24431E267CFC003BBCAB /* Condtion.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */,
@@ -447,6 +473,8 @@
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,
+				084A24451E267D2D003BBCAB /* WhereCondition.swift in Sources */,
+				084A244B1E267E2F003BBCAB /* Comparator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

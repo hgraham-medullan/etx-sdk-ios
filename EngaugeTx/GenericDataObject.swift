@@ -49,8 +49,14 @@ open class ETXGenericDataObject: ETXModel {
         return String(describing: (Mirror(reflecting: self)).subjectType)
     }
     
+    private var _dataSvc: ETXGenericDataService<ETXGenericDataObject>?
+    
     private var dataSvc: ETXGenericDataService<ETXGenericDataObject> {
-        return try! ETXGenericDataService<ETXGenericDataObject>(modelName: self.modelName)
+        guard let d = _dataSvc else {
+            _dataSvc = try! ETXGenericDataService<ETXGenericDataObject>(modelName: self.modelName)
+            return _dataSvc!
+        }
+        return d
     }
     
     override init() {
