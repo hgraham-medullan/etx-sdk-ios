@@ -98,8 +98,8 @@ class Repository<T> : Service where T: ETXModel {
         })
     }
     
-    func findWhere(_ filter: String?, completion: @escaping ([T]?, ETXError?) -> Void) {
-        let req = self.etxResource.withParam("filter", "{}").request(.get)
+    func findWhere(_ filter: SearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
+        let req = self.etxResource.withParam("filter", filter.toJsonString()).request(.get)
         
         req.onFailure({ (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)

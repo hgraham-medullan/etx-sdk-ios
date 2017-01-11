@@ -104,7 +104,7 @@ open class ETXGenericDataObject: ETXModel {
         self.dataSvc.findById(id, completion: completion)
     }
     
-    public func findWhere(filter: String, completion: @escaping ([ETXGenericDataObject]?, ETXError?)->Void) {
+    public func findWhere(filter: SearchFilter, completion: @escaping ([ETXGenericDataObject]?, ETXError?)->Void) {
         self.dataSvc.findWhere(filter, completion: completion)
     }
     

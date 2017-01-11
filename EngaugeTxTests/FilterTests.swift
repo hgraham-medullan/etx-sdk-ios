@@ -78,7 +78,7 @@ class FilterTests: XCTestCase {
         ])
         
         // https://loopback.io/doc/en/lb2/Where-filter.html#and--or
-        XCTAssertEqual("{\"where\":{\"and\":[{\"gender\":{\"eq\":\"female\"}},{\"age\":{\"gt\":64}}]}}", searchFilter.toJsonString())
+        XCTAssertEqual("{\"where\":{\"and\":[{\"gender\":\"female\"},{\"age\":{\"gt\":64}}]}}", searchFilter.toJsonString())
     }
     
     func testWhenFilterUsesAndCombinationWithOr() {
@@ -97,7 +97,26 @@ class FilterTests: XCTestCase {
             ])
         
         // https://loopback.io/doc/en/lb2/Where-filter.html#and--or
-        XCTAssertEqual("{\"where\":{\"or\":[{\"and\":[{\"gender\":{\"eq\":\"male\"}},{\"age\":{\"gt\":59}}]},{\"and\":[{\"gender\":{\"eq\":\"female\"}},{\"age\":{\"gt\":64}}]}]}}", searchFilter.toJsonString())
-        print(searchFilter.toJsonString())
+        XCTAssertEqual("{\"where\":{\"or\":[{\"and\":[{\"gender\":\"male\"},{\"age\":{\"gt\":59}}]},{\"and\":[{\"gender\":\"female\"},{\"age\":{\"gt\":64}}]}]}}", searchFilter.toJsonString())
+    }
+    
+    func testWhenFilterUsesAscendingSorting() {
+        let searchFilter = SearchFilter()
+        searchFilter.sortBy("age", order: .ASC)
+        XCTAssertEqual("{\"order\":\"age ASC\"}", searchFilter.toJsonString())
+    }
+    
+    func testWhenFilterUsesDescendingSorting() {
+        let searchFilter = SearchFilter()
+        searchFilter.sortBy("age", order: .DESC)
+        XCTAssertEqual("{\"order\":\"age DESC\"}", searchFilter.toJsonString())
+    }
+    
+    func testWhenCustomFilterStringIsUsedAllOtherFiltersShouldBeIgnored() {
+        let customFilter: String = "\"where\":{\"name\": \"sean\"}"
+        let searchFilter = SearchFilter(customFilter: customFilter)
+        searchFilter.sortBy("age", order: .DESC)
+        XCTAssertEqual(customFilter, searchFilter.toJsonString())
+        
     }
 }

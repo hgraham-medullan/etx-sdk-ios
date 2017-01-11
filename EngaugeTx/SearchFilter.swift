@@ -8,17 +8,23 @@
 
 import Foundation
 
-class SearchFilter {
+public class SearchFilter {
     
-    enum SortOrder: String {
-        case ASC = "asc"
-        case DESC = "desc"
+    public enum SortOrder: String {
+        case ASC = "ASC"
+        case DESC = "DESC"
     }
     
     var whereCondtions: [Condition]?
     private var limit: Int?
+    private var sorting: [String]?
+    private var customFilter: String?
     
     init() {
+    }
+    
+    init(customFilter: String) {
+        self.customFilter = customFilter
     }
     
     init(conditions: [Condition]) {
@@ -30,15 +36,8 @@ class SearchFilter {
     }
     
     public func sortBy(_ property: String, order: SortOrder) {
-        
-    }
-    
-    func toString() -> String {
-        var s = ""
-        for condition in self.whereCondtions! {
-            s = s + "filter[where]" + condition.toString() + "&"
-        }
-        return s
+        self.sorting = [String]([])
+        self.sorting?.append("\(property) \(order.rawValue)")
     }
     
     private func toJson() -> [String:Any] {
@@ -53,6 +52,17 @@ class SearchFilter {
             }
             q["where"] = whereClause
         }
+        
+        if let sorting = self.sorting {
+            var sortValue: Any
+            if sorting.count == 1 {
+                sortValue = sorting.first!
+            } else {
+                sortValue = sorting
+            }
+            q["order"] = sortValue
+        }
+        
         if let limit = self.limit {
             q["limit"] = limit
         }
@@ -60,7 +70,13 @@ class SearchFilter {
     }
     
     func toJsonString() -> String {
-        return self.toJson().printJson()
+        var jsonString: String
+        if let customFilter = self.customFilter {
+            jsonString = customFilter
+        } else {
+            jsonString = self.toJson().printJson()
+        }
+        return jsonString
     }
 }
 

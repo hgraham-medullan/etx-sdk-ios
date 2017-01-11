@@ -9,6 +9,5 @@
 import Foundation
 
 protocol Condition {
-    func toString() -> String
     func toJson() -> [String:Any]
 }

@@ -31,8 +31,4 @@ class CombinedCondition: Condition {
         a[self.combineType.rawValue] = theConditions
         return a;
     }
-    
-    internal func toString() -> String {
-        return ""
-    }
 }

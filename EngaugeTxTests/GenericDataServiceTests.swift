@@ -251,5 +251,65 @@ class GenericDataServiceTests: ETXTestCase {
         XCTAssertFalse(ETXGenericDataService.isValidClassName(" Invalid-ClassName"))
         XCTAssertFalse(ETXGenericDataService.isValidClassName("Invalid.ClassName"))
     }
+    
+    func testWhereFilterWithLimit() {
+        let saveVitalExpectation = expectation(description: "Save a vital")
+        let vitalSearchExpectation = expectation(description: "Search for vitals")
+        let vital: Vital = Vital()
+        vital.reading = 239
+        vital.save {
+            (err) in
+            XCTAssertNil(err, "Save not result in an error")
+            saveVitalExpectation.fulfill()
+            
+            let searchFilter = SearchFilter(conditions: [
+                WhereCondition(property: "reading", comparator: .eq, value: 239)
+                ])
+            searchFilter.setLimit(1)
+            
+            vital.findWhere(filter: searchFilter) {
+                (vitals, err) in
+                XCTAssertNil(err)
+                XCTAssertEqual(1, vitals!.count)
+                vitalSearchExpectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 100000) { error in
+            if let error = error {
+                XCTFail("Failed while deleting the vital: \(error)")
+            }
+        }
+    }
+    
+    func testWhereFilterWithId() {
+        let saveVitalExpectation = expectation(description: "Save a vital")
+        let vitalSearchExpectation = expectation(description: "Search for vitals")
+        let vital: Vital = Vital()
+        vital.reading = 239
+        vital.save {
+            (err) in
+            XCTAssertNil(err, "Save not result in an error")
+            saveVitalExpectation.fulfill()
+            
+            let searchFilter = SearchFilter(conditions: [
+                WhereCondition(property: "id", comparator: .eq, value: vital.id!)
+                ])
+            
+            vital.findWhere(filter: searchFilter) {
+                (vitals, err) in
+                XCTAssertNil(err)
+                XCTAssertEqual(1, vitals!.count)
+                XCTAssertEqual(vital.id!, vitals![0].id!)
+                vitalSearchExpectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 100000) { error in
+            if let error = error {
+                XCTFail("Failed while deleting the vital: \(error)")
+            }
+        }
+    }
 }
     

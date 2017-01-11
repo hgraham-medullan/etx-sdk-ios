@@ -148,6 +148,14 @@
 			name = DataFilter;
 			sourceTree = "<group>";
 		};
+		084A244C1E2698D1003BBCAB /* DataFilter */ = {
+			isa = PBXGroup;
+			children = (
+				089898F11E0D64F3005CB45D /* FilterTests.swift */,
+			);
+			name = DataFilter;
+			sourceTree = "<group>";
+		};
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +207,7 @@
 				083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */,
 				083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */,
 				08FE53B91E04412B008B5D0E /* ETXTestCase.swift */,
-				089898F11E0D64F3005CB45D /* FilterTests.swift */,
+				084A244C1E2698D1003BBCAB /* DataFilter */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";
