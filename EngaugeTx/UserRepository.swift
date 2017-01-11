@@ -15,11 +15,14 @@ class UserRepository<T: ETXUser>: Repository<T> {
     private let KEY_DEFAULTS_USER_ID: String = "userId"
     private let KEY_DEFAULTS_CURRENT_USER: String = "currentUser"
     
-    var users: Resource { return resource("/users") }
+    private let URL_USERS: String = "/users"
+    private let URL_USER_LOGIN: String = "/users/login"
+    
+    var users: Resource { return resource(URL_USERS) }
     
     init() {
-        super.init(resourcePath: "/users")
-        self.configureTransformer("/users/login") {
+        super.init(resourcePath: URL_USERS)
+        self.configureTransformer(URL_USER_LOGIN) {
             Mapper<ETXAccessToken>().map(JSON: $0.content)
         }
     }
@@ -74,7 +77,6 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
-        self.deleteCurrentUser()
         let userCredentials = UserEmailCredentials(email, password: password)
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
@@ -87,6 +89,22 @@ class UserRepository<T: ETXUser>: Repository<T> {
     func logout() {
         self.deleteCurrentUser()
         self.wipeResources()
+    }
+    
+    func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
+        self.deleteCurrentUser()
+        let reqBody:[String:String] = ["email": emailAddress]
+        let req = self.users.child("/reset").request(.post, json: reqBody)
+        
+        req.onFailure { (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            completion(etxError)
+        }
+        
+        req.onSuccess { (obj) in
+            completion(nil)
+        }
+
     }
 
 }
