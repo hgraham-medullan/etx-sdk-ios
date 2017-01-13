@@ -19,9 +19,19 @@ class Repository<T> : Service where T: ETXModel {
     let KEY_DEFAULTS_ACCESS_TOKEN: String = "accessToken"
     
     var resourcePath: String
+    
+    private var _etxResource: Resource?
     var etxResource: Resource {
-        return resource(resourcePath)
+        
+        get {
+            if _etxResource == nil {
+                _etxResource = resource(resourcePath)
+            }
+            return _etxResource!
+        }
+        set { _etxResource = newValue }
     }
+    
     
     init(resourcePath: String) {
         self.resourcePath = resourcePath
@@ -132,4 +142,13 @@ class Repository<T> : Service where T: ETXModel {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
     }
+    
+    func getAppId() -> String {
+        return EngaugeTxApplication.appId
+    }
+    
+    func getClientKey() -> String {
+        return EngaugeTxApplication.clientKey
+    }
+    
 }
