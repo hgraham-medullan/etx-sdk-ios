@@ -61,20 +61,27 @@ class GenericDataServiceTests: ETXTestCase {
     func testGenericObjectWithDefaultModelName() {
         
         let expectedClassName = "GenericObjectWithDefaultModelName"
+        XCTAssertEqual(expectedClassName, GenericObjectWithDefaultModelName.modelName, "Should able to retrieve the corect model name statically")
+        
         let genericObjectWithDefaultModelName = GenericObjectWithDefaultModelName()
-        XCTAssertEqual(expectedClassName, genericObjectWithDefaultModelName.modelName)
+        XCTAssertNotNil(genericObjectWithDefaultModelName.dataSvc)
+        XCTAssertEqual(expectedClassName, genericObjectWithDefaultModelName.getModelName(), "Should able to retrieve the corect model name from an instance")
     }
     
     class GenericObjectWithCustomModelName: ETXGenericDataObject {
-        override var modelName: String {
+        override class var customModelName: String? {
             return "CustomModel"
         }
     }
     
     func testGenericObjectWithCustomModelName() {
-        let className = "CustomModel"
+        let expectedClassName = "CustomModel"
+        
+        XCTAssertEqual(expectedClassName, GenericObjectWithCustomModelName.modelName, "Should able to retrieve the corect model name statically")
+        
         let genericObjectWithCustomModelName = GenericObjectWithCustomModelName()
-        XCTAssertEqual(className, genericObjectWithCustomModelName.modelName)
+        XCTAssertNotNil(genericObjectWithCustomModelName.dataSvc)
+        XCTAssertEqual(expectedClassName, genericObjectWithCustomModelName.getModelName())
     }
     
     func testGenericDataObjectCreation() {
@@ -109,8 +116,8 @@ class GenericDataServiceTests: ETXTestCase {
             (err) in
             let vitalId = v.id
             saveVitalExpectation.fulfill()
-            let vital: Vital = Vital()
-            vital.findById(vitalId!) {
+            //let vital: Vital = Vital()
+            Vital.findById(vitalId!) {
                 (vital, err) in
                 XCTAssertNotNil(vital)
                 XCTAssertEqual(vitalId, vital?.id)
@@ -175,7 +182,7 @@ class GenericDataServiceTests: ETXTestCase {
                 deleteVitalExpectation.fulfill()
                 
                 let vital = Vital()
-                vital.findById(vitalId) {
+                Vital.findById(vitalId) {
                     (vital, err) in
                     XCTAssertNil(vital)
                     XCTAssertNotNil(err)
@@ -262,12 +269,12 @@ class GenericDataServiceTests: ETXTestCase {
             XCTAssertNil(err, "Save not result in an error")
             saveVitalExpectation.fulfill()
             
-            let searchFilter = SearchFilter(conditions: [
-                WhereCondition(property: "reading", comparator: .eq, value: 239)
+            let searchFilter = ETXSearchFilter(conditions: [
+                ETXWhereCondition(property: "reading", comparator: .eq, value: 239)
                 ])
             searchFilter.setLimit(1)
             
-            vital.findWhere(filter: searchFilter) {
+            Vital.findWhere(filter: searchFilter) {
                 (vitals, err) in
                 XCTAssertNil(err)
                 XCTAssertEqual(1, vitals!.count)
@@ -292,11 +299,11 @@ class GenericDataServiceTests: ETXTestCase {
             XCTAssertNil(err, "Save not result in an error")
             saveVitalExpectation.fulfill()
             
-            let searchFilter = SearchFilter(conditions: [
-                WhereCondition(property: "id", comparator: .eq, value: vital.id!)
+            let searchFilter = ETXSearchFilter(conditions: [
+                ETXWhereCondition(property: "id", comparator: .eq, value: vital.id!)
                 ])
             
-            vital.findWhere(filter: searchFilter) {
+            Vital.findWhere(filter: searchFilter) {
                 (vitals, err) in
                 XCTAssertNil(err)
                 XCTAssertEqual(1, vitals!.count)
@@ -311,5 +318,6 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
     }
+
 }
     

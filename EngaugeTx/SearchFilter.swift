@@ -8,33 +8,69 @@
 
 import Foundation
 
-public class SearchFilter {
+/**
+ Provides capabilites for setting filters when fetching models
+ */
+public class ETXSearchFilter {
     
+    /**
+     The order by which to sort results
+    */
     public enum SortOrder: String {
+        /**
+         Sorts in an ascending order
+        */
         case ASC = "ASC"
+        
+        /**
+         Sorts in a descending order
+         */
         case DESC = "DESC"
     }
     
-    var whereCondtions: [Condition]?
+    var whereCondtions: [ETXCondition]?
     private var limit: Int?
     private var sorting: [String]?
     private var customFilter: String?
     
-    init() {
+    /**
+     Create a new instance of SearchFilter
+    */
+    public init() {
+    
     }
     
-    init(customFilter: String) {
+    /**
+     Create a new instance of SearchFilter
+     - parameter customFilter: Filter query expressed in [loopback's query string format](http://loopback.io/doc/en/lb2/Where-filter.html) If this constructor is used, all other consditions set through the SDK's API will be ignored
+     
+     */
+    public init(customFilter: String) {
         self.customFilter = customFilter
     }
     
-    init(conditions: [Condition]) {
+    /**
+     Create a new instance of SearchFilter
+     - parameter conditions: The list of conditions to be applied to the filter
+     */
+    public init(conditions: [ETXCondition]) {
         self.whereCondtions = conditions
     }
     
+    /**
+     A limit filter limits the number of records returned to the specified number (or less).
+     - parameter limit: The maximum number of records to return
+    */
     public func setLimit(_ limit: Int) {
         self.limit = limit
     }
     
+    /**
+     Specifies how to sort the results
+     - parameter property: The property by which the results should be sorted
+     - parameter order: The order by which to sort the results
+     
+    */
     public func sortBy(_ property: String, order: SortOrder) {
         self.sorting = [String]([])
         self.sorting?.append("\(property) \(order.rawValue)")

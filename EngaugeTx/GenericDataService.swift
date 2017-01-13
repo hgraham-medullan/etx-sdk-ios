@@ -40,7 +40,7 @@ import ObjectMapper
  ```
  
  */
-public class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
+internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
     
     var modelName: String
     
@@ -53,6 +53,7 @@ public class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
             self.modelName = modelName
             super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
         } else {
+            print("\(modelName) is not a valid model name")
             throw ETXInvalidModelNameError()
         }
     }

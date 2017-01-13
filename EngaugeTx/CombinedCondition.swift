@@ -7,22 +7,38 @@
 //
 
 import Foundation
-class CombinedCondition: Condition {
+
+/**
+ Represents a combination of conditions
+ */
+public class ETXCombinedCondition: ETXCondition {
     
-    enum CombineType: String {
+    /**
+     The operator to use when combining the condition
+    */
+    public enum CombineType: String {
         case and = "and"
         case or = "or"
     }
     
     private var combineType: CombineType
-    private var conditions: [Condition]
+    private var conditions: [ETXCondition]
     
-    init(combineType: CombineType, conditions: [Condition]) {
+    /**
+     Create combination of conditions
+     - parameter combineType: What operator to use when joining the conditions
+     - parameter conditions: An array list of the conditions
+    */
+    public init(combineType: CombineType, conditions: [ETXCondition]) {
         self.combineType = combineType
         self.conditions = conditions
     }
     
-    internal func toJson() -> [String : Any] {
+    /**
+     Converts the condition to its Dictionary representation
+     - returns: The Dictionary representation of the condition
+     */
+    public func toJson() -> [String : Any] {
         var a = [String: [Any]]()
         var theConditions: [[String: Any]] = [[String: Any]]()
         for c in conditions  {

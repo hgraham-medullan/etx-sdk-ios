@@ -14,8 +14,8 @@ import ObjectMapper
 class FilterTests: XCTestCase {
     
     func testWhenConditionUsesGreaterThan() {
-        let searchFilter = SearchFilter(conditions: [
-            WhereCondition(property: "age", comparator: .gt, value: 20)
+        let searchFilter = ETXSearchFilter(conditions: [
+            ETXWhereCondition(property: "age", comparator: .gt, value: 20)
         ])
         
         let expectedJsonString: String = "{\"where\":{\"age\":{\"gt\":20}}}"
@@ -24,8 +24,8 @@ class FilterTests: XCTestCase {
     }
     
     func testWhenConditionUsesGreaterThanOrEqualTo() {
-        let searchFilter = SearchFilter(conditions: [
-            WhereCondition(property: "age", comparator: .gte, value: 20)
+        let searchFilter = ETXSearchFilter(conditions: [
+            ETXWhereCondition(property: "age", comparator: .gte, value: 20)
             ])
         
         let expectedJsonString: String = "{\"where\":{\"age\":{\"gte\":20}}}"
@@ -34,8 +34,8 @@ class FilterTests: XCTestCase {
     }
     
     func testWhenConditionUsesLessThan() {
-        let searchFilter = SearchFilter(conditions: [
-            WhereCondition(property: "age", comparator: .lt, value: 20)
+        let searchFilter = ETXSearchFilter(conditions: [
+            ETXWhereCondition(property: "age", comparator: .lt, value: 20)
             ])
         
         let expectedJsonString: String = "{\"where\":{\"age\":{\"lt\":20}}}"
@@ -44,8 +44,8 @@ class FilterTests: XCTestCase {
     }
     
     func testWhenConditionUsesLessThanorEqualTo() {
-        let searchFilter = SearchFilter(conditions: [
-            WhereCondition(property: "age", comparator: .lte, value: 20)
+        let searchFilter = ETXSearchFilter(conditions: [
+            ETXWhereCondition(property: "age", comparator: .lte, value: 20)
             ])
         
         let expectedJsonString: String = "{\"where\":{\"age\":{\"lte\":20}}}"
@@ -54,26 +54,26 @@ class FilterTests: XCTestCase {
     }
     
     func testWhenFilterUsesLimiting() {
-        let searchFilter = SearchFilter()
+        let searchFilter = ETXSearchFilter()
         searchFilter.setLimit(20)
         XCTAssertEqual("{\"limit\":20}", searchFilter.toJsonString())
     }
     
     func testWhenFilterUsesLimitingWithACondition() {
-        let searchFilter = SearchFilter(conditions: [
-            WhereCondition(property: "age", comparator: .lte, value: 20)
+        let searchFilter = ETXSearchFilter(conditions: [
+            ETXWhereCondition(property: "age", comparator: .lte, value: 20)
             ])
         searchFilter.setLimit(20)
         XCTAssertEqual("{\"where\":{\"age\":{\"lte\":20}},\"limit\":20}", searchFilter.toJsonString())
     }
     
     func testWhenFilterUsesAndCombination() {
-        let olderThan64 = WhereCondition(property: "age", comparator: .gt, value: 64)
-        let females = WhereCondition(property: "gender", comparator: .eq, value: "female")
+        let olderThan64 = ETXWhereCondition(property: "age", comparator: .gt, value: 64)
+        let females = ETXWhereCondition(property: "gender", comparator: .eq, value: "female")
         
-        let femaleRetirees = CombinedCondition(combineType: .and, conditions: [females, olderThan64])
+        let femaleRetirees = ETXCombinedCondition(combineType: .and, conditions: [females, olderThan64])
         
-        let searchFilter = SearchFilter(conditions: [
+        let searchFilter = ETXSearchFilter(conditions: [
             femaleRetirees
         ])
         
@@ -82,17 +82,17 @@ class FilterTests: XCTestCase {
     }
     
     func testWhenFilterUsesAndCombinationWithOr() {
-        let olderThan64 = WhereCondition(property: "age", comparator: .gt, value: 64)
-        let females = WhereCondition(property: "gender", comparator: .eq, value: "female")
-        let femaleRetirees = CombinedCondition(combineType: .and, conditions: [females, olderThan64])
+        let olderThan64 = ETXWhereCondition(property: "age", comparator: .gt, value: 64)
+        let females = ETXWhereCondition(property: "gender", comparator: .eq, value: "female")
+        let femaleRetirees = ETXCombinedCondition(combineType: .and, conditions: [females, olderThan64])
         
-        let olderThan59 = WhereCondition(property: "age", comparator: .gt, value: 59)
-        let males = WhereCondition(property: "gender", comparator: .eq, value: "male")
-        let maleRetirees = CombinedCondition(combineType: .and, conditions: [males, olderThan59])
+        let olderThan59 = ETXWhereCondition(property: "age", comparator: .gt, value: 59)
+        let males = ETXWhereCondition(property: "gender", comparator: .eq, value: "male")
+        let maleRetirees = ETXCombinedCondition(combineType: .and, conditions: [males, olderThan59])
         
-        let allRetirees = CombinedCondition(combineType: .or, conditions: [maleRetirees, femaleRetirees])
+        let allRetirees = ETXCombinedCondition(combineType: .or, conditions: [maleRetirees, femaleRetirees])
         
-        let searchFilter = SearchFilter(conditions: [
+        let searchFilter = ETXSearchFilter(conditions: [
             allRetirees
             ])
         
@@ -101,20 +101,20 @@ class FilterTests: XCTestCase {
     }
     
     func testWhenFilterUsesAscendingSorting() {
-        let searchFilter = SearchFilter()
+        let searchFilter = ETXSearchFilter()
         searchFilter.sortBy("age", order: .ASC)
         XCTAssertEqual("{\"order\":\"age ASC\"}", searchFilter.toJsonString())
     }
     
     func testWhenFilterUsesDescendingSorting() {
-        let searchFilter = SearchFilter()
+        let searchFilter = ETXSearchFilter()
         searchFilter.sortBy("age", order: .DESC)
         XCTAssertEqual("{\"order\":\"age DESC\"}", searchFilter.toJsonString())
     }
     
     func testWhenCustomFilterStringIsUsedAllOtherFiltersShouldBeIgnored() {
         let customFilter: String = "\"where\":{\"name\": \"sean\"}"
-        let searchFilter = SearchFilter(customFilter: customFilter)
+        let searchFilter = ETXSearchFilter(customFilter: customFilter)
         searchFilter.sortBy("age", order: .DESC)
         XCTAssertEqual(customFilter, searchFilter.toJsonString())
         

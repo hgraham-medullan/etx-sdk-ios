@@ -38,7 +38,7 @@ class ETXDataService<T: ETXModel> {
      - parameter models: Models of the specified type. Will be ```nil``` if an error occurred
      - parameter err: If an error occurred while getting all items. Will be ```nil``` if get all was successful
      */
-    public func findWhere(_ filter: SearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
+    public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
         self.repository.findWhere(filter, completion: completion)
     }
     
@@ -49,7 +49,7 @@ class ETXDataService<T: ETXModel> {
      - parameter err: If an error occurred while getting all items. Will be ```nil``` if get all was successful
     */
     public func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void) {
-        self.repository.findWhere(SearchFilter(), completion: completion)
+        self.repository.findWhere(ETXSearchFilter(), completion: completion)
     }
     
     /**

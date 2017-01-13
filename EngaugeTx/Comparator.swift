@@ -8,7 +8,10 @@
 
 import Foundation
 
-enum Comparator: String {
+/**
+ The operator to be used when comparing values
+ */
+public enum ETXComparator: String {
     case gt = "gt"
     case gte
     case lt

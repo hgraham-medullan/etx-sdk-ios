@@ -8,6 +8,13 @@
 
 import Foundation
 
-protocol Condition {
+/**
+ Represents a conditon by which to filter data
+ */
+public protocol ETXCondition {
+    /**
+     Converts the condition to its Dictionary representation
+     - returns: The Dictionary representation of the condition
+     */
     func toJson() -> [String:Any]
 }

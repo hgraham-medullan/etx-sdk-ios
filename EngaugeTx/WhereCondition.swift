@@ -12,13 +12,16 @@ enum ComparatorD: String {
     case between = "between"
 }
 
-class WhereCondition: Condition {
+/**
+ REpresents a single condition by which to filter data
+ */
+public class ETXWhereCondition: ETXCondition {
     
     class Comp {
         var value: Any!
-        var comparator: Comparator!
+        var comparator: ETXComparator!
         
-        init(comparator: Comparator, value: Any) {
+        init(comparator: ETXComparator, value: Any) {
             self.comparator = comparator
             self.value = value
         }
@@ -27,7 +30,13 @@ class WhereCondition: Condition {
     private var property: String!
     private var comp: Comp!
     
-    init(property: String, comparator: Comparator, value: Any) {
+    /**
+     Create a new where condition
+     - parameter property: The name of the property to compare the value against
+     - parameter comparator: The operator to use to compare values
+     - parameter value: The value to compare against to find matching results
+    */
+    public init(property: String, comparator: ETXComparator, value: Any) {
         self.property = property
         self.comp = Comp(comparator: comparator, value: value)
     }
@@ -43,7 +52,11 @@ class WhereCondition: Condition {
 //    }
 
     
-    func toJson() -> [String: Any] {
+    /**
+     Converts the condition to its Dictionary representation
+     - returns: The Dictionary representation of the condition
+     */
+    public func toJson() -> [String: Any] {
         var q = [String:Any]()
         if self.comp.comparator == .eq {
             q[self.property] = self.comp.value!
