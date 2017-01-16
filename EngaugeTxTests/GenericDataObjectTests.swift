@@ -25,8 +25,9 @@ class GenericDataObjectTests: XCTestCase {
     func testMappingToAJsonObject() {
         let profileId = "123f"
         let fullName = "Test User"
+        let className = "UserProfile"
         
-        let jsonString: String? = "{\"id\":\"\(profileId)\",\"fullName\":\"\(fullName)\"}"
+        let jsonString: String? = "{\"id\":\"\(profileId)\",\"className\":\"\(className)\",\"fullName\":\"\(fullName)\"}"
         
         let profile = UserProfile()
         profile.id = profileId
