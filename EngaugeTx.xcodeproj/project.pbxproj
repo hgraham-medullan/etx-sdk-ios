@@ -28,6 +28,8 @@
 		084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24461E267D6A003BBCAB /* CombinedCondition.swift */; };
 		084A24491E267D8C003BBCAB /* SearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24481E267D8C003BBCAB /* SearchFilter.swift */; };
 		084A244B1E267E2F003BBCAB /* Comparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A244A1E267E2F003BBCAB /* Comparator.swift */; };
+		084A24501E270563003BBCAB /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A244F1E270563003BBCAB /* CustomFunction.swift */; };
+		084A24531E271073003BBCAB /* CustomFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24521E271073003BBCAB /* CustomFunctionTests.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,6 +81,8 @@
 		084A24461E267D6A003BBCAB /* CombinedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedCondition.swift; sourceTree = "<group>"; };
 		084A24481E267D8C003BBCAB /* SearchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilter.swift; sourceTree = "<group>"; };
 		084A244A1E267E2F003BBCAB /* Comparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparator.swift; sourceTree = "<group>"; };
+		084A244F1E270563003BBCAB /* CustomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
+		084A24521E271073003BBCAB /* CustomFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunctionTests.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,6 +159,22 @@
 			);
 			name = DataFilter;
 			sourceTree = "<group>";
+                };
+		084A244D1E27054B003BBCAB /* CustomFunction */ = {
+			isa = PBXGroup;
+			children = (
+				084A244F1E270563003BBCAB /* CustomFunction.swift */,
+			);
+			name = CustomFunction;
+			sourceTree = "<group>";
+		};
+		084A24511E271063003BBCAB /* CustomFunction */ = {
+			isa = PBXGroup;
+			children = (
+				084A24521E271073003BBCAB /* CustomFunctionTests.swift */,
+			);
+			name = CustomFunction;
+			sourceTree = "<group>";
 		};
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
@@ -184,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				084A24411E267CD5003BBCAB /* DataFilter */,
+				084A244D1E27054B003BBCAB /* CustomFunction */,
 				08FE53AB1E01A405008B5D0E /* GenericDataObject */,
 				08783D351DEC9D3700A08343 /* Auth */,
 				08783D1E1DEC927800A08343 /* EngaugeTx.h */,
@@ -200,6 +221,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				084A24511E271063003BBCAB /* CustomFunction */,
 				08FE53AE1E01BC1D008B5D0E /* GenericDataObject */,
 				081222811DF6FC3100586B7D /* Auth */,
 				08783D291DEC927900A08343 /* EngaugeTxTests.swift */,
@@ -465,6 +487,7 @@
 			files = (
 				084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */,
 				084A24491E267D8C003BBCAB /* SearchFilter.swift in Sources */,
+				084A24501E270563003BBCAB /* CustomFunction.swift in Sources */,
 				08FE53AD1E01A428008B5D0E /* GenericDataObject.swift in Sources */,
 				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
@@ -490,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084A24531E271073003BBCAB /* CustomFunctionTests.swift in Sources */,
 				08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */,
 				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,

@@ -46,12 +46,6 @@ open class ETXUser: ETXModel {
         super.init()
     }
     
-    /**
-     Creates a instance of ETXUser
-     */
-    //    public override init() {
-    //        super.init()
-    //    }
     
     /**
      Creates a instance of ETXUser

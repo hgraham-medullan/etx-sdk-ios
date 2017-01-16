@@ -193,8 +193,6 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testGetCurrentUserWhenTheUserExtendETXUser() {
-        
-        
         let email: String = "sean+extendedUser@medullan.com"
         let password: String = "P@ssw0rd"
         let firstName: String = "Extended"
@@ -218,6 +216,21 @@ class UserServiceTest: ETXTestCase {
                 XCTAssertEqual(testUser?.oldName, oldName)
                 getCurrentUserExpectation.fulfill()
             }
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
+    
+    func testInitiatePasswordResetWithEmail() {
+        let resetEmailExpectation = expectation(description: "Get current user successfully")
+        self.userSvc.initiatePasswordResetWithEmail("sean@medullan.com") {
+            (err) in
+            XCTAssertNil(err, "Password reset should not result in an error")
+            resetEmailExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 10) { error in
