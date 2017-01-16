@@ -124,4 +124,16 @@ open class ETXUserService<T: ETXUser> {
         }
     }
     
+    /**
+     Sends the user an email to begin the password reset flow
+     
+     - parameter emailAddress: The user's email address
+     - parameter completion: Callback when the request completes.
+     - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
+
+    */
+    public func initiatePasswordResetWithEmail(_ emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
+        self.userRepository.initiatePasswordReset(emailAddress: emailAddress, completion: completion)
+    }
+    
 }
