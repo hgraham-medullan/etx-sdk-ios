@@ -30,6 +30,7 @@ public class ETXSearchFilter {
     
     var whereCondtions: [ETXCondition]?
     private var limit: Int?
+    private var skip: Int?
     private var sorting: [String]?
     private var customFilter: String?
     
@@ -42,7 +43,8 @@ public class ETXSearchFilter {
     
     /**
      Create a new instance of SearchFilter
-     - parameter customFilter: Filter query expressed in [loopback's query string format](http://loopback.io/doc/en/lb2/Where-filter.html) If this constructor is used, all other consditions set through the SDK's API will be ignored
+     - parameter customFilter: Filter query expressed in [loopback's query string format](http://loopback.io/doc/en/lb2/Where-filter.html) If this constructor is used, all other consditions set through the SDK's API will be ignored. 
+         Please contact support for any large queries you may need,
      
      */
     public init(customFilter: String) {
@@ -66,13 +68,23 @@ public class ETXSearchFilter {
     }
     
     /**
+     The number of records to skip
+     - parameter skip: The number of records to skip
+     */
+    public func skip(_ skip: Int) {
+        self.skip = skip
+    }
+    
+    /**
      Specifies how to sort the results
      - parameter property: The property by which the results should be sorted
      - parameter order: The order by which to sort the results
      
     */
     public func sortBy(_ property: String, order: SortOrder) {
-        self.sorting = [String]([])
+        if self.sorting == nil {
+            self.sorting = [String]([])
+        }
         self.sorting?.append("\(property) \(order.rawValue)")
     }
     
@@ -101,6 +113,10 @@ public class ETXSearchFilter {
         
         if let limit = self.limit {
             q["limit"] = limit
+        }
+        
+        if let skip = self.skip {
+            q["skip"] = skip
         }
         return q
     }

@@ -9,6 +9,7 @@
 import Foundation
 import XCTest
 @testable import EngaugeTx
+import ObjectMapper
 
 class CustomFunctionTests: ETXTestCase {
     
@@ -132,6 +133,14 @@ class CustomFunctionTests: ETXTestCase {
         customFunction.addQueryStrings([pageQueryName: pageQueryValue], toResource: &repo.etxResource)
         
         XCTAssertEqual(expectedRepo.etxResource.url, repo.etxResource.url)
+    }
+    
+    
+    class MyComplexObject: ETXModel {
+        //let
+        override func mapping(map: Map) {
+          super.mapping(map: map)
+        }
     }
     
 }

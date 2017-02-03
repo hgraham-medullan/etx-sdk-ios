@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/medullan/etx-sdk-ios.svg?style=svg&circle-token=34d00690cd532c2b68f6c8a264045fb65c9c177c)](https://circleci.com/gh/medullan/etx-sdk-ios)
 
-# EnguageTx iOS SDK
+# EngaugeTx iOS SDK
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ source 'https://github.com/medullan/engauge-tx-pod-specs.git'
 
 target 'EnguageTxSampleIosApp' do
   use_frameworks!
-  pod 'EngaugeTx', '~> 0.0.1'
+  pod 'EngaugeTx', '~> 0.0.8'
 end
 ```
 
