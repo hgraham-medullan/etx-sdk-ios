@@ -20,6 +20,10 @@ open class ETXModel: Mappable {
     
     var rawJson: [String:Any]?
     
+    func getDataSvc<T: ETXDataService<ETXModel>>() -> T {
+        fatalError("Data service not defined for model")
+    }
+    
     public init() {
         
     }
@@ -39,15 +43,16 @@ open class ETXModel: Mappable {
     open func mapping(map: Map) {
         id <- map["id"]
     }
+    
+    public func save(completion: @escaping (ETXError?) -> Void) {
+        self.getDataSvc().save(model: self) {
+            (model, err) in
+            if let model = model {
+                let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
+                self.mapping(map: map)
+            }
+            completion(err)
+        }
+        
+    }
 }
-
-//protocol PropertyNames {
-//    func propertyNames() -> [String]
-//}
-
-//extension JSONConvertible
-//{
-//    func propertyNames() -> [String] {
-//        return Mirror(reflecting: self).children.flatMap { $0.label }
-//    }
-//}
