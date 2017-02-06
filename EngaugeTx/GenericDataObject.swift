@@ -46,10 +46,9 @@ open class ETXGenericDataObject: ETXModel, ETXPersistentGenericObject {
     private var _className: String?
     private  var className: String {
         get {
-            return _className ?? String(describing: (Mirror(reflecting: self)).subjectType)
+            return getModelName()
         }
         set {
-            // TODO: Use the custom name instead or store both
             _className = newValue
         }
     }

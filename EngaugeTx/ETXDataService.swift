@@ -8,11 +8,20 @@
 
 import Foundation
 
+protocol PersistenceService {
+    associatedtype T : ETXModel
+    func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void)
+    func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void)
+    func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void)
+    func delete(model: T, completion: @escaping (ETXError?) -> Void)
+    func save(model: T, completion: @escaping (T?, ETXError?) -> Void)
+}
+
 
 /**
  Service that provides CRUD operations on a model
  */
-class ETXDataService<T: ETXModel> {
+class ETXDataService<T: ETXModel>: PersistenceService {
     
     var repository: Repository<T>!
     

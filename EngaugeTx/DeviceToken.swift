@@ -13,15 +13,11 @@ import ObjectMapper
  The device token used for receiving push notifications
  */
 public class ETXDeviceToken: ETXModel {
+    
     var type: String = "ios"
     var token: String
     
-    
-    var pushNotificationSvc: PushNotificationService
-    
-    override func getDataSvc<PushNotificationService>() -> PushNotificationService {
-        return self.pushNotificationSvc as! PushNotificationService
-    }
+    private var pushNotificationSvc: PushNotificationService?
     
     /**
      Create a new instance
@@ -29,13 +25,11 @@ public class ETXDeviceToken: ETXModel {
     */
     init(token: String) {
         self.token = token
-        self.pushNotificationSvc = PushNotificationService()
         super.init()
     }
     
     required public init?(map: Map) {
         self.token = ""
-        self.pushNotificationSvc = PushNotificationService()
         super.init(map: map)
     }
     
@@ -49,15 +43,10 @@ public class ETXDeviceToken: ETXModel {
         self.token <- map["token"]
     }
     
-    public override func save(completion: @escaping (ETXError?) -> Void) {
-        self.pushNotificationSvc.save(model: self) {
-            (model, err) in
-            if let model = model {
-                let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
-                self.mapping(map: map)
-            }
-            completion(err)
+    override func getDataSvc<T: PushNotificationService>() -> T {
+        if self.pushNotificationSvc == nil {
+            self.pushNotificationSvc = PushNotificationService()
         }
-
+        return self.pushNotificationSvc as! T //as! PushNotificationService
     }
 }

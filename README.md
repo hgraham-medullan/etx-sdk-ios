@@ -61,8 +61,33 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-##Noti
+## Push Notifications
 
-    
-## Documentation
-Our docs can be found here: [docs](https://iosdocs.engaugetx.com/index.html)
+### Setup your app on firebase
+The platform uses Firebase Cloud Messaging to send push notifications to users once the device token is registered. The first step is to [Set Up a Firebase Cloud Messaging Client App on iOS](https://firebase.google.com/docs/cloud-messaging/ios/client)
+
+### Register the Device Token on the Platform
+
+```
+func tokenRefreshNotification(_ notification: Notification) {
+  if let refreshedToken = FIRInstanceID.instanceID().token() {
+    print("InstanceID token: \(refreshedToken)")
+    let deviceToken: ETXDeviceToken = ETXDeviceToken(token: uniqueToken)
+    deviceToken.save {
+		(err) in
+		guard let _ = err else {
+			// Error handling
+			return
+		}
+		print("Save Success")
+	}
+
+  }
+
+  // Connect to FCM since connection may have failed when attempted before having a token.
+  connectToFcm()
+}
+```
+
+### Sending Push Notifications 
+See the [server-side docs on how to send push notifications to a user](https://docs.google.com/document/d/1TVY-rapBHjKP04bqkBAP4iwhD1evIT4oUxnWJVZJR28/edit#heading=h.prwiyqm61465)

@@ -43,11 +43,33 @@ class DeviceTokenTests: AuthenticatedTestCase {
             duplicateToken.save {
                 (err) in
                 XCTAssertNotNil(err, "Duplicate token should result in an error")
-//                XCTAssertNotNil(err!.statusCode)
+//                XCTAssertNotNil   (err!.statusCode)
 //                XCTAssertEqual(400, err!.statusCode)
                 tokenSaveExpectation.fulfill()
+                guard let _ = err else {
+                    // Error handling
+                    return
+                }
+                print("Save Success")
             }
             
+        }
+        waitForExpectations(timeout: 10) {
+            (err) in
+            print("Login expectation timeout \(err)")
+        }
+    }
+    
+    
+    func testY() {
+        let uniqueToken: String = "\((Date()).timeIntervalSince1970)"
+        let dt: ETXDeviceToken = ETXDeviceToken(token: uniqueToken)
+        let tokenSaveExpectation = expectation(description: "Successful token save")
+        dt.getDataSvc().save(model: dt) {
+            (model, err) in
+            print(model?.id)
+            //SOme code
+            tokenSaveExpectation.fulfill()
         }
         waitForExpectations(timeout: 10) {
             (err) in

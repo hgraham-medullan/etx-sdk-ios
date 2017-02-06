@@ -133,7 +133,5 @@ Pod::Spec.new do |s|
  s.dependency 'Siesta', '>=1.0.1'
  s.dependency 'Siesta/Alamofire', '>=1.0.1'
  s.dependency 'ObjectMapper', '~> 2.2'
-#s.dependency 'Google'
-#s.dependency 'Google/CloudMessaging'
 
 end

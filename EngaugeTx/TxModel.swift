@@ -24,9 +24,15 @@ open class ETXModel: Mappable {
         fatalError("Data service not defined for model")
     }
     
+    var dataSvc: ETXDataService<ETXModel>!
+    
     public init() {
         
     }
+    
+//    init(_ dataSvc: ETXDataService<ETXModel>) {
+//        self.dataSvc = dataSvc
+//    }
     
     /**
      Create an instance from a Map
