@@ -36,6 +36,10 @@
 		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
 		089898F21E0D64F3005CB45D /* FilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089898F11E0D64F3005CB45D /* FilterTests.swift */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
+		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
+		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
+		08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */; };
+		08EFD9491E460576005F0B50 /* ETXAuthenticatedTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */; };
 		08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53A71E003A26008B5D0E /* RegistrationError.swift */; };
 		08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */; };
 		08FE53AD1E01A428008B5D0E /* GenericDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53AC1E01A428008B5D0E /* GenericDataObject.swift */; };
@@ -92,6 +96,10 @@
 		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
 		089898F11E0D64F3005CB45D /* FilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTests.swift; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
+		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
+		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
+		08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTokenTests.swift; sourceTree = "<group>"; };
+		08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXAuthenticatedTestCase.swift; sourceTree = "<group>"; };
 		08FE53A71E003A26008B5D0E /* RegistrationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationError.swift; sourceTree = "<group>"; };
 		08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationErrorTests.swift; sourceTree = "<group>"; };
 		08FE53AC1E01A428008B5D0E /* GenericDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObject.swift; sourceTree = "<group>"; };
@@ -159,7 +167,7 @@
 			);
 			name = DataFilter;
 			sourceTree = "<group>";
-                };
+		};
 		084A244D1E27054B003BBCAB /* CustomFunction */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +211,7 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				08EFD9401E45F7DF005F0B50 /* PushNotifications */,
 				084A24411E267CD5003BBCAB /* DataFilter */,
 				084A244D1E27054B003BBCAB /* CustomFunction */,
 				08FE53AB1E01A405008B5D0E /* GenericDataObject */,
@@ -221,6 +230,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				08EFD9451E46046C005F0B50 /* PushNotification */,
 				084A24511E271063003BBCAB /* CustomFunction */,
 				08FE53AE1E01BC1D008B5D0E /* GenericDataObject */,
 				081222811DF6FC3100586B7D /* Auth */,
@@ -230,6 +240,7 @@
 				083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */,
 				08FE53B91E04412B008B5D0E /* ETXTestCase.swift */,
 				084A244C1E2698D1003BBCAB /* DataFilter */,
+				08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";
@@ -246,6 +257,23 @@
 				08FE53A71E003A26008B5D0E /* RegistrationError.swift */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		08EFD9401E45F7DF005F0B50 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */,
+				08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */,
+			);
+			name = PushNotifications;
+			sourceTree = "<group>";
+		};
+		08EFD9451E46046C005F0B50 /* PushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */,
+			);
+			name = PushNotification;
 			sourceTree = "<group>";
 		};
 		08FE53AB1E01A405008B5D0E /* GenericDataObject */ = {
@@ -492,6 +520,7 @@
 				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
+				08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				081222891DF7025600586B7D /* AuthError.swift in Sources */,
 				083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */,
@@ -500,6 +529,7 @@
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */,
 				08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */,
+				08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */,
 				08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
@@ -518,7 +548,9 @@
 				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
+				08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */,
 				08FE53B41E0392C5008B5D0E /* GenericDataServiceTests.swift in Sources */,
+				08EFD9491E460576005F0B50 /* ETXAuthenticatedTestCase.swift in Sources */,
 				089898F21E0D64F3005CB45D /* FilterTests.swift in Sources */,
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,
 				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,

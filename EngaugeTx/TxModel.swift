@@ -23,7 +23,7 @@ open class ETXModel: Mappable {
     public init() {
         
     }
-    
+
     /**
      Create an instance from a Map
      - parameter map: The Map object
@@ -40,14 +40,3 @@ open class ETXModel: Mappable {
         id <- map["id"]
     }
 }
-
-//protocol PropertyNames {
-//    func propertyNames() -> [String]
-//}
-
-//extension JSONConvertible
-//{
-//    func propertyNames() -> [String] {
-//        return Mirror(reflecting: self).children.flatMap { $0.label }
-//    }
-//}

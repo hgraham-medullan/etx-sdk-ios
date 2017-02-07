@@ -21,6 +21,10 @@ public protocol EngaugeTxAppDelegate {
     
 }
 
+public extension EngaugeTxAppDelegate {
+    
+}
+
 /**
  Representation of you application in the EngaugeTx platform
  */
@@ -36,16 +40,25 @@ public class EngaugeTxApplication {
     private static let CONFIG_FILE_TYPE = "plist"
     private static let DEFAULT_BASE_URL = "https://api.us1.engaugetx.com/v1"
     
+    private var application: UIApplication?
+    
     /**
      Create an instance of an EngaugeTx Application
      - parameter appId: The application's ID
      - parameter clientKey: The application's client key
      - parameter baseUrl: The base url to the EngaugeTx API. Defaults to https://api.us1.engaugetx.com/v1
      */
-    public init(appId: String, clientKey: String, baseUrl: String) {
+    public init(appId: String, clientKey: String, baseUrl: String, application: UIApplication?) {
         EngaugeTxApplication.baseUrl = baseUrl
         EngaugeTxApplication.appId = appId
         EngaugeTxApplication.clientKey = clientKey
+        self.application = application
+        //let appDelegate = UIApplication.shared.delegate as! EngaugeTxAppDelegate
+        //let aVariable = appDelegate.someVariable
+    }
+    
+    public convenience init(appId: String, clientKey: String, baseUrl: String) {
+        self.init(appId: appId, clientKey: clientKey, baseUrl: baseUrl, application: nil)
     }
     
     /**
@@ -55,18 +68,22 @@ public class EngaugeTxApplication {
      */
     public convenience init(appId: String, clientKey: String) {
         self.init(appId: appId, clientKey: clientKey,
-                  baseUrl: EngaugeTxApplication.DEFAULT_BASE_URL)
+                  baseUrl: EngaugeTxApplication.DEFAULT_BASE_URL, application: nil)
+    }
+    
+    public convenience init(application: UIApplication?) {
+        if let appId = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_APP_ID),
+            let clientKey = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_CLIENT_KEY),
+            let baseUrl = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_BASE_URL) {
+            self.init(appId: appId, clientKey: clientKey, baseUrl: baseUrl, application: application)
+        } else {
+            self.init(appId: "", clientKey: "")
+        }
     }
     
     /// Sets up an EngaugeTx Application with credentials stored in your Plist file
     public convenience init() {
-        if let appId = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_APP_ID),
-            let clientKey = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_CLIENT_KEY),
-            let baseUrl = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_BASE_URL) {
-            self.init(appId: appId, clientKey: clientKey, baseUrl: baseUrl)
-        } else {
-            self.init(appId: "", clientKey: "")
-        }
+        self.init(application: nil)
     }
     
     static func getValueForKey(key: String) -> String? {

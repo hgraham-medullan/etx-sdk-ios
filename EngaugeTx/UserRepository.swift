@@ -87,6 +87,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     func logout() {
+        //let req = self.users.child("/logout").request(.post, json: credentials.toJSON())
         self.deleteCurrentUser()
         self.wipeResources()
     }

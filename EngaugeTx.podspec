@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "SDK for the EngaugeTx platform"
 
   # This description is used to generate tags and improve search results.
@@ -115,7 +115,6 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  s.frameworks = "UIKit"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
