@@ -255,14 +255,12 @@ class UserServiceTest: ETXTestCase {
             self.userSvc.logout {
                 (err) in
                 XCTAssertNil(err, "User logout should not result in an error")
-                XCTAssertNil(userRepos.getAccessToken())
+                XCTAssertNil(userRepos.getAccessToken(), "Access token should be deleted")
                 logoutExpectation.fulfill()
             }
         }
         
-        
-        
-        waitForExpectations(timeout: 100) { error in
+        waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("Expectations not resolved: \(error)")
             }
