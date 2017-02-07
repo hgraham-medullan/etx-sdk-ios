@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Google
 
 /**
  Protocol to be extended by the app delegate to be able to bootstrap your
