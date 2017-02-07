@@ -10,6 +10,32 @@ import Foundation
 import Siesta
 import ObjectMapper
 
+/**
+ Work around to support 204 responses
+ */
+struct ChangeEmptyResponseContentType: ResponseTransformer
+{
+    private let HEADER_CONTENT_TYPE: String = "content-type"
+    func process(_ response: Siesta.Response) -> Siesta.Response
+    {
+        switch(response)
+        {
+        case .success(var entity):
+            if let data = entity.content as? NSData, data.length == 0 {
+                /* 
+                 If there is no content in the response, content type should
+                 not be present
+                */
+                entity.headers.removeValue(forKey: HEADER_CONTENT_TYPE)
+            }
+            return .success(entity)
+            
+        case .failure:
+            return response
+        }
+    }
+}
+
 class Repository<T> : Service where T: ETXModel {
     
     private let KEY_HEADER_APP_ID: String = "app-id"
@@ -32,20 +58,16 @@ class Repository<T> : Service where T: ETXModel {
         set { _etxResource = newValue }
     }
     
-    
     init(resourcePath: String) {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
+
         configure {
-            
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
             $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            $0.pipeline[.decoding].add(ChangeEmptyResponseContentType())
         }
-    
-//        configureTransformer(resourcePath) {
-//            Mapper<T>().map(JSON: $0.content)
-//        }
     }
     
     func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
