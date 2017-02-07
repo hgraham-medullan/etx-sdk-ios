@@ -239,4 +239,33 @@ class UserServiceTest: ETXTestCase {
             }
         }
     }
+    
+    func testLogout() {
+        let logoutExpectation = expectation(description: "Log the user out")
+        let successfulUserLoginExpectation = expectation(description: "User login is successsful")
+        let username: String = "sean@medullan.com"
+        let password: String = "P@ssw0rd"
+        let userRepos: UserRepository = UserRepository()
+        userRepos.deleteCurrentUser()
+        self.userSvc.loginUserWithUsername(username, password: password, rememberMe: false) {
+            (user: ETXUser?, err: ETXError?) in
+            XCTAssertNil(err, "User should be successfully logged in")
+            successfulUserLoginExpectation.fulfill()
+            
+            self.userSvc.logout {
+                (err) in
+                XCTAssertNil(err, "User logout should not result in an error")
+                XCTAssertNil(userRepos.getAccessToken())
+                logoutExpectation.fulfill()
+            }
+        }
+        
+        
+        
+        waitForExpectations(timeout: 100) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
 }

@@ -51,6 +51,7 @@ class GenericDataServiceTests: ETXTestCase {
     override func tearDown() {
         super.tearDown()
         userSvc.logout {
+            err in
             print("logged user out")
         }
     }
