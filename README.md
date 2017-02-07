@@ -24,12 +24,12 @@ Create ```EngaugeTx.plist``` file with the following contents
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-        <key>appId</key>
-        <string>your-app-id</string>
-        <key>clientKey</key>
-        <string>your-client-key</string>
-        <key>baseUrl</key>
-        <string>https://api.eu1.engaugetx.com/v1</string>
+	<key>appId</key>
+	<string>your-app-id</string>
+	<key>clientKey</key>
+	<string>your-client-key</string>
+	<key>baseUrl</key>
+	<string>https://api.eu1.engaugetx.com/v1</string>
 </dict>
 </plist>
 ```
@@ -88,7 +88,7 @@ let searchFilter: ETXSearchFilter = ETXSearchFilter(conditions: conditions)
 Alternatively, AND conditions can be written as 
 
 ```
-	let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: ETXCombinedCondition(combineType: .and, conditions: conditions))
+let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: ETXCombinedCondition(combineType: .and, conditions: conditions))
 ```
 
 
@@ -142,7 +142,6 @@ func tokenRefreshNotification(_ notification: Notification) {
 		}
 		print("Save Success")
 	}
-
   }
 
   // Connect to FCM since connection may have failed when attempted before having a token.
