@@ -17,7 +17,14 @@ public class ETXDeviceToken: ETXModel {
     var type: String = "ios"
     var token: String
     
-    private var pushNotificationSvc: PushNotificationService?
+    private var _pushNotificationSvc: PushNotificationService?
+    
+    var pushNotificationSvc: PushNotificationService {
+        if self._pushNotificationSvc == nil {
+            self._pushNotificationSvc = PushNotificationService()
+        }
+        return self._pushNotificationSvc!
+    }
     
     /**
      Create a new instance
@@ -43,10 +50,15 @@ public class ETXDeviceToken: ETXModel {
         self.token <- map["token"]
     }
     
-    override func getDataSvc<T: PushNotificationService>() -> T {
-        if self.pushNotificationSvc == nil {
-            self.pushNotificationSvc = PushNotificationService()
+    public func save(completion: @escaping (ETXError?) -> Void) {
+        self.pushNotificationSvc.save(model: self) {
+            (model, err) in
+            if let model = model {
+                let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
+                self.mapping(map: map)
+            }
+            completion(err)
         }
-        return self.pushNotificationSvc as! T //as! PushNotificationService
+        
     }
 }

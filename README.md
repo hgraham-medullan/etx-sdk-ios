@@ -61,6 +61,67 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
+## Search Filters
+
+### Using one condition
+Finding an item by one condition
+
+```
+let weightCondition: ETXWhereCondition = ETXWhereCondition(property: "weight", comparator: .gt, value: 100)
+let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: weightCondition)
+```
+
+### Using Multiple conditions 
+For the conditions below:
+
+```
+let weightCondition: ETXWhereCondition = ETXWhereCondition(property: "weight", comparator: .gt, value: 20)
+let nameCondition: ETXWhereCondition = ETXWhereCondition(property: "name", comparator: .eq, value: "Sean")
+let conditions: [ETXCondition] = [weightCondition, nameCondition]
+```
+
+You can filter where all conditions are true
+
+```
+let searchFilter: ETXSearchFilter = ETXSearchFilter(conditions: conditions)
+```
+Alternatively, AND conditions can be written as 
+
+```
+	let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: ETXCombinedCondition(combineType: .and, conditions: conditions))
+```
+
+
+As well as where only one condition is true
+
+```
+let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: ETXCombinedCondition(combineType: .or, conditions: conditions)
+```
+
+### Combining AND and OR conditions
+
+```
+let females: ETXWhereCondition = ETXWhereCondition(property: "gender", comparator: .eq, value: "Female")
+let adultAge: ETXWhereCondition = ETXWhereCondition(property: "age", comparator: .gte, value: 18)
+let males: ETXWhereCondition = ETXWhereCondition(property: "gender", comparator: .eq, value: "Male")
+        
+let maleOrFemale: ETXCombinedCondition = ETXCombinedCondition(combineType: .or, conditions: [females, males])
+let adultMaleOrFemale: ETXCombinedCondition = ETXCombinedCondition(combineType: .and, conditions: [adultAge, maleOrFemale])
+        
+let searchFilter: ETXSearchFilter = ETXSearchFilter(conditions: adultMaleOrFemale);
+```
+
+### Writing custom filters
+
+> **For complex/large queries, please [reach out to Platform team](http://help.engaugetx.com/) to ensure that your queries are performant** 
+ 
+If the API doesn't meet your needs, you can write your own filter query using [Loopback's query formats](https://loopback.io/doc/en/lb2/Querying-data.html). 
+
+```
+let filterQuery: String = "{\"where\":{\"weight\":{\"gt\":20}}}";
+let searchFilter: ETXSearchFilter = ETXSearchFilter(customFilter: filterQuery);
+```
+
 ## Push Notifications
 
 ### Setup your app on firebase

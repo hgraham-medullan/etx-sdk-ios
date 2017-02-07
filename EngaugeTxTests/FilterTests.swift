@@ -14,9 +14,9 @@ import ObjectMapper
 class FilterTests: XCTestCase {
     
     func testWhenConditionUsesGreaterThan() {
-        let searchFilter = ETXSearchFilter(conditions: [
+        let searchFilter = ETXSearchFilter(condition: 
             ETXWhereCondition(property: "age", comparator: .gt, value: 20)
-        ])
+        )
         
         let expectedJsonString: String = "{\"where\":{\"age\":{\"gt\":20}}}"
         

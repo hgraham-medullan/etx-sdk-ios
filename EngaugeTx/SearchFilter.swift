@@ -60,6 +60,14 @@ public class ETXSearchFilter {
     }
     
     /**
+     Create a new instance of SearchFilter
+     - parameter condition: The conditions to be applied to the filter
+     */
+    public init(condition: ETXCondition) {
+        self.whereCondtions = [condition]
+    }
+    
+    /**
      A limit filter limits the number of records returned to the specified number (or less).
      - parameter limit: The maximum number of records to return
     */

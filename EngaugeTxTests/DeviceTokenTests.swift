@@ -59,24 +59,4 @@ class DeviceTokenTests: AuthenticatedTestCase {
             print("Login expectation timeout \(err)")
         }
     }
-    
-    
-    func testY() {
-        let uniqueToken: String = "\((Date()).timeIntervalSince1970)"
-        let dt: ETXDeviceToken = ETXDeviceToken(token: uniqueToken)
-        let tokenSaveExpectation = expectation(description: "Successful token save")
-        dt.getDataSvc().save(model: dt) {
-            (model, err) in
-            print(model?.id)
-            //SOme code
-            tokenSaveExpectation.fulfill()
-        }
-        waitForExpectations(timeout: 10) {
-            (err) in
-            print("Login expectation timeout \(err)")
-        }
-    }
-
-    
-    
 }
