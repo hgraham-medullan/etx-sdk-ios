@@ -283,7 +283,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 100000) { error in
+        waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
@@ -313,7 +313,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 100000) { error in
+        waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
