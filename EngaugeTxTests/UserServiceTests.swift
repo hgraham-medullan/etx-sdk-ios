@@ -147,11 +147,12 @@ class UserServiceTest: ETXTestCase {
         
         self.userSvc.createUser(testUser) {
             (user, err) in
-            if err != nil {
+            if let err = err {
                 print("Gotcha!")
+                print(err.name)
+                print(err.message)
+                print(err.details)
             }
-            print(err?.name)
-            print(err?.message)
             XCTAssertNil(err, "An error should not be present")
             XCTAssertNotNil(user?.id, "The user object should contain an ID")
             XCTAssertNil(user?.lastName, "Only the userId is populated as part of the registration process")
