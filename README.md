@@ -61,6 +61,23 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
+## Creating a custom User
+
+```
+class Customer: ETXUser {
+	var hiddenField: String // Do not add to mapping function to prevent persistence
+	var worth: Float!
+	var dateOfBirth: Date!
+	
+	override func mapping(map: Map) {
+		super.mapping(map: map)
+		worth <- map["worth"]
+		dateOfBirth <- (map["dateOfBirth"], ETXDateTransform()) // To ensure dates are fomatted to/from the platforms date fromat when serializing/de-serializing
+	}
+}
+```
+
+
 ## Search Filters
 
 ### Using one condition
@@ -69,6 +86,13 @@ Finding an item by one condition
 ```
 let weightCondition: ETXWhereCondition = ETXWhereCondition(property: "weight", comparator: .gt, value: 100)
 let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: weightCondition)
+```
+
+### Using a Date
+
+```
+let priorToNow: ETXWhereCondition = ETXWhereCondition(property: "createdAt", comparator: .lte, value: Date())
+let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: priorToNow)
 ```
 
 ### Using Multiple conditions 
@@ -126,6 +150,9 @@ let searchFilter: ETXSearchFilter = ETXSearchFilter(customFilter: filterQuery);
 
 ### Setup your app on firebase
 The platform uses Firebase Cloud Messaging to send push notifications to users once the device token is registered. The first step is to [Set Up a Firebase Cloud Messaging Client App on iOS](https://firebase.google.com/docs/cloud-messaging/ios/client)
+
+#### Provide the Platform with your server key
+In [your firebase console](https://console.firebase.google.com/), select your project, then go to `Settings` > `Clound Messaging` and share your `Server key` with the platform team.
 
 ### Register the Device Token on the Platform
 

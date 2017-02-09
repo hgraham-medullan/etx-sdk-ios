@@ -117,6 +117,11 @@ class FilterTests: XCTestCase {
         let searchFilter = ETXSearchFilter(customFilter: customFilter)
         searchFilter.sortBy("age", order: .DESC)
         XCTAssertEqual(customFilter, searchFilter.toJsonString())
-        
+    }
+    
+    func testSkip() {
+        let searchFilter = ETXSearchFilter()
+        searchFilter.skip(2)
+        XCTAssertEqual("{\"skip\":2}", searchFilter.toJsonString())
     }
 }

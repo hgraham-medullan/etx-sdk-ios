@@ -181,7 +181,6 @@ class GenericDataServiceTests: ETXTestCase {
                 XCTAssertNil(err, "Should not error when deleting a valid item")
                 deleteVitalExpectation.fulfill()
                 
-                let vital = Vital()
                 Vital.findById(vitalId) {
                     (vital, err) in
                     XCTAssertNil(vital)
