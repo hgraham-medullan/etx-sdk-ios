@@ -9,9 +9,17 @@
 import Foundation
 import ObjectMapper
 
-class ETXDateTransform: TransformType {
+/**
+ * Allows transformation of Date Types to/from JSON
+ */
+public class ETXDateTransform: TransformType {
     static let SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.S'Z'"
+    static let SERVER_DATE_TIMEZOME = "UTC"
     
+    /**
+     Transforms from its JSON value
+     returns: The value from its JSON value
+     */
     public func transformFromJSON(_ value: Any?) -> Date? {
         
         guard case let value as String = value else {
@@ -19,7 +27,7 @@ class ETXDateTransform: TransformType {
         }
         
         let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        formatter.timeZone = TimeZone(abbreviation: ETXDateTransform.SERVER_DATE_TIMEZOME)
         formatter.dateFormat = ETXDateTransform.SERVER_DATE_FORMAT
         guard let date: Date = formatter.date(from: value) else {
             return nil
@@ -28,6 +36,10 @@ class ETXDateTransform: TransformType {
         return date
     }
     
+    /**
+     Transforms to its JSON value
+     returns: The value as a JSON property value
+     */
     public func transformToJSON(_ value: Date?) -> String? {
         guard let value = value else {
             return nil
@@ -37,10 +49,14 @@ class ETXDateTransform: TransformType {
 }
 
 public extension Date {
+    /**
+     Get the String representation of the date, in the format the platform supports
+     returns: The String representation of the date, in the format the platform supports
+     */
     public func toTxDateFormat() -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = ETXDateTransform.SERVER_DATE_FORMAT
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone(abbreviation: ETXDateTransform.SERVER_DATE_TIMEZOME)
         return dateFormatter.string(from: self)
     }
 }
