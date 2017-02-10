@@ -128,16 +128,10 @@ class UserServiceTest: ETXTestCase {
         }
     }
     
-    func testDate() {
-        let username: String = "sean+testuser\((Date()).timeIntervalSince1970)@medullan.com"
-        
-        print(username)
-    }
-    
     func testCreateUser() {
-        let increment = (Date()).timeIntervalSince1970
-        let username: String = "sean+testuser\(increment)"
-        let email: String = "sean+testuser\(increment)@medullan.com"
+        let increment = self.getUniqueId()
+        let username: String = "tu_\(increment)"
+        let email: String = "sean+\(increment)@medullan.com"
         let testUser: TestUser = TestUser(email: email, username: username, password: "P@ssw0rd")
         testUser.firstName = "Sean Caregiver"
         testUser.lastName = "Hoilett"
@@ -147,12 +141,6 @@ class UserServiceTest: ETXTestCase {
         
         self.userSvc.createUser(testUser) {
             (user, err) in
-            if let err = err {
-                print("Gotcha!")
-                print(err.name)
-                print(err.message)
-                print(err.details)
-            }
             XCTAssertNil(err, "An error should not be present")
             XCTAssertNotNil(user?.id, "The user object should contain an ID")
             XCTAssertNil(user?.lastName, "Only the userId is populated as part of the registration process")
@@ -232,6 +220,33 @@ class UserServiceTest: ETXTestCase {
             (err) in
             XCTAssertNil(err, "Password reset should not result in an error")
             resetEmailExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
+    
+    func xtestLogout() {
+        let logoutExpectation = expectation(description: "Log the user out")
+        let successfulUserLoginExpectation = expectation(description: "User login is successsful")
+        let username: String = "sean@medullan.com"
+        let password: String = "P@ssw0rd"
+        let userRepos: UserRepository = UserRepository()
+        userRepos.deleteCurrentUser()
+        self.userSvc.loginUserWithUsername(username, password: password, rememberMe: false) {
+            (user: ETXUser?, err: ETXError?) in
+            XCTAssertNil(err, "User should be successfully logged in")
+            successfulUserLoginExpectation.fulfill()
+            
+            self.userSvc.logout {
+                (err) in
+                XCTAssertNil(err, "User logout should not result in an error")
+                XCTAssertNil(userRepos.getAccessToken(), "Access token should be deleted")
+                logoutExpectation.fulfill()
+            }
         }
         
         waitForExpectations(timeout: 10) { error in

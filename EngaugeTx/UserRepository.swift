@@ -87,10 +87,18 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    func logout() {
-        //let req = self.users.child("/logout").request(.post, json: credentials.toJSON())
-        self.deleteCurrentUser()
-        self.wipeResources()
+    func logout(completion: @escaping (ETXError?) ->Void) {
+        let req = self.users.child("/logout").request(.post)
+        req.onFailure { (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            completion(etxError)
+        }
+        
+        req.onSuccess { (obj) in
+            self.deleteCurrentUser()
+            self.wipeResources()
+            completion(nil)
+        }
     }
     
     func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {

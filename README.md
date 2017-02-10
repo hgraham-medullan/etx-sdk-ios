@@ -152,6 +152,7 @@ let searchFilter: ETXSearchFilter = ETXSearchFilter(customFilter: filterQuery);
 The platform uses Firebase Cloud Messaging to send push notifications to users once the device token is registered. The first step is to [Set Up a Firebase Cloud Messaging Client App on iOS](https://firebase.google.com/docs/cloud-messaging/ios/client)
 
 #### Provide the Platform with your server key
+
 In [your firebase console](https://console.firebase.google.com/), select your project, then go to `Settings` > `Cloud Messaging` and share your `Server key` with the platform team.
 
 ### Register the Device Token on the Platform

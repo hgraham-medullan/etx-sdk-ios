@@ -54,10 +54,10 @@ open class ETXUserService<T: ETXUser> {
     /**
      Ends the session for the current user
      - parameter completion: Callback when the request completes
+     - parameter err: The error object. Will be `nil` if the request was successful
      */
-    public func logout(completion: ()->Void) {
-        self.userRepository.logout()
-        completion()
+    public func logout(completion: @escaping (_ err: ETXError?)->Void) {
+        self.userRepository.logout(completion: completion)
     }
     
     /**
@@ -113,7 +113,7 @@ open class ETXUserService<T: ETXUser> {
      - parameter err: Error containing details as to the registration process failed. This will be ```nil``` if registration was successful. Details about the error can be found in the ```details``` property and will contain a Dictionary of validation errors.
      */
     public func createUser(_ user: T, completion: @escaping (_ user: T?, _ err: ETXRegistrationError?)->Void) {
-        self.userRepository.logout()
+        self.userRepository.deleteCurrentUser()
         self.userRepository.save(model: user){
             (user, err) in
             if let err = err, let rawJson = err.rawJson {
