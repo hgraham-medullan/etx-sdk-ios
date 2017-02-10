@@ -36,6 +36,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
             if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
                 authErr = ETXAuthenticationError(reasonRawValue: (etxError?.code)!)
             }
+            print("User login failed: \(err.jsonDict)")
             if let authErr = authErr {
                 completion(nil, authErr)
             } else {

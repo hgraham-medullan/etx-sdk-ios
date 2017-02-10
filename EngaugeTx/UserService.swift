@@ -117,6 +117,7 @@ open class ETXUserService<T: ETXUser> {
         self.userRepository.save(model: user){
             (user, err) in
             if let err = err, let rawJson = err.rawJson {
+                print("User creation failed: \(rawJson)")
                 completion(user, ETXRegistrationError(JSON: rawJson))
             } else {
                 completion(user, nil)

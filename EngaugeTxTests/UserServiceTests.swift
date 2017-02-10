@@ -23,10 +23,6 @@ class UserServiceTest: ETXTestCase {
         self.userSvc = nil
     }
     
-    /**
-     Failing on the CI server for some unknown reason. Spent enough time
-     trying to figure it out and coming up blank. Will resume at a another time
-     */
     func testLoginWithValidUsernameCredentials() {
         let username: String = "sean@medullan.com"
         let password: String = "P@ssw0rd"
@@ -130,7 +126,6 @@ class UserServiceTest: ETXTestCase {
             isTestUser <- map["isTestUser"]
             oldName <- map["oldName"]
         }
-        
     }
     
     func testDate() {
@@ -152,6 +147,12 @@ class UserServiceTest: ETXTestCase {
         
         self.userSvc.createUser(testUser) {
             (user, err) in
+            if let err = err {
+                print("Gotcha!")
+                print(err.name)
+                print(err.message)
+                print(err.details)
+            }
             XCTAssertNil(err, "An error should not be present")
             XCTAssertNotNil(user?.id, "The user object should contain an ID")
             XCTAssertNil(user?.lastName, "Only the userId is populated as part of the registration process")

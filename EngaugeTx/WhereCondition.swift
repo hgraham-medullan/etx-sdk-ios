@@ -58,10 +58,16 @@ public class ETXWhereCondition: ETXCondition {
      */
     public func toJson() -> [String: Any] {
         var q = [String:Any]()
+        
+        var value: Any = self.comp.value!
+        if value is Date {
+            value = (value as! Date).toTxDateFormat()!
+        }
+        
         if self.comp.comparator == .eq {
-            q[self.property] = self.comp.value!
+            q[self.property] = value
         } else {
-            q[self.property] = [self.comp.comparator.rawValue : self.comp.value!]
+            q[self.property] = [self.comp.comparator.rawValue : value]
         }
         return q
     }

@@ -36,6 +36,11 @@ struct ChangeEmptyResponseContentType: ResponseTransformer
     }
 }
 
+class AccesssTokenCache {
+    static var tokenCached = false
+    static var accessToken: String? = nil
+}
+
 class Repository<T> : Service where T: ETXModel {
     
     private let KEY_HEADER_APP_ID: String = "app-id"
@@ -151,19 +156,33 @@ class Repository<T> : Service where T: ETXModel {
         })
     }
     
+    
     func getAccessToken() -> String? {
-        let defaults = UserDefaults.standard
-        return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        if AccesssTokenCache.tokenCached {
+            return AccesssTokenCache.accessToken
+        } else {
+            let defaults = UserDefaults.standard
+            print("Getting Access Token")
+            return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        }
     }
     
     func setAccessToken(_ accessToken: String?) {
+        AccesssTokenCache.accessToken = accessToken
+        AccesssTokenCache.tokenCached = true
         let defaults = UserDefaults.standard
-        defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        defaults.setValue(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        //defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        print("Saved Access Token")
     }
     
     func deleteAccessToken() {
+        AccesssTokenCache.accessToken = nil
+        print("Deleting Access Token")
         let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        
     }
     
     func getAppId() -> String {
