@@ -17,7 +17,7 @@ class DeviceTokenTests: AuthenticatedTestCase {
     }
     
     func testSaveDeviceTokenWhenTheTokenIsUnique() {
-        let uniqueToken: String = "testSaveDeviceTokenWhenTheTokenIsUnique-\((Date()).timeIntervalSince1970)"
+        let uniqueToken: String = self.getUniqueId()
         let deviceToken = ETXDeviceToken(token: uniqueToken)
         let tokenSaveExpectation = expectation(description: "Successful token save")
         deviceToken.save {
@@ -32,7 +32,7 @@ class DeviceTokenTests: AuthenticatedTestCase {
     }
     
     func testSaveDeviceTokenWhenTheTokenAlreadyExist() {
-        let uniqueToken: String = "\((Date()).timeIntervalSince1970)"
+        let uniqueToken: String = self.getUniqueId()
         let deviceToken = ETXDeviceToken(token: uniqueToken)
         let tokenSaveExpectation = expectation(description: "Successful token save")
         deviceToken.save {

@@ -22,4 +22,14 @@ class ETXTestCase: XCTestCase {
         super.tearDown()
         self.app = nil
     }
+    
+    func getUniqueId() -> String {
+        //let s = NSUUID(uuidBytes: UnsafePointer<UInt8>($0)).uuidString.lowercased()
+        return "tx_\(NSUUID().uuidString.lowercased().replacingOccurrences(of: "-", with: ""))"
+    }
+    
+    func testGetUniqueId() {
+        let uniqueId = getUniqueId()
+        XCTAssertTrue(uniqueId.characters.count>0)
+    }
 }
