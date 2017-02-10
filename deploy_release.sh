@@ -2,8 +2,8 @@
 
 LAST_COMMIT_HASH=$(git rev-parse --short HEAD)
 echo "Fetching existing docs..."
-echo -e "Host git.us1.engaugetx.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-git clone dokku@git.us1.engaugetx.com:iosdocs.engaugetx.com docs
+echo -e "Host iosdocs.engaugetx.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+git clone dokku@iosdocs.engaugetx.com:iosdocs.engaugetx.com docs
 
 echo "Generating documentation..."
 jazzy --min-acl public
