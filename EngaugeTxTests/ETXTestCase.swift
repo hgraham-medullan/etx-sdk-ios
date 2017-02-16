@@ -24,7 +24,6 @@ class ETXTestCase: XCTestCase {
     }
     
     func getUniqueId() -> String {
-        //let s = NSUUID(uuidBytes: UnsafePointer<UInt8>($0)).uuidString.lowercased()
         return "tx_\(NSUUID().uuidString.lowercased().replacingOccurrences(of: "-", with: ""))"
     }
     
