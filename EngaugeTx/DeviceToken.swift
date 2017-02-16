@@ -30,7 +30,7 @@ public class ETXDeviceToken: ETXModel {
      Create a new instance
      - parameter token: The device's token for receiving push notifications
     */
-    init(token: String) {
+    public init(token: String) {
         self.token = token
         super.init()
     }

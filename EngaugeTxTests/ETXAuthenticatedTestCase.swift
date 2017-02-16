@@ -33,6 +33,7 @@ class AuthenticatedTestCase: ETXTestCase {
     override func tearDown() {
         let logoutExpectation = expectation(description: "Successful logout")
         userSvc.logout {
+            err in
             super.tearDown()
             logoutExpectation.fulfill()
         }

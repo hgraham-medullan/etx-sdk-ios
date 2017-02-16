@@ -53,8 +53,13 @@ class CustomFunctionTests: ETXTestCase {
         
         let repo = Repository<ETXModel>(resourcePath: "/")
         repo.deleteAccessToken()
+        let x = cf.getAuthenticatedUrl()
         
-        XCTAssertEqual(nil, cf.getAuthenticatedUrl())
+        if (x != nil) {
+            print("Gotcha")
+        }
+        
+        XCTAssertEqual(nil, x)
     }
     
     func testPerformGet() {

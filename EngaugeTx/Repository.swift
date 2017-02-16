@@ -10,6 +10,37 @@ import Foundation
 import Siesta
 import ObjectMapper
 
+/**
+ Work around to support 204 responses
+ */
+struct ChangeEmptyResponseContentType: ResponseTransformer
+{
+    private let HEADER_CONTENT_TYPE: String = "content-type"
+    func process(_ response: Siesta.Response) -> Siesta.Response
+    {
+        switch(response)
+        {
+        case .success(var entity):
+            if let data = entity.content as? NSData, data.length == 0 {
+                /* 
+                 If there is no content in the response, content type should
+                 not be present
+                */
+                entity.headers.removeValue(forKey: HEADER_CONTENT_TYPE)
+            }
+            return .success(entity)
+            
+        case .failure:
+            return response
+        }
+    }
+}
+
+class AccesssTokenCache {
+    static var tokenCached = false
+    static var accessToken: String? = nil
+}
+
 class Repository<T> : Service where T: ETXModel {
     
     private let KEY_HEADER_APP_ID: String = "app-id"
@@ -32,20 +63,16 @@ class Repository<T> : Service where T: ETXModel {
         set { _etxResource = newValue }
     }
     
-    
     init(resourcePath: String) {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
+
         configure {
-            
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
             $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            $0.pipeline[.decoding].add(ChangeEmptyResponseContentType())
         }
-    
-//        configureTransformer(resourcePath) {
-//            Mapper<T>().map(JSON: $0.content)
-//        }
     }
     
     func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
@@ -129,19 +156,33 @@ class Repository<T> : Service where T: ETXModel {
         })
     }
     
+    
     func getAccessToken() -> String? {
-        let defaults = UserDefaults.standard
-        return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        if AccesssTokenCache.tokenCached {
+            return AccesssTokenCache.accessToken
+        } else {
+            let defaults = UserDefaults.standard
+            print("Getting Access Token")
+            return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        }
     }
     
     func setAccessToken(_ accessToken: String?) {
+        AccesssTokenCache.accessToken = accessToken
+        AccesssTokenCache.tokenCached = true
         let defaults = UserDefaults.standard
-        defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        defaults.setValue(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        //defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        print("Saved Access Token")
     }
     
     func deleteAccessToken() {
+        AccesssTokenCache.accessToken = nil
+        print("Deleting Access Token")
         let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        
     }
     
     func getAppId() -> String {

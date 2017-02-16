@@ -36,6 +36,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
             if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
                 authErr = ETXAuthenticationError(reasonRawValue: (etxError?.code)!)
             }
+            print("User login failed: \(err.jsonDict)")
             if let authErr = authErr {
                 completion(nil, authErr)
             } else {
@@ -86,10 +87,18 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    func logout() {
-        //let req = self.users.child("/logout").request(.post, json: credentials.toJSON())
-        self.deleteCurrentUser()
-        self.wipeResources()
+    func logout(completion: @escaping (ETXError?) ->Void) {
+        let req = self.users.child("/logout").request(.post)
+        req.onFailure { (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            completion(etxError)
+        }
+        
+        req.onSuccess { (obj) in
+            self.deleteCurrentUser()
+            self.wipeResources()
+            completion(nil)
+        }
     }
     
     func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {

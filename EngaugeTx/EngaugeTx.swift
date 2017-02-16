@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Google
 
 /**
  Protocol to be extended by the app delegate to be able to bootstrap your
@@ -48,6 +47,7 @@ public class EngaugeTxApplication {
      - parameter appId: The application's ID
      - parameter clientKey: The application's client key
      - parameter baseUrl: The base url to the EngaugeTx API. Defaults to https://api.us1.engaugetx.com/v1
+     - parameter application: The UIApplication
      */
     public init(appId: String, clientKey: String, baseUrl: String, application: UIApplication?) {
         EngaugeTxApplication.baseUrl = baseUrl
@@ -58,6 +58,12 @@ public class EngaugeTxApplication {
         //let aVariable = appDelegate.someVariable
     }
     
+    /**
+     Create an instance of an EngaugeTx Application
+     - parameter appId: The application's ID
+     - parameter clientKey: The application's client key
+     - parameter baseUrl: The base url to the EngaugeTx API. Defaults to https://api.us1.engaugetx.com/v1
+     */
     public convenience init(appId: String, clientKey: String, baseUrl: String) {
         self.init(appId: appId, clientKey: clientKey, baseUrl: baseUrl, application: nil)
     }
@@ -72,6 +78,10 @@ public class EngaugeTxApplication {
                   baseUrl: EngaugeTxApplication.DEFAULT_BASE_URL, application: nil)
     }
     
+    /**
+     Create an instance of an EngaugeTx Application
+     - parameter application: The UIApplication
+     */
     public convenience init(application: UIApplication?) {
         if let appId = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_APP_ID),
             let clientKey = EngaugeTxApplication.getValueForKey(key: EngaugeTxApplication.KEY_CLIENT_KEY),

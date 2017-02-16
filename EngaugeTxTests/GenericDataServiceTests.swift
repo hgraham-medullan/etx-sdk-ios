@@ -51,6 +51,7 @@ class GenericDataServiceTests: ETXTestCase {
     override func tearDown() {
         super.tearDown()
         userSvc.logout {
+            err in
             print("logged user out")
         }
     }
@@ -181,7 +182,6 @@ class GenericDataServiceTests: ETXTestCase {
                 XCTAssertNil(err, "Should not error when deleting a valid item")
                 deleteVitalExpectation.fulfill()
                 
-                let vital = Vital()
                 Vital.findById(vitalId) {
                     (vital, err) in
                     XCTAssertNil(vital)
@@ -282,7 +282,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 100000) { error in
+        waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
@@ -312,7 +312,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 100000) { error in
+        waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
