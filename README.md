@@ -161,14 +161,14 @@ In [your firebase console](https://console.firebase.google.com/), select your pr
 func tokenRefreshNotification(_ notification: Notification) {
   if let refreshedToken = FIRInstanceID.instanceID().token() {
     print("InstanceID token: \(refreshedToken)")
-    let deviceToken: ETXDeviceToken = ETXDeviceToken(token: uniqueToken)
+    let deviceToken: ETXDeviceToken = ETXDeviceToken(token: refreshedToken)
     deviceToken.save {
 		(err) in
-		guard let _ = err else {
-			// Error handling
-			return
+		if let err = err else {
+			// handling err
+		} else {
+		   print("Save Success")
 		}
-		print("Save Success")
 	}
   }
 
