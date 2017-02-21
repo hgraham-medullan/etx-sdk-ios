@@ -137,4 +137,14 @@ open class ETXUserService<T: ETXUser> {
         self.userRepository.initiatePasswordReset(emailAddress: emailAddress, completion: completion)
     }
     
+    func changePassword(_ newPassword: String, currentPassword: String, currentUser: T, completion: @escaping (_ err: ETXError?)->Void) {
+        if newPassword == currentPassword {
+            completion(nil);
+        } else {
+            self.userRepository.changePassword(
+                PasswordUpdateCredentials(currentPassword: currentPassword, newPassword: newPassword),
+                userId: currentUser.id!, completion: completion)
+        }
+    }
+    
 }
