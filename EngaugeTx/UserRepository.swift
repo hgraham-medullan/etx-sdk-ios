@@ -31,17 +31,15 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.deleteCurrentUser()
         let req = self.users.child("/login").withParam("include", "user").request(.post, json: credentials.toJSON())
         req.onFailure { (err) in
-            var authErr: ETXAuthenticationError? = nil
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            
+            var etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
             if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
-                authErr = ETXAuthenticationError(reasonRawValue: (etxError?.code)!)
+                let authErr: ETXAuthenticationError? = Mapper<ETXAuthenticationError>().map(JSON: err.jsonDict)
+                authErr?.reason = ETXAuthenticationError.Reason(rawValue: (etxError?.code)!)
+                etxError = authErr
             }
             print("User login failed: \(err.jsonDict)")
-            if let authErr = authErr {
-                completion(nil, authErr)
-            } else {
-                completion(nil, etxError)
-            }
+            completion(nil, etxError)
         }
         
         req.onSuccess { (obj) in
@@ -105,6 +103,19 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.deleteCurrentUser()
         let reqBody:[String:String] = ["email": emailAddress]
         let req = self.users.child("/reset").request(.post, json: reqBody)
+        
+        req.onFailure { (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            completion(etxError)
+        }
+        
+        req.onSuccess { (obj) in
+            completion(nil)
+        }
+    }
+    
+    func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, userId: String, completion: @escaping (_ err: ETXError?)->Void) {
+        let req = self.users.child("/\(userId)").request(.put, json: passwordUpdateCredentials.toJSON())
         
         req.onFailure { (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)

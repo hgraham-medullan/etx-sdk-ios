@@ -279,4 +279,57 @@ class UserServiceTest: ETXTestCase {
             }
         }
     }
+    
+    func testChangePasswordWhenTheNewPasswordIsNotTheSameAsTheCurrent() {
+        let passwordChangeExpectation = expectation(description: "Password Change")
+        let userSvc = ETXUserService()
+        let emailAddress = "sean@medullan.com"
+        let oldPassword = "P@ssw0rd"
+        let newPassword: String = "P@ssw0rd2"
+        
+        // Login
+        userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
+            (user, err) in
+            XCTAssertNotNil(user, "Should have a logged in user")
+            if let user = user {
+                
+                // Change Password
+                user.updatePassword(newPassword, currentPassword: oldPassword) {
+                    (err) in
+                    XCTAssertNil(err, "Password should be updated successfully")
+                    
+                    // Test with old Password. Login should fail
+                    userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
+                        (user, err) in
+                        XCTAssertNotNil(err, "Login should not be successful")
+                        XCTAssertTrue(err is ETXAuthenticationError, "Login error should be an authentication error")
+                        XCTAssertEqual(ETXAuthenticationError.Reason.InvalidUsernameOrPassword, (err as! ETXAuthenticationError).reason, "Authentication error should be 'InvalidUsernameOrPassword'")
+                        
+                        // Try with the new Password. Login should pass
+                        userSvc.loginUserWithEmail(emailAddress, password: newPassword, rememberMe: true) {
+                            (user, err) in
+                            XCTAssertNil(err, "Login should be successful")
+                            
+                            // Set the password back to the old one
+                            user!.updatePassword(oldPassword, currentPassword: newPassword) {
+                                (err) in
+                                XCTAssertNil(err, "Password update should be successful")
+                                passwordChangeExpectation.fulfill()
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    
+                }
+            }
+            
+        }
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
 }
