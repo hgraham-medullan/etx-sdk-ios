@@ -139,11 +139,19 @@ open class ETXUserService<T: ETXUser> {
     
     func changePassword(_ newPassword: String, currentPassword: String, currentUser: T, completion: @escaping (_ err: ETXError?)->Void) {
         if newPassword == currentPassword {
-            completion(nil);
+            completion(nil)
         } else {
             self.userRepository.changePassword(
                 PasswordUpdateCredentials(currentPassword: currentPassword, newPassword: newPassword),
                 userId: currentUser.id!, completion: completion)
+        }
+    }
+    
+    func changeEmailAddress(_ newEmailAddress: String, currentPassword: String, currentUser: T, completion: @escaping (_ err: ETXError?)->Void) {
+        if newEmailAddress == currentUser.email {
+            completion(nil)
+        } else {
+            self.userRepository.changeEmailAddress(EmailUpdateCredentials(newEmailAddress: newEmailAddress, currentPassword: currentPassword), userId: currentUser.id!, completion: completion)
         }
     }
     
