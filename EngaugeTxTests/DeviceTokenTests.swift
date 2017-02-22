@@ -39,7 +39,6 @@ class DeviceTokenTests: AuthenticatedTestCase {
             (err) in
             XCTAssertNil(err, "Token save should not fail");
             let duplicateToken = ETXDeviceToken(token: uniqueToken)
-            print(deviceToken.id)
             duplicateToken.save {
                 (err) in
                 XCTAssertNotNil(err, "Duplicate token should result in an error")

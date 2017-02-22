@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080520E91DEF078600245C4D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 080520E41DEF078600245C4D /* LICENSE */; };
 		080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */; };
+		080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A7F771E5DB54900795D91 /* UserServiceAuthenticatedTests.swift */; };
 		081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */; };
 		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
 		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		080520E41DEF078600245C4D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EngaugeTx.podspec; sourceTree = "<group>"; };
+		080A7F771E5DB54900795D91 /* UserServiceAuthenticatedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceAuthenticatedTests.swift; sourceTree = "<group>"; };
 		081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEmailCredentialsTests.swift; sourceTree = "<group>"; };
 		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */,
 				083DEEBF1DF2225300A3CB8D /* UserServiceTests.swift */,
 				08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */,
+				080A7F771E5DB54900795D91 /* UserServiceAuthenticatedTests.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,
 				08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */,
 				08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */,
+				080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

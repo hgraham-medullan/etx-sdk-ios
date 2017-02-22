@@ -35,7 +35,6 @@ class UserRepository<T: ETXUser>: Repository<T> {
             var etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
             if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
                 let authErr: ETXAuthenticationError? = Mapper<ETXAuthenticationError>().map(JSON: err.jsonDict)
-                authErr?.reason = ETXAuthenticationError.Reason(rawValue: (etxError?.code)!)
                 etxError = authErr
             }
             print("User login failed: \(err.jsonDict)")
@@ -125,7 +124,11 @@ class UserRepository<T: ETXUser>: Repository<T> {
         req.onSuccess { (obj) in
             completion(nil)
         }
-
+    }
+    
+    func changeEmailAddress(_ emailUpdateCredentials: EmailUpdateCredentials, userId: String, completion: @escaping (_ err: ETXError?)->Void) {
+        // TODO: Integrate with API
+        completion(nil)
     }
 
 }

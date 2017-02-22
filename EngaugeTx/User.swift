@@ -94,7 +94,8 @@ open class ETXUser: ETXModel {
     }
     
     /**
-     Update the user's password
+     Update the user's password. A notification email will be sent to the 
+     current email address
      - parameter newPassword: The new password to change to
      - parameter currentPassword: The current password
      - parameter completion: Callback when the request completes
@@ -102,5 +103,19 @@ open class ETXUser: ETXModel {
     */
     public func updatePassword(_ newPassword: String, currentPassword: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.userService.changePassword(newPassword, currentPassword: currentPassword, currentUser: self, completion: completion)
+    }
+    
+    /**
+     Update the user's email address. An email will be sent to the current email 
+     address notifying that the request was made, and another to new address for
+     confirmation. The new address will only be applied to the account, after
+     the new email is confirmed
+     - parameter newEmailAddress: The new email address to change to
+     - parameter currentPassword: The current password
+     - parameter completion: Callback when the request completes
+     - parameter err: The error if the request fails
+     */
+    public func updateEmailAddress(_ newEmailAddress: String, currentPassword: String, completion: @escaping (_ err: ETXError?)->Void) {
+        self.userService.changeEmailAddress(newEmailAddress, currentPassword: currentPassword, currentUser: self, completion: completion)
     }
 }

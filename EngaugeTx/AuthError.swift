@@ -38,6 +38,18 @@ public class ETXAuthenticationError: ETXError {
     */
     public required init?(map: Map) {
         super.init(map: map)
+        self.setReason(fromRawValue: super.code)
+    }
+    
+    override public func mapping(map: Map) {
+        super.mapping(map: map)
+        self.setReason(fromRawValue: super.code)
+    }
+    
+    private func setReason(fromRawValue rawValue: String?) {
+        if let rawValue = rawValue {
+            self.reason = Reason(rawValue: rawValue)
+        }
     }
 }
 

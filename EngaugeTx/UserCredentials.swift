@@ -73,3 +73,14 @@ class PasswordUpdateCredentials: UserCredentials {
         password <- map["password"]
     }
 }
+
+class EmailUpdateCredentials: UserEmailCredentials {
+    
+    init(newEmailAddress: String, currentPassword: String) {
+        super.init(newEmailAddress, password: currentPassword)
+    }
+    
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+}
