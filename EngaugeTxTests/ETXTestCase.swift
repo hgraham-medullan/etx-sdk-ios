@@ -15,7 +15,7 @@ class ETXTestCase: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.app = EngaugeTxApplication(appId: "e8b836cd6d20f3431e0fbcb54196360b", clientKey: "7c2759273aaf770093f92e0accca965255fac0d1")
+        self.app = EngaugeTxApplication(appId: "780407513adffc0936afc58919f83873", clientKey: "b7fd395de3739fd6bc36d459ac47ec5e642a0331", baseUrl: "https://api.migrate.eu1.engaugetx.com/v1")
     }
     
     override func tearDown() {
