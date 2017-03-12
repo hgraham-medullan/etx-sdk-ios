@@ -14,6 +14,15 @@ import ObjectMapper
  */
 open class ETXUser: ETXModel {
     
+    // TODO: Ensure that the type is Generic
+    private var _userSvc: ETXUserService<ETXUser>?
+    var userService: ETXUserService<ETXUser> {
+        if _userSvc == nil {
+            _userSvc = ETXUserService()
+        }
+        return _userSvc!
+    }
+    
     /**
      The user's first name
      */
@@ -39,6 +48,12 @@ open class ETXUser: ETXModel {
      */
     public var password: String
     
+    /**
+     Create a new instance
+     - parameter email: The user's email address
+     - parameter username: The username for the user
+     - parameter password: The user's password
+    */
     public init(email: String, username: String, password: String) {
         self.email = email
         self.username = username
@@ -76,5 +91,31 @@ open class ETXUser: ETXModel {
         username <- map["username"]
         email <- map["email"]
         password <- map["password"]
+    }
+    
+    /**
+     Update the user's password. A notification email will be sent to the 
+     current email address
+     - parameter newPassword: The new password to change to
+     - parameter currentPassword: The current password
+     - parameter completion: Callback when the request completes
+     - parameter err: The error if the request fails
+    */
+    public func updatePassword(_ newPassword: String, currentPassword: String, completion: @escaping (_ err: ETXError?)->Void) {
+        self.userService.changePassword(newPassword, currentPassword: currentPassword, currentUser: self, completion: completion)
+    }
+    
+    /**
+     Update the user's email address. An email will be sent to the current email 
+     address notifying that the request was made, and another to new address for
+     confirmation. The new address will only be applied to the account, after
+     the new email is confirmed
+     - parameter newEmailAddress: The new email address to change to
+     - parameter currentPassword: The current password
+     - parameter completion: Callback when the request completes
+     - parameter err: The error if the request fails
+     */
+    public func updateEmailAddress(_ newEmailAddress: String, currentPassword: String, completion: @escaping (_ err: ETXError?)->Void) {
+        self.userService.changeEmailAddress(newEmailAddress, currentPassword: currentPassword, currentUser: self, completion: completion)
     }
 }

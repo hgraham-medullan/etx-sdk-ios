@@ -50,3 +50,37 @@ class UsernameCredentials: UserCredentials {
         password <- map["password"]
     }
 }
+
+class PasswordUpdateCredentials: UserCredentials {
+    
+    var currentPassword: String
+    var password: String
+    
+    init(currentPassword: String, newPassword: String) {
+        self.currentPassword = currentPassword
+        self.password = newPassword
+    }
+    
+    required public init?(map: Map) {
+        // TODO: Find appropriate way to initialize
+        self.currentPassword = ""
+        self.password = ""
+    }
+    
+    public func mapping(map: Map) {
+        // TODO: Platform to be update to accept current password
+        //currentPassword <- map["currentPassword"]
+        password <- map["password"]
+    }
+}
+
+class EmailUpdateCredentials: UserEmailCredentials {
+    
+    init(newEmailAddress: String, currentPassword: String) {
+        super.init(newEmailAddress, password: currentPassword)
+    }
+    
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+}
