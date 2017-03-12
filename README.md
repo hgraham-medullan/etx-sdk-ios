@@ -12,7 +12,7 @@ source 'https://github.com/medullan/engauge-tx-pod-specs.git'
 
 target 'EnguageTxSampleIosApp' do
   use_frameworks!
-  pod 'EngaugeTx', '~> 0.0.8'
+  pod 'EngaugeTx', '~> 0.0.12'
 end
 ```
 
@@ -179,3 +179,36 @@ func tokenRefreshNotification(_ notification: Notification) {
 
 ### Sending Push Notifications 
 See the [server-side docs on how to send push notifications to a user](https://docs.google.com/document/d/1TVY-rapBHjKP04bqkBAP4iwhD1evIT4oUxnWJVZJR28/edit#heading=h.prwiyqm61465)
+
+## Data Trends
+
+Aggregated data can be fetched using the [ETXTrendsService](https://iosdocs.engaugetx.com/Classes/ETXTrendService.html) class
+
+### Getting aggregated data over a timeframe of two weeks
+The following will get aggregated date for IndoorAirQuality and Steps over a two week period leading up to the current day
+
+```
+class MyCustomIndoorAirQuality: ETXIndoorAirQuality { }
+
+ETXTrendService.getTrend(trendTimeframe: .TwoWeeks, forClasses: [MyCustomIndoorAirQuality.self, ETXSteps.self]) {
+  (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
+  
+  if let err = err {
+    // handle err
+  }
+  
+  // Grab the data individually 
+  let indoorAirQualityTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(ETXIndoorAirQuality.self)!
+  
+  // View the aggregated data for each day for the two weeks
+  indoorAirQualityTrendResult.values?.forEach({
+    (aggregatedData: ETXAggregatable) in
+      print("Average indoor air quality for \(aggregatedData.date) is \(aggregatedData.value)")
+  })
+  
+  print("The average air quality over the 2-week timeframe is \(indoorAirQualityTrendResult.timeframe?.average) )
+}
+
+let stepsTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(ETXSteps.self)!
+...
+```
