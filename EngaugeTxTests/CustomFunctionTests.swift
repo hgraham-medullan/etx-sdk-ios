@@ -31,7 +31,7 @@ class CustomFunctionTests: ETXTestCase {
     
     func testGetAuthenticatedUrlWhenAnAccessTokenIsAvailable() {
         let customFunctionName = "report-download"
-        let cf = (CustomFunction(functionName: customFunctionName))!
+        let cf = (ETXCustomFunction(functionName: customFunctionName))!
         
         let repo = Repository<ETXModel>(resourcePath: "/")
         let accessToken = repo.getAccessToken()
@@ -49,7 +49,7 @@ class CustomFunctionTests: ETXTestCase {
     
     func testGetAuthenticatedUrlWhenAnAccessTokenIsNotAvailable() {
         let customFunctionName = "report-download"
-        let cf = (CustomFunction(functionName: customFunctionName))!
+        let cf = (ETXCustomFunction(functionName: customFunctionName))!
         
         let repo = Repository<ETXModel>(resourcePath: "/")
         repo.deleteAccessToken()
@@ -64,7 +64,7 @@ class CustomFunctionTests: ETXTestCase {
     
     func testPerformGet() {
         let getExpectation = expectation(description: "Get req on custom function")
-        let cf = CustomFunction(functionName: "get-test")
+        let cf = ETXCustomFunction(functionName: "get-test")
         
         cf?.performGet {
             (model, err) in
@@ -81,7 +81,7 @@ class CustomFunctionTests: ETXTestCase {
     
     func testPerformPost() {
         let customFunctionPostExpectation = expectation(description: "Get req on custom function")
-        let cf = CustomFunction(functionName: "post-test")
+        let cf = ETXCustomFunction(functionName: "post-test")
         
         cf?.performPost(model: ETXModel()) {
             (model, err) in
@@ -98,16 +98,16 @@ class CustomFunctionTests: ETXTestCase {
     
     func testIsValidFunctionNameWhenTheFunctionNameIsValid() {
         let urlPrefix = "/run/"
-        XCTAssertTrue(CustomFunction.isValidFunctionName("funcname", urlPrefix: urlPrefix))
-        XCTAssertTrue(CustomFunction.isValidFunctionName("func-name", urlPrefix: urlPrefix))
-        XCTAssertTrue(CustomFunction.isValidFunctionName("func_name", urlPrefix: urlPrefix))
-        XCTAssertTrue(CustomFunction.isValidFunctionName("func/name", urlPrefix: urlPrefix))
+        XCTAssertTrue(ETXCustomFunction.isValidFunctionName("funcname", urlPrefix: urlPrefix))
+        XCTAssertTrue(ETXCustomFunction.isValidFunctionName("func-name", urlPrefix: urlPrefix))
+        XCTAssertTrue(ETXCustomFunction.isValidFunctionName("func_name", urlPrefix: urlPrefix))
+        XCTAssertTrue(ETXCustomFunction.isValidFunctionName("func/name", urlPrefix: urlPrefix))
     }
     
     func testIsValidFunctionNameWhenTheFunctionNameIsNotValid() {
         let urlPrefix = "/run/"
-        XCTAssertFalse(CustomFunction.isValidFunctionName("func\name", urlPrefix: urlPrefix))
-        XCTAssertFalse(CustomFunction.isValidFunctionName("func name", urlPrefix: urlPrefix))
+        XCTAssertFalse(ETXCustomFunction.isValidFunctionName("func\name", urlPrefix: urlPrefix))
+        XCTAssertFalse(ETXCustomFunction.isValidFunctionName("func name", urlPrefix: urlPrefix))
     }
     
     func testAddQueryStringsWhenThereIsNoQueryString() {
@@ -116,7 +116,7 @@ class CustomFunctionTests: ETXTestCase {
         
         let repo = Repository(resourcePath: resourcePath)
         let expectedRepo = Repository(resourcePath: resourcePath)
-        let customFunction = (CustomFunction(functionName: functionName))!
+        let customFunction = (ETXCustomFunction(functionName: functionName))!
         
         customFunction.addQueryStrings(nil, toResource: &repo.etxResource)
         
@@ -131,7 +131,7 @@ class CustomFunctionTests: ETXTestCase {
         
         let repo = Repository(resourcePath: resourcePath)
         let expectedRepo = Repository(resourcePath: resourcePath)
-        let customFunction = (CustomFunction(functionName: functionName))!
+        let customFunction = (ETXCustomFunction(functionName: functionName))!
         
         expectedRepo.etxResource = expectedRepo.etxResource.withParam(pageQueryName, pageQueryValue)
         

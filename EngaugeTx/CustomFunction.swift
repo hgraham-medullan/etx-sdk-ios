@@ -9,11 +9,13 @@
 import Foundation
 import Siesta
 
+@available(*, renamed: "ETXCustomFunction", deprecated: 0.0.12)
+typealias CustomFunction = ETXCustomFunction<ETXModel>
 
 /**
  Provides the ability to execute add-on functionality created via Custom Logic
  */
-public class CustomFunction<T: ETXModel> {
+public class ETXCustomFunction<T: ETXModel> {
     
     private let urlPrefix = "/run"
     private let queryStringNameAppId = "appId"
@@ -28,7 +30,7 @@ public class CustomFunction<T: ETXModel> {
      - parameter functionName: The name of the function, as configured in the application
     */
     public init?(functionName: String) {
-        guard CustomFunction.isValidFunctionName(functionName, urlPrefix: urlPrefix) else {
+        guard ETXCustomFunction.isValidFunctionName(functionName, urlPrefix: urlPrefix) else {
             return nil
         }
         self.functionName = functionName
