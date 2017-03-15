@@ -42,4 +42,8 @@ class TrendServiceTests: XCTestCase {
         }
     }
     
+//    func testFindWhereOnIndoorAirQuality() {
+//        ETXIndoorAirQuality.findWhere(filter: <#T##ETXSearchFilter#>, completion: <#T##([ETXIndoorAirQuality.Type]?, ETXError?) -> Void#>)
+//    }
+    
 }

@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents an aggregated data set
  */
-open class ETXAggregatableModel: ETXModel, ETXAggregatable {
+open class ETXAggregatableModel: ETXGenericDataObject, ETXAggregatable {
 
     internal class var trendResultKey: String? {
         return  nil
