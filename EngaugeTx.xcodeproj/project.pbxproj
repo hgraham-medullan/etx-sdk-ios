@@ -33,7 +33,6 @@
 		084A24531E271073003BBCAB /* CustomFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A24521E271073003BBCAB /* CustomFunctionTests.swift */; };
 		085184CD1E74288F00BFD227 /* TrendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184CC1E74288F00BFD227 /* TrendService.swift */; };
 		085184D01E74298C00BFD227 /* TrendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184CF1E74298C00BFD227 /* TrendsTests.swift */; };
-		085184D21E742E9F00BFD227 /* OutdoorHumidity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184D11E742E9F00BFD227 /* OutdoorHumidity.swift */; };
 		085184D61E7441A000BFD227 /* TrendRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184D51E7441A000BFD227 /* TrendRepository.swift */; };
 		085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184D71E74D64900BFD227 /* TrendRepositoryTests.swift */; };
 		085184DA1E74DBC800BFD227 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184D91E74DBC800BFD227 /* DateService.swift */; };
@@ -59,6 +58,11 @@
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
 		08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */; };
 		08EFD9491E460576005F0B50 /* ETXAuthenticatedTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */; };
+		08F897B41E93EE8300F41DC4 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F897B31E93EE8300F41DC4 /* Measurement.swift */; };
+		08F897B61E93EF2E00F41DC4 /* MeasurementSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F897B51E93EF2E00F41DC4 /* MeasurementSource.swift */; };
+		08F897B81E93F01B00F41DC4 /* MeasurementDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F897B71E93F01B00F41DC4 /* MeasurementDevice.swift */; };
+		08F897BB1E93F39F00F41DC4 /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F897BA1E93F39F00F41DC4 /* Coords.swift */; };
+		08F897BD1E93FE0700F41DC4 /* OxygenSaturation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F897BC1E93FE0700F41DC4 /* OxygenSaturation.swift */; };
 		08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53A71E003A26008B5D0E /* RegistrationError.swift */; };
 		08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */; };
 		08FE53AD1E01A428008B5D0E /* GenericDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53AC1E01A428008B5D0E /* GenericDataObject.swift */; };
@@ -109,7 +113,6 @@
 		084A24521E271073003BBCAB /* CustomFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunctionTests.swift; sourceTree = "<group>"; };
 		085184CC1E74288F00BFD227 /* TrendService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendService.swift; sourceTree = "<group>"; };
 		085184CF1E74298C00BFD227 /* TrendsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsTests.swift; sourceTree = "<group>"; };
-		085184D11E742E9F00BFD227 /* OutdoorHumidity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutdoorHumidity.swift; sourceTree = "<group>"; };
 		085184D51E7441A000BFD227 /* TrendRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendRepository.swift; sourceTree = "<group>"; };
 		085184D71E74D64900BFD227 /* TrendRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendRepositoryTests.swift; sourceTree = "<group>"; };
 		085184D91E74DBC800BFD227 /* DateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
@@ -138,6 +141,11 @@
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTokenTests.swift; sourceTree = "<group>"; };
 		08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXAuthenticatedTestCase.swift; sourceTree = "<group>"; };
+		08F897B31E93EE8300F41DC4 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		08F897B51E93EF2E00F41DC4 /* MeasurementSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementSource.swift; sourceTree = "<group>"; };
+		08F897B71E93F01B00F41DC4 /* MeasurementDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementDevice.swift; sourceTree = "<group>"; };
+		08F897BA1E93F39F00F41DC4 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
+		08F897BC1E93FE0700F41DC4 /* OxygenSaturation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OxygenSaturation.swift; sourceTree = "<group>"; };
 		08FE53A71E003A26008B5D0E /* RegistrationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationError.swift; sourceTree = "<group>"; };
 		08FE53A91E003EBB008B5D0E /* RegistrationErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationErrorTests.swift; sourceTree = "<group>"; };
 		08FE53AC1E01A428008B5D0E /* GenericDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObject.swift; sourceTree = "<group>"; };
@@ -271,6 +279,7 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				08F897B91E93F38E00F41DC4 /* Location */,
 				085184CB1E74288300BFD227 /* Trends */,
 				089E0FA71E733F24009154DE /* Measurements */,
 				08EFD9401E45F7DF005F0B50 /* PushNotifications */,
@@ -335,7 +344,10 @@
 				089E0FAE1E7343B2009154DE /* IndoorAirQuality.swift */,
 				089E0FB01E7343C0009154DE /* OutdoorAirQuality.swift */,
 				089E0FB21E734703009154DE /* Spirometry.swift */,
-				085184D11E742E9F00BFD227 /* OutdoorHumidity.swift */,
+				08F897B31E93EE8300F41DC4 /* Measurement.swift */,
+				08F897B51E93EF2E00F41DC4 /* MeasurementSource.swift */,
+				08F897B71E93F01B00F41DC4 /* MeasurementDevice.swift */,
+				08F897BC1E93FE0700F41DC4 /* OxygenSaturation.swift */,
 			);
 			name = Measurements;
 			sourceTree = "<group>";
@@ -355,6 +367,14 @@
 				08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */,
 			);
 			name = PushNotification;
+			sourceTree = "<group>";
+		};
+		08F897B91E93F38E00F41DC4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				08F897BA1E93F39F00F41DC4 /* Coords.swift */,
+			);
+			name = Location;
 			sourceTree = "<group>";
 		};
 		08FE53AB1E01A405008B5D0E /* GenericDataObject */ = {
@@ -601,27 +621,31 @@
 				08FE53AD1E01A428008B5D0E /* GenericDataObject.swift in Sources */,
 				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
 				089E0FAF1E7343B2009154DE /* IndoorAirQuality.swift in Sources */,
+				08F897B41E93EE8300F41DC4 /* Measurement.swift in Sources */,
 				085184E21E75AD4900BFD227 /* Timeframe.swift in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
 				089E0FA91E733F49009154DE /* Steps.swift in Sources */,
 				089E0FAB1E733FAD009154DE /* AggregatableModel.swift in Sources */,
-				085184D21E742E9F00BFD227 /* OutdoorHumidity.swift in Sources */,
+				08F897BB1E93F39F00F41DC4 /* Coords.swift in Sources */,
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				081222891DF7025600586B7D /* AuthError.swift in Sources */,
 				083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */,
+				08F897BD1E93FE0700F41DC4 /* OxygenSaturation.swift in Sources */,
 				085184DA1E74DBC800BFD227 /* DateService.swift in Sources */,
 				084A24431E267CFC003BBCAB /* Condtion.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				089E0FAD1E734350009154DE /* AirQuality.swift in Sources */,
 				08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */,
+				08F897B81E93F01B00F41DC4 /* MeasurementDevice.swift in Sources */,
 				08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */,
 				08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */,
 				08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				085184DE1E75ACAC00BFD227 /* ClassTrendResultSet.swift in Sources */,
+				08F897B61E93EF2E00F41DC4 /* MeasurementSource.swift in Sources */,
 				08A7C5491E4CCD1900852D62 /* Date.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				089E0FB11E7343C0009154DE /* OutdoorAirQuality.swift in Sources */,

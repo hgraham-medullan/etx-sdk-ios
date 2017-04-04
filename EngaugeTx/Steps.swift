@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents the Steps activity
  */
-open class ETXSteps: ETXAggregatableModel {
+open class ETXSteps: ETXMeasurement {
     
     /**
      The number of steps taken
@@ -31,9 +31,8 @@ open class ETXSteps: ETXAggregatableModel {
     
     override open func mapping(map: Map) {
         super.mapping(map: map)
-        stepCount <- map["stepCount"]
-        caloriesBurned <- map["caloriesBurned"]
+        stepCount <- map["steps"]
+        caloriesBurned <- map["calories"]
         duration <- map["duration"]
-        
     }
 }
