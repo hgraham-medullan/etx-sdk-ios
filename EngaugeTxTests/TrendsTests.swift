@@ -32,7 +32,7 @@ class TrendServiceTests: XCTestCase {
             if let indoorAirQualityTrendResult = indoorAirQualityTrendResult {
                 XCTAssertFalse((indoorAirQualityTrendResult.values?.isEmpty)!)
                 indoorAirQualityTrendResult.values?.forEach({
-                    (aggregatedData: ETXAggregatable) in
+                    (aggregatedData: ETXAggregatableModel) in
                     print("Average indoor air quality for \(aggregatedData.date) is \(aggregatedData.value)")
                 })
                 indoorAirQualityTrendResult.timeframe?.average

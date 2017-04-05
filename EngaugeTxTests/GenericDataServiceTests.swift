@@ -42,7 +42,7 @@ class GenericDataServiceTests: ETXTestCase {
             loginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 20) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             (err) in
             print("Login expectation timeout \(err)")
         }
@@ -98,7 +98,7 @@ class GenericDataServiceTests: ETXTestCase {
             vitalExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -127,7 +127,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while retrieving the vital: \(error)")
             }
@@ -157,7 +157,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while retrieving the vital: \(error)")
             }
@@ -192,7 +192,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
@@ -213,7 +213,7 @@ class GenericDataServiceTests: ETXTestCase {
             deleteVitalExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
@@ -236,7 +236,7 @@ class GenericDataServiceTests: ETXTestCase {
                 getAllVitalsExpectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
@@ -282,7 +282,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }
@@ -312,7 +312,7 @@ class GenericDataServiceTests: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Failed while deleting the vital: \(error)")
             }

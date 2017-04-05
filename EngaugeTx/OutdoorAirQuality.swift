@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents the measure of ambient air quality
  */
-open class ETXOutdoorAirQuality: ETXAirQuality {
+open class ETXOutdoorAirQuality: ETXAirQuality, FirstClassModel {
     
     /**
      Measure of the levels of Sulphur dioxide (SO2) in the air.

@@ -11,6 +11,11 @@ import XCTest
 @testable import EngaugeTx
 
 class ETXTestCase: XCTestCase {
+    
+    class var TIMEOUT_DEFAULT: Double {
+        return 10
+    }
+    
     var app: EngaugeTxApplication!
     
     override func setUp() {

@@ -41,7 +41,7 @@ class UserServiceTest: ETXTestCase {
         
         //XCTAssertTrue(false, "This is no true xyz")
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -64,7 +64,7 @@ class UserServiceTest: ETXTestCase {
             successfulUserLoginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -91,7 +91,7 @@ class UserServiceTest: ETXTestCase {
             successfulUserLoginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -110,7 +110,7 @@ class UserServiceTest: ETXTestCase {
             XCTAssertEqual(ETXAuthenticationError.Reason.EmailNotVerified, err.reason!)
             userLoginExpectation.fulfill()
         }
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -171,7 +171,7 @@ class UserServiceTest: ETXTestCase {
             userCreateExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User creation api call failed: \(error)")
             }
@@ -198,7 +198,7 @@ class UserServiceTest: ETXTestCase {
             userCreateExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -231,7 +231,7 @@ class UserServiceTest: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Expectations not resolved: \(error)")
             }
@@ -246,7 +246,7 @@ class UserServiceTest: ETXTestCase {
             resetEmailExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Expectations not resolved: \(error)")
             }
@@ -273,7 +273,7 @@ class UserServiceTest: ETXTestCase {
             }
         }
         
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Expectations not resolved: \(error)")
             }
@@ -326,7 +326,7 @@ class UserServiceTest: ETXTestCase {
             }
             
         }
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("Expectations not resolved: \(error)")
             }

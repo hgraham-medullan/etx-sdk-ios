@@ -9,10 +9,17 @@
 import Foundation
 import ObjectMapper
 
+class MeasurementService<M: ETXMeasurement>: ETXDataService<M> {
+    init(_ path: String) {
+        var repo = Repository<M>(resourcePath: path)
+        super.init(repository: repo)
+    }
+}
+
 /**
  Represents the Steps activity
  */
-open class ETXSteps: ETXMeasurement {
+open class ETXSteps: ETXMeasurement, FirstClassModel {
     
     /**
      The number of steps taken
@@ -28,6 +35,19 @@ open class ETXSteps: ETXMeasurement {
      The length of time (in minutes) taken to achieve the stepCount
      */
     public var duration: Int?
+    
+    public override init() {
+        super.init()
+    }
+    
+    required public init?(map: Map) {
+        super.init(map: map)
+    }
+    
+     override class func getDataSvc() -> ETXDataService<ETXPersistentModel>? {
+        return nil //MeasurementService<ETXSteps>("") as! T
+        //return ETXDataService<ETXSteps>(repository: Repository<ETXSteps>(resourcePath: "/steps"))
+    }
     
     override open func mapping(map: Map) {
         super.mapping(map: map)

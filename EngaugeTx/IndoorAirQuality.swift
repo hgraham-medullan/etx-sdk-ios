@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents the measure of household air quality
  **/
-open class ETXIndoorAirQuality: ETXAirQuality {
+open class ETXIndoorAirQuality: ETXAirQuality, FirstClassModel {
     
     /**
      Volatile Organic Compound (VOC)

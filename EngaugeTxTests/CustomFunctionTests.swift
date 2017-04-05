@@ -23,7 +23,7 @@ class CustomFunctionTests: ETXTestCase {
             loginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 20) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             (err) in
             print("Login expectation timeout \(err)")
         }
@@ -73,7 +73,7 @@ class CustomFunctionTests: ETXTestCase {
             getExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             err in
             print("\(err)")
         }
@@ -90,7 +90,7 @@ class CustomFunctionTests: ETXTestCase {
             customFunctionPostExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             err in
             print("\(err)")
         }
@@ -114,8 +114,8 @@ class CustomFunctionTests: ETXTestCase {
         let resourcePath = "/test"
         let functionName = "test"
         
-        let repo = Repository(resourcePath: resourcePath)
-        let expectedRepo = Repository(resourcePath: resourcePath)
+        let repo = Repository<ETXModel>(resourcePath: resourcePath)
+        let expectedRepo = Repository<ETXModel>(resourcePath: resourcePath)
         let customFunction = (ETXCustomFunction(functionName: functionName))!
         
         customFunction.addQueryStrings(nil, toResource: &repo.etxResource)
@@ -129,8 +129,8 @@ class CustomFunctionTests: ETXTestCase {
         let pageQueryName = "page"
         let pageQueryValue = "2"
         
-        let repo = Repository(resourcePath: resourcePath)
-        let expectedRepo = Repository(resourcePath: resourcePath)
+        let repo = Repository<ETXModel>(resourcePath: resourcePath)
+        let expectedRepo = Repository<ETXModel>(resourcePath: resourcePath)
         let customFunction = (ETXCustomFunction(functionName: functionName))!
         
         expectedRepo.etxResource = expectedRepo.etxResource.withParam(pageQueryName, pageQueryValue)

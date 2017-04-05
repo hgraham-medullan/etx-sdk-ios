@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  * Represents the measure of lung capacity/function
  */
-open class ETXSpirometry: ETXMeasurement {
+open class ETXSpirometry: ETXMeasurement, FirstClassModel {
     
     /**
      * Forced expiratory volume in one second (FEV1)

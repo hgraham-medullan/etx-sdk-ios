@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-open class ETXOxygenSaturation: ETXMeasurement {
+open class ETXOxygenSaturation: ETXMeasurement, FirstClassModel {
     
     /**
      The blood oxygen saturation level

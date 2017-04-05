@@ -25,7 +25,7 @@ class TrendRepository: Repository<ETXModel> {
         self.keyToTypeMapping[ETXIndoorAirQuality.resultKey] = ETXIndoorAirQuality.self
         self.keyToTypeMapping[ETXOutdoorAirQuality.resultKey] = ETXOutdoorAirQuality.self
         self.keyToTypeMapping[ETXSpirometry.resultKey] = ETXSpirometry.self
-        self.keyToTypeMapping[ETXOutdoorHumidity.resultKey] = ETXOutdoorHumidity.self
+        //self.keyToTypeMapping[ETXOutdoorHumidity.resultKey] = ETXOutdoorHumidity.self
     }
     
     func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {

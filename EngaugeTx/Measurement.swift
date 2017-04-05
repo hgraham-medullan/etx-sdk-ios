@@ -9,9 +9,17 @@
 import Foundation
 import ObjectMapper
 
-open class ETXMeasurement: ETXAggregatableModel {
+public protocol ETXMeasurable: ETXPersistableModel {
+    var source: ETXMeasurementSource? {get set}
+}
+
+open class ETXMeasurement: ETXAggregatableModel, ETXMeasurable {
     
     public var source: ETXMeasurementSource?
+    
+    public override init() {
+        super.init()
+    }
     
     public init(source: ETXMeasurementSource) {
         self.source = source

@@ -31,7 +31,7 @@ class AuthenticatedTestCase: ETXTestCase {
             loginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             (err) in
             print("Login expectation timeout \(err)")
         }
@@ -45,7 +45,7 @@ class AuthenticatedTestCase: ETXTestCase {
             logoutExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             (err) in
             print("Logout expectation timeout \(err)")
         }

@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents an aggregated data set
  */
-open class ETXAggregatableModel: ETXModel, ETXAggregatable {
+open class ETXAggregatableModel : ETXPersistentModel, ETXAggregatable {
 
     internal class var trendResultKey: String? {
         return  nil
@@ -41,14 +41,15 @@ open class ETXAggregatableModel: ETXModel, ETXAggregatable {
     }
 }
 
-protocol ETXAggregatable {
+protocol ETXAggregatable: ETXPersistableModel {
     static var trendResultKey: String? { get }
     var value: Double? {get set}
     var date: Date? {get set}
     var count: Int? {get set}
 }
 
-extension ETXAggregatable where Self: ETXAggregatableModel {
+
+extension ETXAggregatable {
     internal static var resultKey: String {
         var _trendResultKey: String = String(describing: self)
         if self.trendResultKey != nil {

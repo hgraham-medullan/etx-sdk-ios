@@ -41,7 +41,7 @@ class AccesssTokenCache {
     static var accessToken: String? = nil
 }
 
-class Repository<T> : Service where T: ETXModel {
+class Repository<T> : Service where T: ETXModelable {
     
     private let KEY_HEADER_APP_ID: String = "app-id"
     private let KEY_HEADER_CLIENT_KEY: String = "client-key"

@@ -25,7 +25,7 @@ class DeviceTokenTests: AuthenticatedTestCase {
             XCTAssertNil(err, "Token save should not fail");
             tokenSaveExpectation.fulfill()
         }
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             (err) in
             print("Login expectation timeout \(err)")
         }
@@ -53,7 +53,7 @@ class DeviceTokenTests: AuthenticatedTestCase {
             }
             
         }
-        waitForExpectations(timeout: 10) {
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) {
             (err) in
             print("Login expectation timeout \(err)")
         }

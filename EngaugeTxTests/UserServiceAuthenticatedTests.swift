@@ -23,7 +23,7 @@ class UserServiceAuthenticatedTests: AuthenticatedTestCase {
             XCTAssertNil(err)
             emailUpdatedExpectation.fulfill()
         }
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }
@@ -48,7 +48,7 @@ class UserServiceAuthenticatedTests: AuthenticatedTestCase {
                 emailUpdatedExpectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 10) { error in
+        waitForExpectations(timeout: ETXTestCase.TIMEOUT_DEFAULT) { error in
             if let error = error {
                 XCTFail("User login call failed: \(error)")
             }

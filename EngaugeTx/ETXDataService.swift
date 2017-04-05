@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PersistenceService {
-    associatedtype T : ETXModel
+    associatedtype T : ETXModelable
     func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void)
     func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void)
     func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void)
@@ -21,7 +21,7 @@ protocol PersistenceService {
 /**
  Service that provides CRUD operations on a model
  */
-class ETXDataService<T: ETXModel>: PersistenceService {
+public class ETXDataService<T: ETXModelable>: PersistenceService {
     
     var repository: Repository<T>!
     
