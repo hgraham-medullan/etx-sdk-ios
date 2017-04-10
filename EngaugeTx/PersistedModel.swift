@@ -15,11 +15,11 @@ public protocol ETXPersistableModel: ETXModelable {
 }
 
 open class ETXPersistentModel : ETXModel, ETXPersistableModel {
-    //typealias ModelType = <#type#>
+    typealias ModelType = ETXPersistentModel
 
     
     
-    class func getDataSvc() -> ETXDataService<Model>? {
+    class func getDataSvc() -> ETXDataService<ETXPersistentModel>? {
         return  nil
     }
     
@@ -30,15 +30,15 @@ open class ETXPersistentModel : ETXModel, ETXPersistableModel {
 
 public extension ETXPersistableModel where Self: ETXPersistentModel {
     
-    //    public static func getDataSvc() -> ETXDataService<Self> {
-    //        return ETXDataService<Self>(repository: Repository<Self>(resourcePath: "/data/class"))
-    //    }
+        public static func getDataSvc() -> ETXDataService<Self> {
+            return ETXDataService<Self>(repository: Repository<Self>(resourcePath: "/data/class"))
+        }
     
 //    typealias Model = Self
     
-    var dataSvc: ETXDataService<ModelType> {
-        return try! ETXGenericDataService<ModelType>(modelName: getModelName())
-    }
+//    var dataSvc: ETXDataService<ETXPersistentModel> {
+//        return try! ETXGenericDataService<ETXGenericDataObject>(modelName: getModelName())
+//    }
     
     /**
      Find a model by it's ID
@@ -58,7 +58,7 @@ public extension ETXPersistableModel where Self: ETXPersistentModel {
      - parameter models: Models of the specified type. Will be ```nil``` if an error occurred
      - parameter err: If an error occurred while getting all items. Will be ```nil``` if get all was successful
      */
-    public static func findWhere(filter: ETXSearchFilter, completion: @escaping ([Model]?, ETXError?)->Void) {
+    public static func findWhere(filter: ETXSearchFilter, completion: @escaping ([ETXPersistentModel]?, ETXError?)->Void) {
         let ds = Self.getDataSvc();
         ds?.findWhere(filter, completion: completion)
     }
