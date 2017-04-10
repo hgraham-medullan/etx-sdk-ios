@@ -132,9 +132,9 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     private func getAffiliatedUsers(withRole: Role, forMyRole: Role,user: ETXUser, includeUserIdentity: Bool, completion: @escaping (_ err: ETXError?)->Void) {
-        if (user == null) {
+        if (user == nil) {
             
         }
-        
+    }
 
 }
