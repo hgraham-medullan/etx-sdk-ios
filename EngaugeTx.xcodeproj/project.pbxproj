@@ -76,6 +76,8 @@
 		08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B71E043A21008B5D0E /* ETXDataService.swift */; };
 		08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B91E04412B008B5D0E /* ETXTestCase.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
+		18E7D0BC1E9BA168002545B8 /* AffiliationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E7D0BB1E9BA168002545B8 /* AffiliationService.swift */; };
+		18E7D0BE1E9BA3EE002545B8 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E7D0BD1E9BA3EE002545B8 /* Role.swift */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +163,8 @@
 		08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObjectRepository.swift; sourceTree = "<group>"; };
 		08FE53B71E043A21008B5D0E /* ETXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXDataService.swift; sourceTree = "<group>"; };
 		08FE53B91E04412B008B5D0E /* ETXTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXTestCase.swift; sourceTree = "<group>"; };
+		18E7D0BB1E9BA168002545B8 /* AffiliationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffiliationService.swift; sourceTree = "<group>"; };
+		18E7D0BD1E9BA3EE002545B8 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				08F897B91E93F38E00F41DC4 /* Location */,
+				18E7D0BA1E9BA14A002545B8 /* Affiliation */,
 				085184CB1E74288300BFD227 /* Trends */,
 				089E0FA71E733F24009154DE /* Measurements */,
 				08EFD9401E45F7DF005F0B50 /* PushNotifications */,
@@ -341,6 +346,7 @@
 				081222881DF7025600586B7D /* AuthError.swift */,
 				0812228A1DF73A2900586B7D /* ETXAccessToken.swift */,
 				08FE53A71E003A26008B5D0E /* RegistrationError.swift */,
+				18E7D0BD1E9BA3EE002545B8 /* Role.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -411,6 +417,14 @@
 				08FE53B31E0392C5008B5D0E /* GenericDataServiceTests.swift */,
 			);
 			name = GenericDataObject;
+			sourceTree = "<group>";
+		};
+		18E7D0BA1E9BA14A002545B8 /* Affiliation */ = {
+			isa = PBXGroup;
+			children = (
+				18E7D0BB1E9BA168002545B8 /* AffiliationService.swift */,
+			);
+			name = Affiliation;
 			sourceTree = "<group>";
 		};
 		4DBBDE8C41B28DFC338673AD /* Frameworks */ = {
@@ -658,6 +672,7 @@
 				089E0FAD1E734350009154DE /* AirQuality.swift in Sources */,
 				08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */,
 				08F897B81E93F01B00F41DC4 /* MeasurementDevice.swift in Sources */,
+				18E7D0BE1E9BA3EE002545B8 /* Role.swift in Sources */,
 				08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */,
 				08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */,
 				08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */,
@@ -669,6 +684,7 @@
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				089E0FB11E7343C0009154DE /* OutdoorAirQuality.swift in Sources */,
 				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,
+				18E7D0BC1E9BA168002545B8 /* AffiliationService.swift in Sources */,
 				085184CD1E74288F00BFD227 /* TrendService.swift in Sources */,
 				089E0FB31E734703009154DE /* Spirometry.swift in Sources */,
 				084A24451E267D2D003BBCAB /* WhereCondition.swift in Sources */,

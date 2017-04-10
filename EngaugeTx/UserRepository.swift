@@ -130,5 +130,11 @@ class UserRepository<T: ETXUser>: Repository<T> {
         // TODO: Integrate with API
         completion(nil)
     }
+    
+    private func getAffiliatedUsers(withRole: Role, forMyRole: Role,user: ETXUser, includeUserIdentity: Bool, completion: @escaping (_ err: ETXError?)->Void) {
+        if (user == null) {
+            
+        }
+        
 
 }
