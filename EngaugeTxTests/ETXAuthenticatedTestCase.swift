@@ -26,14 +26,12 @@ class AuthenticatedTestCase: ETXTestCase {
                                    password: self.defaultTestUser.password,
                                    rememberMe: false) {
             (user, err) in
-            print("logged in user details \(user)")
-            print("logged in user error \(err)")
             XCTAssertNotNil(user, "User should be successfully logged in")
             self.currentUser = user!
             loginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 40) {
+        waitForExpectations(timeout: 10) {
             (err) in
             print("Login expectation timeout \(err)")
         }

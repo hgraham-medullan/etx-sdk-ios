@@ -9,7 +9,6 @@
 import Foundation
 import Siesta
 import ObjectMapper
-import Siesta
 
 class UserRepository<T: ETXUser>: Repository<T> {
     
