@@ -73,6 +73,7 @@
 		1813AE6A1E9F22D600A08F22 /* AffiliatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813AE691E9F22D600A08F22 /* AffiliatedUser.swift */; };
 		1813AE6C1E9F230A00A08F22 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813AE6B1E9F230A00A08F22 /* Role.swift */; };
 		1813AE6F1E9F25E900A08F22 /* AffiliationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813AE6E1E9F25E900A08F22 /* AffiliationServiceTests.swift */; };
+		1874859B1E9FE22300B8CEDD /* TxResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874859A1E9FE22300B8CEDD /* TxResponse.swift */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,7 @@
 		1813AE691E9F22D600A08F22 /* AffiliatedUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffiliatedUser.swift; sourceTree = "<group>"; };
 		1813AE6B1E9F230A00A08F22 /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		1813AE6E1E9F25E900A08F22 /* AffiliationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffiliationServiceTests.swift; sourceTree = "<group>"; };
+		1874859A1E9FE22300B8CEDD /* TxResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxResponse.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				08A7C5481E4CCD1900852D62 /* Date.swift */,
 				089E0FAA1E733FAD009154DE /* AggregatableModel.swift */,
 				085184D91E74DBC800BFD227 /* DateService.swift */,
+				1874859A1E9FE22300B8CEDD /* TxResponse.swift */,
 			);
 			path = EngaugeTx;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1874859B1E9FE22300B8CEDD /* TxResponse.swift in Sources */,
 				084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */,
 				084A24491E267D8C003BBCAB /* SearchFilter.swift in Sources */,
 				084A24501E270563003BBCAB /* CustomFunction.swift in Sources */,

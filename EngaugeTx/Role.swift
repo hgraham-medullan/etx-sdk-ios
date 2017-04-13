@@ -10,6 +10,6 @@ import Foundation
 
 
 enum ETXRole: String {
-    case Patient
-    case Caregiver
+    case patient
+    case caregiver
 }

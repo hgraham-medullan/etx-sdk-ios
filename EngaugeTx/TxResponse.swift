@@ -1,8 +1,8 @@
 //
-//  AffiliatedUser.swift
+//  TxResponse.swift
 //  EngaugeTx
 //
-//  Created by Layton Whiteley on 4/12/17.
+//  Created by Layton Whiteley on 4/13/17.
 //  Copyright © 2017 Medullan Platform Solutions. All rights reserved.
 //
 
@@ -10,13 +10,10 @@ import Foundation
 import ObjectMapper
 
 
-public class ETXAffiliatedUser : ETXModel {
+public class ETXResponse : ETXModel {
     
-    var firstName: String?
-    var lastName: String?
-    var myRole: ETXRole?
-    var role: ETXRole?
     var result: Any?
+    var meta: Any?
     
     public override init() {
         super.init()
@@ -28,11 +25,7 @@ public class ETXAffiliatedUser : ETXModel {
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
-        firstName <- map["firstName"]
-        lastName <- map["lastName"]
-        myRole <- map["myRole"]
-        role <- map["role"]
-        
         result <- map["result"]
+        meta <- map["meta"]
     }
 }

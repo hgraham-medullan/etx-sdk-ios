@@ -20,19 +20,19 @@ class AffiliationServiceTestCase: AuthenticatedTestCase  {
         }
     
         func testGetAffiliatedUsers() {
-    //        self.currentUser.id
-    //        let email: String = "sean@medullan.com"
-    //        let password: String = "P@ssw0rd"
-    //        let expected: [String:String] = ["email": email, "password": password]
+            let loginExpectation = expectation(description: "Successful get affiliated users")
     
             let service = AffiliationService()
-            service.getAffiliatedUsers(withRole: ETXRole.Patient, forMyRole: ETXRole.Caregiver){
+            service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
                 (user, err) in
-                print(user ?? [ETXUser]())
-                print(err ?? ETXError())
+                XCTAssertNotNil(user)
+                loginExpectation.fulfill()
+            }
+            waitForExpectations(timeout: 20) {
+                (err) in
+                print("GetAffiliatedUsers expectation timeout \(err)")
             }
     
-    //        XCTAssertEqual(expected, userEmailCredentials.toJSON() as! [String: String])
         }
     
     

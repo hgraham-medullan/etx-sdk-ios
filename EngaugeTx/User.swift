@@ -66,7 +66,7 @@ open class ETXUser: ETXModel {
         self.username = ""
         self.password = ""
         super.init()
-        self.firstName = user.id
+        self.firstName = user.firstName
         self.lastName = user.lastName
         self.id = user.id
         
