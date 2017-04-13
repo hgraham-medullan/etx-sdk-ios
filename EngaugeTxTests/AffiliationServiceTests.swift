@@ -20,13 +20,13 @@ class AffiliationServiceTestCase: AuthenticatedTestCase  {
         }
     
         func testGetAffiliatedUsers() {
-            let loginExpectation = expectation(description: "Successful get affiliated users")
+            let getAffiliatedUsersExpectation = expectation(description: "Successful get affiliated users")
     
-            let service = AffiliationService()
+            let service = ETXAffiliationService()
             service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
                 (user, err) in
                 XCTAssertNotNil(user)
-                loginExpectation.fulfill()
+                getAffiliatedUsersExpectation.fulfill()
             }
             waitForExpectations(timeout: 20) {
                 (err) in

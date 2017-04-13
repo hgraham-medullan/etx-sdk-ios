@@ -9,7 +9,7 @@
 import Foundation
 
 
-open class AffiliationService<T: ETXUser> {
+open class ETXAffiliationService<T: ETXUser> {
     let userRepository: UserRepository<T>
     
     /**
