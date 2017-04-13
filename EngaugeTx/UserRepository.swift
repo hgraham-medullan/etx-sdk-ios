@@ -42,11 +42,40 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
         
         req.onSuccess { (obj) in
-            
             let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
             self.saveCurrentUser(accessToken)
             
             completion(Mapper<T>().map(JSON: (accessToken.user?.rawJson)!), nil)
+        }
+    }
+    
+    public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ( [ETXUser]?, ETXError?)->Void) {
+        let id = getCurrentUserId()!
+        let req = self.users.child(id).child("/affiliatedUsers").request(.get)
+        
+        req.onFailure { (err) in
+            
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            print("Getting affiliatedUsers  failed: \(err.jsonDict)")
+            completion(nil, etxError)
+        }
+        
+        req.onSuccess { (obj) in
+            
+            let affiliatedUsers: [ETXAffiliatedUser] = (obj.content as! [ETXAffiliatedUser])
+            
+            var users: [ETXUser] = [ETXUser]()
+            
+            
+            for affiliatedUser in affiliatedUsers {
+                let user: ETXUser = ETXUser(user: affiliatedUser)
+                users.append(user)
+                print(affiliatedUser)
+            }
+            
+            
+            
+            completion(users, nil)
         }
     }
     

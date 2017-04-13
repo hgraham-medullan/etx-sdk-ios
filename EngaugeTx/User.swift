@@ -61,6 +61,17 @@ open class ETXUser: ETXModel {
         super.init()
     }
     
+    public init(user: ETXAffiliatedUser) {
+        self.email = ""
+        self.username = ""
+        self.password = ""
+        super.init()
+        self.firstName = user.id
+        self.lastName = user.lastName
+        self.id = user.id
+        
+    }
+    
     
     /**
      Creates a instance of ETXUser
