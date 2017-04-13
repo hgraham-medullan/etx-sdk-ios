@@ -16,7 +16,6 @@ public class ETXAffiliatedUser : ETXModel {
     var lastName: String?
     var myRole: ETXRole?
     var role: ETXRole?
-    var result: Any?
     
     public override init() {
         super.init()
@@ -32,7 +31,5 @@ public class ETXAffiliatedUser : ETXModel {
         lastName <- map["lastName"]
         myRole <- map["myRole"]
         role <- map["role"]
-        
-        result <- map["result"]
     }
 }
