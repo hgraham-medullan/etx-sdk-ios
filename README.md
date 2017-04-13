@@ -212,3 +212,16 @@ ETXTrendService.getTrend(trendTimeframe: .TwoWeeks, forClasses: [MyCustomIndoorA
 let stepsTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(ETXSteps.self)!
 ...
 ```
+
+### Affiliation
+
+As a Caregiver get a list of all my Patients
+
+```
+let service = ETXAffiliationService()
+service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
+    (patients, err) in
+    // err is nil when successful
+    // patients -> [ETXUser]
+}
+```

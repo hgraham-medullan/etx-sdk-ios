@@ -17,6 +17,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     
     private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
+    private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
     
     var users: Resource { return resource(URL_USERS) }
     
@@ -25,6 +26,11 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.configureTransformer(URL_USER_LOGIN) {
             Mapper<ETXAccessToken>().map(JSON: $0.content)
         }
+        
+        self.configureTransformer(URL_USER_AFFILIATED_USERS) {
+            Mapper<ETXResponse>().map(JSON: $0.content)
+        }
+        
     }
     
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
@@ -42,12 +48,40 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
         
         req.onSuccess { (obj) in
-            
             let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
             self.saveCurrentUser(accessToken)
             
             completion(Mapper<T>().map(JSON: (accessToken.user?.rawJson)!), nil)
         }
+    }
+    
+    public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ( [ETXUser]?, ETXError?)->Void) {
+        let id = getCurrentUserId() ?? ""
+        if(id.isEmpty){
+            completion(nil, ETXError(message: "A logged in user is required"))
+        } else {
+            let req = self.users.child(id).child("/affiliatedUsers").request(.get)
+            
+            req.onFailure { (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                print("Getting affiliatedUsers  failed: \(err.jsonDict)")
+                completion(nil, etxError)
+            }
+            
+            req.onSuccess { (obj) in
+                let res: ETXResponse = (obj.content as! ETXResponse)
+                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])!
+                var users: [ETXUser] = [ETXUser]()
+                for affiliatedUser in affiliatedUsers {
+                    if(affiliatedUser.role == withRole) {
+                        let user: ETXUser = ETXUser(user: affiliatedUser)
+                        users.append(user)
+                    }
+                }
+                completion(users, nil)
+            }
+        }
+        
     }
     
     func saveCurrentUser(_ accessToken: ETXAccessToken?) {
