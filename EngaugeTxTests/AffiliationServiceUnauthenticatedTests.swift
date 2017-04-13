@@ -12,13 +12,12 @@ import XCTest
 import ObjectMapper
 
 
-class AffiliationServiceUnauthenticatedTestCase: ETXTestCase  {
-    override func setUp() {
-        super.setUp()
-    }
+class AffiliationServiceUnauthenticatedTestCase: AuthenticatedTestCase  {
     
-    func testGetAffiliatedUsers() {
-        let getAffiliatedUsersExpectation = expectation(description: "Successful get affiliated users")
+    func testGetAffiliatedUsersWhenNotLoggedIn() {
+        super.tearDown()
+        
+        let getAffiliatedUsersExpectation = expectation(description: "Err when getting affiliated users")
         
         let service = ETXAffiliationService()
         service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
