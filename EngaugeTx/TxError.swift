@@ -44,6 +44,10 @@ public class ETXError: Mappable {
     
     public init() { }
     
+    public init(message: String) {
+        self.message = message
+    }
+    
     public required init?(map: Map) {
         
     }
