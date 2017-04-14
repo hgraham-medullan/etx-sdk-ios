@@ -9,7 +9,7 @@
 import Foundation
 
 
-open class ETXAffiliationService<T: ETXUser> {
+public class ETXAffiliationService<T: ETXUser> {
     let userRepository: UserRepository<T>
     
     /**
@@ -26,7 +26,7 @@ open class ETXAffiliationService<T: ETXUser> {
      * @param forMyRole Which role for the current user should be used
      * @param callback  Callback when the request completes
      */
-    func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping (_ object: [ETXUser]?, _ err: ETXError?) -> Void) {
+    public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping (_ object: [ETXUser]?, _ err: ETXError?) -> Void) {
         self.userRepository.getAffiliatedUsers(withRole: withRole, forMyRole: forMyRole, completion: completion);
     }
     

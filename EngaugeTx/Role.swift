@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum ETXRole: String {
+public enum ETXRole: String {
     case patient
     case caregiver
 }
