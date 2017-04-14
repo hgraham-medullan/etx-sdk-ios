@@ -222,6 +222,6 @@ let service = ETXAffiliationService()
 service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
     (patients, err) in
     // err is nil when successful
-    // patients -> [ETXUser]
+    // patients -> [ETXUser] // only firstName, lastName and id are populated
 }
 ```
