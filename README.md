@@ -213,7 +213,7 @@ let stepsTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(
 ...
 ```
 
-### Affiliation
+## Affiliation
 
 As a Caregiver get a list of all my Patients
 
