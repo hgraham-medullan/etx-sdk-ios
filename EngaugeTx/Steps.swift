@@ -29,7 +29,7 @@ open class ETXSteps: ETXMeasurement {
      */
     public var duration: Int?
     
-    override class var trendResultKey: String {
+    override open class var trendResultKey: String {
         return "Steps"
     }
     

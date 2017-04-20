@@ -19,7 +19,7 @@ open class ETXOutdoorHumidity: ETXMeasurement {
      */
     public var level: Float?
     
-    override class var trendResultKey: String {
+    override open class var trendResultKey: String {
         return "OutdoorHumidity"
     }
     

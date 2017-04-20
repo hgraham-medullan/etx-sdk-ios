@@ -14,7 +14,7 @@ import ObjectMapper
  */
 open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
 
-    internal class var trendResultKey: String? {
+    open class var trendResultKey: String? {
         return  nil
     }
     

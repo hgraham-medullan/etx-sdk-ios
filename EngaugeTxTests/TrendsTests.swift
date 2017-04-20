@@ -135,6 +135,14 @@ class TrendServiceTests: AuthenticatedTestCase {
         }
     }
     
+    class GenericObjectWithCustomModelName: ETXGenericDataObject {
+        override class var customModelName: String? {
+            return "Breathing"
+        }
+        override class var trendResultKey: String {
+            return "custom.Breathing"
+        }
+    }
     
     func testGetTrendAggregatedDataForGDO() {
         let testExpectation = expectation(description: "Successful getTrend")
@@ -146,22 +154,21 @@ class TrendServiceTests: AuthenticatedTestCase {
             trendField: valueFieldPropertyName,
             trend: aggregrationToApply
         )
-        ETXTrendService.getTrend(trendTimeframe: ETXTrendTimeframe.TwoWeeks, classes: [ETXIndoorAirQuality.self], gdoConfig: gdoConfigForTrends) {
+        ETXTrendService.getTrend(trendTimeframe: ETXTrendTimeframe.TwoWeeks, classes: [GenericObjectWithCustomModelName.self], gdoConfig: gdoConfigForTrends) {
             (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
             XCTAssertNil(err, "Should not result in an error: \(err?.message)")
             XCTAssertNotNil(trendResultSet, "The trend request should return results")
             
-            let indoorAirQualityTrendResult: ETXClassTrendResultSet? = trendResultSet?.getClassSummary(ETXIndoorAirQuality.self)
-            XCTAssertNotNil(indoorAirQualityTrendResult, "Indoor air quality should be a part of the trend result set")
+            let trendResultSet: ETXClassTrendResultSet? = trendResultSet?.getClassSummary(GenericObjectWithCustomModelName.self)
+            XCTAssertNotNil(trendResultSet, "Indoor air quality should be a part of the trend result set")
             
-            if let indoorAirQualityTrendResult = indoorAirQualityTrendResult {
-                XCTAssertFalse((indoorAirQualityTrendResult.values?.isEmpty)!)
-                indoorAirQualityTrendResult.values?.forEach({
+            if let trendResult = trendResultSet {
+                XCTAssertFalse((trendResult.values?.isEmpty)!)
+                trendResult.values?.forEach({
                     (aggregatedData: ETXAggregatable) in
-                    print("Average indoor air quality for \(aggregatedData.date) is \(aggregatedData.value)")
+                    print("Data for GDO: \(aggregatedData.date) is \(aggregatedData.value)")
                 })
-                //                indoorAirQualityTrendResult.timeframe?.average
-                XCTAssertNotNil(indoorAirQualityTrendResult.timeframe, "Should have a timeframe attribute")
+                XCTAssertNotNil(trendResult.timeframe, "Should have a timeframe attribute")
             }
             testExpectation.fulfill()
             

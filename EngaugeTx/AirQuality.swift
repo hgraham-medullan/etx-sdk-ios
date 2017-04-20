@@ -24,7 +24,7 @@ open class ETXAirQuality: ETXMeasurement {
     public var coUnit: String?
     public var location: ETXCoords?
     
-    override class var trendResultKey: String {
+    override open class var trendResultKey: String {
         return "AirQuality"
     }
     

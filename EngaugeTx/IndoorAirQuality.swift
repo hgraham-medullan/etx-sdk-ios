@@ -24,7 +24,7 @@ open class ETXIndoorAirQuality: ETXAirQuality {
     public var humidity: Double?
     public var humidityUnit: String?
     
-    override class var trendResultKey: String {
+    override open class var trendResultKey: String {
         return "IndoorAirQuality"
     }
     override class var modelResourcePath: String {

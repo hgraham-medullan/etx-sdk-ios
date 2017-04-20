@@ -45,7 +45,7 @@ open class ETXSpirometry: ETXMeasurement {
     public var fef2575Unit: String?
     public var fvcUnit: String?
     
-    override class var trendResultKey: String {
+    override open class var trendResultKey: String {
         return "Spirometry"
     }
     override class var modelResourcePath: String {

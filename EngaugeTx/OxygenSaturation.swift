@@ -15,7 +15,7 @@ open class ETXOxygenSaturation: ETXMeasurement {
     public var spo2Unit: String?
     public var bpm: Int?
     
-    override class var trendResultKey: String {
+    override open class var trendResultKey: String {
         return "OxygenSaturation"
     }
     
