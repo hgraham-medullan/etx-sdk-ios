@@ -1,22 +1,27 @@
 //
-//  TxResponse.swift
+//  Coords.swift
 //  EngaugeTx
 //
-//  Created by Layton Whiteley on 4/13/17.
+//  Created by Layton Whiteley on 4/20/17.
 //  Copyright © 2017 Medullan Platform Solutions. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-
-public class ETXResponse : ETXModel {
+open class ETXCoords: ETXMappable {
     
-    var result: Any?
-    var meta: ETXResponseMeta?
+    public var lat: Float?
+    public var lon: Float?
     
     public override init() {
         super.init()
+    }
+    
+    public init(lat: Float, lon: Float) {
+        super.init()
+        self.lat = lat
+        self.lon = lon
     }
     
     required public init?(map: Map) {
@@ -25,7 +30,8 @@ public class ETXResponse : ETXModel {
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
-        result <- map["result"]
-        meta <- map["meta"]
+        lat <- map["lat"]
+        lon <- map["lon"]
     }
+    
 }

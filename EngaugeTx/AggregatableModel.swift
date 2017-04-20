@@ -12,9 +12,13 @@ import ObjectMapper
 /**
  Represents an aggregated data set
  */
-open class ETXAggregatableModel: ETXModel, ETXAggregatable {
+open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
 
     internal class var trendResultKey: String? {
+        return  nil
+    }
+    
+    internal class var modelResourcePath: String? {
         return  nil
     }
     
@@ -32,17 +36,20 @@ open class ETXAggregatableModel: ETXModel, ETXAggregatable {
      The number of records aggregated
     */
     public var count: Int?
+    public var _nodata: Bool?
     
     override open func mapping(map: Map) {
         super.mapping(map: map)
         value <- map["value"]
         count <- map["count"]
+        _nodata <- map["_nodata"]
         date <- (map["date"], ETXDateOnlyTransform())
     }
 }
 
 protocol ETXAggregatable {
     static var trendResultKey: String? { get }
+    static var modelResourcePath: String? { get }
     var value: Double? {get set}
     var date: Date? {get set}
     var count: Int? {get set}
@@ -56,5 +63,16 @@ extension ETXAggregatable where Self: ETXAggregatableModel {
         }
         
         return _trendResultKey
+    }
+}
+
+extension ETXAggregatable where Self: ETXAggregatableModel {
+    internal static var resourcePath: String {
+        var _modelResourcePath: String = String(describing: self)
+        if self.modelResourcePath != nil {
+            _modelResourcePath = self.modelResourcePath!
+        }
+        
+        return _modelResourcePath
     }
 }

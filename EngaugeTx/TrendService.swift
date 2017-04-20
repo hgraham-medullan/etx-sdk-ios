@@ -22,9 +22,16 @@ public class ETXTrendService {
      - parameter trendResultSet: A collection of trends for the specified classes
      - parameter err: The error, when an error occurs during the request
      */
-    public class func getTrend(startDate: Date, endDate: Date, forClasses classes: [ETXAggregatableModel.Type], completion: (_ trendResultSet: ETXTrendResultSet, _ err: ETXError)->Void) {
+    public class func getTrend(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
         
+        ETXTrendService.getAggregatedData(timeframe: ETXTimeframe(startDate: startDate, endDate: endDate),  classes: classes, gdoConfig: nil, completion: completion)
     }
+    
+    public class func getTrend(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration, completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
+        
+        ETXTrendService.getAggregatedData(timeframe: ETXTimeframe(startDate: startDate, endDate: endDate),  classes: classes, gdoConfig: gdoConfig, completion: completion)
+    }
+    
     
     /**
      Get trends data for a list of classes over a timeframe leading up to the current date
@@ -34,9 +41,14 @@ public class ETXTrendService {
      - parameter trendResultSet: A collection of trends for the specified classes
      - parameter err: The error, when an error occurs during the request
      */
-    public class func getTrend(trendTimeframe: ETXTrendTimeframe, forClasses classes: [ETXAggregatableModel.Type], completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
+    public class func getTrend(trendTimeframe: ETXTrendTimeframe, classes: [ETXAggregatableModel.Type], completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
         
-        ETXTrendService.getAggregatedData(timeframe: ETXTimeframe(trendTimeframe: trendTimeframe),  forClasses: classes, completion: completion)
+        ETXTrendService.getAggregatedData(timeframe: ETXTimeframe(trendTimeframe: trendTimeframe),  classes: classes, gdoConfig: nil, completion: completion)
+    }
+    
+    public class func getTrend(trendTimeframe: ETXTrendTimeframe, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration, completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
+        
+        ETXTrendService.getAggregatedData(timeframe: ETXTimeframe(trendTimeframe: trendTimeframe),  classes: classes, gdoConfig: gdoConfig, completion: completion)
     }
     
     /**
@@ -48,18 +60,23 @@ public class ETXTrendService {
      - parameter trendResultSet: A collection of trends for the specified classes
      - parameter err: The error, when an error occurs during the request
      */
-    public class func getTrend(trendTimeframe: ETXTrendTimeframe, leadingUpTo: Date, forClasses classes: [ETXAggregatableModel.Type], completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
+    public class func getTrend(trendTimeframe: ETXTrendTimeframe, leadingUpTo: Date, classes: [ETXAggregatableModel.Type], completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
         
         let timeframe = ETXTimeframe(trendTimeframe: trendTimeframe, leadingUpTo: leadingUpTo)
-        ETXTrendService.getAggregatedData(timeframe: timeframe,
-                                       forClasses: classes, completion: completion
+        ETXTrendService.getAggregatedData(timeframe: timeframe, classes: classes, gdoConfig: nil, completion: completion
+        )
+    }
+    public class func getTrend(trendTimeframe: ETXTrendTimeframe, leadingUpTo: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration, completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
+        
+        let timeframe = ETXTimeframe(trendTimeframe: trendTimeframe, leadingUpTo: leadingUpTo)
+        ETXTrendService.getAggregatedData(timeframe: timeframe, classes: classes, gdoConfig: gdoConfig, completion: completion
         )
     }
     
-    private class func getAggregatedData(timeframe: ETXTimeframe, forClasses classes: [ETXAggregatableModel.Type], completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
+    private class func getAggregatedData(timeframe: ETXTimeframe, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
         
         let trendRepo = TrendRepository()
-        trendRepo.getTrends(startDate: timeframe.startDate!, endDate: timeframe.endDate!, classes: classes, completion: completion)
+        trendRepo.getTrends(startDate: timeframe.startDate!, endDate: timeframe.endDate!, classes: classes, gdoConfig: gdoConfig, completion: completion)
     }
     
 }

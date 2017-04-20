@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents the trend for a single Model/Class
  */
-public class ETXClassTrendResultSet: Mappable {
+public class ETXClassTrendResultSet: ETXModel {
     /**
      Aggregated values for each day over the timeframe
      */
@@ -22,17 +22,22 @@ public class ETXClassTrendResultSet: Mappable {
      Aggregated data about the trend over the timeframe
      */
     public var timeframe: ETXTimeframe?
+    public var className: String?
+    public var meta: ETXTrendMeta?
     
     /**
      Create an instance from a Map
      - parameter map: The Map object
      */
     required public init?(map: Map) {
-        //self.rawJson = map.JSON
+        super.init(map: map)
     }
     
-    public func mapping(map: Map) {
+    public override func mapping(map: Map) {
+        super.mapping(map: map)
         values <- map["values"]
         timeframe <- map["timeframe"]
+        className <- map["class"]
+        meta <- map["meta"]
     }
 }

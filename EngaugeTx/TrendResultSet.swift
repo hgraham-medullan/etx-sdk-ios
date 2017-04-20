@@ -31,4 +31,8 @@ public class ETXTrendResultSet {
         let key: String = classType.resultKey
         return self.classTrends[key]
     }
+    
+    public func getClassSummary(_ classType: ETXAggregatableModel.Type) -> ETXClassTrendResultSet? {
+        return getTrendForClass(classType)
+    }
 }

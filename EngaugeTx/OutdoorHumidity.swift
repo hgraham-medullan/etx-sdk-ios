@@ -12,12 +12,20 @@ import ObjectMapper
 /**
  * Represents a measure of outdoor relative humidity
  */
-open class ETXOutdoorHumidity: ETXAggregatableModel {
+open class ETXOutdoorHumidity: ETXMeasurement {
     
     /**
      * The percentage of water vapor the air is holding
      */
     public var level: Float?
+    
+    override class var trendResultKey: String {
+        return "OutdoorHumidity"
+    }
+    
+    override class var modelResourcePath: String {
+        return "/OutdoorHumidity"
+    }
 
     override open func mapping(map: Map) {
         super.mapping(map: map)

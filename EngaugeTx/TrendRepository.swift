@@ -11,8 +11,6 @@ import Siesta
 import ObjectMapper
 class TrendRepository: Repository<ETXModel> {
     
-    let SAMPLE_JSON: String = "{\"results\":[{\"indoorAirQuality\":{\"values\":[{\"value\":1,\"count\":1,\"date\":\"2017-03-10\"},{\"value\":4,\"count\":2,\"date\":\"2017-03-09\"},{\"value\":1.5,\"count\":2,\"date\":\"2017-03-08\"}],\"timeframe\":{\"count\":5,\"sum\":12,\"avg\":2.4,\"lastValue\":1,\"lastDate\":\"2017-03-10T19:25:16.042Z\"},\"meta\":{\"groupBy\":\"dateLogged\",\"field\":\"fev1\",\"agg\":\"sum\"}}},{\"steps\":{\"values\":[{\"value\":9834,\"date\":\"2017-02-28\"}],\"...\":\"...\"}},{\"spirometry\":{\"values\":[{\"value\":0.6,\"date\":\"2017-02-28\"}],\"timeframe\":{\"startDate\":\"2017-02-01T00:00:00.00Z\",\"endDate\":\"2017-02-28T23:59:59.999Z\",\"average\":0.6,\"sum\":0.6,\"count\":1,\"lastValue\":0.6,\"lastDate\":\"2017-02-28T14:09:05.00Z\"}}}],\"meta\":{}}"
-    
     private let TRENDS_URL = "/trends"
     
     private var keyToTypeMapping: [String: ETXAggregatableModel.Type]
@@ -26,9 +24,15 @@ class TrendRepository: Repository<ETXModel> {
         self.keyToTypeMapping[ETXOutdoorAirQuality.resultKey] = ETXOutdoorAirQuality.self
         self.keyToTypeMapping[ETXSpirometry.resultKey] = ETXSpirometry.self
         self.keyToTypeMapping[ETXOutdoorHumidity.resultKey] = ETXOutdoorHumidity.self
+        self.keyToTypeMapping[ETXOxygenSaturation.resultKey] = ETXOxygenSaturation.self
+        
+        self.configureTransformer(TRENDS_URL) {
+            Mapper<ETXResponse>().map(JSON: $0.content)
+        }
+
     }
     
-    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
+    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
         var classesAsString: String = ""
         classes.forEach {
             (t) in
@@ -38,38 +42,40 @@ class TrendRepository: Repository<ETXModel> {
             classesAsString.append(t.resultKey)
         }
         
-        let trendsResource = self.etxResource
-            .withParam("classes", classesAsString)
+        var trendsResource = self.etxResource
+            .withParam("class", classesAsString)
             .withParam("startDate", startDate.toTxDateFormat())
             .withParam("endDate", endDate.toTxDateFormat())
-            .withParam("timezoneOffset", "\(DateService.getCurrentTimeZoneOffset())")
+            .withParam("timezone", DateService.getCurrentTimeZoneName())
         
-        //        let req = trendsResource.request(.get)
-        
-        //        req.onFailure { (err) in
-        //            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-        //            completion(nil, etxError)
-        //        }
-        
-        //        req.onSuccess { (obj) in
-        let m: ETXModel? = Mapper<ETXModel>().map(JSONString: self.SAMPLE_JSON)
-        
-        let trendResultSet: ETXTrendResultSet = ETXTrendResultSet()
-        
-        let results: [[String:Any]]? = m?.rawJson?["results"] as! [[String : Any]]?
-        if let results = results {
-            results.forEach({
-                (classTrendData: [String:Any]) in
-                for(className, trendData ) in classTrendData {
-                    let classTrendResultSet = Mapper<ETXClassTrendResultSet>().map(JSON: trendData as! [String : Any])
-                    
-                    if classTrendResultSet != nil {
-                        trendResultSet.classTrends[className] = classTrendResultSet
-                    }
-                }
-            })
+        if gdoConfig != nil {
+            trendsResource = trendsResource
+                .withParam("dateField", gdoConfig?.dateField)
+                .withParam("trendField", gdoConfig?.trendField)
+                .withParam("trend", gdoConfig?.trend?.rawValue)
         }
-        completion(trendResultSet, nil)
-        //        }
+        
+        
+        let req = trendsResource.request(.get)
+        
+                req.onFailure { (err) in
+                    let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                    completion(nil, etxError)
+                }
+        
+                req.onSuccess { (obj) in
+                    
+                    let res: ETXResponse = (obj.content as! ETXResponse)
+                    let results: [ETXClassTrendResultSet] = Mapper<ETXClassTrendResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])!
+                    
+                    let trendResultSet: ETXTrendResultSet = ETXTrendResultSet()
+                    
+                    for result in results {
+                        trendResultSet.classTrends[result.className!] = result
+                    }
+                    
+                    completion(trendResultSet, nil)
+        
+                }
     }
 }

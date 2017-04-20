@@ -33,7 +33,7 @@ public enum ETXTrendTimeframe: Int {
 /**
  Represent aggregated data about the Trend's timeframe
  */
-public class ETXTimeframe: Mappable {
+public class ETXTimeframe: ETXModel {
     
     /**
      The start date of the trend
@@ -71,15 +71,18 @@ public class ETXTimeframe: Mappable {
     public var lastDate: Date?
     
     init(startDate: Date, endDate: Date) {
+        super.init()
         self.startDate = startDate
         self.endDate = endDate
     }
     
     init(trendTimeframe: ETXTrendTimeframe ) {
+        super.init()
         self.setStartDate(trendTimeframe: trendTimeframe, leadingUpTo: Date());
     }
     
     init( trendTimeframe: ETXTrendTimeframe,  leadingUpTo: Date) {
+        super.init()
         self.setStartDate(trendTimeframe: trendTimeframe, leadingUpTo: leadingUpTo);
     }
     
@@ -95,10 +98,11 @@ public class ETXTimeframe: Mappable {
      - parameter map: The Map object
      */
     required public init?(map: Map) {
-        //self.rawJson = map.JSON
+        super.init(map: map)
     }
     
-    public func mapping(map: Map) {
+    public override func mapping(map: Map) {
+        super.mapping(map: map)
         startDate <- map["startDate"]
         endDate  <- map["endDate"]
         sum <- map["sum"]

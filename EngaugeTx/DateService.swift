@@ -12,6 +12,10 @@ class DateService {
         return Float(TimeZone.current.secondsFromGMT())/(60*60)
     }
     
+    static func getCurrentTimeZoneName() -> String {
+        return TimeZone.current.identifier
+    }
+    
     static func subtractTimeframe(timeframe: ETXTrendTimeframe, date: Date) -> Date {
         var dateComponent = DateComponents()
 

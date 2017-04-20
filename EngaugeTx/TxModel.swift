@@ -7,36 +7,33 @@
 //
 
 import Foundation
-import Siesta
 import ObjectMapper
 
 /// Represents a data object stored on the EngaugeTx Platform
-open class ETXModel: Mappable {
+open class ETXModel: ETXMappable {
     
     /**
      The model's ID
     */
     public var id: String? = nil
     
-    var rawJson: [String:Any]?
-    
-    public init() {
-        
+    public override init() {
+        super.init()
     }
-
+    
     /**
      Create an instance from a Map
      - parameter map: The Map object
      */
     required public init?(map: Map) {
-        self.rawJson = map.JSON
+        super.init(map: map)
     }
     
     /**
      This function is where all variable mappings should occur. It is executed
      by Mapper during the mapping (serialization and deserialization) process.
      */
-    open func mapping(map: Map) {
+    open override func mapping(map: Map) {
         id <- map["id"]
     }
 }

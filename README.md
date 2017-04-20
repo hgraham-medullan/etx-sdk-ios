@@ -12,7 +12,7 @@ source 'https://github.com/medullan/engauge-tx-pod-specs.git'
 
 target 'EnguageTxSampleIosApp' do
   use_frameworks!
-  pod 'EngaugeTx', '~> 0.0.18'
+  pod 'EngaugeTx', '~> 0.0.19'
 end
 ```
 
@@ -217,11 +217,58 @@ let stepsTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(
 
 As a Caregiver get a list of all my Patients
 
-```
+```swift
 let service = ETXAffiliationService()
 service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
     (patients, err) in
     // err is nil when successful
     // patients -> [ETXUser] // only firstName, lastName and id are populated
 }
+```
+## Data Trends
+
+Aggregated data can be fetched using the ETXTrendService class
+
+### Getting aggregated data over a timeframe of two weeks
+The following will get aggregated date for IndoorAirQuality and Steps over a two week period leading up to the current day
+
+```swift
+let classes = [ETXIndoorAirQuality.self, ETXSteps.self] as [Any]
+ETXTrendService.getTrend(startDate: startDate, endDate: endDate, classes: classes) {
+            (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
+            // handle err
+            
+            // else use data
+            let indoorAirQualityTrendResult: ETXClassTrendResultSet? = trendResultSet?.getClassSummary(ETXIndoorAirQuality.self)
+            
+            if let indoorAirQualityTrendResult = indoorAirQualityTrendResult {
+                indoorAirQualityTrendResult.values?.forEach({
+                    (aggregatedData: ETXAggregatable) in
+                    print("Average indoor air quality for \(aggregatedData.date) is \(aggregatedData.value)")
+                })
+            }
+            
+        }
+```
+
+### Getting Trends Data For GenericDataObjects
+
+In order to apply trends to Generics Data Objects, the platform will need to know the field that contains the `value` to be aggregated on, the field that holds `date` to fit within the timeframe and the `aggregation` type to be applied.
+
+**The configuration will be applied to all Generic Data Objects in the list of classes.**
+
+```swift
+let dateFieldPropertyName = "date";
+let valueFieldPropertyName = "value";
+let aggregrationToApply = ETXTrendAggregation.avg
+let gdoConfigForTrends: ETXGenericDataObjectConfiguration = ETXGenericDataObjectConfiguration(
+    dateField: dateFieldPropertyName,
+    trendField: valueFieldPropertyName,
+    trend: aggregrationToApply
+)
+
+ETXTrendService.getTrend(trendTimeframe: ETXTrendTimeframe.TwoWeeks, classes: [ETXIndoorAirQuality.self], gdoConfig: gdoConfigForTrends) {
+  (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
+  ...
+};
 ```

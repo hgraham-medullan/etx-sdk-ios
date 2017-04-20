@@ -15,7 +15,7 @@ class TrendRepositoryTests: XCTestCase {
     
     func xtestRep() {
         let trendRepo = TrendRepository()
-        trendRepo.getTrends(startDate: Date(), endDate: Date(), classes: [ETXSteps.self]) {
+        trendRepo.getTrends(startDate: Date(), endDate: Date(), classes: [ETXSteps.self], gdoConfig: nil) {
             (_, _) in
         }
         XCTAssertEqual("", trendRepo.etxResource.url.absoluteString)

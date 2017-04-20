@@ -12,9 +12,6 @@ import ObjectMapper
 
 class UserRepository<T: ETXUser>: Repository<T> {
     
-    private let KEY_DEFAULTS_USER_ID: String = "userId"
-    private let KEY_DEFAULTS_CURRENT_USER: String = "currentUser"
-    
     private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
     private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
@@ -89,22 +86,22 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.deleteCurrentUser()
         if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
             let currentUser: [String: String] =
-                [KEY_DEFAULTS_USER_ID: userId,
-                 KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
+                [ETXConstants.KEY_DEFAULTS_USER_ID: userId,
+                 ETXConstants.KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
             self.setAccessToken(accessToken)
-            defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
+            defaults.set(currentUser, forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
         }
         
     }
     
     func getCurrentUserId() -> String? {
         let defaults = UserDefaults.standard
-        return defaults.dictionary(forKey: KEY_DEFAULTS_CURRENT_USER)?[KEY_DEFAULTS_USER_ID] as! String?
+        return defaults.dictionary(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)?[ETXConstants.KEY_DEFAULTS_USER_ID] as! String?
     }
     
     func deleteCurrentUser() {
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: self.KEY_DEFAULTS_CURRENT_USER)
+        defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
         self.deleteAccessToken()
     }
     
