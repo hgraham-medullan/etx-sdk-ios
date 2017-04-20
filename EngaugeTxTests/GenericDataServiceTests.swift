@@ -73,16 +73,25 @@ class GenericDataServiceTests: ETXTestCase {
         override class var customModelName: String? {
             return "CustomModel"
         }
+        override class var trendResultKey: String {
+            return "custom.CustomModel"
+        }
     }
     
     func testGenericObjectWithCustomModelName() {
         let expectedClassName = "CustomModel"
+        
         
         XCTAssertEqual(expectedClassName, GenericObjectWithCustomModelName.modelName, "Should able to retrieve the corect model name statically")
         
         let genericObjectWithCustomModelName = GenericObjectWithCustomModelName()
         XCTAssertNotNil(genericObjectWithCustomModelName.dataSvc)
         XCTAssertEqual(expectedClassName, genericObjectWithCustomModelName.getModelName())
+    }
+    
+    func testGenericObjectWithTrendkeyName() {
+        let expectedResultKey = "custom.CustomModel"
+        XCTAssertEqual(expectedResultKey, GenericObjectWithCustomModelName.resultKey)
     }
     
     func testGenericDataObjectCreation() {
