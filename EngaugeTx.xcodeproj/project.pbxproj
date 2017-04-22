@@ -91,6 +91,23 @@
 		18B99DEC1EA867F400D81212 /* TxResponseMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DEB1EA867F400D81212 /* TxResponseMeta.swift */; };
 		18B99DEF1EA8E3C400D81212 /* InternalServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DEE1EA8E3C400D81212 /* InternalServices.swift */; };
 		18B99DF11EA8E76C00D81212 /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DF01EA8E76B00D81212 /* Coords.swift */; };
+		18D0DFD51EAAEFCD00856F2D /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */; };
+		18D0DFD81EAAF1DB00856F2D /* StringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */; };
+		18D0DFDA1EAAF4D000856F2D /* Administration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFD91EAAF4D000856F2D /* Administration.swift */; };
+		18D0DFDC1EAAF84200856F2D /* PrescriptionDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFDB1EAAF84200856F2D /* PrescriptionDosage.swift */; };
+		18D0DFDE1EAAF97E00856F2D /* Dose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFDD1EAAF97E00856F2D /* Dose.swift */; };
+		18D0DFE01EAAF9E700856F2D /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFDF1EAAF9E700856F2D /* Timing.swift */; };
+		18D0DFE21EAAFAD500856F2D /* DosageFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFE11EAAFAD500856F2D /* DosageFrequency.swift */; };
+		18D0DFE41EAAFB4500856F2D /* Usage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFE31EAAFB4500856F2D /* Usage.swift */; };
+		18D0DFE61EAAFC1100856F2D /* EffectivePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFE51EAAFC1100856F2D /* EffectivePeriod.swift */; };
+		18D0DFE81EAAFD5B00856F2D /* Prescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFE71EAAFD5B00856F2D /* Prescription.swift */; };
+		18D0DFEA1EAAFE8E00856F2D /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFE91EAAFE8E00856F2D /* Medication.swift */; };
+		18D0DFEE1EAB009C00856F2D /* AdherenceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFED1EAB009C00856F2D /* AdherenceValue.swift */; };
+		18D0DFF01EAB015600856F2D /* AdherenceTimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFEF1EAB015600856F2D /* AdherenceTimeFrame.swift */; };
+		18D0DFF21EAB02DF00856F2D /* DataForPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF11EAB02DF00856F2D /* DataForPeriod.swift */; };
+		18D0DFF41EAB039D00856F2D /* AdherenceResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF31EAB039D00856F2D /* AdherenceResultSet.swift */; };
+		18D0DFF61EAB05B100856F2D /* AdherenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */; };
+		18D0DFF81EAB097200856F2D /* AdherenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF71EAB097200856F2D /* AdherenceService.swift */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +208,23 @@
 		18B99DEB1EA867F400D81212 /* TxResponseMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxResponseMeta.swift; sourceTree = "<group>"; };
 		18B99DEE1EA8E3C400D81212 /* InternalServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalServices.swift; sourceTree = "<group>"; };
 		18B99DF01EA8E76B00D81212 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
+		18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilsTests.swift; sourceTree = "<group>"; };
+		18D0DFD91EAAF4D000856F2D /* Administration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Administration.swift; sourceTree = "<group>"; };
+		18D0DFDB1EAAF84200856F2D /* PrescriptionDosage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionDosage.swift; sourceTree = "<group>"; };
+		18D0DFDD1EAAF97E00856F2D /* Dose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dose.swift; sourceTree = "<group>"; };
+		18D0DFDF1EAAF9E700856F2D /* Timing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
+		18D0DFE11EAAFAD500856F2D /* DosageFrequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DosageFrequency.swift; sourceTree = "<group>"; };
+		18D0DFE31EAAFB4500856F2D /* Usage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Usage.swift; sourceTree = "<group>"; };
+		18D0DFE51EAAFC1100856F2D /* EffectivePeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectivePeriod.swift; sourceTree = "<group>"; };
+		18D0DFE71EAAFD5B00856F2D /* Prescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prescription.swift; sourceTree = "<group>"; };
+		18D0DFE91EAAFE8E00856F2D /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		18D0DFED1EAB009C00856F2D /* AdherenceValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceValue.swift; sourceTree = "<group>"; };
+		18D0DFEF1EAB015600856F2D /* AdherenceTimeFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceTimeFrame.swift; sourceTree = "<group>"; };
+		18D0DFF11EAB02DF00856F2D /* DataForPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataForPeriod.swift; sourceTree = "<group>"; };
+		18D0DFF31EAB039D00856F2D /* AdherenceResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceResultSet.swift; sourceTree = "<group>"; };
+		18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceRepository.swift; sourceTree = "<group>"; };
+		18D0DFF71EAB097200856F2D /* AdherenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceService.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
@@ -318,12 +352,13 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				18B99DE11EA82E0200D81212 /* DataTypes */,
 				18B99DED1EA8E3AE00D81212 /* Services */,
 				18B99DE81EA8644200D81212 /* Repositories */,
-				18B99DE11EA82E0200D81212 /* DataTypes */,
 				1813AE661E9F228400A08F22 /* Affiliation */,
 				085184CB1E74288300BFD227 /* Trends */,
 				089E0FA71E733F24009154DE /* Measurements */,
+				18D0DFD21EAAEC0D00856F2D /* Medications */,
 				08EFD9401E45F7DF005F0B50 /* PushNotifications */,
 				084A24411E267CD5003BBCAB /* DataFilter */,
 				084A244D1E27054B003BBCAB /* CustomFunction */,
@@ -343,6 +378,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				18D0DFD61EAAF1B600856F2D /* Services */,
 				1813AE6D1E9F25CD00A08F22 /* Affiliation */,
 				085184CE1E74297000BFD227 /* Trends */,
 				08EFD9451E46046C005F0B50 /* PushNotification */,
@@ -478,6 +514,45 @@
 			isa = PBXGroup;
 			children = (
 				18B99DEE1EA8E3C400D81212 /* InternalServices.swift */,
+				18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		18D0DFD21EAAEC0D00856F2D /* Medications */ = {
+			isa = PBXGroup;
+			children = (
+				18D0DFD31EAAEF4700856F2D /* Types */,
+				18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */,
+				18D0DFF71EAB097200856F2D /* AdherenceService.swift */,
+			);
+			name = Medications;
+			sourceTree = "<group>";
+		};
+		18D0DFD31EAAEF4700856F2D /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				18D0DFD91EAAF4D000856F2D /* Administration.swift */,
+				18D0DFE71EAAFD5B00856F2D /* Prescription.swift */,
+				18D0DFE91EAAFE8E00856F2D /* Medication.swift */,
+				18D0DFDB1EAAF84200856F2D /* PrescriptionDosage.swift */,
+				18D0DFDD1EAAF97E00856F2D /* Dose.swift */,
+				18D0DFDF1EAAF9E700856F2D /* Timing.swift */,
+				18D0DFE11EAAFAD500856F2D /* DosageFrequency.swift */,
+				18D0DFE31EAAFB4500856F2D /* Usage.swift */,
+				18D0DFE51EAAFC1100856F2D /* EffectivePeriod.swift */,
+				18D0DFF11EAB02DF00856F2D /* DataForPeriod.swift */,
+				18D0DFED1EAB009C00856F2D /* AdherenceValue.swift */,
+				18D0DFEF1EAB015600856F2D /* AdherenceTimeFrame.swift */,
+				18D0DFF31EAB039D00856F2D /* AdherenceResultSet.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		18D0DFD61EAAF1B600856F2D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -704,49 +779,63 @@
 				185691BE1EA7C5A700754AC4 /* GenericDataObjectConfiguration.swift in Sources */,
 				18B99DEF1EA8E3C400D81212 /* InternalServices.swift in Sources */,
 				18B99DE01EA82A1500D81212 /* ETXMappable.swift in Sources */,
+				18D0DFF21EAB02DF00856F2D /* DataForPeriod.swift in Sources */,
 				18B99DDA1EA825AD00D81212 /* Measurement.swift in Sources */,
 				084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */,
 				084A24491E267D8C003BBCAB /* SearchFilter.swift in Sources */,
+				18D0DFEE1EAB009C00856F2D /* AdherenceValue.swift in Sources */,
 				084A24501E270563003BBCAB /* CustomFunction.swift in Sources */,
 				085184E01E75AD1E00BFD227 /* TrendResultSet.swift in Sources */,
+				18D0DFE21EAAFAD500856F2D /* DosageFrequency.swift in Sources */,
 				18B99DE51EA8301700D81212 /* PersistedModel.swift in Sources */,
 				08FE53AD1E01A428008B5D0E /* GenericDataObject.swift in Sources */,
 				083DEEBC1DF21EF000A3CB8D /* UserService.swift in Sources */,
 				089E0FAF1E7343B2009154DE /* IndoorAirQuality.swift in Sources */,
 				18B99DE31EA82F3700D81212 /* ShareableModel.swift in Sources */,
+				18D0DFD51EAAEFCD00856F2D /* StringUtils.swift in Sources */,
 				085184E21E75AD4900BFD227 /* Timeframe.swift in Sources */,
 				083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */,
 				089E0FA91E733F49009154DE /* Steps.swift in Sources */,
 				188548FB1EA68A03007442B5 /* Constants.swift in Sources */,
 				18B99DDE1EA8280400D81212 /* MeasurementDevice.swift in Sources */,
 				18B99DEC1EA867F400D81212 /* TxResponseMeta.swift in Sources */,
+				18D0DFF81EAB097200856F2D /* AdherenceService.swift in Sources */,
+				18D0DFDA1EAAF4D000856F2D /* Administration.swift in Sources */,
 				089E0FAB1E733FAD009154DE /* AggregatableModel.swift in Sources */,
 				085184D21E742E9F00BFD227 /* OutdoorHumidity.swift in Sources */,
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */,
+				18D0DFE41EAAFB4500856F2D /* Usage.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				18B99DD81EA81E3600D81212 /* MeasurementRepository.swift in Sources */,
 				185691BC1EA7BA9600754AC4 /* TrendAggregation.swift in Sources */,
 				081222891DF7025600586B7D /* AuthError.swift in Sources */,
 				083DEEC41DF6033200A3CB8D /* UserCredentials.swift in Sources */,
+				18D0DFE81EAAFD5B00856F2D /* Prescription.swift in Sources */,
 				18B99DDC1EA826AC00D81212 /* MeasurementSource.swift in Sources */,
+				18D0DFDE1EAAF97E00856F2D /* Dose.swift in Sources */,
+				18D0DFDC1EAAF84200856F2D /* PrescriptionDosage.swift in Sources */,
 				085184DA1E74DBC800BFD227 /* DateService.swift in Sources */,
 				084A24431E267CFC003BBCAB /* Condtion.swift in Sources */,
 				185691BA1EA6E43800754AC4 /* OxygenSaturation.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				1813AE6A1E9F22D600A08F22 /* AffiliatedUser.swift in Sources */,
+				18D0DFE01EAAF9E700856F2D /* Timing.swift in Sources */,
 				081222871DF701A700586B7D /* Repository.swift in Sources */,
 				089E0FAD1E734350009154DE /* AirQuality.swift in Sources */,
 				08FE53B21E02FAD1008B5D0E /* GenericDataService.swift in Sources */,
 				08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */,
 				08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */,
 				08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */,
+				18D0DFF41EAB039D00856F2D /* AdherenceResultSet.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				085184DE1E75ACAC00BFD227 /* ClassTrendResultSet.swift in Sources */,
 				18B99DEA1EA8647700D81212 /* ShareableModelRespository.swift in Sources */,
 				08A7C5491E4CCD1900852D62 /* Date.swift in Sources */,
+				18D0DFF01EAB015600856F2D /* AdherenceTimeFrame.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				089E0FB11E7343C0009154DE /* OutdoorAirQuality.swift in Sources */,
+				18D0DFF61EAB05B100856F2D /* AdherenceRepository.swift in Sources */,
 				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,
 				1813AE681E9F229E00A08F22 /* AffiliationService.swift in Sources */,
 				085184CD1E74288F00BFD227 /* TrendService.swift in Sources */,
@@ -754,6 +843,8 @@
 				089E0FB31E734703009154DE /* Spirometry.swift in Sources */,
 				18B99DF11EA8E76C00D81212 /* Coords.swift in Sources */,
 				084A24451E267D2D003BBCAB /* WhereCondition.swift in Sources */,
+				18D0DFE61EAAFC1100856F2D /* EffectivePeriod.swift in Sources */,
+				18D0DFEA1EAAFE8E00856F2D /* Medication.swift in Sources */,
 				085184D61E7441A000BFD227 /* TrendRepository.swift in Sources */,
 				084A244B1E267E2F003BBCAB /* Comparator.swift in Sources */,
 				1813AE6C1E9F230A00A08F22 /* Role.swift in Sources */,
@@ -781,6 +872,7 @@
 				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,
 				08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */,
 				1813AE6F1E9F25E900A08F22 /* AffiliationServiceTests.swift in Sources */,
+				18D0DFD81EAAF1DB00856F2D /* StringUtilsTests.swift in Sources */,
 				08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */,
 				080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */,
 				085184D01E74298C00BFD227 /* TrendsTests.swift in Sources */,

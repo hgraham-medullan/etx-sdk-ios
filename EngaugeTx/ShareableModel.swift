@@ -10,9 +10,12 @@
 import Foundation
 import ObjectMapper
 
-open class ETXShareableModel: ETXPersistedModel {
+open class ETXShareableModel: ETXPersistedModel, ETXShareable {
     
-
+    internal class var modelResourcePath: String? {
+        return  nil
+    }
+    
     
     public override init() {
         super.init()
@@ -26,3 +29,19 @@ open class ETXShareableModel: ETXPersistedModel {
         super.mapping(map: map)
     }
 }
+
+protocol ETXShareable {
+    static var modelResourcePath: String? { get }
+}
+
+extension ETXShareable where Self: ETXShareableModel {
+    internal static var resourcePath: String {
+        var _modelResourcePath: String = String(describing: self)
+        if self.modelResourcePath != nil {
+            _modelResourcePath = self.modelResourcePath!
+        }
+        
+        return _modelResourcePath
+    }
+}
+

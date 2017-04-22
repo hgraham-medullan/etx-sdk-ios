@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Siesta
+//import Siesta
 import ObjectMapper
 class TrendRepository: Repository<ETXModel> {
     

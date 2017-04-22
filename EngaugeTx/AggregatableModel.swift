@@ -18,9 +18,6 @@ open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
         return  nil
     }
     
-    internal class var modelResourcePath: String? {
-        return  nil
-    }
     
     /**
      The aggregated value
