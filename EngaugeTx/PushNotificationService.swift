@@ -11,7 +11,7 @@ class PushNotificationService: ETXDataService<ETXDeviceToken> {
     
     var deviceTokenRepository: Repository<ETXDeviceToken>
     
-    init() {
+    override init() {
         let deviceTokenResourcePath = "/notifications/token"
         self.deviceTokenRepository = Repository<ETXDeviceToken>(resourcePath: deviceTokenResourcePath)
         super.init(repository: deviceTokenRepository)

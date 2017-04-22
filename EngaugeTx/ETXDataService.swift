@@ -21,12 +21,20 @@ protocol PersistenceService {
 /**
  Service that provides CRUD operations on a model
  */
-class ETXDataService<T: ETXModel>: PersistenceService {
+public class ETXDataService<T: ETXModel>: PersistenceService {
     
     var repository: Repository<T>!
     
+    init(){
+        
+    }
+    
     init(repository: Repository<T>) {
         self.repository = repository
+    }
+    
+    init(type: ETXPersistedModel.Type) {
+        self.repository = Repository<T>(resourcePath: type.resourcePath)
     }
     
     /**

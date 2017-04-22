@@ -9,13 +9,17 @@
 import Foundation
 import ObjectMapper
 
-open class ETXPersistedModel: ETXModel {
+open class ETXPersistedModel: ETXModel, ETXPersisted {
     
     public var ownerId: String?
     public var updatedBy: String?
     public var createdAt: Date?
     public var updatedAt: Date?
     public var dateLogged: Date?
+    
+    internal class var modelResourcePath: String? {
+        return  nil
+    }
     
     public override init() {
         super.init()
@@ -32,5 +36,20 @@ open class ETXPersistedModel: ETXModel {
         dateLogged <- (map["date"], ETXDateTransform())
         ownerId <- map["ownerId"]
         updatedBy <- map["updatedBy"]
+    }
+}
+
+protocol ETXPersisted {
+    static var modelResourcePath: String? { get }
+}
+
+extension ETXPersisted where Self: ETXPersistedModel {
+    internal static var resourcePath: String {
+        var _modelResourcePath: String = String(describing: self)
+        if self.modelResourcePath != nil {
+            _modelResourcePath = self.modelResourcePath!
+        }
+        
+        return _modelResourcePath
     }
 }

@@ -8,21 +8,18 @@
 
 import Foundation
 
-public class ETXShareableModelRespository<T: ETXShareableModel>: Repository<T> {
+class ETXShareableModelRespository<T: ETXShareableModel>: Repository<T> {
     
     private let resourceUrl: String
-    private let type: ETXAggregatableModel.Type
+    private let type: ETXShareableModel.Type
     
     private let QUERY_PARAM_SHARED: String = "shared"
     private let QUERY_PARAM_VALUE_SHARED: String = "true"
     
-    init(type: ETXAggregatableModel.Type) {
+    init(type: ETXShareableModel.Type) {
         self.resourceUrl = type.resourcePath
         self.type = type
         super.init(resourcePath: self.resourceUrl)
-//        ETXInternalService.getCurrentUserId()
-        
-        
     }
     
     

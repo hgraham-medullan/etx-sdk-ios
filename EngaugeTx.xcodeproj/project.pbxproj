@@ -108,6 +108,7 @@
 		18D0DFF41EAB039D00856F2D /* AdherenceResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF31EAB039D00856F2D /* AdherenceResultSet.swift */; };
 		18D0DFF61EAB05B100856F2D /* AdherenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */; };
 		18D0DFF81EAB097200856F2D /* AdherenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF71EAB097200856F2D /* AdherenceService.swift */; };
+		18D0DFFE1EAB25E900856F2D /* ShareableModelDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */; };
 		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -225,6 +226,7 @@
 		18D0DFF31EAB039D00856F2D /* AdherenceResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceResultSet.swift; sourceTree = "<group>"; };
 		18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceRepository.swift; sourceTree = "<group>"; };
 		18D0DFF71EAB097200856F2D /* AdherenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceService.swift; sourceTree = "<group>"; };
+		18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareableModelDataService.swift; sourceTree = "<group>"; };
 		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
 		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
@@ -348,8 +350,8 @@
 			isa = PBXGroup;
 			children = (
 				18B99DE11EA82E0200D81212 /* DataTypes */,
-				18B99DED1EA8E3AE00D81212 /* Services */,
 				18B99DE81EA8644200D81212 /* Repositories */,
+				18B99DED1EA8E3AE00D81212 /* Services */,
 				1813AE661E9F228400A08F22 /* Affiliation */,
 				085184CB1E74288300BFD227 /* Trends */,
 				089E0FA71E733F24009154DE /* Measurements */,
@@ -362,7 +364,6 @@
 				08783D1E1DEC927800A08343 /* EngaugeTx.h */,
 				08783D1F1DEC927800A08343 /* Info.plist */,
 				08783D381DECAA3B00A08343 /* EngaugeTx.swift */,
-				08FE53B71E043A21008B5D0E /* ETXDataService.swift */,
 				08A7C5481E4CCD1900852D62 /* Date.swift */,
 				085184D91E74DBC800BFD227 /* DateService.swift */,
 				188548FA1EA68A03007442B5 /* Constants.swift */,
@@ -500,6 +501,8 @@
 			children = (
 				18B99DEE1EA8E3C400D81212 /* InternalServices.swift */,
 				18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */,
+				08FE53B71E043A21008B5D0E /* ETXDataService.swift */,
+				18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				083DEEBA1DF203F900A3CB8D /* User.swift in Sources */,
 				08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */,
 				18D0DFE41EAAFB4500856F2D /* Usage.swift in Sources */,
+				18D0DFFE1EAB25E900856F2D /* ShareableModelDataService.swift in Sources */,
 				08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */,
 				18B99DD81EA81E3600D81212 /* MeasurementRepository.swift in Sources */,
 				185691BC1EA7BA9600754AC4 /* TrendAggregation.swift in Sources */,
