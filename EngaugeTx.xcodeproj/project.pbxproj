@@ -304,14 +304,9 @@
 		085184CB1E74288300BFD227 /* Trends */ = {
 			isa = PBXGroup;
 			children = (
+				18D0DFFA1EAB1BAE00856F2D /* Types */,
 				085184D51E7441A000BFD227 /* TrendRepository.swift */,
 				085184CC1E74288F00BFD227 /* TrendService.swift */,
-				085184DD1E75ACAC00BFD227 /* ClassTrendResultSet.swift */,
-				085184DF1E75AD1E00BFD227 /* TrendResultSet.swift */,
-				085184E11E75AD4900BFD227 /* Timeframe.swift */,
-				185691B71EA6C8D600754AC4 /* TrendMeta.swift */,
-				185691BB1EA7BA9600754AC4 /* TrendAggregation.swift */,
-				185691BD1EA7C5A700754AC4 /* GenericDataObjectConfiguration.swift */,
 			);
 			name = Trends;
 			sourceTree = "<group>";
@@ -385,12 +380,12 @@
 				084A24511E271063003BBCAB /* CustomFunction */,
 				08FE53AE1E01BC1D008B5D0E /* GenericDataObject */,
 				081222811DF6FC3100586B7D /* Auth */,
+				084A244C1E2698D1003BBCAB /* DataFilter */,
 				08783D291DEC927900A08343 /* EngaugeTxTests.swift */,
 				08783D2B1DEC927900A08343 /* Info.plist */,
 				083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */,
 				083DEEB71DF2031E00A3CB8D /* TxModelTests.swift */,
 				08FE53B91E04412B008B5D0E /* ETXTestCase.swift */,
-				084A244C1E2698D1003BBCAB /* DataFilter */,
 				08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */,
 				08A7C54A1E4CCE7800852D62 /* DateTests.swift */,
 				085184DB1E75680A00BFD227 /* DateServiceTests.swift */,
@@ -416,18 +411,8 @@
 		089E0FA71E733F24009154DE /* Measurements */ = {
 			isa = PBXGroup;
 			children = (
-				089E0FA81E733F49009154DE /* Steps.swift */,
-				089E0FAC1E734350009154DE /* AirQuality.swift */,
-				089E0FAE1E7343B2009154DE /* IndoorAirQuality.swift */,
-				089E0FB01E7343C0009154DE /* OutdoorAirQuality.swift */,
-				089E0FB21E734703009154DE /* Spirometry.swift */,
-				085184D11E742E9F00BFD227 /* OutdoorHumidity.swift */,
-				185691B91EA6E43800754AC4 /* OxygenSaturation.swift */,
-				18B99DD91EA825AD00D81212 /* Measurement.swift */,
-				18B99DDB1EA826AC00D81212 /* MeasurementSource.swift */,
-				18B99DDD1EA8280400D81212 /* MeasurementDevice.swift */,
+				18D0DFF91EAB1B8400856F2D /* Types */,
 				18B99DD71EA81E3600D81212 /* MeasurementRepository.swift */,
-				18B99DF01EA8E76B00D81212 /* Coords.swift */,
 			);
 			name = Measurements;
 			sourceTree = "<group>";
@@ -555,6 +540,37 @@
 				18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		18D0DFF91EAB1B8400856F2D /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				089E0FA81E733F49009154DE /* Steps.swift */,
+				089E0FAC1E734350009154DE /* AirQuality.swift */,
+				089E0FAE1E7343B2009154DE /* IndoorAirQuality.swift */,
+				089E0FB01E7343C0009154DE /* OutdoorAirQuality.swift */,
+				089E0FB21E734703009154DE /* Spirometry.swift */,
+				085184D11E742E9F00BFD227 /* OutdoorHumidity.swift */,
+				185691B91EA6E43800754AC4 /* OxygenSaturation.swift */,
+				18B99DD91EA825AD00D81212 /* Measurement.swift */,
+				18B99DDB1EA826AC00D81212 /* MeasurementSource.swift */,
+				18B99DDD1EA8280400D81212 /* MeasurementDevice.swift */,
+				18B99DF01EA8E76B00D81212 /* Coords.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		18D0DFFA1EAB1BAE00856F2D /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				085184DD1E75ACAC00BFD227 /* ClassTrendResultSet.swift */,
+				085184DF1E75AD1E00BFD227 /* TrendResultSet.swift */,
+				085184E11E75AD4900BFD227 /* Timeframe.swift */,
+				185691B71EA6C8D600754AC4 /* TrendMeta.swift */,
+				185691BB1EA7BA9600754AC4 /* TrendAggregation.swift */,
+				185691BD1EA7C5A700754AC4 /* GenericDataObjectConfiguration.swift */,
+			);
+			name = Types;
 			sourceTree = "<group>";
 		};
 		4DBBDE8C41B28DFC338673AD /* Frameworks */ = {
