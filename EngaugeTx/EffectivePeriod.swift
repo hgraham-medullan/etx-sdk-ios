@@ -10,8 +10,8 @@ import Foundation
 import ObjectMapper
 
 open class ETXEffectivePeriod: ETXMappable{
-    public var startDate: Date?
-    public var endDate: Date?
+    public var start: Date?
+    public var end: Date?
     
     public override init() {
         super.init()
@@ -23,7 +23,7 @@ open class ETXEffectivePeriod: ETXMappable{
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
-        endDate <- (map["endDate"], ETXDateTransform())
-        startDate <- (map["startDate"], ETXDateTransform())
+        end <- (map["end"], ETXDateTransform())
+        start <- (map["start"], ETXDateTransform())
     }
 }

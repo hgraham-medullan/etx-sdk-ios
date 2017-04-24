@@ -10,7 +10,6 @@ import Foundation
 import ObjectMapper
 
 open class ETXAdherenceResultSet: ETXMappable{
-    public var medication: ETXMedication?
     public var prescription: ETXPrescription?
     public var periods: [ETXDataForPeriod]?
     public var timeframe: ETXAdherenceTimeFrame?
@@ -25,7 +24,6 @@ open class ETXAdherenceResultSet: ETXMappable{
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
-        medication <- map["medication"]
         prescription <- map["prescription"]
         periods <- map["periods"]
         timeframe <- map["timeframe"]

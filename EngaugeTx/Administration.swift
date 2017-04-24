@@ -17,7 +17,6 @@ open class ETXAdministration: ETXShareableModel{
     public var prescriptionId: String?
 
     public var dosage: ETXPrescriptionDosage?
-    public var medication: ETXMedication?
     public var prescription: ETXPrescription?
     
     public override init() {
@@ -40,7 +39,6 @@ open class ETXAdministration: ETXShareableModel{
         prescriptionId <- map["prescriptionId"]
         patient <- map["patient"]
         dosage <- map["dosage"]
-        medication <- map["medication"]
         prescription <- map["prescription"]
     }
 }
