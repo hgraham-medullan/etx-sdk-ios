@@ -16,6 +16,7 @@ open class ETXPrescription: ETXShareableModel{
     public var route: String?
     public var dosages: [ETXPrescriptionDosage]?
     public var medication: ETXMedication?
+    public var medicationId: String?
     
     public override init() {
         super.init()
@@ -37,5 +38,6 @@ open class ETXPrescription: ETXShareableModel{
         route <- map["route"]
         dosages <- map["dosages"]
         medication <- map["medication"]
+        medicationId <- map["medicationId"]
     }
 }
