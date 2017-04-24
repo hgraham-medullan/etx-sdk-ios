@@ -24,7 +24,7 @@ open class ETXAdministration: ETXShareableModel{
     }
     
     override class var modelResourcePath: String {
-        return "/med/administrations"
+        return "/med/data/administrations"
     }
     
     required public init?(map: Map) {
