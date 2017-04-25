@@ -14,7 +14,7 @@ import XCTest
 class MedAdherenceTests: AuthenticatedTestCase {
     
     func xtestGetAdherenceforUnAffiliatedUser(){
-        let testExpectation = expectation(description: "Successful getTrend")
+        let testExpectation = expectation(description: "Successful testGetAdherenceforUnAffiliatedUser")
     
         ETXAdherenceService.getAdherence(medicationId: "rescue_300", trendTimeframe: ETXTrendTimeframe.TwoWeeks){
             (model, err) in
@@ -30,7 +30,7 @@ class MedAdherenceTests: AuthenticatedTestCase {
     }
     
     func xtestGetAdherenceforAffiliatedUser(){
-        let testExpectation = expectation(description: "Successful getTrend")
+        let testExpectation = expectation(description: "Successful testGetAdherenceforAffiliatedUser")
         let patientUser = ETXUser()
         patientUser.id = "12345"
         
