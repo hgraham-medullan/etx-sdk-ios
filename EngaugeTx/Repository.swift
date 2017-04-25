@@ -167,6 +167,14 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
+    func appendOwnerIdToWhereFilter(filter: ETXSearchFilter, ownerId: String) -> String{
+        if filter.whereCondtions == nil {
+            filter.whereCondtions = [ETXWhereCondition]()
+        }
+        filter.whereCondtions?.append(ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: ownerId))
+        return filter.toJsonString()
+    }
+    
     func setAccessToken(_ accessToken: String?) {
         AccesssTokenCache.accessToken = accessToken
         AccesssTokenCache.tokenCached = true

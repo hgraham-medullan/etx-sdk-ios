@@ -86,6 +86,6 @@ public class ETXAdherenceService {
     public class func getAdherence(medicationId: String, timeframe: ETXTimeframe, forUser: ETXUser?, completion: @escaping ([ETXAdherenceResultSet]?, ETXError?) ->Void) {
         let adherenceRespository =  ETXAdherenceRepository()
         
-        adherenceRespository.getMedicationAdherence(medicationId: medicationId, startDate: timeframe.startDate!, endDate: timeframe.endDate!, completion: completion);
+        adherenceRespository.getMedicationAdherence(medicationId: medicationId, startDate: timeframe.startDate!, endDate: timeframe.endDate!, forUser: forUser, completion: completion);
     }
 }
