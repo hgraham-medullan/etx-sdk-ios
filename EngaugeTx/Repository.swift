@@ -79,18 +79,22 @@ class Repository<T> : Service where T: ETXModel {
         if let _ = model.id {
             self.update(model: model, completion: completion)
         } else {
-            let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
-            req.onFailure({ (err) in
-                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                etxError?.rawJson = err.jsonDict
-                etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
-                completion(nil, etxError)
-            })
-            req.onSuccess({ (m) in
-                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-                completion(model, nil)
-            })
+            self.create(model: model, completion: completion)
         }
+    }
+    
+    func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
+        req.onFailure({ (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            etxError?.rawJson = err.jsonDict
+            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+            completion(nil, etxError)
+        })
+        req.onSuccess({ (m) in
+            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+            completion(model, nil)
+        })
     }
     
     func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
