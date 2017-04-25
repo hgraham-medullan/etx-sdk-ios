@@ -33,6 +33,6 @@ open class ETXDataForPeriod: ETXMappable{
         administrations <- map["administrations"]
         units <- map["units"]
         doses <- map["doses"]
-        date <- (map["date"], ETXDateTransform())
+        date <- (map["date"], ETXDateOnlyTransform())
     }
 }

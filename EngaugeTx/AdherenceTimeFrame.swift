@@ -12,7 +12,8 @@ import ObjectMapper
 open class ETXAdherenceTimeFrame: ETXMappable{
     public var startDate: Date?
     public var endDate: Date?
-
+    public var lastDate: Date?
+    public var strength: [ETXDose]?
     public var periods: Int?
     public var administrations: ETXAdherenceValue?
     public var units: ETXAdherenceValue?
@@ -32,7 +33,9 @@ open class ETXAdherenceTimeFrame: ETXMappable{
         administrations <- map["administrations"]
         units <- map["units"]
         doses <- map["doses"]
-        endDate <- (map["endDate"], ETXDateOnlyTransform())
-        startDate <- (map["startDate"], ETXDateOnlyTransform())
+        strength <- map["strength"]
+        endDate <- (map["endDate"], ETXDateTransform())
+        startDate <- (map["startDate"], ETXDateTransform())
+        lastDate <- (map["lastDate"], ETXDateTransform())
     }
 }

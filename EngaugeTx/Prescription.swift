@@ -14,7 +14,7 @@ open class ETXPrescription: ETXShareableModel{
     public var effectivePeriod: ETXEffectivePeriod?
     public var device: ETXMeasurementDevice?
     public var route: String?
-    public var dosages: [ETXPrescriptionDosage]?
+    public var dosage: [ETXPrescriptionDosage]?
     public var medication: ETXMedication?
     public var medicationId: String?
     
@@ -36,7 +36,7 @@ open class ETXPrescription: ETXShareableModel{
         effectivePeriod <- map["effectivePeriod"]
         device <- map["device"]
         route <- map["route"]
-        dosages <- map["dosages"]
+        dosage <- map["dosage"]
         medication <- map["medication"]
         medicationId <- map["medicationId"]
     }

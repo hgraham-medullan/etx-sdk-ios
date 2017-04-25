@@ -13,6 +13,8 @@ open class ETXAdherenceResultSet: ETXMappable{
     public var prescription: ETXPrescription?
     public var periods: [ETXDataForPeriod]?
     public var timeframe: ETXAdherenceTimeFrame?
+    public var `class`: String?
+    public var meta: ETXAdherenceResultMeta?
     
     public override init() {
         super.init()
@@ -27,5 +29,7 @@ open class ETXAdherenceResultSet: ETXMappable{
         prescription <- map["prescription"]
         periods <- map["periods"]
         timeframe <- map["timeframe"]
+        meta <- map["meta"]
+        `class` <- map["class"]
     }
 }
