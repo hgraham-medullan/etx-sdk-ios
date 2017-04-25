@@ -92,7 +92,6 @@
 		18B99DE51EA8301700D81212 /* PersistedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DE41EA8301700D81212 /* PersistedModel.swift */; };
 		18B99DEA1EA8647700D81212 /* ShareableModelRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DE91EA8647700D81212 /* ShareableModelRespository.swift */; };
 		18B99DEC1EA867F400D81212 /* TxResponseMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DEB1EA867F400D81212 /* TxResponseMeta.swift */; };
-		18B99DEF1EA8E3C400D81212 /* InternalServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DEE1EA8E3C400D81212 /* InternalServices.swift */; };
 		18B99DF11EA8E76C00D81212 /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B99DF01EA8E76B00D81212 /* Coords.swift */; };
 		18D0DFD51EAAEFCD00856F2D /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */; };
 		18D0DFD81EAAF1DB00856F2D /* StringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */; };
@@ -213,7 +212,6 @@
 		18B99DE41EA8301700D81212 /* PersistedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistedModel.swift; sourceTree = "<group>"; };
 		18B99DE91EA8647700D81212 /* ShareableModelRespository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareableModelRespository.swift; sourceTree = "<group>"; };
 		18B99DEB1EA867F400D81212 /* TxResponseMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxResponseMeta.swift; sourceTree = "<group>"; };
-		18B99DEE1EA8E3C400D81212 /* InternalServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalServices.swift; sourceTree = "<group>"; };
 		18B99DF01EA8E76B00D81212 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
 		18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtilsTests.swift; sourceTree = "<group>"; };
@@ -515,7 +513,6 @@
 		18B99DED1EA8E3AE00D81212 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				18B99DEE1EA8E3C400D81212 /* InternalServices.swift */,
 				18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */,
 				08FE53B71E043A21008B5D0E /* ETXDataService.swift */,
 				18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */,
@@ -813,7 +810,6 @@
 			files = (
 				1874859B1E9FE22300B8CEDD /* TxResponse.swift in Sources */,
 				185691BE1EA7C5A700754AC4 /* GenericDataObjectConfiguration.swift in Sources */,
-				18B99DEF1EA8E3C400D81212 /* InternalServices.swift in Sources */,
 				18B99DE01EA82A1500D81212 /* ETXMappable.swift in Sources */,
 				18D0DFF21EAB02DF00856F2D /* DataForPeriod.swift in Sources */,
 				18B99DDA1EA825AD00D81212 /* Measurement.swift in Sources */,
