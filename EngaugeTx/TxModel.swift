@@ -9,6 +9,11 @@
 import Foundation
 import ObjectMapper
 
+public protocol ETXModelable:  Mappable {
+    var id: String? { get set}
+    var rawJson: [String:Any]? { get set}
+}
+
 /// Represents a data object stored on the EngaugeTx Platform
 open class ETXModel: ETXMappable {
     

@@ -11,17 +11,22 @@ import Foundation
 class ETXShareableModelRespository<T: ETXShareableModel>: Repository<T> {
     
     private let resourceUrl: String
-    private let type: ETXShareableModel.Type
+//    private let type: ETXShareableModel.Type?
     
     private let QUERY_PARAM_SHARED: String = "shared"
     private let QUERY_PARAM_VALUE_SHARED: String = "true"
     
-    init(type: ETXShareableModel.Type) {
-        self.resourceUrl = type.resourcePath
-        self.type = type
-        super.init(resourcePath: self.resourceUrl)
-    }
+//    init(type: ETXShareableModel.Type) {
+//        self.resourceUrl = type.resourcePath
+//        self.type = type
+//        super.init(resourcePath: self.resourceUrl)
+//    }
     
+    override init(resourcePath: String) {
+        self.resourceUrl = resourcePath
+        super.init(resourcePath: self.resourceUrl)
+    
+    }
     
     
 }

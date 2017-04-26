@@ -13,20 +13,60 @@ import ObjectMapper
  Represents the measure of household air quality
  **/
 open class ETXIndoorAirQuality: ETXAirQuality {
+    /**
+     Volatile Organic Compound (VOC)
+     */
     public var voc: Int?
+    
+    /**
+     Unit for volatile organic compounds.
+     */
     public var vocUnit: String?
+    
+    /**
+     Particulate Matter (PM10)
+     */
     public var pm10: Double?
+    
+    /**
+     Unit for pm10
+     */
     public var pm10Unit: String?
-    public var co2: Double?
-    public var co2Unit: String?
+    
+    /**
+     Measure of the warmth or coldness of the area.
+     */
     public var temp: Double?
+    
+    /**
+     Unit for temperature.
+     */
     public var tempUnit: String?
-    public var humidity: Double?
+    
+    /**
+     Measure for the amount of water vapor in the air.
+     */
+    public var humidity:Double?
+    
+    /**
+     Unit for humidity.
+     */
     public var humidityUnit: String?
     
+    /**
+     Measure of the levels of Carbon dioxide in the air.
+     */
+    public var co2: Double?
+    
+    /**
+     Unit for Carbon dioxide.
+     */
+    public var co2Unit: String?
+    
     override open class var trendResultKey: String {
-        return "IndoorAirQuality"
+        return "indoorAirQuality"
     }
+    
     override class var modelResourcePath: String {
         return "/IndoorAirQuality"
     }

@@ -12,6 +12,7 @@ import XCTest
 
 class ETXTestCase: XCTestCase {
     var app: EngaugeTxApplication!
+    let TIMEOUT_DEFAULT: TimeInterval = 10
     
     override func setUp() {
         super.setUp()

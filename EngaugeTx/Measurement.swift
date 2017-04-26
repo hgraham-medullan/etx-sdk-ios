@@ -26,5 +26,9 @@ open class ETXMeasurement: ETXAggregatableModel {
         super.mapping(map: map)
         source <- map["source"]
     }
-
+    
+    open override class func getDataSvc<T: ETXMeasurement>() -> ETXDataService<T>? {
+        return nil
+    }
+    
 }

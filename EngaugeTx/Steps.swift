@@ -37,6 +37,12 @@ open class ETXSteps: ETXMeasurement {
         return "/Steps"
     }
     
+    open override class func getDataSvc<ETXSteps>() -> ETXDataService<ETXSteps>? {
+        
+        return ETXDataService<ETXSteps>(repository: Repository<ETXSteps>(resourcePath: "/steps"))
+    }
+    
+    
     override open func mapping(map: Map) {
         super.mapping(map: map)
         steps <- map["steps"]

@@ -12,6 +12,10 @@ import ObjectMapper
 
 open class ETXShareableModel: ETXPersistedModel {
     
+     override class var modelResourcePath: String? {
+        return "/"
+    }
+    
     public override init() {
         super.init()
     }

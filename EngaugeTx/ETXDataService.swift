@@ -33,8 +33,12 @@ public class ETXDataService<T: ETXModel>: PersistenceService {
         self.repository = repository
     }
     
-    init(type: ETXPersistedModel.Type) {
-        self.repository = Repository<T>(resourcePath: type.resourcePath)
+//    init(type: ETXPersistedModel.Type) {
+//        self.repository = Repository<T>(resourcePath: type.resourcePath)
+//    }
+    
+    init(resourcePath: String) {
+        self.repository = Repository<T>(resourcePath: resourcePath)
     }
     
     /**

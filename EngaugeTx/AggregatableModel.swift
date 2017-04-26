@@ -12,8 +12,12 @@ import ObjectMapper
 /**
  Represents an aggregated data set
  */
-open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
-
+open class ETXAggregatableModel: ETXPersistedModel, ETXAggregatable {
+    
+    override class var modelResourcePath: String? {
+        return "/"
+    }
+    
     open class var trendResultKey: String? {
         return  nil
     }
@@ -21,17 +25,17 @@ open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
     
     /**
      The aggregated value
-    */
+     */
     public var value: Double?
     
     /**
      The date for which the value was aggregated
-    */
+     */
     public var date: Date?
     
     /**
      The number of records aggregated
-    */
+     */
     public var count: Int?
     public var _nodata: Bool?
     
@@ -42,11 +46,15 @@ open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
         _nodata <- map["_nodata"]
         date <- (map["date"], ETXDateOnlyTransform())
     }
+    
+    override open class func getDataSvc<ETXAggregatableModel>() -> ETXDataService<ETXAggregatableModel>? {
+        return nil
+    }
 }
 
-protocol ETXAggregatable {
+protocol ETXAggregatable : ETXPersistableModel{
     static var trendResultKey: String? { get }
-    static var modelResourcePath: String? { get }
+    //static var modelResourcePath: String? { get }
     var value: Double? {get set}
     var date: Date? {get set}
     var count: Int? {get set}

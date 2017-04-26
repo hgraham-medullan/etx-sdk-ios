@@ -14,9 +14,4 @@ public class ETXShareableModelDataService<T: ETXShareableModel>: ETXDataService<
         super.init()
         self.repository = repository
     }
-    
-    init(type: ETXShareableModel.Type) {
-        super.init()
-        self.repository = ETXShareableModelRespository<T>(type: type)
-    }
 }
