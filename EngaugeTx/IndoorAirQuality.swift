@@ -64,7 +64,7 @@ open class ETXIndoorAirQuality: ETXAirQuality {
     public var co2Unit: String?
     
     override open class var trendResultKey: String {
-        return "indoorAirQuality"
+        return "IndoorAirQuality"
     }
     
     override class var modelResourcePath: String {

@@ -50,17 +50,18 @@ class MedAdherenceTests: AuthenticatedTestCase {
     }
     
     override func tearDown() {
-        super.tearDown()
         let prescriptionDeletionExpectation = expectation(description: "Deletion of prescription")
         prescription.delete {
             err in
             XCTAssertNil(err, "Prescription deletion should not fail")
             prescriptionDeletionExpectation.fulfill()
+//
         }
         waitForExpectations(timeout: self.TIMEOUT_DEFAULT) {
             (err) in
             print("prescriptionDeletionExpectation expectation timeout \(err)")
         }
+        super.tearDown()
     }
     
     func testGetMedicationAdherence() {

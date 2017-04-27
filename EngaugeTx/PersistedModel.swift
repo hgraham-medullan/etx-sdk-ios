@@ -30,9 +30,9 @@ open class ETXPersistedModel : ETXModel, ETXPersistableModel {
 
 public extension ETXPersistableModel where Self: ETXPersistedModel {
     
-    var dataSvc: ETXDataService<ModelType>? {
-        return nil //ETXDataService<ModelType>()
-    }
+//    var dataSvc: ETXDataService<ModelType>? {
+//        return nil //ETXDataService<ModelType>()
+//    }
     
     /**
      Find a model by it's ID
