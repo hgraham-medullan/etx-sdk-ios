@@ -56,7 +56,7 @@ class Repository<T> : Service where T: ETXModel {
         
         get {
             if _etxResource == nil {
-                _etxResource = resource(resourcePath)
+                _etxResource = resource(resourcePath).addObserver(TxResourceObserver())
             }
             return _etxResource!
         }
@@ -67,6 +67,8 @@ class Repository<T> : Service where T: ETXModel {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
 
+        //self.etxResource.addObserver(TxResourceObserver())
+        
         configure {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey

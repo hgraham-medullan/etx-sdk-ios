@@ -41,6 +41,7 @@
 		085184DE1E75ACAC00BFD227 /* ClassTrendResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184DD1E75ACAC00BFD227 /* ClassTrendResultSet.swift */; };
 		085184E01E75AD1E00BFD227 /* TrendResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184DF1E75AD1E00BFD227 /* TrendResultSet.swift */; };
 		085184E21E75AD4900BFD227 /* Timeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184E11E75AD4900BFD227 /* Timeframe.swift */; };
+		085C69E21EB233DB007F0F38 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085C69E11EB233DB007F0F38 /* ResourceObserver.swift */; };
 		0862A2A01EB0E3A200869160 /* StepsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A29F1EB0E3A200869160 /* StepsTests.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
@@ -161,6 +162,7 @@
 		085184DD1E75ACAC00BFD227 /* ClassTrendResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTrendResultSet.swift; sourceTree = "<group>"; };
 		085184DF1E75AD1E00BFD227 /* TrendResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendResultSet.swift; sourceTree = "<group>"; };
 		085184E11E75AD4900BFD227 /* Timeframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeframe.swift; sourceTree = "<group>"; };
+		085C69E11EB233DB007F0F38 /* ResourceObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceObserver.swift; sourceTree = "<group>"; };
 		0862A29F1EB0E3A200869160 /* StepsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTests.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				18B99DEB1EA867F400D81212 /* TxResponseMeta.swift */,
 				180743E91EAEDF21009D4B06 /* BucketSize.swift */,
 				08F897CB1EAFE4E100F41DC4 /* FirstClassModel.swift */,
+				085C69E11EB233DB007F0F38 /* ResourceObserver.swift */,
 			);
 			name = DataTypes;
 			sourceTree = "<group>";
@@ -884,6 +887,7 @@
 				18D0DFF01EAB015600856F2D /* AdherenceTimeFrame.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				180743EC1EAEE013009D4B06 /* AdherenceResultMeta.swift in Sources */,
+				085C69E21EB233DB007F0F38 /* ResourceObserver.swift in Sources */,
 				089E0FB11E7343C0009154DE /* OutdoorAirQuality.swift in Sources */,
 				18D0DFF61EAB05B100856F2D /* AdherenceRepository.swift in Sources */,
 				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,

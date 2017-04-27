@@ -182,6 +182,8 @@ class GenericDataServiceTests: ETXTestCase {
         
         v.save {
             (err) in
+            XCTAssertNil(err, "Should not error when saving a valid item")
+            XCTAssertNotNil(v.id, "ID property should be populated")
             let vitalId: String = v.id!
             
             saveVitalExpectation.fulfill()
