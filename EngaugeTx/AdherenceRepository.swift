@@ -22,18 +22,25 @@ class ETXAdherenceRepository: Repository<ETXModel> {
         
     }
     
-    func getMedicationAdherence(medicationId: String, startDate: Date, endDate: Date, forUser: ETXUser?, completion: @escaping ([ETXAdherenceResultSet]?, ETXError?) ->Void) {
-        let medicationIds: [String] = [medicationId]
+    func getMedicationAdherence(medicationId: String?, startDate: Date, endDate: Date, forUser: ETXUser?, completion: @escaping ([ETXAdherenceResultSet]?, ETXError?) ->Void) {
+        
+        var  medicationIds: [String]? = nil
+        if let medicationId = medicationId {
+             medicationIds = [medicationId]
+        }
         getMedicationAdherence(medicationIds: medicationIds, startDate: startDate, endDate: endDate, forUser: forUser, completion: completion)
     }
     
-    private func getMedicationAdherence(medicationIds: [String], startDate: Date, endDate: Date, forUser: ETXUser?, completion: @escaping ([ETXAdherenceResultSet]?, ETXError?) ->Void) {
+    private func getMedicationAdherence(medicationIds: [String]?, startDate: Date, endDate: Date, forUser: ETXUser?, completion: @escaping ([ETXAdherenceResultSet]?, ETXError?) ->Void) {
        
         var resource = self.etxResource
-            .withParam("med", ETXStringUtils.join(strings: medicationIds, delimiter: ETXStringUtils.COMMA))
             .withParam("startDate", startDate.toTxDateFormat())
             .withParam("endDate", endDate.toTxDateFormat())
             .withParam("timezone", DateService.getCurrentTimeZoneName())
+        
+        if let medicationIds = medicationIds {
+            resource = resource.withParam("med", ETXStringUtils.join(strings: medicationIds, delimiter: ETXStringUtils.COMMA))
+        }
         
         if forUser != nil && forUser?.id != nil {
             let filterString = self.appendOwnerIdToWhereFilter(filter: ETXSearchFilter(), ownerId: (forUser?.id)!)

@@ -73,4 +73,27 @@ class StepsTests: AuthenticatedTestCase {
             print("\(err)")
         }
     }
+    
+    func testDeletingStepObject() {
+        let deleteExpectation = expectation(description: "Delete step obj")
+        let steps: ETXSteps = ETXSteps()
+        steps.steps = 120
+        steps.date = Date()
+        steps.source = ETXMeasurementSource(type: "the-type", device: ETXMeasurementDevice(deviceId: "the-id"))
+        
+        steps.save {
+            (err: ETXError?) in
+            XCTAssertNil(err, "Saving steps should not result in an error")
+            steps.delete{
+                (err) in
+                XCTAssertNil(err, "Deleting a saved steps object should not result in an eror")
+                deleteExpectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 10) {
+            err in
+            print("\(err)")
+        }
+    }
 }

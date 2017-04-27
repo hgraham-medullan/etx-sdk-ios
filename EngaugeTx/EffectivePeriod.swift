@@ -13,6 +13,12 @@ open class ETXEffectivePeriod: ETXMappable{
     public var start: Date?
     public var end: Date?
     
+    public init(startDate: Date, endDate: Date?) {
+        super.init()
+        self.start = startDate
+        self.end = endDate
+    }
+    
     public override init() {
         super.init()
     }

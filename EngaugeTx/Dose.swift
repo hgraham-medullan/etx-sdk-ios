@@ -13,6 +13,12 @@ open class ETXDose: ETXMappable{
     public var value: Int?
     public var unit: String?
     
+    public init(value: Int, unit: String) {
+        super.init()
+        self.value = value
+        self.unit = unit
+    }
+    
     public override init() {
         super.init()
     }

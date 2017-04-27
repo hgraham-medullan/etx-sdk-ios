@@ -22,6 +22,13 @@ open class ETXDosageFrequency: ETXMappable{
         super.init(map: map)
     }
     
+    public init(frequency: Int, period: Int, periodUnit: String) {
+        super.init()
+        self.frequency = frequency
+        self.period = period
+        self.periodUnit = periodUnit
+    }
+    
     open override func mapping(map: Map) {
         super.mapping(map: map)
         frequency <- map["frequency"]

@@ -22,6 +22,13 @@ open class ETXUsage: ETXMappable{
         super.init(map: map)
     }
     
+    public init(label: String, doses: Int, tod: String) {
+        super.init()
+        self.label = label
+        self.doses = doses
+        self.tod = tod
+    }
+    
     open override func mapping(map: Map) {
         super.mapping(map: map)
         label <- map["label"]

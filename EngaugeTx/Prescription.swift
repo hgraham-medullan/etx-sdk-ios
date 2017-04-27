@@ -40,4 +40,9 @@ open class ETXPrescription: ETXShareableModel{
         medication <- map["medication"]
         medicationId <- map["medicationId"]
     }
+    
+    open override class func getDataSvc<ETXPrescription>() -> ETXDataService<ETXPrescription>? {
+        
+        return ETXDataService<ETXPrescription>(repository: Repository<ETXPrescription>(resourcePath: "/med/data/prescriptions"))
+    }
 }
