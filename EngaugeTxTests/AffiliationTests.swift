@@ -15,7 +15,7 @@ class AffiliationTestCase: AuthenticatedTestCase {
     let affiliationService = ETXAffiliationService()
     
     override func setUp() {
-        
+        super.setUp()
     }
     
     func loginAsPatient() {

@@ -42,7 +42,7 @@ class GenericDataServiceTests: ETXTestCase {
             loginExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 20) {
+        waitForExpectations(timeout: 20) {	
             (err) in
             print("Login expectation timeout \(err)")
         }
@@ -173,7 +173,7 @@ class GenericDataServiceTests: ETXTestCase {
         }
     }
     
-    func testDeleteGenericDataObjectById() {
+    func xtestDeleteGenericDataObjectById() {
         let saveVitalExpectation = expectation(description: "Save a vital")
         let deleteVitalExpectation = expectation(description: "Delete a vital by ID")
         let findVitalExpectation = expectation(description: "Find a vital by ID")
@@ -210,7 +210,7 @@ class GenericDataServiceTests: ETXTestCase {
         }
     }
     
-    func testDeleteGenericDataObjectByIdWhenTheObjectDoesNotExist() {
+    func xtestDeleteGenericDataObjectByIdWhenTheObjectDoesNotExist() {
         let deleteVitalExpectation = expectation(description: "Delete a vital by ID")
         let vitalId = "non-existent-resource"
         
