@@ -13,19 +13,6 @@ import ObjectMapper
 
 class TrendRepositoryTests: XCTestCase {
     
-    func xtestRep() {
-        let trendRepo = TrendRepository()
-        trendRepo.getTrends(startDate: Date(), endDate: Date(), classes: [ETXSteps.self], gdoConfig: nil) {
-            (_, _) in
-        }
-        XCTAssertEqual("", trendRepo.etxResource.url.absoluteString)
-        
-    }
-    
-    func xtestTime() {
-        
-        let z = Double(TimeZone.current.secondsFromGMT()+30*60)/(60*60)
-        print(z)
-    }
+
     
 }

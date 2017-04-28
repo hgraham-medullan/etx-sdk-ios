@@ -32,7 +32,7 @@ class TrendRepository: Repository<ETXModel> {
 
     }
     
-    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
+    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
         var classesAsString: String = ""
         classes.forEach {
             (t) in
@@ -48,11 +48,18 @@ class TrendRepository: Repository<ETXModel> {
             .withParam("endDate", endDate.toTxDateFormat())
             .withParam("timezone", DateService.getCurrentTimeZoneName())
         
-        if gdoConfig != nil {
+        if let gdoConfig = gdoConfig {
             trendsResource = trendsResource
-                .withParam("dateField", gdoConfig?.dateField)
-                .withParam("trendField", gdoConfig?.trendField)
-                .withParam("trend", gdoConfig?.trend?.rawValue)
+                .withParam("dateField", gdoConfig.dateField)
+                .withParam("trendField", gdoConfig.trendField)
+                .withParam("trend", gdoConfig.trend?.rawValue)
+        }
+        
+        if let forUser = forUser {
+            let a = ETXSearchFilter(condition: ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: forUser.id!)).toJsonString()
+            trendsResource = trendsResource.withParam("shared", "true")
+            .withParam("shared", "true")
+            .withParam("filter", a)
         }
         
         

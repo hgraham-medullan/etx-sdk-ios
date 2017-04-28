@@ -10,6 +10,8 @@
 		080520E91DEF078600245C4D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 080520E41DEF078600245C4D /* LICENSE */; };
 		080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */; };
 		080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A7F771E5DB54900795D91 /* UserServiceAuthenticatedTests.swift */; };
+		0811CFF01EB38334008B4B30 /* AffiliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811CFEF1EB38334008B4B30 /* AffiliationTests.swift */; };
+		0811CFF21EB38DD2008B4B30 /* CaregiverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811CFF11EB38DD2008B4B30 /* CaregiverTests.swift */; };
 		081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */; };
 		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
 		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
@@ -131,6 +133,8 @@
 		080520E41DEF078600245C4D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EngaugeTx.podspec; sourceTree = "<group>"; };
 		080A7F771E5DB54900795D91 /* UserServiceAuthenticatedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceAuthenticatedTests.swift; sourceTree = "<group>"; };
+		0811CFEF1EB38334008B4B30 /* AffiliationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffiliationTests.swift; sourceTree = "<group>"; };
+		0811CFF11EB38DD2008B4B30 /* CaregiverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaregiverTests.swift; sourceTree = "<group>"; };
 		081222841DF6FC8100586B7D /* UserEmailCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEmailCredentialsTests.swift; sourceTree = "<group>"; };
 		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
@@ -266,6 +270,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0811CFEE1EB382FC008B4B30 /* Affiliations */ = {
+			isa = PBXGroup;
+			children = (
+				0811CFEF1EB38334008B4B30 /* AffiliationTests.swift */,
+				0811CFF11EB38DD2008B4B30 /* CaregiverTests.swift */,
+			);
+			name = Affiliations;
+			sourceTree = "<group>";
+		};
 		081222811DF6FC3100586B7D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +405,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				0811CFEE1EB382FC008B4B30 /* Affiliations */,
 				0862A29E1EB0E38D00869160 /* Measurement */,
 				180743E61EAECEE6009D4B06 /* Medications */,
 				18D0DFD61EAAF1B600856F2D /* Services */,
@@ -917,8 +931,10 @@
 				085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
 				1874859D1E9FEFD900B8CEDD /* AffiliationServiceUnauthenticatedTests.swift in Sources */,
+				0811CFF21EB38DD2008B4B30 /* CaregiverTests.swift in Sources */,
 				08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */,
 				08FE53B41E0392C5008B5D0E /* GenericDataServiceTests.swift in Sources */,
+				0811CFF01EB38334008B4B30 /* AffiliationTests.swift in Sources */,
 				085184DC1E75680A00BFD227 /* DateServiceTests.swift in Sources */,
 				08EFD9491E460576005F0B50 /* ETXAuthenticatedTestCase.swift in Sources */,
 				089898F21E0D64F3005CB45D /* FilterTests.swift in Sources */,

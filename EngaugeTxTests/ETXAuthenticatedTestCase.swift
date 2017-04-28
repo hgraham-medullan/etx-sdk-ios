@@ -14,22 +14,43 @@ class AuthenticatedTestCase: ETXTestCase {
     
     var userSvc: ETXUserService<ETXUser>!
     var currentUser: ETXUser!
-//    var defaultTestUser:ETXUser = ETXUser(email: "lwhiteley+android@medullan.com", username: "lwhiteleyandroid", password: "12345678")
-    var defaultTestUser:ETXUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
+    let defaultTestUser:ETXUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
     var testUserUnverified:ETXUser = ETXUser(email: "sean+unverified@medullan.com", username: "sean+unverified@medullan.com", password: "P@ssw0rd")
+    var caregiverUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
+    var patientUser = ETXUser(email: "sean+patient@medullan.com", username: "sean+patient@medullan.com", password: "P@ssw0rd")
+    
+    
     
     override func setUp() {
         super.setUp()
-        
+
         userSvc = ETXUserService()
         let loginExpectation = expectation(description: "Successful Login")
         userSvc.loginUserWithEmail(self.defaultTestUser.email,
                                    password: self.defaultTestUser.password,
                                    rememberMe: false) {
-            (user, err) in
-            XCTAssertNotNil(user, "User should be successfully logged in")
-            self.currentUser = user!
-            loginExpectation.fulfill()
+                                    (user, err) in
+                                    XCTAssertNotNil(user, "User should be successfully logged in")
+                                    self.currentUser = user!
+                                    loginExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 10) {
+            (err) in
+            print("Login expectation timeout \(err)")
+        }
+    }
+    
+    func loginUser(_ user: ETXUser) {
+        userSvc = ETXUserService()
+        let loginExpectation = expectation(description: "Successful Login")
+        userSvc.loginUserWithEmail(user.email,
+                                   password: user.password,
+                                   rememberMe: false) {
+                                    (user, err) in
+                                    XCTAssertNotNil(user, "User should be successfully logged in")
+                                    self.currentUser = user!
+                                    loginExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 10) {
