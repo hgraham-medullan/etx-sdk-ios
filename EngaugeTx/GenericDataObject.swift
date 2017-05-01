@@ -120,7 +120,15 @@ extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
     }
     
     var dataSvc: ETXGenericDataService<ModelType> {
-        return try! ETXGenericDataService<ModelType>(modelName: getModelName())
+       
+        var svc: ETXGenericDataService<ModelType>
+        do {
+            try svc = ETXGenericDataService<ModelType>(modelName: getModelName())
+        } catch {
+            svc = ETXGenericDataService<ModelType>()
+        }
+        
+        return svc
     }
     
     /**
