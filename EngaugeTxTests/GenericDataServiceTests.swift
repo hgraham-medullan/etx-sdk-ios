@@ -173,7 +173,7 @@ class GenericDataServiceTests: ETXTestCase {
         }
     }
     
-    func xtestDeleteGenericDataObjectById() {
+    func testDeleteGenericDataObjectById() {
         let saveVitalExpectation = expectation(description: "Save a vital")
         let deleteVitalExpectation = expectation(description: "Delete a vital by ID")
         let findVitalExpectation = expectation(description: "Find a vital by ID")

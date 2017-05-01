@@ -20,15 +20,19 @@ class ETXTestCase: XCTestCase {
         baseUrl: "https://api.staging.us1.engaugetx.com/v1"
     )
     
-    let biApp = EngaugeTxApplication(
-        appId: "e8b836cd6d20f3431e0fbcb54196360b",
-        clientKey: "7c2759273aaf770093f92e0accca965255fac0d1",
-        baseUrl: "https://api.staging.us1.engaugetx.com/v1"
-    )
+//    let biApp = EngaugeTxApplication(
+//        appId: "e8b836cd6d20f3431e0fbcb54196360b",
+//        clientKey: "7c2759273aaf770093f92e0accca965255fac0d1",
+//        baseUrl: "https://api.us1.engaugetx.com/v1"
+//    )
     
     override func setUp() {
         super.setUp()
-        self.app = stagingApp
+        self.app = EngaugeTxApplication(
+            appId: "e8b836cd6d20f3431e0fbcb54196360b",
+            clientKey: "7c2759273aaf770093f92e0accca965255fac0d1",
+            baseUrl: "https://api.staging.us1.engaugetx.com/v1"
+        )
     }
     
     override func tearDown() {
