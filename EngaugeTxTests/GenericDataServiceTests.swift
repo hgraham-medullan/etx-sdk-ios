@@ -65,7 +65,7 @@ class GenericDataServiceTests: ETXTestCase {
         XCTAssertEqual(expectedClassName, GenericObjectWithDefaultModelName.modelName, "Should able to retrieve the corect model name statically")
         
         let genericObjectWithDefaultModelName = GenericObjectWithDefaultModelName()
-        XCTAssertNotNil(genericObjectWithDefaultModelName.dataSvc)
+        //XCTAssertNotNil(genericObjectWithDefaultModelName.dataSvc)
         XCTAssertEqual(expectedClassName, genericObjectWithDefaultModelName.getModelName(), "Should able to retrieve the corect model name from an instance")
     }
     
@@ -85,7 +85,7 @@ class GenericDataServiceTests: ETXTestCase {
         XCTAssertEqual(expectedClassName, GenericObjectWithCustomModelName.modelName, "Should able to retrieve the corect model name statically")
         
         let genericObjectWithCustomModelName = GenericObjectWithCustomModelName()
-        XCTAssertNotNil(genericObjectWithCustomModelName.dataSvc)
+        //XCTAssertNotNil(genericObjectWithCustomModelName.dataSvc)
         XCTAssertEqual(expectedClassName, genericObjectWithCustomModelName.getModelName())
     }
     
