@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.25"
+  s.version      = "0.0.26"
   s.summary      = "SDK for the EngaugeTx platform"
 
   # This description is used to generate tags and improve search results.
@@ -133,5 +133,6 @@ Pod::Spec.new do |s|
  s.dependency 'Siesta', '>=1.0.1'
  s.dependency 'Siesta/Alamofire', '>=1.0.1'
  s.dependency 'ObjectMapper', '~> 2.2'
+ s.dependency 'SwiftKeychainWrapper', '3.0.1'
 
 end
