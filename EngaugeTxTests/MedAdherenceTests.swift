@@ -44,7 +44,7 @@ class MedAdherenceTests: AuthenticatedTestCase {
         }
         waitForExpectations(timeout: self.TIMEOUT_DEFAULT) {
             (err) in
-            print("prescriptionDeletionExpectation expectation timeout \(err)")
+            print("prescriptionDeletionExpectation expectation timeout \(String(describing: err))")
         }
         // Create the prescription
     }
@@ -59,7 +59,7 @@ class MedAdherenceTests: AuthenticatedTestCase {
         }
         waitForExpectations(timeout: self.TIMEOUT_DEFAULT) {
             (err) in
-            print("prescriptionDeletionExpectation expectation timeout \(err)")
+            print("prescriptionDeletionExpectation expectation timeout \(String(describing: err))")
         }
         super.tearDown()
     }
@@ -76,7 +76,7 @@ class MedAdherenceTests: AuthenticatedTestCase {
         
         waitForExpectations(timeout: 20) {
             (err) in
-            print("testGetAdherenceforUnAffiliatedUser expectation timeout \(err)")
+            print("testGetAdherenceforUnAffiliatedUser expectation timeout \(String(describing: err))")
         }
     }
     
@@ -92,7 +92,7 @@ class MedAdherenceTests: AuthenticatedTestCase {
         
         waitForExpectations(timeout: 20) {
             (err) in
-            print("testGetAdherenceforUnAffiliatedUser expectation timeout \(err)")
+            print("testGetAdherenceforUnAffiliatedUser expectation timeout \(String(describing: err))")
         }
     }
     
@@ -105,13 +105,13 @@ class MedAdherenceTests: AuthenticatedTestCase {
             (model, err) in
             XCTAssertNil(err)
             XCTAssertNotNil(model)
-            print("\(model?[0].rawJson)")
+            print("\(String(describing: model?[0].rawJson))")
             testExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 20) {
             (err) in
-            print("testGetAdherenceforUnAffiliatedUser expectation timeout \(err)")
+            print("testGetAdherenceforUnAffiliatedUser expectation timeout \(String(describing: err))")
         }
     }
     

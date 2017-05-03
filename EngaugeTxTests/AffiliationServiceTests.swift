@@ -30,7 +30,7 @@ class AffiliationServiceTestCase: AuthenticatedTestCase  {
         }
         waitForExpectations(timeout: 20) {
             (err) in
-            print("GetAffiliatedUsers expectation timeout \(err)")
+            print("GetAffiliatedUsers expectation timeout \(String(describing: err))")
         }
         
     }

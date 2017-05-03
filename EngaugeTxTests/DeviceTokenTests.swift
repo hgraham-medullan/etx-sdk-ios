@@ -27,7 +27,7 @@ class DeviceTokenTests: AuthenticatedTestCase {
         }
         waitForExpectations(timeout: 10) {
             (err) in
-            print("Login expectation timeout \(err)")
+            print("Login expectation timeout \(String(describing: err))")
         }
     }
     
@@ -55,7 +55,7 @@ class DeviceTokenTests: AuthenticatedTestCase {
         }
         waitForExpectations(timeout: 10) {
             (err) in
-            print("Login expectation timeout \(err)")
+            print("Login expectation timeout \(String(describing: err))")
         }
     }
 }

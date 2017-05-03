@@ -44,7 +44,7 @@ Properties that can be specified
 Start by implementing the ```EngaugeTxAppDelegate``` protocol and conforming to 
 it by defining the ```engaugeTx``` instance variable.
 
-```
+```swift
 import EngaugeTx
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, EngaugeTxAppDelegate {
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EngaugeTxAppDelegate {
 
 Then instatiate it with an instance of ```EngaugeTxApplication```
 
-```
+```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
   engaugeTx = EngaugeTxApplication()
   return true
@@ -63,7 +63,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ## Creating a custom User
 
-```
+```swift
 class Customer: ETXUser {
 	var hiddenField: String // Do not add to mapping function to prevent persistence
 	var worth: Float!
@@ -83,14 +83,14 @@ class Customer: ETXUser {
 ### Using one condition
 Finding an item by one condition
 
-```
+```swift
 let weightCondition: ETXWhereCondition = ETXWhereCondition(property: "weight", comparator: .gt, value: 100)
 let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: weightCondition)
 ```
 
 ### Using a Date
 
-```
+```swift
 let priorToNow: ETXWhereCondition = ETXWhereCondition(property: "createdAt", comparator: .lte, value: Date())
 let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: priorToNow)
 ```
@@ -98,7 +98,7 @@ let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: priorToNow)
 ### Using Multiple conditions 
 For the conditions below:
 
-```
+```swift
 let weightCondition: ETXWhereCondition = ETXWhereCondition(property: "weight", comparator: .gt, value: 20)
 let nameCondition: ETXWhereCondition = ETXWhereCondition(property: "name", comparator: .eq, value: "Sean")
 let conditions: [ETXCondition] = [weightCondition, nameCondition]
@@ -106,25 +106,25 @@ let conditions: [ETXCondition] = [weightCondition, nameCondition]
 
 You can filter where all conditions are true
 
-```
+```swift
 let searchFilter: ETXSearchFilter = ETXSearchFilter(conditions: conditions)
 ```
 Alternatively, AND conditions can be written as 
 
-```
+```swift
 let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: ETXCombinedCondition(combineType: .and, conditions: conditions))
 ```
 
 
 As well as where only one condition is true
 
-```
+```swift
 let searchFilter: ETXSearchFilter = ETXSearchFilter(condition: ETXCombinedCondition(combineType: .or, conditions: conditions)
 ```
 
 ### Combining AND and OR conditions
 
-```
+```swift
 let females: ETXWhereCondition = ETXWhereCondition(property: "gender", comparator: .eq, value: "Female")
 let adultAge: ETXWhereCondition = ETXWhereCondition(property: "age", comparator: .gte, value: 18)
 let males: ETXWhereCondition = ETXWhereCondition(property: "gender", comparator: .eq, value: "Male")
@@ -141,7 +141,7 @@ let searchFilter: ETXSearchFilter = ETXSearchFilter(conditions: adultMaleOrFemal
  
 If the API doesn't meet your needs, you can write your own filter query using [Loopback's query formats](https://loopback.io/doc/en/lb2/Querying-data.html). 
 
-```
+```swift
 let filterQuery: String = "{\"where\":{\"weight\":{\"gt\":20}}}";
 let searchFilter: ETXSearchFilter = ETXSearchFilter(customFilter: filterQuery);
 ```
@@ -157,7 +157,7 @@ In [your firebase console](https://console.firebase.google.com/), select your pr
 
 ### Register the Device Token on the Platform
 
-```
+```swift
 func tokenRefreshNotification(_ notification: Notification) {
   if let refreshedToken = FIRInstanceID.instanceID().token() {
     print("InstanceID token: \(refreshedToken)")
@@ -187,7 +187,7 @@ Aggregated data can be fetched using the [ETXTrendsService](https://iosdocs.enga
 ### Getting aggregated data over a timeframe of two weeks
 The following will get aggregated date for IndoorAirQuality and Steps over a two week period leading up to the current day
 
-```
+```swift
 class MyCustomIndoorAirQuality: ETXIndoorAirQuality { }
 
 ETXTrendService.getTrend(trendTimeframe: .TwoWeeks, forClasses: [MyCustomIndoorAirQuality.self, ETXSteps.self]) {
@@ -271,4 +271,24 @@ ETXTrendService.getTrend(trendTimeframe: ETXTrendTimeframe.TwoWeeks, classes: [E
   (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
   ...
 };
+```
+
+## Adherence
+
+Allows for reporting of adherence to the user's medications
+
+```swift
+ETXAdherenceService.getAdherence(trendTimeframe: ETXTrendTimeframe.TwoWeeks) {
+  (adherenceResultSet: ETXAdherenceResultSet?, err: ETXError?) in
+    // Do work
+}
+```
+
+Specifying the medication to measure adherence for:
+
+```swift
+ETXAdherenceService.getAdherence(medicationId: "dulera_20", trendTimeframe: ETXTrendTimeframe.TwoWeeks){
+  (adherenceResultSet: ETXAdherenceResultSet?, err: ETXError?) in
+    // Do work
+}
 ```

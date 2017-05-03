@@ -42,7 +42,6 @@ import ObjectMapper
  */
 open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObject {
     
-    // 
     private var _className: String?
     private  var className: String {
         get {
@@ -87,11 +86,8 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     }
     
     open override class func getDataSvc<T: ETXPersistedModel>() -> ETXDataService<T>? {
-        let c = GenericDataObjectRepository<ModelType>(className: modelName)
-        let b = ETXDataService<T>(repository: Repository<T>(resourcePath: c.genricModelResourcePath))
-        //b.repository = a.repository
-         return b
-        
+        let genericDataObjectRepository = GenericDataObjectRepository<ModelType>(className: modelName)
+        return ETXDataService<T>(repository: Repository<T>(resourcePath: genericDataObjectRepository.genericModelResourcePath))
     }
 }
 
@@ -126,73 +122,4 @@ extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
         }
         return String(describing: self)
     }
-    
-//    internal var dataSvc: ETXGenericDataService<ModelType>? {
-//       
-//        var svc: ETXGenericDataService<ModelType>
-//        
-//        svc = try! ETXGenericDataService<ModelType>(modelName: getModelName())
-//        
-//        
-//        return svc
-//    }
-    
-//    /**
-//     Find a model by it's ID
-//     - parameter id: The ID of the model
-//     - parameter completion: Callback when the request completes
-//     - parameter model: The model, if found.
-//     - parameter err: If an error occurred while finding the item
-//     */
-//    public static func findById(_ id: String, completion: @escaping (ModelType?, ETXError?)->Void) {
-//        let dataSvc: ETXGenericDataService<ModelType> = try! ETXGenericDataService<ModelType>(modelName: modelName)
-//        dataSvc.findById(id, completion: completion)
-//    }
-//    
-//    /**
-//     Find all elements matching the filter condition(s)
-//     - parameter filter: Filter to apply to the query
-//     - parameter completion: Callback when the request completes
-//     - parameter models: Models of the specified type. Will be ```nil``` if an error occurred
-//     - parameter err: If an error occurred while getting all items. Will be ```nil``` if get all was successful
-//     */
-//    public static func findWhere(filter: ETXSearchFilter, completion: @escaping ([ModelType]?, ETXError?)->Void) {
-//        let dataSvc: ETXGenericDataService<ModelType> = try! ETXGenericDataService<ModelType>(modelName: modelName)
-//        dataSvc.findWhere(filter, completion: completion)
-//    }
-//    
-//    /**
-//     Save the model. Properties will be updated with new values where applicable
-//     - parameter completion: Callback when the request completes
-//     - parameter err: If an error occurred while savinga the item
-//     */
-//    public func save(completion: @escaping (ETXError?) -> Void) {
-//        let dataSvc = try! ETXGenericDataService<ModelType>(modelName: getModelName())
-//        dataSvc.save(model: self) {
-//            (model, err) in
-//            if let model = model {
-//                let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
-//                self.mapping(map: map)
-//            }
-//            completion(err)
-//        }
-//    }
-//    
-//    /**
-//     Delete the current model
-//     - parameter completion: Callback when the request completes
-//     - parameter err: If an error occurred while deleting the item
-//     */
-//    public func delete(completion: @escaping (ETXError?) -> Void) {
-//        let dataSvc = try! ETXGenericDataService<ModelType>(modelName: getModelName())
-//        dataSvc.delete(model: self) {
-//            (err) in
-//            if err == nil {
-//                self.id = nil
-//            }
-//            completion(err)
-//        }
-//    }
-    
-    
 }
