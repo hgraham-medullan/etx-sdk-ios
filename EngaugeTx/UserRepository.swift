@@ -12,11 +12,9 @@ import ObjectMapper
 
 class UserRepository<T: ETXUser>: Repository<T> {
     
-    private let KEY_DEFAULTS_USER_ID: String = "userId"
-    private let KEY_DEFAULTS_CURRENT_USER: String = "currentUser"
-    
     private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
+    private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
     
     var users: Resource { return resource(URL_USERS) }
     
@@ -25,6 +23,11 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.configureTransformer(URL_USER_LOGIN) {
             Mapper<ETXAccessToken>().map(JSON: $0.content)
         }
+        
+        self.configureTransformer(URL_USER_AFFILIATED_USERS) {
+            Mapper<ETXResponse>().map(JSON: $0.content)
+        }
+        
     }
     
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
@@ -42,7 +45,6 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
         
         req.onSuccess { (obj) in
-            
             let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
             self.saveCurrentUser(accessToken)
             
@@ -50,27 +52,56 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
+    public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ( [ETXUser]?, ETXError?)->Void) {
+        let id = getCurrentUserId() ?? ""
+        if(id.isEmpty){
+            completion(nil, ETXError(message: "A logged in user is required"))
+        } else {
+            let req = self.users.child(id).child("/affiliatedUsers").request(.get)
+            
+            req.onFailure { (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                print("Getting affiliatedUsers  failed: \(err.jsonDict)")
+                completion(nil, etxError)
+            }
+            
+            req.onSuccess { (obj) in
+                let res: ETXResponse = (obj.content as! ETXResponse)
+                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])!
+                var users: [ETXUser] = [ETXUser]()
+                for affiliatedUser in affiliatedUsers {
+                    if(affiliatedUser.role == withRole) {
+                        let user: ETXUser = ETXUser(user: affiliatedUser)
+                        users.append(user)
+                    }
+                }
+                completion(users, nil)
+            }
+        }
+        
+    }
+    
     func saveCurrentUser(_ accessToken: ETXAccessToken?) {
         let defaults = UserDefaults.standard
         self.deleteCurrentUser()
         if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
             let currentUser: [String: String] =
-                [KEY_DEFAULTS_USER_ID: userId,
-                 KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
+                [ETXConstants.KEY_DEFAULTS_USER_ID: userId,
+                 ETXConstants.KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
             self.setAccessToken(accessToken)
-            defaults.set(currentUser, forKey: KEY_DEFAULTS_CURRENT_USER)
+            defaults.set(currentUser, forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
         }
         
     }
     
     func getCurrentUserId() -> String? {
         let defaults = UserDefaults.standard
-        return defaults.dictionary(forKey: KEY_DEFAULTS_CURRENT_USER)?[KEY_DEFAULTS_USER_ID] as! String?
+        return defaults.dictionary(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)?[ETXConstants.KEY_DEFAULTS_USER_ID] as! String?
     }
     
     func deleteCurrentUser() {
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: self.KEY_DEFAULTS_CURRENT_USER)
+        defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
         self.deleteAccessToken()
     }
     

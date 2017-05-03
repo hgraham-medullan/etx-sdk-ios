@@ -13,7 +13,7 @@ import ObjectMapper
  An error response from the EngaugeTx Platform
  */
 public class ETXError: Mappable {
-    
+    internal static let CODE_DUPLICATE_KEY_ERROR: String = "11000"
     /**
      The error code
      */
@@ -39,8 +39,14 @@ public class ETXError: Mappable {
      */
     public var details: [String: Any]?
     
+    private var codeAsInt: Int?
+    
     
     public init() { }
+    
+    public init(message: String) {
+        self.message = message
+    }
     
     public required init?(map: Map) {
         
@@ -49,11 +55,15 @@ public class ETXError: Mappable {
     var rawJson: [String: Any]?
     
     public func mapping(map: Map) {
+        codeAsInt <- map["error.code"]
         code <- map["error.code"]
         statusCode <- map["error.statusCode"]
         details <- map["error.details"]
         message <- map["error.message"]
         name <- map["error.name"]
+        if self.code == nil, let codeAsInt = self.codeAsInt {
+            self.code = String(codeAsInt)
+        }
     }
     
 }

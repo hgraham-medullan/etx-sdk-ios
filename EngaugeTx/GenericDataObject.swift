@@ -40,7 +40,7 @@ import ObjectMapper
  ```
  
  */
-open class ETXGenericDataObject: ETXModel, ETXPersistentGenericObject {
+open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObject {
     
     // 
     private var _className: String?

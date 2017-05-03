@@ -12,7 +12,7 @@ source 'https://github.com/medullan/engauge-tx-pod-specs.git'
 
 target 'EnguageTxSampleIosApp' do
   use_frameworks!
-  pod 'EngaugeTx', '~> 0.0.8'
+  pod 'EngaugeTx', '~> 0.0.19'
 end
 ```
 
@@ -179,3 +179,96 @@ func tokenRefreshNotification(_ notification: Notification) {
 
 ### Sending Push Notifications 
 See the [server-side docs on how to send push notifications to a user](https://docs.google.com/document/d/1TVY-rapBHjKP04bqkBAP4iwhD1evIT4oUxnWJVZJR28/edit#heading=h.prwiyqm61465)
+
+## Data Trends
+
+Aggregated data can be fetched using the [ETXTrendsService](https://iosdocs.engaugetx.com/Classes/ETXTrendService.html) class
+
+### Getting aggregated data over a timeframe of two weeks
+The following will get aggregated date for IndoorAirQuality and Steps over a two week period leading up to the current day
+
+```
+class MyCustomIndoorAirQuality: ETXIndoorAirQuality { }
+
+ETXTrendService.getTrend(trendTimeframe: .TwoWeeks, forClasses: [MyCustomIndoorAirQuality.self, ETXSteps.self]) {
+  (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
+  
+  if let err = err {
+    // handle err
+  }
+  
+  // Grab the data individually 
+  let indoorAirQualityTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(ETXIndoorAirQuality.self)!
+  
+  // View the aggregated data for each day for the two weeks
+  indoorAirQualityTrendResult.values?.forEach({
+    (aggregatedData: ETXAggregatable) in
+      print("Average indoor air quality for \(aggregatedData.date) is \(aggregatedData.value)")
+  })
+  
+  print("The average air quality over the 2-week timeframe is \(indoorAirQualityTrendResult.timeframe?.average) )
+}
+
+let stepsTrendResult: ETXClassTrendResultSet = trendResultSet?.getTrendForClass(ETXSteps.self)!
+...
+```
+
+## Affiliation
+
+As a Caregiver get a list of all my Patients
+
+```swift
+let service = ETXAffiliationService()
+service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
+    (patients, err) in
+    // err is nil when successful
+    // patients -> [ETXUser] // only firstName, lastName and id are populated
+}
+```
+## Data Trends
+
+Aggregated data can be fetched using the ETXTrendService class
+
+### Getting aggregated data over a timeframe of two weeks
+The following will get aggregated date for IndoorAirQuality and Steps over a two week period leading up to the current day
+
+```swift
+let classes = [ETXIndoorAirQuality.self, ETXSteps.self] as [Any]
+ETXTrendService.getTrend(startDate: startDate, endDate: endDate, classes: classes) {
+            (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
+            // handle err
+            
+            // else use data
+            let indoorAirQualityTrendResult: ETXClassTrendResultSet? = trendResultSet?.getClassSummary(ETXIndoorAirQuality.self)
+            
+            if let indoorAirQualityTrendResult = indoorAirQualityTrendResult {
+                indoorAirQualityTrendResult.values?.forEach({
+                    (aggregatedData: ETXAggregatable) in
+                    print("Average indoor air quality for \(aggregatedData.date) is \(aggregatedData.value)")
+                })
+            }
+            
+        }
+```
+
+### Getting Trends Data For GenericDataObjects
+
+In order to apply trends to Generics Data Objects, the platform will need to know the field that contains the `value` to be aggregated on, the field that holds `date` to fit within the timeframe and the `aggregation` type to be applied.
+
+**The configuration will be applied to all Generic Data Objects in the list of classes.**
+
+```swift
+let dateFieldPropertyName = "date";
+let valueFieldPropertyName = "value";
+let aggregrationToApply = ETXTrendAggregation.avg
+let gdoConfigForTrends: ETXGenericDataObjectConfiguration = ETXGenericDataObjectConfiguration(
+    dateField: dateFieldPropertyName,
+    trendField: valueFieldPropertyName,
+    trend: aggregrationToApply
+)
+
+ETXTrendService.getTrend(trendTimeframe: ETXTrendTimeframe.TwoWeeks, classes: [ETXIndoorAirQuality.self], gdoConfig: gdoConfigForTrends) {
+  (trendResultSet: ETXTrendResultSet?, err: ETXError?) in
+  ...
+};
+```

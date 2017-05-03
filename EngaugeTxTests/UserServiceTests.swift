@@ -152,7 +152,7 @@ class UserServiceTest: ETXTestCase {
      /Users/distiller/etx-sdk-ios/EngaugeTxTests/UserServiceTests.swift:144: error: -[EngaugeTxTests.UserServiceTest testCreateUser] : XCTAssertNil failed: "EngaugeTx.ETXRegistrationError" - An error should not be present
      /Users/distiller/etx-sdk-ios/EngaugeTxTests/UserServiceTests.swift:145: error: -[EngaugeTxTests.UserServiceTest testCreateUser] : XCTAssertNotNil failed - The user object should contain an ID
     */
-    func xtestCreateUser() {
+    func testCreateUser() {
         let increment = self.getUniqueId()
         let username: String = "tu_\(increment)"
         let email: String = "sean+\(increment)@medullan.com"
@@ -253,7 +253,7 @@ class UserServiceTest: ETXTestCase {
         }
     }
     
-    func xtestLogout() {
+    func testLogout() {
         let logoutExpectation = expectation(description: "Log the user out")
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         let username: String = "sean@medullan.com"
