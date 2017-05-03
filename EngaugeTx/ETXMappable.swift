@@ -11,7 +11,7 @@ import ObjectMapper
 
 open class ETXMappable: Mappable {
 
-    var rawJson: [String:Any]?
+    public var rawJson: [String:Any]?
     
     public init() {
         

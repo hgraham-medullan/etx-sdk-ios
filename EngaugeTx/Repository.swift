@@ -56,7 +56,7 @@ class Repository<T> : Service where T: ETXModel {
         
         get {
             if _etxResource == nil {
-                _etxResource = resource(resourcePath)
+                _etxResource = resource(resourcePath).addObserver(TxResourceObserver())
             }
             return _etxResource!
         }
@@ -67,6 +67,8 @@ class Repository<T> : Service where T: ETXModel {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
 
+        //self.etxResource.addObserver(TxResourceObserver())
+        
         configure {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
@@ -79,18 +81,22 @@ class Repository<T> : Service where T: ETXModel {
         if let _ = model.id {
             self.update(model: model, completion: completion)
         } else {
-            let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
-            req.onFailure({ (err) in
-                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                etxError?.rawJson = err.jsonDict
-                etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
-                completion(nil, etxError)
-            })
-            req.onSuccess({ (m) in
-                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-                completion(model, nil)
-            })
+            self.create(model: model, completion: completion)
         }
+    }
+    
+    func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
+        req.onFailure({ (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            etxError?.rawJson = err.jsonDict
+            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+            completion(nil, etxError)
+        })
+        req.onSuccess({ (m) in
+            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+            completion(model, nil)
+        })
     }
     
     func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
@@ -165,6 +171,14 @@ class Repository<T> : Service where T: ETXModel {
             print("Getting Access Token")
             return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         }
+    }
+    
+    func appendOwnerIdToWhereFilter(filter: ETXSearchFilter, ownerId: String) -> String{
+        if filter.whereCondtions == nil {
+            filter.whereCondtions = [ETXWhereCondition]()
+        }
+        filter.whereCondtions?.append(ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: ownerId))
+        return filter.toJsonString()
     }
     
     func setAccessToken(_ accessToken: String?) {

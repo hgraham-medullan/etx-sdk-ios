@@ -21,7 +21,7 @@ class DateService {
 
         switch timeframe {
         case .OneMonth:
-            dateComponent.month = -29
+            dateComponent.day = -29
         case .OneWeek:
             dateComponent.day = -6
         case .TwoWeeks:

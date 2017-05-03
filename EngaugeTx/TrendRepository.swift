@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Siesta
+//import Siesta
 import ObjectMapper
 class TrendRepository: Repository<ETXModel> {
     
@@ -32,7 +32,7 @@ class TrendRepository: Repository<ETXModel> {
 
     }
     
-    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
+    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
         var classesAsString: String = ""
         classes.forEach {
             (t) in
@@ -44,15 +44,22 @@ class TrendRepository: Repository<ETXModel> {
         
         var trendsResource = self.etxResource
             .withParam("class", classesAsString)
-            .withParam("startDate", startDate.toTxDateFormat())
-            .withParam("endDate", endDate.toTxDateFormat())
+            .withParam("startDate", startDate.toTxDateFormat(convertToUTC: false))
+            .withParam("endDate", endDate.toTxDateFormat(convertToUTC: false))
             .withParam("timezone", DateService.getCurrentTimeZoneName())
         
-        if gdoConfig != nil {
+        if let gdoConfig = gdoConfig {
             trendsResource = trendsResource
-                .withParam("dateField", gdoConfig?.dateField)
-                .withParam("trendField", gdoConfig?.trendField)
-                .withParam("trend", gdoConfig?.trend?.rawValue)
+                .withParam("dateField", gdoConfig.dateField)
+                .withParam("trendField", gdoConfig.trendField)
+                .withParam("trend", gdoConfig.trend?.rawValue)
+        }
+        
+        if let forUser = forUser {
+            let a = ETXSearchFilter(condition: ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: forUser.id!)).toJsonString()
+            trendsResource = trendsResource.withParam("shared", "true")
+            .withParam("shared", "true")
+            .withParam("filter", a)
         }
         
         

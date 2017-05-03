@@ -15,25 +15,26 @@ import ObjectMapper
 
 
 class AffiliationServiceTestCase: AuthenticatedTestCase  {
-        override func setUp() {
-            super.setUp()
+    override func setUp() {
+        super.setUp()
+    }
+    
+    func testGetAffiliatedUsers() {
+        let getAffiliatedUsersExpectation = expectation(description: "Successful get affiliated users")
+        
+        let service = ETXAffiliationService()
+        service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
+            (user, err) in
+            XCTAssertNotNil(user)
+            getAffiliatedUsersExpectation.fulfill()
         }
-    
-        func testGetAffiliatedUsers() {
-            let getAffiliatedUsersExpectation = expectation(description: "Successful get affiliated users")
-    
-            let service = ETXAffiliationService()
-            service.getAffiliatedUsers(withRole: ETXRole.patient, forMyRole: ETXRole.caregiver){
-                (user, err) in
-                XCTAssertNotNil(user)
-                getAffiliatedUsersExpectation.fulfill()
-            }
-            waitForExpectations(timeout: 20) {
-                (err) in
-                print("GetAffiliatedUsers expectation timeout \(err)")
-            }
-    
+        waitForExpectations(timeout: 20) {
+            (err) in
+            print("GetAffiliatedUsers expectation timeout \(String(describing: err))")
         }
+        
+    }
+    
     
     
 }

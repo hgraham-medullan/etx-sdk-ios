@@ -1,21 +1,26 @@
 //
-//  Measurement.swift
+//  Dose.swift
 //  EngaugeTx
 //
-//  Created by Layton Whiteley on 4/19/17.
+//  Created by Layton Whiteley on 4/21/17.
 //  Copyright © 2017 Medullan Platform Solutions. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-open class ETXMeasurement: ETXAggregatableModel {
+open class ETXDose: ETXMappable{
+    public var value: Int?
+    public var unit: String?
     
-    public var source: ETXMeasurementSource?
+    public init(value: Int, unit: String) {
+        super.init()
+        self.value = value
+        self.unit = unit
+    }
     
     public override init() {
         super.init()
-        self.date = Date()
     }
     
     required public init?(map: Map) {
@@ -24,11 +29,7 @@ open class ETXMeasurement: ETXAggregatableModel {
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
-        source <- map["source"]
+        value <- map["value"]
+        unit <- map["unit"]
     }
-    
-    open override class func getDataSvc<T: ETXMeasurement>() -> ETXDataService<T>? {
-        return nil
-    }
-    
 }

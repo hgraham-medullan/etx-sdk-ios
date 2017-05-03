@@ -14,12 +14,35 @@ import ObjectMapper
  */
 open class ETXOutdoorAirQuality: ETXAirQuality {
     
-    public var so2: String?
-    public var so2Unit: Double?
-    public var no2: String?
-    public var no2Unit: Double?
-    public var ozone: String?
-    public var ozoneUnit: Double?
+    /**
+     Measure of the levels of Sulphur dioxide (SO2) in the air.
+     */
+    public var so2: Double?
+    
+    /**
+     Unit for Sulphur dioxide.
+     */
+    public var so2Unit: String?
+    
+    /**
+     Measure of the levels of Nitrogen dioxide (NO2) in the air.
+     */
+    public var no2: Double?
+    
+    /**
+     Unit for Nitrogen dioxide.
+     */
+    public var no2Unit: String?
+    
+    /**
+     Measure of the ground-level ozone.
+     */
+    public var ozone: Int?
+    
+    /**
+     Unit for ground-level ozone.
+     */
+    public var ozoneUnit: String?
     
     override open class var trendResultKey: String {
         return "OutdoorAirQuality"
