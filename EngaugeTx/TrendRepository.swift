@@ -44,8 +44,8 @@ class TrendRepository: Repository<ETXModel> {
         
         var trendsResource = self.etxResource
             .withParam("class", classesAsString)
-            .withParam("startDate", startDate.toTxDateFormat())
-            .withParam("endDate", endDate.toTxDateFormat())
+            .withParam("startDate", startDate.toTxDateFormat(convertToUTC: false))
+            .withParam("endDate", endDate.toTxDateFormat(convertToUTC: false))
             .withParam("timezone", DateService.getCurrentTimeZoneName())
         
         if let gdoConfig = gdoConfig {

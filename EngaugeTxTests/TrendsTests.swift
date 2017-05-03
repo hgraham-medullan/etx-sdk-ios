@@ -183,4 +183,11 @@ class TrendServiceTests: AuthenticatedTestCase {
         
     }
     
+    func testGetDataForOneMonth() {
+        ETXTrendService.getTrend(trendTimeframe: ETXTrendTimeframe.OneMonth, classes: [ETXSteps.self]) {
+            (res, err ) in
+            //
+        }
+    }
+    
 }
