@@ -16,6 +16,8 @@ public class ETXDateTransform: TransformType {
     static let SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.S'Z'"
     static let SERVER_DATE_TIMEZOME = "UTC"
     
+    public init() { }
+    
     /**
      Transforms from its JSON value
      returns: The value from its JSON value
