@@ -9,6 +9,7 @@
 import Foundation
 import Siesta
 import ObjectMapper
+import SwiftKeychainWrapper
 
 /**
  Work around to support 204 responses
@@ -51,12 +52,15 @@ class Repository<T> : Service where T: ETXModel {
     
     var resourcePath: String
     
+    
+    let keychainInstance: KeychainWrapper = KeychainWrapper(serviceName:  Bundle.main.bundleIdentifier ?? "engaugetx", accessGroup: nil)
+    
     private var _etxResource: Resource?
     var etxResource: Resource {
         
         get {
             if _etxResource == nil {
-                _etxResource = resource(resourcePath).addObserver(TxResourceObserver())
+                _etxResource = resource(resourcePath)
             }
             return _etxResource!
         }
@@ -67,8 +71,6 @@ class Repository<T> : Service where T: ETXModel {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
 
-        //self.etxResource.addObserver(TxResourceObserver())
-        
         configure {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
@@ -164,13 +166,15 @@ class Repository<T> : Service where T: ETXModel {
     
     
     func getAccessToken() -> String? {
+        cleanUpOldAccessTokenRefs()
+        print("Getting Access Token")
+        var accessToken: String?
         if AccesssTokenCache.tokenCached {
-            return AccesssTokenCache.accessToken
+            accessToken = AccesssTokenCache.accessToken
         } else {
-            let defaults = UserDefaults.standard
-            print("Getting Access Token")
-            return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+            accessToken = keychainInstance.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         }
+        return accessToken
     }
     
     func appendOwnerIdToWhereFilter(filter: ETXSearchFilter, ownerId: String) -> String{
@@ -184,19 +188,27 @@ class Repository<T> : Service where T: ETXModel {
     func setAccessToken(_ accessToken: String?) {
         AccesssTokenCache.accessToken = accessToken
         AccesssTokenCache.tokenCached = true
-        let defaults = UserDefaults.standard
-        defaults.setValue(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
-        //defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+
+        if let accessToken = accessToken {
+            self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        } else {
+            self.deleteAccessToken()
+        }
         print("Saved Access Token")
     }
     
     func deleteAccessToken() {
-        AccesssTokenCache.accessToken = nil
         print("Deleting Access Token")
-        let defaults = UserDefaults.standard
-        defaults.set(nil, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
-        defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        AccesssTokenCache.accessToken = nil
+        cleanUpOldAccessTokenRefs()
+        keychainInstance.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         
+    }
+    
+    private func cleanUpOldAccessTokenRefs() {
+                let defaults = UserDefaults.standard
+                defaults.set(nil, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+                defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
     }
     
     func getAppId() -> String {

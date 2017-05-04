@@ -58,6 +58,7 @@
 		089E0FB31E734703009154DE /* Spirometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E0FB21E734703009154DE /* Spirometry.swift */; };
 		08A7C5491E4CCD1900852D62 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7C5481E4CCD1900852D62 /* Date.swift */; };
 		08A7C54B1E4CCE7800852D62 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7C54A1E4CCE7800852D62 /* DateTests.swift */; };
+		08A904C01EBA5A4E005DF48D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A904BF1EBA5A4E005DF48D /* KeychainService.swift */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
@@ -184,6 +185,7 @@
 		089E0FB21E734703009154DE /* Spirometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spirometry.swift; sourceTree = "<group>"; };
 		08A7C5481E4CCD1900852D62 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		08A7C54A1E4CCE7800852D62 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		08A904BF1EBA5A4E005DF48D /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				180743E91EAEDF21009D4B06 /* BucketSize.swift */,
 				08F897CB1EAFE4E100F41DC4 /* FirstClassModel.swift */,
 				085C69E11EB233DB007F0F38 /* ResourceObserver.swift */,
+				08A904BF1EBA5A4E005DF48D /* KeychainService.swift */,
 			);
 			name = DataTypes;
 			sourceTree = "<group>";
@@ -898,6 +901,7 @@
 				085184DE1E75ACAC00BFD227 /* ClassTrendResultSet.swift in Sources */,
 				18B99DEA1EA8647700D81212 /* ShareableModelRespository.swift in Sources */,
 				08A7C5491E4CCD1900852D62 /* Date.swift in Sources */,
+				08A904C01EBA5A4E005DF48D /* KeychainService.swift in Sources */,
 				18D0DFF01EAB015600856F2D /* AdherenceTimeFrame.swift in Sources */,
 				0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */,
 				180743EC1EAEE013009D4B06 /* AdherenceResultMeta.swift in Sources */,
