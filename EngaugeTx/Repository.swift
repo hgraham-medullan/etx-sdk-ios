@@ -185,14 +185,15 @@ class Repository<T> : Service where T: ETXModel {
         return filter.toJsonString()
     }
     
-    func setAccessToken(_ accessToken: String?) {
+    func setAccessToken(_ accessToken: String?, rememberUser: Bool) {
+        self.deleteAccessToken()
+        
         AccesssTokenCache.accessToken = accessToken
         AccesssTokenCache.tokenCached = true
-
-        if let accessToken = accessToken {
-            self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
-        } else {
-            self.deleteAccessToken()
+        if rememberUser == true {
+            if let accessToken = accessToken {
+                self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+            }
         }
         print("Saved Access Token")
     }
@@ -200,6 +201,7 @@ class Repository<T> : Service where T: ETXModel {
     func deleteAccessToken() {
         print("Deleting Access Token")
         AccesssTokenCache.accessToken = nil
+        AccesssTokenCache.tokenCached = false
         cleanUpOldAccessTokenRefs()
         keychainInstance.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         
