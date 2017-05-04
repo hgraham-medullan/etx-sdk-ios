@@ -47,7 +47,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
         
         req.onSuccess { (obj) in
             let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
-            self.saveCurrentUser(accessToken)
+            self.saveCurrentUser(accessToken, rememberUser: rememberMe)
             
             completion(Mapper<T>().map(JSON: (accessToken.user?.rawJson)!), nil)
         }
@@ -81,11 +81,10 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
         
     }
-    
-    func saveCurrentUser(_ accessToken: ETXAccessToken?) {
+    func saveCurrentUser(_ accessToken: ETXAccessToken?, rememberUser: Bool) {
         self.deleteCurrentUser()
         if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
-            self.setAccessToken(accessToken)
+            self.setAccessToken(accessToken, rememberUser: rememberUser)
             self.keychainInstance.set(userId, forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
         }
     }
