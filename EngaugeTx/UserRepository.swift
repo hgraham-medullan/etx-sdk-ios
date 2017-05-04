@@ -86,7 +86,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.deleteCurrentUser()
         if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
             self.setAccessToken(accessToken)
-            self.keychainInstance.set(userId, forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
+            self.keychainInstance.set(userId, forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
         }
     }
     
@@ -97,7 +97,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     func deleteCurrentUser() {
-        keychainInstance.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
+        keychainInstance.removeObject(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
         self.deleteAccessToken()
         cleanUpOldCurrentUserRefs()
     }
