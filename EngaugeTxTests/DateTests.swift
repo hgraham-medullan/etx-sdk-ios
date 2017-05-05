@@ -83,7 +83,7 @@ class DateTests : ETXTestCase {
         
         let d = DateService.subtractTimeframe(timeframe: .OneWeek, date: date)
         
-        XCTAssertEqual("2017-03-06T15:30:00.0Z", d.toTxDateFormat(convertToUTC: false))
+        XCTAssertEqual("2017-03-06T15:30:00.0", d.toTxDateFormat(convertToUTC: false))
     }
     
     func testSubtractDaysWhenTheTimeframeIsTwoWeeks() {
@@ -102,14 +102,14 @@ class DateTests : ETXTestCase {
         
         let d = DateService.subtractTimeframe(timeframe: .TwoWeeks, date: date)
         
-        XCTAssertEqual("2017-02-27T15:30:00.0Z", d.toTxDateFormat(convertToUTC: false))
+        XCTAssertEqual("2017-02-27T15:30:00.0", d.toTxDateFormat(convertToUTC: false))
     }
     
     func testSetToMidnight() {
-        XCTAssertEqual("1980-07-11T00:00:00.0Z", DateService.setToMidnight(self.dateOfBirth).toTxDateFormat(convertToUTC: false))
+        XCTAssertEqual("1980-07-11T00:00:00.0", DateService.setToMidnight(self.dateOfBirth).toTxDateFormat(convertToUTC: false))
     }
     
     func testSetEndOfDay() {        
-        XCTAssertEqual("1980-07-11T23:59:59.0Z", DateService.setToEndOfDay(self.dateOfBirth).toTxDateFormat(convertToUTC: false))
+        XCTAssertEqual("1980-07-11T23:59:59.0", DateService.setToEndOfDay(self.dateOfBirth).toTxDateFormat(convertToUTC: false))
     }
 }

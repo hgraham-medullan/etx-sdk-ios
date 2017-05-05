@@ -10,6 +10,10 @@ import Foundation
 import Siesta
 import ObjectMapper
 
+// Find a better a to track that the user selected remember me
+class CurrentUserCache {
+    static var currentUserId: String?
+}
 
 class UserRepository<T: ETXUser>: Repository<T> {
     
@@ -81,21 +85,29 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
         
     }
+    
     func saveCurrentUser(_ accessToken: ETXAccessToken?, rememberUser: Bool) {
         self.deleteCurrentUser()
         if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
             self.setAccessToken(accessToken, rememberUser: rememberUser)
-            self.keychainInstance.set(userId, forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+            CurrentUserCache.currentUserId = userId
+            if rememberUser == true {
+                self.keychainInstance.set(userId, forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+            }
         }
     }
     
     func getCurrentUserId() -> String? {
         cleanUpOldCurrentUserRefs()
-        let userId = keychainInstance.string(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
-        return userId
+        if CurrentUserCache.currentUserId != nil {
+           return CurrentUserCache.currentUserId
+        } else {
+            return keychainInstance.string(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+        }
     }
     
     func deleteCurrentUser() {
+        CurrentUserCache.currentUserId = nil
         keychainInstance.removeObject(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
         self.deleteAccessToken()
         cleanUpOldCurrentUserRefs()
