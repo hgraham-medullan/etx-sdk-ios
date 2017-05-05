@@ -14,6 +14,7 @@ import ObjectMapper
  */
 public class ETXDateTransform: TransformType {
     static let SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.S'Z'"
+    static let LOCAL_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.S"
     static let SERVER_DATE_TIMEZOME = "UTC"
     
     public init() { }
@@ -66,8 +67,9 @@ public extension Date {
      */
     public func toTxDateFormat(convertToUTC: Bool) -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = ETXDateTransform.SERVER_DATE_FORMAT
+        dateFormatter.dateFormat = ETXDateTransform.LOCAL_DATE_FORMAT
         if convertToUTC == true {
+            dateFormatter.dateFormat = ETXDateTransform.SERVER_DATE_FORMAT
             dateFormatter.timeZone = TimeZone(abbreviation: ETXDateTransform.SERVER_DATE_TIMEZOME)
         }
         return dateFormatter.string(from: self)
