@@ -112,4 +112,33 @@ class DateTests : ETXTestCase {
     func testSetEndOfDay() {        
         XCTAssertEqual("1980-07-11T23:59:59.0", DateService.setToEndOfDay(self.dateOfBirth).toTxDateFormat(convertToUTC: false))
     }
+    
+    class GdoWithDateProp: ETXGenericDataObject  {
+        var dateProp: Date?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            dateProp <- (map["dateProp"], ETXDateOnlyTransform())
+        }
+    }
+    
+    func testEtxDateOnlyTransformWhenTheDateFormatIsZulu() {
+        let dob: Date = person.dob!
+        let dobAsUtc: String = dob.toTxDateFormat(convertToUTC: true)!
+        let jsonString: String = "{\"dateProp\":\"\(dobAsUtc)\"}"
+        let gdoWithDateProp = Mapper<GdoWithDateProp>().map(JSONString: jsonString);
+        XCTAssertNotNil(gdoWithDateProp?.dateProp, "Date should be populated")
+        if let dateInLocalTime = gdoWithDateProp?.dateProp?.toTxDateFormat(convertToUTC: false) {
+            XCTAssertEqual("1980-07-11T00:00:00.0", dateInLocalTime)
+        }
+    }
+    
+    func testEtxDateOnlyTransformWhenTheDateFormatIsShort() {
+        let gdoWithDateProp = Mapper<GdoWithDateProp>().map(JSONString: "{\"dateProp\":\"1980-07-11\"}");
+        XCTAssertNotNil(gdoWithDateProp?.dateProp, "Date should be populated")
+        if let dateInLocalTime = gdoWithDateProp?.dateProp?.toTxDateFormat(convertToUTC: false) {
+            XCTAssertEqual("1980-07-11T00:00:00.0", dateInLocalTime)
+        }
+    }
+
 }
