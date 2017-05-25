@@ -76,8 +76,10 @@ public extension Date {
     }
 }
 
-class ETXDateOnlyTransform: TransformType {
+public class ETXDateOnlyTransform: TransformType {
     static let SERVER_DATE_FORMAT = "yyyy-MM-dd"
+    
+    public init() {}
     
     /**
      Transforms from its JSON value
@@ -88,13 +90,16 @@ class ETXDateOnlyTransform: TransformType {
         guard case let value as String = value else {
             return nil
         }
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = ETXDateOnlyTransform.SERVER_DATE_FORMAT
-        guard let date: Date = formatter.date(from: value) else {
-            return nil
+        var date: Date?
+        // Try to convert from the Zulu format
+        let etxDateTransform = ETXDateTransform()
+        if let dateFromZuluTime = etxDateTransform.transformFromJSON(value) {
+            date = DateService.setToMidnight(dateFromZuluTime)
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = ETXDateOnlyTransform.SERVER_DATE_FORMAT
+            date = formatter.date(from: value)
         }
-        
         return date
     }
     
@@ -106,7 +111,7 @@ class ETXDateOnlyTransform: TransformType {
         guard let value = value else {
             return nil
         }
-        return value.toTxDateFormat(convertToUTC: false)
+        return DateService.setToMidnight(value).toTxDateFormat()
     }
 }
 
