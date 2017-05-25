@@ -122,7 +122,7 @@ class DateTests : ETXTestCase {
         }
     }
     
-    func testEtxDateOnlyTransform() {
+    func testEtxDateOnlyTransformWhenTheDateFormatIsZulu() {
         let dob: Date = person.dob!
         let dobAsUtc: String = dob.toTxDateFormat(convertToUTC: true)!
         let jsonString: String = "{\"dateProp\":\"\(dobAsUtc)\"}"
@@ -133,7 +133,7 @@ class DateTests : ETXTestCase {
         }
     }
     
-    func testEtxDateOnlyTransform2() {
+    func testEtxDateOnlyTransformWhenTheDateFormatIsShort() {
         let gdoWithDateProp = Mapper<GdoWithDateProp>().map(JSONString: "{\"dateProp\":\"1980-07-11\"}");
         XCTAssertNotNil(gdoWithDateProp?.dateProp, "Date should be populated")
         if let dateInLocalTime = gdoWithDateProp?.dateProp?.toTxDateFormat(convertToUTC: false) {
