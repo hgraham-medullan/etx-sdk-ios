@@ -3,17 +3,17 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'EngaugeTx' do
-    pod 'Siesta', '>=1.0.1'
-    pod 'Siesta/Alamofire', '>=1.0.1'
-    pod 'ObjectMapper', '~> 2.2'
-    pod 'Google'
-    pod 'Google/CloudMessaging'
-    pod 'SwiftKeychainWrapper'
+    pod 'Siesta', '= 1.1.1'
+    pod 'Siesta/Alamofire', '= 1.1.1'
+    pod 'ObjectMapper', '= 2.2.6'
+    pod 'Google', '= 2.0.4'
+    pod 'Google/CloudMessaging', '= 2.0.4'
+    pod 'SwiftKeychainWrapper', '= 3.0.1'
 end
 
 target 'EngaugeTxTests' do
-    pod 'Siesta', '>=1.0.1'
-    pod 'Siesta/Alamofire', '>=1.0.1'
-    pod 'ObjectMapper', '~> 2.2'
-    pod 'SwiftKeychainWrapper'
+    pod 'Siesta', '= 1.1.1'
+    pod 'Siesta/Alamofire', '= 1.1.1'
+    pod 'ObjectMapper', '= 2.2.6'
+    pod 'SwiftKeychainWrapper', '= 3.0.1'
 end
