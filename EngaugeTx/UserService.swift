@@ -158,40 +158,43 @@ open class ETXUserService<T: ETXUser> {
     /**
      Resends the verification email to the current user
      
+     - parameter email: The email address to send the verification email
      - parameter template: The template to use for the email that will be sent
      - parameter queryString: Additional query string params to send with the request
      - parameter completion: Callback when the request completes.
         - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
      
      */
-    func resendVerificationEmail(template: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
-        self.userRepository.resendVerificationEmail(email: currentUser.email, template: template, queryString: queryString, completion: completion)
+    func resendVerificationEmail(email: String, template: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
+        self.userRepository.resendVerificationEmail(email: email, template: template, queryString: queryString, completion: completion)
         
     }
     
     /**
      Resends the verification email to the current user
      
+     - parameter email: The email address to send the verification email
      - parameter queryString: Additional query string params to send with the request
      - parameter completion: Callback when the request completes.
      - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
      
      */
-    func resendVerificationEmail(queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
-        self.userRepository.resendVerificationEmail(email: currentUser.email, template: nil, queryString: queryString, completion: completion)
+    func resendVerificationEmail(email: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
+        self.userRepository.resendVerificationEmail(email: email, template: nil, queryString: queryString, completion: completion)
         
     }
     
     /**
      Resends the verification email to the current user
      
+     - parameter email: The email address to send the verification email 
      - parameter template: The template to use for the email that will be sent
      - parameter completion: Callback when the request completes.
      - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
      
      */
-    func resendVerificationEmail(template: String, completion: @escaping (_ err: ETXError?)->Void) {
-        self.userRepository.resendVerificationEmail(email: currentUser.email, template: template, queryString: nil, completion: completion)
+    func resendVerificationEmail(email: String, template: String, completion: @escaping (_ err: ETXError?)->Void) {
+        self.userRepository.resendVerificationEmail(email: email, template: template, queryString: nil, completion: completion)
     }
     
 }

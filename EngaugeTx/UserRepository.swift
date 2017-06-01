@@ -171,19 +171,19 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     func resendVerificationEmail(email: String, template: String?, queryString: [String:String]?, completion: @escaping (_ err: ETXError?)->Void) {
-        let resource = self.users.child("/resend-verification-email")
+        var resource = self.users.child("/resend-verification-email")
         
         if queryString != nil {
-            self.addQueryStrings(queryString, resource)
+            self.addQueryStrings(queryString, toResource: &resource)
         }
         
-        resource.withParam("email", email)
+        resource = resource.withParam("email", email)
         
         if template != nil {
-            resource.withParam("template", template)
+            resource = resource.withParam("template", template)
         }
         
-        let req = resource.request(.get, json: passwordUpdateCredentials.toJSON())
+        let req = resource.request(.get)
         
         req.onFailure { (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
