@@ -221,4 +221,14 @@ class Repository<T> : Service where T: ETXModel {
         return EngaugeTxApplication.clientKey
     }
     
+    
+    func addQueryStrings(_ queryStrings: [String:String]?, toResource resource: inout Resource) {
+        if let queryStrings = queryStrings {
+            for (k, v) in queryStrings {
+                resource = resource.withParam(k, v)
+            }
+        }
+    }
+    
+    
 }
