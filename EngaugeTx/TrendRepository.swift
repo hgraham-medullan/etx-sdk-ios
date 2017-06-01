@@ -73,7 +73,7 @@ class TrendRepository: Repository<ETXModel> {
                 req.onSuccess { (obj) in
                     
                     let res: ETXResponse = (obj.content as! ETXResponse)
-                    let results: [ETXClassTrendResultSet] = Mapper<ETXClassTrendResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])!
+                    let results: [ETXClassTrendResultSet] = Mapper<ETXClassTrendResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])
                     
                     let trendResultSet: ETXTrendResultSet = ETXTrendResultSet()
                     
