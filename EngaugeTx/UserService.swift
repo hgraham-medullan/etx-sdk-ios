@@ -165,7 +165,7 @@ open class ETXUserService<T: ETXUser> {
         - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
      
      */
-    func resendVerificationEmail(email: String, template: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
+    public func resendVerificationEmail(email: String, template: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
         self.userRepository.resendVerificationEmail(email: email, template: template, queryString: queryString, completion: completion)
         
     }
@@ -179,7 +179,7 @@ open class ETXUserService<T: ETXUser> {
      - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
      
      */
-    func resendVerificationEmail(email: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
+    public func resendVerificationEmail(email: String, queryString: [String:String], completion: @escaping (_ err: ETXError?)->Void) {
         self.userRepository.resendVerificationEmail(email: email, template: nil, queryString: queryString, completion: completion)
         
     }
@@ -193,7 +193,7 @@ open class ETXUserService<T: ETXUser> {
      - parameter err: An error object describing what went wrong. Will be ```nil``` if the request was successful
      
      */
-    func resendVerificationEmail(email: String, template: String, completion: @escaping (_ err: ETXError?)->Void) {
+    public func resendVerificationEmail(email: String, template: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.userRepository.resendVerificationEmail(email: email, template: template, queryString: nil, completion: completion)
     }
     
