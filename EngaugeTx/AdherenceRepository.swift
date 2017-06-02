@@ -58,7 +58,7 @@ class ETXAdherenceRepository: Repository<ETXModel> {
         
         req.onSuccess { (obj) in
             let res: ETXResponse = (obj.content as! ETXResponse)
-            let results: [ETXAdherenceResultSet] = Mapper<ETXAdherenceResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])!
+            let results: [ETXAdherenceResultSet] = Mapper<ETXAdherenceResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])
             
             completion(results, nil)
             

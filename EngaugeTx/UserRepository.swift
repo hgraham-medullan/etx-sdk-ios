@@ -72,7 +72,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
             
             req.onSuccess { (obj) in
                 let res: ETXResponse = (obj.content as! ETXResponse)
-                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])!
+                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])
                 var users: [ETXUser] = [ETXUser]()
                 for affiliatedUser in affiliatedUsers {
                     if(affiliatedUser.role == withRole) {
