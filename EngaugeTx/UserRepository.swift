@@ -158,7 +158,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, userId: String, completion: @escaping (_ err: ETXError?)->Void) {
-        let req = self.users.child("/\(userId)").request(.put, json: passwordUpdateCredentials.toJSON())
+        let req = self.users.child("/changePassword").request(.put, json: passwordUpdateCredentials.toJSON())
         
         req.onFailure { (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
