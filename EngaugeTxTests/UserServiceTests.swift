@@ -290,25 +290,25 @@ class UserServiceTest: ETXTestCase {
         // Login
         userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
             (user, err) in
-            XCTAssertNotNil(user, "Should have a logged in user")
+            XCTAssertNotNil(user, "Should have a logged in user \(err)")
             if let user = user {
                 
                 // Change Password
                 user.updatePassword(newPassword, currentPassword: oldPassword) {
                     (err) in
-                    XCTAssertNil(err, "Password should be updated successfully")
+                    XCTAssertNil(err, "Password should be updated successfully \(err)")
                     
                     // Test with old Password. Login should fail
                     userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
                         (user, err) in
-                        XCTAssertNotNil(err, "Login should not be successful")
-                        XCTAssertTrue(err is ETXAuthenticationError, "Login error should be an authentication error")
+                        XCTAssertNotNil(err, "Login should not be successful \(err)")
+                        XCTAssertTrue(err is ETXAuthenticationError, "Login error should be an authentication error \(err)")
                         XCTAssertEqual(ETXAuthenticationError.Reason.InvalidUsernameOrPassword, (err as! ETXAuthenticationError).reason, "Authentication error should be 'InvalidUsernameOrPassword'")
                         
                         // Try with the new Password. Login should pass
                         userSvc.loginUserWithEmail(emailAddress, password: newPassword, rememberMe: true) {
                             (user, err) in
-                            XCTAssertNil(err, "Login should be successful")
+                            XCTAssertNil(err, "Login should be successful \(err)")
                             
                             // Set the password back to the old one
                             user!.updatePassword(oldPassword, currentPassword: newPassword) {
