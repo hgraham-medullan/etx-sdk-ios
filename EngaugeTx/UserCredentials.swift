@@ -68,8 +68,7 @@ class PasswordUpdateCredentials: UserCredentials {
     }
     
     public func mapping(map: Map) {
-        // TODO: Platform to be update to accept current password
-        //currentPassword <- map["currentPassword"]
+        oldPassword <- map["oldPassword"]
         password <- map["password"]
     }
 }

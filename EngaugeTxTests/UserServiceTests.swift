@@ -301,7 +301,7 @@ class UserServiceTest: ETXTestCase {
                     // Test with old Password. Login should fail
                     userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
                         (user, err) in
-                        XCTAssertNotNil(err, "Login should not be successful \(err?.message)")
+                        XCTAssertNotNil(err, "Login should not be successful \(String(describing: err?.message))")
                         XCTAssertTrue(err is ETXAuthenticationError, "Login error should be an authentication error (\(err?.message))")
                         XCTAssertEqual(ETXAuthenticationError.Reason.InvalidUsernameOrPassword, (err as! ETXAuthenticationError).reason, "Authentication error should be 'InvalidUsernameOrPassword'")
                         
