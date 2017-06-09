@@ -12,7 +12,7 @@ source 'https://github.com/medullan/engauge-tx-pod-specs.git'
 
 target 'EnguageTxSampleIosApp' do
   use_frameworks!
-  pod 'EngaugeTx', '~> 0.0.19'
+  pod 'EngaugeTx', '~> 0.0.33'
 end
 ```
 
