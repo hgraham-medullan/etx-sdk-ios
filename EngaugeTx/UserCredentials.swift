@@ -53,23 +53,22 @@ class UsernameCredentials: UserCredentials {
 
 class PasswordUpdateCredentials: UserCredentials {
     
-    var currentPassword: String
+    var oldPassword: String
     var password: String
     
     init(currentPassword: String, newPassword: String) {
-        self.currentPassword = currentPassword
+        self.oldPassword = currentPassword
         self.password = newPassword
     }
     
     required public init?(map: Map) {
         // TODO: Find appropriate way to initialize
-        self.currentPassword = ""
+        self.oldPassword = ""
         self.password = ""
     }
     
     public func mapping(map: Map) {
-        // TODO: Platform to be update to accept current password
-        //currentPassword <- map["currentPassword"]
+        oldPassword <- map["oldPassword"]
         password <- map["password"]
     }
 }
