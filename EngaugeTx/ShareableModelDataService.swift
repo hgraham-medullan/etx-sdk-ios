@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Service class for handling shareable models
+ */
 public class ETXShareableModelDataService<T: ETXShareableModel>: ETXDataService<T> {
     
     init(repository: ETXShareableModelRespository<T>) {

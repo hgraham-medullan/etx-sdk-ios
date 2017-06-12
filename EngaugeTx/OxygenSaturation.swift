@@ -9,6 +9,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents the percentage of hemoglobin binding sites in the bloodstream occupied by oxygen
+ */
 open class ETXOxygenSaturation: ETXMeasurement {
     
     /**

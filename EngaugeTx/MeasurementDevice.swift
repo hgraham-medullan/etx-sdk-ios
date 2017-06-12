@@ -9,6 +9,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ The device that was used to capture a measurement
+ */
 open class ETXMeasurementDevice: ETXModel {
     public init(deviceId: String){
         super.init()

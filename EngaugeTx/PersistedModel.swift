@@ -8,11 +8,13 @@
 import Foundation
 import ObjectMapper
 
+/// Defines the rules for persisting to the platform
 public protocol ETXPersistableModel: ETXModelable {
     typealias ModelType = Self
     //static func getDataSvc() -> ETXDataService<ETXPersistedModel>?
 }
 
+/// A model that can be stored on the platform
 open class ETXPersistedModel : ETXModel, ETXPersistableModel {
     
     class var modelResourcePath: String? {

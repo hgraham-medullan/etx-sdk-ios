@@ -9,7 +9,9 @@
 import Foundation
 import ObjectMapper
 
-
+/**
+ A user that is affiliated with another through some role
+ */
 public class ETXAffiliatedUser : ETXModel {
     
     var firstName: String?
