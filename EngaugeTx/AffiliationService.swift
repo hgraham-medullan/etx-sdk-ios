@@ -8,7 +8,9 @@
 
 import Foundation
 
-
+/**
+ Service class for retrieving affiliations among users
+ */
 public class ETXAffiliationService<T: ETXUser> {
     let userRepository: UserRepository<T>
     

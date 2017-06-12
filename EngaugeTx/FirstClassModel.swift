@@ -7,6 +7,9 @@
 //
 import Foundation
 
+/**
+ A fully supported type on the platform
+ */
 public protocol FirstClassModel: ETXPersistableModel {
     
 }

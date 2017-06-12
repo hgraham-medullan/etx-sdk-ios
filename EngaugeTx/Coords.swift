@@ -9,6 +9,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Location captured in longitude and latitude values
+ */
 open class ETXCoords: ETXMappable {
     
     public var lat: Float?

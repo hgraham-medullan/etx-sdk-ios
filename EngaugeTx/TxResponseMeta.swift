@@ -9,7 +9,9 @@
 import Foundation
 import ObjectMapper
 
-
+/**
+ Meta data for an api response
+ */
 public class ETXResponseMeta : ETXMappable {
     
     var count: Int?

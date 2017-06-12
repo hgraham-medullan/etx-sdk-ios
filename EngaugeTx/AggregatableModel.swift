@@ -52,6 +52,9 @@ open class ETXAggregatableModel: ETXPersistedModel, ETXAggregatable {
     }
 }
 
+/**
+ 
+ */
 protocol ETXAggregatable : ETXPersistableModel{
     static var trendResultKey: String? { get }
     //static var modelResourcePath: String? { get }

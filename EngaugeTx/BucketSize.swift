@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Categorization of the data set. Whether it should be by daily, monthly of annually.
+ */
 public enum ETXBucketSize: String {
     case day
     case month

@@ -9,6 +9,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Value(s) that can be captured from a source device and can be aggregated on
+ */
 open class ETXMeasurement: ETXAggregatableModel {
     
     public var source: ETXMeasurementSource?

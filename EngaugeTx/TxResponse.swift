@@ -9,7 +9,9 @@
 import Foundation
 import ObjectMapper
 
-
+/**
+ Default result response for get queries
+ */
 public class ETXResponse : ETXModel {
     
     var result: Any?

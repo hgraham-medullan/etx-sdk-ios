@@ -9,6 +9,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ How or where the measurement was captured
+ */
 open class ETXMeasurementSource: ETXMappable {
     
     public var type: String?;
