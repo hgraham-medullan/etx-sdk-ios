@@ -37,7 +37,7 @@ import ObjectMapper
     print(doctorVisits)
  }
  
- ```
+ ```repos
  
  */
 internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
@@ -61,7 +61,7 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
     /**
      Create an instance GenericDataService
      */
-    public init() {
+    public override init() {
         self.modelName = String(describing: T.self)
         super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
     }

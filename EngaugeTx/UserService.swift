@@ -143,7 +143,7 @@ open class ETXUserService<T: ETXUser> {
         } else {
             self.userRepository.changePassword(
                 PasswordUpdateCredentials(currentPassword: currentPassword, newPassword: newPassword),
-                userId: currentUser.id!, completion: completion)
+                completion: completion)
         }
     }
     

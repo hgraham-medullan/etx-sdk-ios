@@ -12,12 +12,17 @@ import ObjectMapper
 /**
  * Represents the measure of lung capacity/function
  */
-open class ETXSpirometry: ETXMeasurement {
+open class ETXSpirometry: ETXMeasurement, FirstClassModel {
     
     /**
      * Forced expiratory volume in one second (FEV1)
      */
     public var fev1: Float?
+    
+    /**
+     Unit for FEV1
+     */
+    public var fev1Unit: String?
     
     /**
      * 	FEV1/FVC
@@ -30,19 +35,28 @@ open class ETXSpirometry: ETXMeasurement {
     public var peakFlow:Float?
     
     /**
+     Unit for peakFlow
+     */
+    public var peakFlowUnit: String?
+    
+    /**
      * Forced Expiratory Flow at 25–75% of Forced Vital Capacity (FVC)
      */
     public var fef2575: Float?
+    
+    /**
+     Unit for fef2575
+     */
+    public var fef2575Unit:String?
     
     /**
      * Forced Vital Capacity (FVC)
      */
     public var fvc: Float?
     
-    
-    public var fev1Unit: String?
-    public var peakFlowUnit: String?
-    public var fef2575Unit: String?
+    /**
+     Unit for FVC
+     */
     public var fvcUnit: String?
     
     override open class var trendResultKey: String {

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.21"
+  s.version      = "0.0.36"
   s.summary      = "SDK for the EngaugeTx platform"
 
   # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "EngaugeTx Medullan Platform Solutions"
 
-  s.homepage     = "http://help.engaugetx.com/"
+  s.homepage     = "https://developer.engaugetx.com/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/medullan/etx-sdk-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "git@github.com:medullan/etx-sdk-ios.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -128,10 +128,9 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
- s.dependency 'Siesta', '>=1.0.1'
- s.dependency 'Siesta/Alamofire', '>=1.0.1'
- s.dependency 'ObjectMapper', '~> 2.2'
+ s.dependency 'Siesta', '=1.1.1'
+ s.dependency 'Siesta/Alamofire', '=1.1.1'
+ s.dependency 'ObjectMapper', '=2.2.7'
+ s.dependency 'SwiftKeychainWrapper', '3.0.1'
 
 end

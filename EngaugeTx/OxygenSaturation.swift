@@ -9,10 +9,24 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Represents the percentage of hemoglobin binding sites in the bloodstream occupied by oxygen
+ */
 open class ETXOxygenSaturation: ETXMeasurement {
     
+    /**
+     The blood oxygen saturation level
+     */
     public var spo2: Float?
+    
+    /**
+     Unit for capillary oxygen saturation.
+     */
     public var spo2Unit: String?
+    
+    /**
+     Heart pulse
+     */
     public var bpm: Int?
     
     override open class var trendResultKey: String {

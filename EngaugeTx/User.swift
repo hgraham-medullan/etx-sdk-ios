@@ -72,6 +72,12 @@ open class ETXUser: ETXModel {
         
     }
     
+    public override init() {
+        self.email = ""
+        self.username = ""
+        self.password = ""
+        super.init()
+    }
     
     /**
      Creates a instance of ETXUser

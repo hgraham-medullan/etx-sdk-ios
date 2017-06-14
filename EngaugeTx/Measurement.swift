@@ -9,6 +9,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Value(s) that can be captured from a source device and can be aggregated on
+ */
 open class ETXMeasurement: ETXAggregatableModel {
     
     public var source: ETXMeasurementSource?
@@ -26,5 +29,9 @@ open class ETXMeasurement: ETXAggregatableModel {
         super.mapping(map: map)
         source <- map["source"]
     }
-
+    
+    open override class func getDataSvc<T: ETXMeasurement>() -> ETXDataService<T>? {
+        return nil
+    }
+    
 }

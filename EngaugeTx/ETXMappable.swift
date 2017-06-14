@@ -9,9 +9,10 @@
 import Foundation
 import ObjectMapper
 
+/// A class that can be serialize to JSOn and back
 open class ETXMappable: Mappable {
 
-    var rawJson: [String:Any]?
+    public var rawJson: [String:Any]?
     
     public init() {
         

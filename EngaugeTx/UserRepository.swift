@@ -10,11 +10,17 @@ import Foundation
 import Siesta
 import ObjectMapper
 
+// Find a better a to track that the user selected remember me
+class CurrentUserCache {
+    static var currentUserId: String?
+}
+
 class UserRepository<T: ETXUser>: Repository<T> {
     
     private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
     private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
+    
     
     var users: Resource { return resource(URL_USERS) }
     
@@ -27,7 +33,6 @@ class UserRepository<T: ETXUser>: Repository<T> {
         self.configureTransformer(URL_USER_AFFILIATED_USERS) {
             Mapper<ETXResponse>().map(JSON: $0.content)
         }
-        
     }
     
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
@@ -46,7 +51,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
         
         req.onSuccess { (obj) in
             let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
-            self.saveCurrentUser(accessToken)
+            self.saveCurrentUser(accessToken, rememberUser: rememberMe)
             
             completion(Mapper<T>().map(JSON: (accessToken.user?.rawJson)!), nil)
         }
@@ -67,7 +72,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
             
             req.onSuccess { (obj) in
                 let res: ETXResponse = (obj.content as! ETXResponse)
-                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])!
+                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])
                 var users: [ETXUser] = [ETXUser]()
                 for affiliatedUser in affiliatedUsers {
                     if(affiliatedUser.role == withRole) {
@@ -81,28 +86,36 @@ class UserRepository<T: ETXUser>: Repository<T> {
         
     }
     
-    func saveCurrentUser(_ accessToken: ETXAccessToken?) {
-        let defaults = UserDefaults.standard
+    func saveCurrentUser(_ accessToken: ETXAccessToken?, rememberUser: Bool) {
         self.deleteCurrentUser()
         if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
-            let currentUser: [String: String] =
-                [ETXConstants.KEY_DEFAULTS_USER_ID: userId,
-                 ETXConstants.KEY_DEFAULTS_ACCESS_TOKEN: accessToken]
-            self.setAccessToken(accessToken)
-            defaults.set(currentUser, forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
+            self.setAccessToken(accessToken, rememberUser: rememberUser)
+            CurrentUserCache.currentUserId = userId
+            if rememberUser == true {
+                self.keychainInstance.set(userId, forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+            }
         }
-        
     }
     
     func getCurrentUserId() -> String? {
-        let defaults = UserDefaults.standard
-        return defaults.dictionary(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)?[ETXConstants.KEY_DEFAULTS_USER_ID] as! String?
+        cleanUpOldCurrentUserRefs()
+        if CurrentUserCache.currentUserId != nil {
+           return CurrentUserCache.currentUserId
+        } else {
+            return keychainInstance.string(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+        }
     }
     
     func deleteCurrentUser() {
+        CurrentUserCache.currentUserId = nil
+        keychainInstance.removeObject(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+        self.deleteAccessToken()
+        cleanUpOldCurrentUserRefs()
+    }
+    
+    private func cleanUpOldCurrentUserRefs() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
-        self.deleteAccessToken()
     }
     
     func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
@@ -144,8 +157,8 @@ class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, userId: String, completion: @escaping (_ err: ETXError?)->Void) {
-        let req = self.users.child("/\(userId)").request(.put, json: passwordUpdateCredentials.toJSON())
+    func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, completion: @escaping (_ err: ETXError?)->Void) {
+        let req = self.users.child("/changePassword").request(.post, json: passwordUpdateCredentials.toJSON())
         
         req.onFailure { (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)

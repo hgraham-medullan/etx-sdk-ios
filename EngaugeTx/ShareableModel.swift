@@ -10,9 +10,12 @@
 import Foundation
 import ObjectMapper
 
+/// Model that can be shared among affiliated users
 open class ETXShareableModel: ETXPersistedModel {
     
-
+     override class var modelResourcePath: String? {
+        return "/"
+    }
     
     public override init() {
         super.init()
@@ -26,3 +29,6 @@ open class ETXShareableModel: ETXPersistedModel {
         super.mapping(map: map)
     }
 }
+
+
+

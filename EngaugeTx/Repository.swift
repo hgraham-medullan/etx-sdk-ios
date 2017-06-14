@@ -9,6 +9,7 @@
 import Foundation
 import Siesta
 import ObjectMapper
+import SwiftKeychainWrapper
 
 /**
  Work around to support 204 responses
@@ -43,13 +44,19 @@ class AccesssTokenCache {
 
 class Repository<T> : Service where T: ETXModel {
     
-    private let KEY_HEADER_APP_ID: String = "app-id"
-    private let KEY_HEADER_CLIENT_KEY: String = "client-key"
-    private let KEY_HEADER_AUTHORIZATION: String = "Authorization"
+     let KEY_HEADER_APP_ID: String = "app-id"
+     let KEY_HEADER_CLIENT_KEY: String = "client-key"
+     let KEY_HEADER_AUTHORIZATION: String = "Authorization"
+     let QUERY_STRING_APP_ID = "appId"
+     let QUERY_STRING_CLIENT_KEY = "clientKey"
+     let QUERY_STRING_ACCESS_TOKEN = "accessToken"
     
     let KEY_DEFAULTS_ACCESS_TOKEN: String = "accessToken"
     
     var resourcePath: String
+    
+    
+    let keychainInstance: KeychainWrapper = KeychainWrapper(serviceName:  Bundle.main.bundleIdentifier ?? "engaugetx", accessGroup: nil)
     
     private var _etxResource: Resource?
     var etxResource: Resource {
@@ -79,18 +86,22 @@ class Repository<T> : Service where T: ETXModel {
         if let _ = model.id {
             self.update(model: model, completion: completion)
         } else {
-            let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
-            req.onFailure({ (err) in
-                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                etxError?.rawJson = err.jsonDict
-                etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
-                completion(nil, etxError)
-            })
-            req.onSuccess({ (m) in
-                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-                completion(model, nil)
-            })
+            self.create(model: model, completion: completion)
         }
+    }
+    
+    func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
+        req.onFailure({ (err) in
+            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+            etxError?.rawJson = err.jsonDict
+            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+            completion(nil, etxError)
+        })
+        req.onSuccess({ (m) in
+            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+            completion(model, nil)
+        })
     }
     
     func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
@@ -158,31 +169,51 @@ class Repository<T> : Service where T: ETXModel {
     
     
     func getAccessToken() -> String? {
+        cleanUpOldAccessTokenRefs()
+        print("Getting Access Token")
+        var accessToken: String?
         if AccesssTokenCache.tokenCached {
-            return AccesssTokenCache.accessToken
+            accessToken = AccesssTokenCache.accessToken
         } else {
-            let defaults = UserDefaults.standard
-            print("Getting Access Token")
-            return defaults.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+            accessToken = keychainInstance.string(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         }
+        return accessToken
     }
     
-    func setAccessToken(_ accessToken: String?) {
+    func appendOwnerIdToWhereFilter(filter: ETXSearchFilter, ownerId: String) -> String{
+        if filter.whereCondtions == nil {
+            filter.whereCondtions = [ETXWhereCondition]()
+        }
+        filter.whereCondtions?.append(ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: ownerId))
+        return filter.toJsonString()
+    }
+    
+    func setAccessToken(_ accessToken: String?, rememberUser: Bool) {
+        self.deleteAccessToken()
+        
         AccesssTokenCache.accessToken = accessToken
         AccesssTokenCache.tokenCached = true
-        let defaults = UserDefaults.standard
-        defaults.setValue(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
-        //defaults.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        if rememberUser == true {
+            if let accessToken = accessToken {
+                self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+            }
+        }
         print("Saved Access Token")
     }
     
     func deleteAccessToken() {
-        AccesssTokenCache.accessToken = nil
         print("Deleting Access Token")
-        let defaults = UserDefaults.standard
-        defaults.set(nil, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
-        defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+        AccesssTokenCache.accessToken = nil
+        AccesssTokenCache.tokenCached = false
+        cleanUpOldAccessTokenRefs()
+        keychainInstance.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
         
+    }
+    
+    private func cleanUpOldAccessTokenRefs() {
+                let defaults = UserDefaults.standard
+                defaults.set(nil, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
+                defaults.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
     }
     
     func getAppId() -> String {
