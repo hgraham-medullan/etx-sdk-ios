@@ -61,9 +61,9 @@
 		08A904C01EBA5A4E005DF48D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A904BF1EBA5A4E005DF48D /* KeychainService.swift */; };
 		08BCB0671EF0F92900BC8733 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0661EF0F92900BC8733 /* Blob.swift */; };
 		08BCB06A1EF1042600BC8733 /* BlobRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0691EF1042600BC8733 /* BlobRepository.swift */; };
-		08BCB06E1EF1122F00BC8733 /* BlobRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB06D1EF1122F00BC8733 /* BlobRepository.swift */; };
 		08BCB0721EF116A100BC8733 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0711EF116A100BC8733 /* data.json */; };
 		08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0731EF144F800BC8733 /* test-upload-file.json */; };
+		08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0751EF18DB900BC8733 /* BlobTests.swift */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
@@ -193,9 +193,9 @@
 		08A904BF1EBA5A4E005DF48D /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		08BCB0661EF0F92900BC8733 /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		08BCB0691EF1042600BC8733 /* BlobRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobRepository.swift; sourceTree = "<group>"; };
-		08BCB06D1EF1122F00BC8733 /* BlobRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobRepository.swift; sourceTree = "<group>"; };
 		08BCB0711EF116A100BC8733 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		08BCB0731EF144F800BC8733 /* test-upload-file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-upload-file.json"; sourceTree = "<group>"; };
+		08BCB0751EF18DB900BC8733 /* BlobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobTests.swift; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
@@ -471,7 +471,7 @@
 		08BCB06B1EF1120700BC8733 /* Blobs */ = {
 			isa = PBXGroup;
 			children = (
-				08BCB06D1EF1122F00BC8733 /* BlobRepository.swift */,
+				08BCB0751EF18DB900BC8733 /* BlobTests.swift */,
 			);
 			name = Blobs;
 			sourceTree = "<group>";
@@ -984,8 +984,8 @@
 				1813AE6F1E9F25E900A08F22 /* AffiliationServiceTests.swift in Sources */,
 				18D0DFD81EAAF1DB00856F2D /* StringUtilsTests.swift in Sources */,
 				08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */,
-				08BCB06E1EF1122F00BC8733 /* BlobRepository.swift in Sources */,
 				080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */,
+				08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */,
 				180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */,
 				085184D01E74298C00BFD227 /* TrendsTests.swift in Sources */,
 			);
