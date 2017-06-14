@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.34"
+  s.version      = "0.0.35"
   s.summary      = "SDK for the EngaugeTx platform"
 
   # This description is used to generate tags and improve search results.
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/medullan/etx-sdk-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "git@github.com:medullan/etx-sdk-ios.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
