@@ -33,8 +33,16 @@ public class ETXBlob: ETXPersistedModel, FirstClassModel {
     /*
      The URL to the blob
      */
-    public  var url: URL? {
-        return BlobRepository<ETXBlob>(resourcePath: ETXBlob.blobsUrl).getUrl(model: self)
+    
+    public var url: URL? {
+        return ETXBlob.getUrl(self.id)
+    }
+    
+    /*
+     The URL to the blob
+     */
+    public static func getUrl(_ blobId: String?) -> URL? {
+        return BlobRepository<ETXBlob>(resourcePath: ETXBlob.blobsUrl).getUrl(blobId)
     }
     
      var fileData: Data?

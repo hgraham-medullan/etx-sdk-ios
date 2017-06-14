@@ -66,14 +66,18 @@ class BlobRepository<M: ETXModel>: Repository<M> {
         })
     }
     
-    func getUrl(model: ETXBlob) -> URL? {
-        guard let id = model.id, let accessToken =  self.getAccessToken() else {
+    func getUrl(_ blobId: String?) -> URL? {
+        guard let blobId = blobId, let accessToken =  self.getAccessToken() else {
             return nil
         }
         return self.etxResource
-            .child(id)
+            .child(blobId)
             .withParam(QUERY_STRING_APP_ID, EngaugeTxApplication.appId)
             .withParam(QUERY_STRING_CLIENT_KEY, EngaugeTxApplication.clientKey)
             .withParam(QUERY_STRING_ACCESS_TOKEN, accessToken).url
+    }
+    
+    func getUrl(model: ETXBlob) -> URL? {
+        return self.getUrl(model.id)
     }
 }

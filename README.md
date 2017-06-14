@@ -292,3 +292,38 @@ ETXAdherenceService.getAdherence(medicationId: "dulera_20", trendTimeframe: ETXT
     // Do work
 }
 ```
+
+## Blobs
+
+To store files on the platform use the `ETXBlob` class to define your data and save.
+
+```swift
+let userProfile: UserProfile = getUserProfile...
+
+func uploadImage(imageData: UIImage) {
+  guard let imageData = UIImageJPEGRepresentation(image, 0.5) else {
+    print("Could not get JPEG representation of UIImage")
+    return
+  }
+  
+  let blob = ETXBlob(fileData: imageData, fileName: "pic", mimeType: "image/png")
+  //Save the blob
+  blob.save {
+   // attach it to the user profile for later retrieval
+   userProfile.displayPhoto = blob.id
+   // Update the profile with the ID to the blob
+   userProfile.save {
+     print("Profile photo updated")
+   }
+  }
+}
+
+```
+
+Getting the blob later:
+
+```swift
+let userProfile: UserProfile = getUserProfile...
+let urlToFile: URL = Blob.getUrl(userProfile. userProfile.displayPhoto)
+
+```

@@ -30,7 +30,7 @@ class BlobRepositoryTest: AuthenticatedTestCase {
             (err) in
             XCTAssertNil(err, "The blob shoud save sucessfully")
             XCTAssertNotNil(blob.id, "The blob should have an ID")
-            XCTAssertEqual(4, blob.size!, "The size of the file should be 4 bytes")
+            XCTAssertEqual(30, blob.size!, "The size of the file should be 4 bytes")
             blobSaveExpectation.fulfill()
         }
         
@@ -38,6 +38,8 @@ class BlobRepositoryTest: AuthenticatedTestCase {
             (err) in
             print("blob save expectation timeout \(String(describing: err))")
         }
+        
+        
     }
     
     func testShouldNotBeAbleToGetTheUrlToAFileWhenItIsNotSaved() {
@@ -57,6 +59,7 @@ class BlobRepositoryTest: AuthenticatedTestCase {
             
             let expectedUrl: String = "\(EngaugeTxApplication.baseUrl!)/blobs/\(blob.id!)?" +
                 "accessToken=\(repo.getAccessToken()!)&appId=\(EngaugeTxApplication.appId!)&clientKey=\(EngaugeTxApplication.clientKey!)"
+            XCTAssertEqual(expectedUrl, ETXBlob.getUrl(blob.id)?.absoluteString)
             XCTAssertEqual(expectedUrl, blob.url?.absoluteString)
             blobSaveExpectation.fulfill()
         }

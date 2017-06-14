@@ -224,8 +224,4 @@ class Repository<T> : Service where T: ETXModel {
         return EngaugeTxApplication.clientKey
     }
     
-    func saveFile() {
-        //self.
-    }
-    
 }
