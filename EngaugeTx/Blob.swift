@@ -49,6 +49,12 @@ public class ETXBlob: ETXPersistedModel, FirstClassModel {
      var fileName: String?
      var mimeType: String?
     
+    /**
+     Create a new blob to be saved
+     - parameter fileData: The file data to be stored
+     - parameter fileName: The name of the file
+     - parameter mimeType: The files mime/content-type  
+    */
     public init(fileData: Data, fileName: String, mimeType: String) {
         self.fileData = fileData
         self.fileName = fileName

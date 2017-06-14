@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "EngaugeTx Medullan Platform Solutions"
 
-  s.homepage     = "http://help.engaugetx.com/"
+  s.homepage     = "https://developer.engaugetx.com/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
