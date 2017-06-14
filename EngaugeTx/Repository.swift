@@ -44,9 +44,12 @@ class AccesssTokenCache {
 
 class Repository<T> : Service where T: ETXModel {
     
-    private let KEY_HEADER_APP_ID: String = "app-id"
-    private let KEY_HEADER_CLIENT_KEY: String = "client-key"
-    private let KEY_HEADER_AUTHORIZATION: String = "Authorization"
+     let KEY_HEADER_APP_ID: String = "app-id"
+     let KEY_HEADER_CLIENT_KEY: String = "client-key"
+     let KEY_HEADER_AUTHORIZATION: String = "Authorization"
+     let QUERY_STRING_APP_ID = "appId"
+     let QUERY_STRING_CLIENT_KEY = "clientKey"
+     let QUERY_STRING_ACCESS_TOKEN = "accessToken"
     
     let KEY_DEFAULTS_ACCESS_TOKEN: String = "accessToken"
     
