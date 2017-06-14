@@ -59,6 +59,11 @@
 		08A7C5491E4CCD1900852D62 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7C5481E4CCD1900852D62 /* Date.swift */; };
 		08A7C54B1E4CCE7800852D62 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7C54A1E4CCE7800852D62 /* DateTests.swift */; };
 		08A904C01EBA5A4E005DF48D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A904BF1EBA5A4E005DF48D /* KeychainService.swift */; };
+		08BCB0671EF0F92900BC8733 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0661EF0F92900BC8733 /* Blob.swift */; };
+		08BCB06A1EF1042600BC8733 /* BlobRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0691EF1042600BC8733 /* BlobRepository.swift */; };
+		08BCB06E1EF1122F00BC8733 /* BlobRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB06D1EF1122F00BC8733 /* BlobRepository.swift */; };
+		08BCB0721EF116A100BC8733 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0711EF116A100BC8733 /* data.json */; };
+		08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0731EF144F800BC8733 /* test-upload-file.json */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
@@ -186,6 +191,11 @@
 		08A7C5481E4CCD1900852D62 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		08A7C54A1E4CCE7800852D62 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		08A904BF1EBA5A4E005DF48D /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		08BCB0661EF0F92900BC8733 /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
+		08BCB0691EF1042600BC8733 /* BlobRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobRepository.swift; sourceTree = "<group>"; };
+		08BCB06D1EF1122F00BC8733 /* BlobRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobRepository.swift; sourceTree = "<group>"; };
+		08BCB0711EF116A100BC8733 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		08BCB0731EF144F800BC8733 /* test-upload-file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-upload-file.json"; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
@@ -382,6 +392,7 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				08BCB06C1EF1121100BC8733 /* Blobs */,
 				18B99DE11EA82E0200D81212 /* DataTypes */,
 				18B99DE81EA8644200D81212 /* Repositories */,
 				18B99DED1EA8E3AE00D81212 /* Services */,
@@ -400,6 +411,7 @@
 				08A7C5481E4CCD1900852D62 /* Date.swift */,
 				085184D91E74DBC800BFD227 /* DateService.swift */,
 				188548FA1EA68A03007442B5 /* Constants.swift */,
+				08BCB0711EF116A100BC8733 /* data.json */,
 			);
 			path = EngaugeTx;
 			sourceTree = "<group>";
@@ -407,6 +419,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				08BCB06B1EF1120700BC8733 /* Blobs */,
 				0811CFEE1EB382FC008B4B30 /* Affiliations */,
 				0862A29E1EB0E38D00869160 /* Measurement */,
 				180743E61EAECEE6009D4B06 /* Medications */,
@@ -426,6 +439,7 @@
 				08EFD9481E460576005F0B50 /* ETXAuthenticatedTestCase.swift */,
 				08A7C54A1E4CCE7800852D62 /* DateTests.swift */,
 				085184DB1E75680A00BFD227 /* DateServiceTests.swift */,
+				08BCB0731EF144F800BC8733 /* test-upload-file.json */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";
@@ -452,6 +466,23 @@
 				18B99DD71EA81E3600D81212 /* MeasurementRepository.swift */,
 			);
 			name = Measurements;
+			sourceTree = "<group>";
+		};
+		08BCB06B1EF1120700BC8733 /* Blobs */ = {
+			isa = PBXGroup;
+			children = (
+				08BCB06D1EF1122F00BC8733 /* BlobRepository.swift */,
+			);
+			name = Blobs;
+			sourceTree = "<group>";
+		};
+		08BCB06C1EF1121100BC8733 /* Blobs */ = {
+			isa = PBXGroup;
+			children = (
+				08BCB0691EF1042600BC8733 /* BlobRepository.swift */,
+				08BCB0661EF0F92900BC8733 /* Blob.swift */,
+			);
+			name = Blobs;
 			sourceTree = "<group>";
 		};
 		08EFD9401E45F7DF005F0B50 /* PushNotifications */ = {
@@ -746,6 +777,7 @@
 				08EC60E51DF98B6500235E5C /* circle.yml in Resources */,
 				083DEEB61DF1D83E00A3CB8D /* Podfile in Resources */,
 				080520E91DEF078600245C4D /* LICENSE in Resources */,
+				08BCB0721EF116A100BC8733 /* data.json in Resources */,
 				080520EC1DEF0D6E00245C4D /* EngaugeTx.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,6 +786,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +953,8 @@
 				085184D61E7441A000BFD227 /* TrendRepository.swift in Sources */,
 				084A244B1E267E2F003BBCAB /* Comparator.swift in Sources */,
 				1813AE6C1E9F230A00A08F22 /* Role.swift in Sources */,
+				08BCB06A1EF1042600BC8733 /* BlobRepository.swift in Sources */,
+				08BCB0671EF0F92900BC8733 /* Blob.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -949,6 +984,7 @@
 				1813AE6F1E9F25E900A08F22 /* AffiliationServiceTests.swift in Sources */,
 				18D0DFD81EAAF1DB00856F2D /* StringUtilsTests.swift in Sources */,
 				08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */,
+				08BCB06E1EF1122F00BC8733 /* BlobRepository.swift in Sources */,
 				080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */,
 				180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */,
 				085184D01E74298C00BFD227 /* TrendsTests.swift in Sources */,
