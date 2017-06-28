@@ -11,17 +11,18 @@ import Foundation
 /**
  Provides authentication to the EnguageTx Platform
  */
-open class ETXUserService<T: ETXUser> {
+public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     
-    private let KEY_ACCESS_TOKEN = "accessToken"
+    private let HEADER_KEY_DELETE_ALL_USER_DATA: String = "X-Tx-Delete-All-Data"
     
     let userRepository: UserRepository<T>
     
     /**
      Create an instance of ETXUserService
      */
-    public init() {
+    public override init() {
         self.userRepository = UserRepository()
+        super.init(repository: self.userRepository)
     }
     
     /** Login with username.
@@ -155,4 +156,12 @@ open class ETXUserService<T: ETXUser> {
         }
     }
     
+     func delete(model: T, hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {
+        // Ensure that headers are only added for this req
+        let isolatedUserRepository = UserRepository()
+        if hardDelete == true {
+            isolatedUserRepository.addAdditionalHeader(HEADER_KEY_DELETE_ALL_USER_DATA, value: "true")
+        }
+        isolatedUserRepository.delete(model: model, completion: completion)
+    }
 }

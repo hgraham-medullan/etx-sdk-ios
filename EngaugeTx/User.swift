@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents a user of an application on the platform
  */
-open class ETXUser: ETXModel {
+open class ETXUser: ETXPersistedModel {
     
     // TODO: Ensure that the type is Generic
     private var _userSvc: ETXUserService<ETXUser>?
@@ -134,5 +134,16 @@ open class ETXUser: ETXModel {
      */
     public func updateEmailAddress(_ newEmailAddress: String, currentPassword: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.userService.changeEmailAddress(newEmailAddress, currentPassword: currentPassword, currentUser: self, completion: completion)
+    }
+    
+    /**
+     The sevice class responsible for making API calls on behalf of the model
+    **/
+    open override class func getDataSvc<ETXUser>() -> ETXUserService<ETXUser> {
+        return ETXUserService<ETXUser>() // self.userService
+    }
+    
+    public func delete(hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {
+        self.userService.delete(model: self, hardDelete: hardDelete, completion: completion)
     }
 }

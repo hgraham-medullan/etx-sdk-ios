@@ -327,3 +327,32 @@ let userProfile: UserProfile = getUserProfile...
 let urlToFile: URL = Blob.getUrl(userProfile. userProfile.displayPhoto)
 
 ```
+
+## CLose Account
+The close account feature allows a developer to completely or partially remove all of the user’s data. [Configurations](https://developer.engaugetx.com/#close-account) are **required** to ensure the close account feature works appropriately.
+
+Closing the account and keeping the user's data
+
+```swift
+let user: ETXUser = ... // Get the current user
+user.delete { (err) in
+  guard err == nil else {
+    // Handle err
+    return
+  }
+  print("User account deleted")
+}
+```
+
+Hard Delete: Closing the account and deleting all data associated with the user
+
+```swift
+let user: ETXUser = ... // Get the current user
+user.delete(hardDelete: true) { (err) in
+  guard err == nil else {
+    // Handle err
+    return
+  }
+	print("User account and associated data has been deleted")
+}
+```

@@ -55,8 +55,16 @@ class Repository<T> : Service where T: ETXModel {
     
     var resourcePath: String
     
-    
     let keychainInstance: KeychainWrapper = KeychainWrapper(serviceName:  Bundle.main.bundleIdentifier ?? "engaugetx", accessGroup: nil)
+    
+    private var additionalHeaders: [String:String]? {
+        didSet {
+            // Rerun existing configuration closure using new value
+            invalidateConfiguration()
+            // Wipe any cached state if auth token changes
+            wipeResources()
+        }
+    }
     
     private var _etxResource: Resource?
     var etxResource: Resource {
@@ -78,6 +86,11 @@ class Repository<T> : Service where T: ETXModel {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
             $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            if let additionalHeaders = self.additionalHeaders {
+                for (headerName, headerValue) in additionalHeaders {
+                    $0.headers[headerName] = headerValue;
+                }
+            }
             $0.pipeline[.decoding].add(ChangeEmptyResponseContentType())
         }
     }
@@ -222,6 +235,15 @@ class Repository<T> : Service where T: ETXModel {
     
     func getClientKey() -> String {
         return EngaugeTxApplication.clientKey
+    }
+    
+    func addAdditionalHeader(_ headerKey: String, value: String) {
+        guard var additionalHeaders = self.additionalHeaders else {
+            self.additionalHeaders = [headerKey:value]
+            return
+        }
+        additionalHeaders[headerKey] = value
+        self.additionalHeaders = additionalHeaders
     }
     
 }

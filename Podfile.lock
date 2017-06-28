@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - GGLInstanceID (1.2.1)
   - Google (2.0.4):
     - Google/Core (= 2.0.4)
@@ -44,7 +44,7 @@ DEPENDENCIES:
   - SwiftKeychainWrapper (= 3.0.1)
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d536877ec602555b755cc28ce6fed104825c693c
   GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
@@ -59,4 +59,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2c767d7432e6bccb9a3ab2c15d0ac0f6703b8758
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
