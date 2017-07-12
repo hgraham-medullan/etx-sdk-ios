@@ -39,12 +39,24 @@ open class ETXAggregatableModel: ETXPersistedModel, ETXAggregatable {
     public var count: Int?
     public var _nodata: Bool?
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init?(map: Map) {
+        super.init(map: map)
+        value = try? map.value("value")
+        count = try? map.value("count")
+        _nodata = try? map.value("_nodata")
+        //   date = (map.value("date"), ETXDateOnlyTransform())
+    }
+    
     override open func mapping(map: Map) {
         super.mapping(map: map)
-        value <- map["value"]
-        count <- map["count"]
-        _nodata <- map["_nodata"]
-        date <- (map["date"], ETXDateOnlyTransform())
+//        value <- map["value"]
+//        count <- map["count"]
+//        _nodata <- map["_nodata"]
+//        date <- (map["date"], ETXDateOnlyTransform())
     }
     
     override open class func getDataSvc<ETXAggregatableModel>() -> ETXDataService<ETXAggregatableModel>? {

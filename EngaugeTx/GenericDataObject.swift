@@ -18,7 +18,7 @@ import ObjectMapper
  
     override func mapping(map: Map) {
         super.mapping(map: map)
-        visitDate <- (map["visitDate"], DateTransform())
+        visitDate <- (map["visitDate"], ETXDateTransform())
     }
  }
  

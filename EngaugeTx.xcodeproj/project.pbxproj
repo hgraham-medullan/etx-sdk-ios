@@ -64,6 +64,7 @@
 		08BCB0721EF116A100BC8733 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0711EF116A100BC8733 /* data.json */; };
 		08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0731EF144F800BC8733 /* test-upload-file.json */; };
 		08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0751EF18DB900BC8733 /* BlobTests.swift */; };
+		08CC29311F055915004F2011 /* SerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC29301F055915004F2011 /* SerializationTests.swift */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
@@ -196,6 +197,7 @@
 		08BCB0711EF116A100BC8733 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		08BCB0731EF144F800BC8733 /* test-upload-file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-upload-file.json"; sourceTree = "<group>"; };
 		08BCB0751EF18DB900BC8733 /* BlobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobTests.swift; sourceTree = "<group>"; };
+		08CC29301F055915004F2011 /* SerializationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationTests.swift; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				08A7C54A1E4CCE7800852D62 /* DateTests.swift */,
 				085184DB1E75680A00BFD227 /* DateServiceTests.swift */,
 				08BCB0731EF144F800BC8733 /* test-upload-file.json */,
+				08CC29301F055915004F2011 /* SerializationTests.swift */,
 			);
 			path = EngaugeTxTests;
 			sourceTree = "<group>";
@@ -981,6 +984,7 @@
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,
 				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,
 				08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */,
+				08CC29311F055915004F2011 /* SerializationTests.swift in Sources */,
 				1813AE6F1E9F25E900A08F22 /* AffiliationServiceTests.swift in Sources */,
 				18D0DFD81EAAF1DB00856F2D /* StringUtilsTests.swift in Sources */,
 				08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */,

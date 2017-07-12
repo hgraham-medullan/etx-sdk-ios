@@ -25,6 +25,7 @@ open class ETXModel: ETXMappable {
     public override init() {
         super.init()
     }
+
     
     /**
      Create an instance from a Map
@@ -39,6 +40,8 @@ open class ETXModel: ETXMappable {
      by Mapper during the mapping (serialization and deserialization) process.
      */
     open override func mapping(map: Map) {
-        id <- map["id"]
+        id <- ignoreOnNull("id", map: map)
     }
 }
+
+

@@ -18,7 +18,7 @@ class GenericDataObjectTests: XCTestCase {
         
         override func mapping(map: Map) {
             super.mapping(map: map)
-            fullName <- map["fullName"]
+            fullName = (try? map.value("fullName")) ?? nil
         }
     }
     
@@ -31,9 +31,9 @@ class GenericDataObjectTests: XCTestCase {
         
         let profile = UserProfile()
         profile.id = profileId
-        profile.fullName = fullName
+        profile.fullName = nil
         
-        XCTAssertEqual(jsonString, profile.toJSONString(), "Serialized object should match expect String")
+        XCTAssertEqual(jsonString, profile.toJSONString(), "Serialized object should match expected String")
     }
     
     func testMappingFromAJsonObject() {
