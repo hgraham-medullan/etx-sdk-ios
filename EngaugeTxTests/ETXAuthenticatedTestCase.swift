@@ -13,13 +13,7 @@ import XCTest
 class AuthenticatedTestCase: ETXTestCase {
     
     var userSvc: ETXUserService<ETXUser>!
-    var currentUser: ETXUser!
-    let defaultTestUser:ETXUser = ETXUser(email: "mjoseph+1500056558@medullan.com", username: "mjoseph+1500056558", password: "P@ssw0rd")
-    var testUserUnverified:ETXUser = ETXUser(email: "mjoseph+unverified_1500056558@medullan.com", username: "mjoseph+unverified_1500056558", password: "P@ssw0rd")
-    var caregiverUser = ETXUser(email: "mjoseph+caregiver_1500056558@medullan.com", username: "mjoseph+caregiver_1500056558", password: "P@ssw0rd")
-    var patientUser = ETXUser(email: "mjoseph+patient_1500056558@mailinator.com", username: "mjoseph+patient_1500056558", password: "P@ssw0rd")
-    
-    
+    var currentUser: ETXUser!    
     
     override func setUp() {
         super.setUp()

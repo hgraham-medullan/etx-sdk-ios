@@ -24,8 +24,8 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testLoginWithValidUsernameCredentials() {
-        let username: String = "sean@medullan.com"
-        let password: String = "P@ssw0rd"
+        let username: String =  self.defaultTestUser.username
+        let password: String =  self.defaultTestUser.password
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         
@@ -54,8 +54,8 @@ class UserServiceTest: ETXTestCase {
      trying to figure it out and coming up blank. Will resume at a another time
     */
     func testLoginWithValidEmailCredentials() {
-        let email: String = "sean@medullan.com"
-        let password: String = "P@ssw0rd"
+        let email: String =  self.defaultTestUser.email
+        let password: String =  self.defaultTestUser.password
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         self.userSvc.loginUserWithEmail(email, password: password, rememberMe: false) {
@@ -72,7 +72,7 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testLoginWithInvalidEmailCredentials() {
-        let email: String = "sean@medullan.com"
+        let email: String =  self.defaultTestUser.email
         let password: String = "badpwd"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
@@ -99,8 +99,8 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testLoginWithUnverifiedEmail() {
-        let email: String = "sean+unverified@medullan.com"
-        let password: String = "P@ssw0rd"
+        let email: String =  self.testUserUnverified.email
+        let password: String = self.testUserUnverified.password
         
         let userLoginExpectation = expectation(description: "User login attempt successsful")
         
@@ -156,7 +156,7 @@ class UserServiceTest: ETXTestCase {
         let increment = self.getUniqueId()
         let username: String = "tu_\(increment)"
         let email: String = "sean+\(increment)@medullan.com"
-        let testUser: TestUser = TestUser(email: email, username: username, password: "P@ssw0rd")
+        let testUser: TestUser = TestUser(email: email, username: username, password: self.defaultTestUser.password)
         testUser.firstName = "Sean Caregiver"
         testUser.lastName = "Hoilett"
         testUser.oldName = "Old Name"
@@ -180,11 +180,9 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testCreateUserWhenTheEmailIsAlreadyInUse() {
-        let user: ETXUser = ETXUser(email: "sean@medullan.com",
-                                    username: "sean@medullan.com",
-                                    password: "P@ssw0rd")
-        user.firstName = "Sean"
-        user.lastName = "Hoilett"
+        let user =  self.defaultTestUser
+        user.firstName = "Test"
+        user.lastName = "User"
         
         let userCreateExpectation = expectation(description: "User login attempt successsful")
         
@@ -206,8 +204,8 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testGetCurrentUserWhenTheUserExtendETXUser() {
-        let email: String = "sean+extendedUser@medullan.com"
-        let password: String = "P@ssw0rd"
+        let email: String = self.extendedUser.email
+        let password: String = self.extendedUser.password
         let firstName: String = "Extended"
         let lastName: String = "User"
         let oldName: String = "Old Name"
@@ -240,7 +238,7 @@ class UserServiceTest: ETXTestCase {
     
     func testInitiatePasswordResetWithEmail() {
         let resetEmailExpectation = expectation(description: "Get current user successfully")
-        self.userSvc.initiatePasswordResetWithEmail("sean@medullan.com") {
+        self.userSvc.initiatePasswordResetWithEmail( self.defaultTestUser.email) {
             (err) in
             XCTAssertNil(err, "Password reset should not result in an error")
             resetEmailExpectation.fulfill()
@@ -256,8 +254,8 @@ class UserServiceTest: ETXTestCase {
     func testLogout() {
         let logoutExpectation = expectation(description: "Log the user out")
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
-        let username: String = "sean@medullan.com"
-        let password: String = "P@ssw0rd"
+        let username: String =  self.defaultTestUser.username
+        let password: String =  self.defaultTestUser.password
         let userRepos: UserRepository = UserRepository()
         userRepos.deleteCurrentUser()
         self.userSvc.loginUserWithUsername(username, password: password, rememberMe: false) {
@@ -283,8 +281,8 @@ class UserServiceTest: ETXTestCase {
     func testChangePasswordWhenTheNewPasswordIsNotTheSameAsTheCurrent() {
         let passwordChangeExpectation = expectation(description: "Password Change")
         let userSvc = ETXUserService()
-        let emailAddress = "sean@medullan.com"
-        let oldPassword = "P@ssw0rd"
+        let emailAddress = self.defaultTestUser.email
+        let oldPassword = self.defaultTestUser.password
         let newPassword: String = "P@ssw0rd2"
         
         // Login
