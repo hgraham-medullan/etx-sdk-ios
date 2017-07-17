@@ -14,10 +14,10 @@ class AuthenticatedTestCase: ETXTestCase {
     
     var userSvc: ETXUserService<ETXUser>!
     var currentUser: ETXUser!
-    let defaultTestUser:ETXUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
-    var testUserUnverified:ETXUser = ETXUser(email: "sean+unverified@medullan.com", username: "sean+unverified@medullan.com", password: "P@ssw0rd")
-    var caregiverUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
-    var patientUser = ETXUser(email: "sean+patient@medullan.com", username: "sean+patient@medullan.com", password: "P@ssw0rd")
+    let defaultTestUser:ETXUser = ETXUser(email: "mjoseph+1500056558@medullan.com", username: "mjoseph+1500056558", password: "P@ssw0rd")
+    var testUserUnverified:ETXUser = ETXUser(email: "mjoseph+unverified_1500056558@medullan.com", username: "mjoseph+unverified_1500056558", password: "P@ssw0rd")
+    var caregiverUser = ETXUser(email: "mjoseph+caregiver_1500056558@medullan.com", username: "mjoseph+caregiver_1500056558", password: "P@ssw0rd")
+    var patientUser = ETXUser(email: "mjoseph+patient_1500056558@mailinator.com", username: "mjoseph+patient_1500056558", password: "P@ssw0rd")
     
     
     
