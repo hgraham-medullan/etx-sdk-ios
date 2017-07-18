@@ -18,7 +18,7 @@ class CustomFunctionTests: ETXTestCase {
         
         let userSvc = ETXUserService()
         let loginExpectation = expectation(description: "Successful Login")
-        userSvc.loginUserWithEmail("sean@medullan.com", password: "P@ssw0rd", rememberMe: false) {
+        userSvc.loginUserWithEmail(self.caregiverUser.email, password: self.caregiverUser.password, rememberMe: false) {
             (user, err) in
             loginExpectation.fulfill()
         }
