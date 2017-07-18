@@ -10,3 +10,4 @@ deployment:
         owner: medullan
         commands:
          - ./deploy_release.sh
+         - ./prepare-docs.sh
