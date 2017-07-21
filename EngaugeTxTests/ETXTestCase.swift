@@ -14,12 +14,12 @@ class ETXTestCase: XCTestCase {
     var app: EngaugeTxApplication!
     let TIMEOUT_DEFAULT: TimeInterval = 10
     
-    let defaultTestUser:ETXUser = ETXUser(email: "mjoseph+1500328771790@medullan.com", username: "mjoseph+1500328771790", password: "P@ssw0rd")
-    var testUserUnverified:ETXUser = ETXUser(email: "mjoseph+unverified_1500328771790@medullan.com", username: "mjoseph+unverified_1500328771790", password: "P@ssw0rd")
-    var caregiverUser = ETXUser(email: "mjoseph+caregiver_1500328771790@medullan.com", username: "mjoseph+caregiver_1500328771790", password: "P@ssw0rd")
-    var patientUser = ETXUser(email: "mjoseph+patient_1500328771790@medullan.com", username: "mjoseph+patient_1500328771790", password: "P@ssw0rd")
+    let defaultTestUser:ETXUser = ETXUser(email: "mjoseph+1500676262595@medullan.com", username: "mjoseph+1500676262595", password: "P@ssw0rd")
+    var testUserUnverified:ETXUser = ETXUser(email: "mjoseph+unverified_1500676262595@medullan.com", username: "mjoseph+unverified_1500676262595", password: "P@ssw0rd")
+    var caregiverUser = ETXUser(email: "mjoseph+caregiver_1500676262595@medullan.com", username: "mjoseph+caregiver_1500676262595", password: "P@ssw0rd")
+    var patientUser = ETXUser(email: "mjoseph+patient_1500676262595@medullan.com", username: "mjoseph+patient_1500676262595", password: "P@ssw0rd")
     
-    var extendedUser = ETXUser(email: "mjoseph+extendedUser_1500328771790@medullan.com", username: "mjoseph+extendedUser_1500328771790@medullan.com", password: "P@ssw0rd")
+    var extendedUser = ETXUser(email: "mjoseph+extendedUser_1500676262595@medullan.com", username: "mjoseph+extendedUser_1500676262595@medullan.com", password: "P@ssw0rd")
     
     
     let stagingApp = EngaugeTxApplication(
@@ -48,9 +48,9 @@ class ETXTestCase: XCTestCase {
 //            baseUrl: "https://api.us1.engaugetx.com/v1"
 //        )
         self.app = EngaugeTxApplication(
-            appId: "92018f202001d9367b23053653f33f89",
-            clientKey: "323053233d612b76b794efb5b8425745587fc75d",
-            baseUrl: "https://api.eu2.engaugetx.com/v1"
+            appId: "743f932a6fecf5cc30730c2385d6e7c7",
+            clientKey: "b7fd395de3739fd6bc36d459ac47ec5e642a0331",
+            baseUrl: "https://api.staging.us1.engaugetx.com/v1"
         )
     }
     

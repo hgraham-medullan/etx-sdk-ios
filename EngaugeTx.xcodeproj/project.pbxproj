@@ -80,7 +80,7 @@
 		08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B71E043A21008B5D0E /* ETXDataService.swift */; };
 		08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B91E04412B008B5D0E /* ETXTestCase.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
-		180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */; };
+		180743E81EAECF16009D4B06 /* MedAdherenceTests.swift.ignore in Sources */ = {isa = PBXBuildFile; fileRef = 180743E71EAECF16009D4B06 /* MedAdherenceTests.swift.ignore */; };
 		180743EA1EAEDF21009D4B06 /* BucketSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E91EAEDF21009D4B06 /* BucketSize.swift */; };
 		180743EC1EAEE013009D4B06 /* AdherenceResultMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743EB1EAEE013009D4B06 /* AdherenceResultMeta.swift */; };
 		1813AE681E9F229E00A08F22 /* AffiliationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813AE671E9F229E00A08F22 /* AffiliationService.swift */; };
@@ -211,7 +211,7 @@
 		08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObjectRepository.swift; sourceTree = "<group>"; };
 		08FE53B71E043A21008B5D0E /* ETXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXDataService.swift; sourceTree = "<group>"; };
 		08FE53B91E04412B008B5D0E /* ETXTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXTestCase.swift; sourceTree = "<group>"; };
-		180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedAdherenceTests.swift; sourceTree = "<group>"; };
+		180743E71EAECF16009D4B06 /* MedAdherenceTests.swift.ignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MedAdherenceTests.swift.ignore; sourceTree = "<group>"; };
 		180743E91EAEDF21009D4B06 /* BucketSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketSize.swift; sourceTree = "<group>"; };
 		180743EB1EAEE013009D4B06 /* AdherenceResultMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceResultMeta.swift; sourceTree = "<group>"; };
 		1813AE671E9F229E00A08F22 /* AffiliationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AffiliationService.swift; sourceTree = "<group>"; };
@@ -524,7 +524,7 @@
 		180743E61EAECEE6009D4B06 /* Medications */ = {
 			isa = PBXGroup;
 			children = (
-				180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */,
+				180743E71EAECF16009D4B06 /* MedAdherenceTests.swift.ignore */,
 			);
 			name = Medications;
 			sourceTree = "<group>";
@@ -986,7 +986,7 @@
 				08FE53B01E01BC48008B5D0E /* GenericDataObjectTests.swift in Sources */,
 				080A7F781E5DB54900795D91 /* UserServiceAuthenticatedTests.swift in Sources */,
 				08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */,
-				180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */,
+				180743E81EAECF16009D4B06 /* MedAdherenceTests.swift.ignore in Sources */,
 				085184D01E74298C00BFD227 /* TrendsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
