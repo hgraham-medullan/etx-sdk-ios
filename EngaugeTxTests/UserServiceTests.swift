@@ -29,7 +29,7 @@ class UserServiceTest: ETXTestCase {
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         
-        self.userSvc.loginUserWithUsername(username, password: password, rememberMe: false) {
+        self.userSvc.loginUserWithUsername(username, password: password, rememberMe: true) {
             (user: ETXUser?, err: ETXError?) in
             if let user:ETXUser = user {
                 XCTAssertEqual(user.username, username, "Login username and username on the oject should be the same.")
@@ -47,7 +47,6 @@ class UserServiceTest: ETXTestCase {
             }
         }
     }
-    
     
     /** 
      Failing on the CI server for some unknown reason. Spent enough time
@@ -290,13 +289,13 @@ class UserServiceTest: ETXTestCase {
         // Login
         userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
             (user, err) in
-            XCTAssertNotNil(user, "Should have a logged in user (\(err?.message))")
+            XCTAssertNotNil(user, "Should have a logged in user (\(String(describing: err?.message)))")
             if let user = user {
                 
                 // Change Password
                 user.updatePassword(newPassword, currentPassword: oldPassword) {
                     (err) in
-                    XCTAssertNil(err, "Password should be updated successfully (\(err?.message))")
+                    XCTAssertNil(err, "Password should be updated successfully (\(String(describing: err?.message)))")
                     
                     // Test with old Password. Login should fail
                     userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {

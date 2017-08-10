@@ -20,6 +20,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
     private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
     private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
+    private let QUERY_PARAM_TTL: String = "ttl"
     
     
     var users: Resource { return resource(URL_USERS) }
@@ -37,7 +38,18 @@ class UserRepository<T: ETXUser>: Repository<T> {
     
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
         self.deleteCurrentUser()
-        let req = self.users.child("/login").withParam("include", "user").request(.post, json: credentials.toJSON())
+        var ttl: Int? = EngaugeTxApplication.defaultTTL
+        var resource = self.users.child("/login").withParam("include", "user")
+        
+        if (rememberMe && EngaugeTxApplication.rememberMeTTL != nil) {
+            ttl = EngaugeTxApplication.rememberMeTTL
+        }
+        
+        if let ttl = ttl {
+            resource = resource.withParam(QUERY_PARAM_TTL, "\(ttl)")
+        }
+        
+        let req = resource.request(.post, json: credentials.toJSON())
         req.onFailure { (err) in
             
             var etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
@@ -88,7 +100,8 @@ class UserRepository<T: ETXUser>: Repository<T> {
     
     func saveCurrentUser(_ accessToken: ETXAccessToken?, rememberUser: Bool) {
         self.deleteCurrentUser()
-        if let userId:String = accessToken?.userId, let accessToken: String =  accessToken?.id {
+        if let userId:String = accessToken?.userId,
+            let accessToken: String =  accessToken?.id {
             self.setAccessToken(accessToken, rememberUser: rememberUser)
             CurrentUserCache.currentUserId = userId
             if rememberUser == true {
