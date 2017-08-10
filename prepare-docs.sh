@@ -18,9 +18,11 @@ echo "$(mkdir tmp)"
 cd tmp
 rm -rf mps-docs
 
-echo ""
-git config user.name "Medullan Platform Solutions"
-git config user.email "mps@medullan.com"
+if [ "$BUILD_ENV" == "ci" ]; then
+   echo ""
+    git config user.name "Layton Whiteley"
+    git config user.email "lwhiteley@medullan.com"
+fi
 
 git clone https://github.com/medullan/mps-docs
 cd mps-docs
