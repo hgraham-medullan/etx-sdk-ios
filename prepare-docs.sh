@@ -1,4 +1,5 @@
 #!/bin/bash
+
 LAST_COMMIT_HASH=$(git rev-parse --short HEAD)
 TAG_VERSION=$CIRCLE_TAG
 DOC_BRANCH=ios-$TAG_VERSION
