@@ -45,6 +45,8 @@
 		085184E21E75AD4900BFD227 /* Timeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184E11E75AD4900BFD227 /* Timeframe.swift */; };
 		085C69E21EB233DB007F0F38 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085C69E11EB233DB007F0F38 /* ResourceObserver.swift */; };
 		0862A2A01EB0E3A200869160 /* StepsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A29F1EB0E3A200869160 /* StepsTests.swift */; };
+		0867649E1F50C1FA0024F5AA /* EngaugeTxLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867649D1F50C1FA0024F5AA /* EngaugeTxLogger.swift */; };
+		086764A11F50C7560024F5AA /* EngaugeTxLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086764A01F50C7560024F5AA /* EngaugeTxLogger.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -174,6 +176,8 @@
 		085184E11E75AD4900BFD227 /* Timeframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeframe.swift; sourceTree = "<group>"; };
 		085C69E11EB233DB007F0F38 /* ResourceObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceObserver.swift; sourceTree = "<group>"; };
 		0862A29F1EB0E3A200869160 /* StepsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTests.swift; sourceTree = "<group>"; };
+		0867649D1F50C1FA0024F5AA /* EngaugeTxLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxLogger.swift; sourceTree = "<group>"; };
+		086764A01F50C7560024F5AA /* EngaugeTxLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxLogger.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -357,12 +361,28 @@
 			name = Trends;
 			sourceTree = "<group>";
 		};
+		085D1C791F546EEA00529589 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				0867649D1F50C1FA0024F5AA /* EngaugeTxLogger.swift */,
+			);
+			name = Logger;
+			sourceTree = "<group>";
+		};
 		0862A29E1EB0E38D00869160 /* Measurement */ = {
 			isa = PBXGroup;
 			children = (
 				0862A29F1EB0E3A200869160 /* StepsTests.swift */,
 			);
 			name = Measurement;
+			sourceTree = "<group>";
+		};
+		0867649F1F50C7410024F5AA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				086764A01F50C7560024F5AA /* EngaugeTxLogger.swift */,
+			);
+			name = Logger;
 			sourceTree = "<group>";
 		};
 		08783D111DEC927800A08343 = {
@@ -392,6 +412,7 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				085D1C791F546EEA00529589 /* Logger */,
 				08BCB06C1EF1121100BC8733 /* Blobs */,
 				18B99DE11EA82E0200D81212 /* DataTypes */,
 				18B99DE81EA8644200D81212 /* Repositories */,
@@ -419,6 +440,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				0867649F1F50C7410024F5AA /* Logger */,
 				08BCB06B1EF1120700BC8733 /* Blobs */,
 				0811CFEE1EB382FC008B4B30 /* Affiliations */,
 				0862A29E1EB0E38D00869160 /* Measurement */,
@@ -932,6 +954,7 @@
 				18D0DFF41EAB039D00856F2D /* AdherenceResultSet.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				085184DE1E75ACAC00BFD227 /* ClassTrendResultSet.swift in Sources */,
+				0867649E1F50C1FA0024F5AA /* EngaugeTxLogger.swift in Sources */,
 				18B99DEA1EA8647700D81212 /* ShareableModelRespository.swift in Sources */,
 				08A7C5491E4CCD1900852D62 /* Date.swift in Sources */,
 				08A904C01EBA5A4E005DF48D /* KeychainService.swift in Sources */,
@@ -965,6 +988,7 @@
 				084A24531E271073003BBCAB /* CustomFunctionTests.swift in Sources */,
 				08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */,
 				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
+				086764A11F50C7560024F5AA /* EngaugeTxLogger.swift in Sources */,
 				08A7C54B1E4CCE7800852D62 /* DateTests.swift in Sources */,
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */,

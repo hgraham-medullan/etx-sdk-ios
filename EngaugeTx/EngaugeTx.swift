@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyBeaver
 
 /**
  Protocol to be extended by the app delegate to be able to bootstrap your
@@ -46,6 +47,8 @@ public class EngaugeTxApplication {
     
     private var application: UIApplication?
     
+    static var consoleLogDestination: ConsoleDestination?
+    
     /**
      Create an instance of an EngaugeTx Application
      - parameter appId: The application's ID
@@ -62,6 +65,14 @@ public class EngaugeTxApplication {
         self.application = application
         //let appDelegate = UIApplication.shared.delegate as! EngaugeTxAppDelegate
         //let aVariable = appDelegate.someVariable
+        
+        if  EngaugeTxApplication.consoleLogDestination == nil {
+            let consoleLogDestination = ConsoleDestination()
+            consoleLogDestination.minLevel = .info
+            EngaugeTxApplication.consoleLogDestination = consoleLogDestination
+            SwiftyBeaver.addDestination(consoleLogDestination)
+        }
+        
     }
     
     /**
@@ -146,13 +157,21 @@ public class EngaugeTxApplication {
     static func getValueForKey<T>(key: String, plistFileName: String) -> T? {
         var value: T?
         guard let path = Bundle.main.path(forResource: plistFileName, ofType: CONFIG_FILE_TYPE) else {
-            print("The file was not found")
+            EngaugeTxLog.info("The specifed plist file was not found: \(plistFileName)")
             return nil
         }
-        print("The path \(path)")
+        EngaugeTxLog.debug("Path to the plist file \(path)")
         if let keys = NSDictionary(contentsOfFile: path), let keyValue = keys.value(forKey: key) {
             value = keyValue as? T
         }
         return value
+    }
+    
+    /*
+     Set the level of logs for the SDK to output
+     - parameter level: The Level of the logs to output
+     */
+    public func setLogLevel(level: LogLevel) {
+        EngaugeTxApplication.consoleLogDestination?.minLevel = SwiftyBeaver.Level(rawValue: level.value)!
     }
 }

@@ -48,8 +48,9 @@ public class ETXCustomFunction<T: ETXModel> {
     */
     public func getAuthenticatedUrl() -> URL? {
         let r: Repository<T> = self.getRepo()
+        
         guard let accessToken = r.getAccessToken() else {
-            print("An access token is not available to create the authenticated URL")
+            EngaugeTxLog.info("An access token is not available to create the authenticated URL: \(r.etxResource.url.absoluteString)")
             return nil
         }
 

@@ -118,7 +118,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
         self.userRepository.save(model: user){
             (user, err) in
             if let err = err, let rawJson = err.rawJson {
-                print("User creation failed: \(rawJson)")
+                EngaugeTxLog.error("User creation failed:", context: rawJson)
                 completion(user, ETXRegistrationError(JSON: rawJson))
             } else {
                 completion(user, nil)

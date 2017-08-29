@@ -183,7 +183,7 @@ class Repository<T> : Service where T: ETXModel {
     
     func getAccessToken() -> String? {
         cleanUpOldAccessTokenRefs()
-        print("Getting Access Token")
+        EngaugeTxLog.debug("Getting the Access Token")
         var accessToken: String?
         if AccesssTokenCache.tokenCached {
             accessToken = AccesssTokenCache.accessToken
@@ -211,11 +211,11 @@ class Repository<T> : Service where T: ETXModel {
                 self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
             }
         }
-        print("Saved Access Token")
+        EngaugeTxLog.debug("Saved the Access Token")
     }
     
     func deleteAccessToken() {
-        print("Deleting Access Token")
+        EngaugeTxLog.debug("Deleting the Access Token")
         AccesssTokenCache.accessToken = nil
         AccesssTokenCache.tokenCached = false
         cleanUpOldAccessTokenRefs()

@@ -9,6 +9,7 @@ target 'EngaugeTx' do
     pod 'Google', '= 2.0.4'
     pod 'Google/CloudMessaging', '= 2.0.4'
     pod 'SwiftKeychainWrapper', '= 3.0.1'
+    pod 'SwiftyBeaver', '= 1.3.0'
 end
 
 target 'EngaugeTxTests' do
@@ -16,4 +17,5 @@ target 'EngaugeTxTests' do
     pod 'Siesta/Alamofire', '= 1.1.1'
     pod 'ObjectMapper', '= 2.2.7'
     pod 'SwiftKeychainWrapper', '= 3.0.1'
+    pod 'SwiftyBeaver', '= 1.3.0'
 end

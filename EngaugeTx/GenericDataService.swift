@@ -53,7 +53,7 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
             self.modelName = modelName
             super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
         } else {
-            print("\(modelName) is not a valid model name")
+            EngaugeTxLog.error("\(modelName) is not a valid model name for a Generic Object")
             throw ETXInvalidModelNameError()
         }
     }

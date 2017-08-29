@@ -57,7 +57,7 @@ class UserRepository<T: ETXUser>: Repository<T> {
                 let authErr: ETXAuthenticationError? = Mapper<ETXAuthenticationError>().map(JSON: err.jsonDict)
                 etxError = authErr
             }
-            print("User login failed: \(err.jsonDict)")
+            EngaugeTxLog.info("User login failed.", context: err.jsonDict)
             completion(nil, etxError)
         }
         
@@ -78,7 +78,6 @@ class UserRepository<T: ETXUser>: Repository<T> {
             
             req.onFailure { (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                print("Getting affiliatedUsers  failed: \(err.jsonDict)")
                 completion(nil, etxError)
             }
             
