@@ -132,6 +132,6 @@ Pod::Spec.new do |s|
  s.dependency 'Siesta/Alamofire', '=1.1.1'
  s.dependency 'ObjectMapper', '=2.2.7'
  s.dependency 'SwiftKeychainWrapper', '3.0.1'
- s.dependency 'SwiftyBeaver, '1.3.0'
+ s.dependency 'SwiftyBeaver', '=1.3.0'
 
 end
