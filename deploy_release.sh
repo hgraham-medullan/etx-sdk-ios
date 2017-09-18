@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -o pipefail
 
 #LAST_COMMIT_HASH=$(git rev-parse --short HEAD)
 #echo "Fetching existing docs..."
