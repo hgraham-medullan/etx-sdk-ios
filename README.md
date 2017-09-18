@@ -328,7 +328,62 @@ let urlToFile: URL = Blob.getUrl(userProfile. userProfile.displayPhoto)
 
 ```
 
-## CLose Account
+## Calling Standalone Functions
+
+Standalone functions defined using our Custom Logic feature can be executed from within the SDK.
+
+Your Standalone function may return some data, so you may need to define a model to accept the returned data
+
+```swift
+class MyComplexObject: ETXModel {
+  ...
+  override func mapping(map: Map) {
+    super.mapping(map: map)
+  }
+}
+```
+
+Once defined, you can define your custom function
+
+```swift
+let sfName: String = "func-that-returns-data"
+let standaloneFunction = ETXCustomFunction<MyComplexObject>(functionName: sfName)
+```
+
+If your function is configured to accept `GET` requests, you can make the call with optional query string values
+
+```swift
+let sfName: String = "func-that-returns-data"
+let standaloneFunction = ETXCustomFunction<MyComplexObject>(functionName: sfName)!
+let qs: [String:String] = ["key1": "value1"]
+standaloneFunction.performGet(queryStrings: qs, asUnauthenticatedReq: false)  {
+  (model, err) in
+  guard err == nil else {
+    // Handle error
+    return
+  }
+  // Do stuff with the data
+}
+```
+
+Or if it accepts `POST` requests:
+
+```swift
+let sfName: String = "func-that-returns-data"
+let standaloneFunction = ETXCustomFunction<MyComplexObject>(functionName: sfName)!
+let qs: [String:String] = ["key1": "value1"]
+let postData = MyComplexObject()
+standaloneFunction.performPost(model: postData, queryStrings: qs, asUnauthenticatedReq: false) {
+  (model, err) in
+  guard err == nil else {
+    // Handle error
+    return
+  }
+  // Do stuff with the data
+}
+```
+
+## Close Account
 The close account feature allows a developer to completely or partially remove all of the user’s data. [Configurations](https://developer.engaugetx.com/#close-account) are **required** to ensure the close account feature works appropriately.
 
 Closing the account and keeping the user's data

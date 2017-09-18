@@ -16,6 +16,7 @@
 		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
 		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
 		0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0812228A1DF73A2900586B7D /* ETXAccessToken.swift */; };
+		08365F191F6F6308002DD6E9 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08365F181F6F6308002DD6E9 /* RepositoryTests.swift */; };
 		083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE511DF0685D00A3CB8D /* TxModel.swift */; };
 		083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE531DF0687F00A3CB8D /* TxError.swift */; };
 		083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */; };
@@ -147,6 +148,7 @@
 		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		0812228A1DF73A2900586B7D /* ETXAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXAccessToken.swift; sourceTree = "<group>"; };
+		08365F181F6F6308002DD6E9 /* RepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
 		083DEE511DF0685D00A3CB8D /* TxModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxModel.swift; sourceTree = "<group>"; };
 		083DEE531DF0687F00A3CB8D /* TxError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxError.swift; sourceTree = "<group>"; };
 		083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxApplicationTests.swift; sourceTree = "<group>"; };
@@ -306,6 +308,14 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
+		08365F171F6F62D2002DD6E9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				08365F181F6F6308002DD6E9 /* RepositoryTests.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
 		084A24411E267CD5003BBCAB /* DataFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +450,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				08365F171F6F62D2002DD6E9 /* Repositories */,
 				0867649F1F50C7410024F5AA /* Logger */,
 				08BCB06B1EF1120700BC8733 /* Blobs */,
 				0811CFEE1EB382FC008B4B30 /* Affiliations */,
@@ -1000,6 +1011,7 @@
 				0811CFF01EB38334008B4B30 /* AffiliationTests.swift in Sources */,
 				085184DC1E75680A00BFD227 /* DateServiceTests.swift in Sources */,
 				08EFD9491E460576005F0B50 /* ETXAuthenticatedTestCase.swift in Sources */,
+				08365F191F6F6308002DD6E9 /* RepositoryTests.swift in Sources */,
 				089898F21E0D64F3005CB45D /* FilterTests.swift in Sources */,
 				0862A2A01EB0E3A200869160 /* StepsTests.swift in Sources */,
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,

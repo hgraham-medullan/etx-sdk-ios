@@ -24,6 +24,9 @@ public class ETXCustomFunction<T: ETXModel> {
     private var functionName: String
     
     private var repo: Repository<T>
+    
+    // The last
+    var lastUsedRepo: Repository<T>?
 
     /**
      Create access to a custom function
@@ -61,53 +64,38 @@ public class ETXCustomFunction<T: ETXModel> {
         
         return resource.url
     }
-    
-    /**
-     Perform a GET request on the URL to get some data
-     - parameter completion: Callback when the requests completes
-     - parameter model: The data when the request completes successfullt
-     - parameter err: The err as t why the request failed
-    */
-    public func performGet(completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
-        self.performGet(queryStrings: nil, completion: completion)
-    }
-    
+
     /**
      Perform a GET request on the URL to get some data
      - parameter queryStrings: Key map of query string values to add to the request
+     - asUnauthenticatedReq: Whether the authorization token should be ignored when making the request
      - parameter completion: Callback when the requests completes
      - parameter model: The data when the request completes successfullt
      - parameter err: The err as t why the request failed
      */
-    public func performGet(queryStrings: [String:String]?, completion: @escaping (T?, ETXError?) -> Void) {
+    public func performGet(queryStrings: [String:String]? = nil, asUnauthenticatedReq: Bool = false, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
         let repo = getRepo()
+        repo.ignoreAccessToken = asUnauthenticatedReq 
         self.addQueryStrings(queryStrings, toResource: &repo.etxResource)
         repo.getById("", completion: completion)
-    }
-    
-    /**
-     Perform a POST request on the URL to send some data
-     - parameter model: The model to serialized and send as the payload
-     - parameter completion: Callback when the requests completes
-     - parameter model: The data when the request completes successfullt
-     - parameter err: The error, as to why the request failed
-     */
-    public func performPost(model: T, completion: @escaping (T?, ETXError?) -> Void) {
-        self.performPost(model: model, queryStrings: nil, completion: completion)
+        self.lastUsedRepo = repo
     }
     
     /**
      Perform a POST request on the URL to send some data
      - parameter model: The model to serialized and send as the payload
      - parameter queryStrings: Key map of query string values to add to the request
+     - asUnauthenticatedReq: Whether the authorization token should be ignored when making the request
      - parameter completion: Callback when the requests completes
      - parameter model: The data when the request completes successfullt
      - parameter err: The err as t why the request failed
      */
-    public func performPost(model: T, queryStrings: [String:String]?, completion: @escaping (T?, ETXError?) -> Void) {
+    public func performPost(model: T, queryStrings: [String:String]? = nil, asUnauthenticatedReq: Bool = false, completion: @escaping (T?, ETXError?) -> Void) {
         let repo = self.getRepo()
         self.addQueryStrings(queryStrings, toResource: &repo.etxResource)
+        repo.ignoreAccessToken = asUnauthenticatedReq
         repo.save(model: model, completion: completion)
+        self.lastUsedRepo = repo
     }
     
     func addQueryStrings(_ queryStrings: [String:String]?, toResource resource: inout Resource) {

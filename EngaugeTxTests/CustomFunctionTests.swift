@@ -25,7 +25,7 @@ class CustomFunctionTests: ETXTestCase {
         
         waitForExpectations(timeout: 20) {
             (err) in
-            print("Login expectation timeout \(err)")
+            print("Login expectation timeout \(String(describing: err))")
         }
     }
     
@@ -53,46 +53,79 @@ class CustomFunctionTests: ETXTestCase {
         
         let repo = Repository<ETXModel>(resourcePath: "/")
         repo.deleteAccessToken()
-        let x = cf.getAuthenticatedUrl()
         
-        if (x != nil) {
-            print("Gotcha")
-        }
-        
-        XCTAssertEqual(nil, x)
+        XCTAssertEqual(nil, cf.getAuthenticatedUrl())
     }
     
     func testPerformGet() {
         let getExpectation = expectation(description: "Get req on custom function")
-        let cf = ETXCustomFunction(functionName: "get-test")
+        let cf = ETXCustomFunction(functionName: "get-test")!
         
-        cf?.performGet {
+        cf.performGet {
             (model, err) in
             XCTAssertNotNil(err)
             XCTAssertEqual(404, err?.statusCode!)
+            XCTAssertFalse(cf.lastUsedRepo!.ignoreAccessToken, "The access token should be sent as part of the request")
             getExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 10) {
             err in
-            print("\(err)")
+            print("\(String(describing: err))")
+        }
+    }
+    
+    func testPerformGetWithoutAccessToken() {
+        let getExpectation = expectation(description: "Get req on custom function")
+        let cf = ETXCustomFunction(functionName: "get-test")!
+        
+        cf.performGet(asUnauthenticatedReq: true) {
+            (model, err) in
+            XCTAssertNotNil(err)
+            XCTAssertEqual(404, err?.statusCode!)
+            XCTAssertTrue(cf.lastUsedRepo!.ignoreAccessToken, "The access token should NOT be sent as part of the request")
+            getExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 10) {
+            err in
+            print("\(String(describing: err))")
         }
     }
     
     func testPerformPost() {
         let customFunctionPostExpectation = expectation(description: "Get req on custom function")
-        let cf = ETXCustomFunction(functionName: "post-test")
+        let cf = ETXCustomFunction(functionName: "post-test")!
         
-        cf?.performPost(model: ETXModel()) {
+        cf.performPost(model: ETXModel()) {
             (model, err) in
             XCTAssertNotNil(err)
             XCTAssertEqual(404, err?.statusCode!)
+            XCTAssertFalse(cf.lastUsedRepo!.ignoreAccessToken, "The access token should be sent as part of the request")
             customFunctionPostExpectation.fulfill()
         }
         
         waitForExpectations(timeout: 10) {
             err in
-            print("\(err)")
+            print("\(String(describing: err))")
+        }
+    }
+    
+    func testPerformPostWithoutAccessToken() {
+        let customFunctionPostExpectation = expectation(description: "Get req on custom function")
+        let cf = ETXCustomFunction(functionName: "post-test")!
+        
+        cf.performPost(model: ETXModel(), asUnauthenticatedReq: true) {
+            (model, err) in
+            XCTAssertNotNil(err)
+            XCTAssertEqual(404, err?.statusCode!)
+            customFunctionPostExpectation.fulfill()
+            XCTAssertTrue(cf.lastUsedRepo!.ignoreAccessToken, "The access token should NOT be sent as part of the request")
+        }
+        
+        waitForExpectations(timeout: 10) {
+            err in
+            print("\(String(describing: err))")
         }
     }
     
