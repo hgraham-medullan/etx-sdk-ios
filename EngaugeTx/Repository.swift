@@ -160,6 +160,7 @@ class Repository<T> : Service where T: ETXModel {
         req.onFailure({ (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
             etxError?.rawJson = err.jsonDict
+            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
             completion(nil, etxError)
         })
         req.onSuccess({ (m) in
@@ -174,6 +175,7 @@ class Repository<T> : Service where T: ETXModel {
         req.onFailure({ (err) in
             let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
             etxError?.rawJson = err.jsonDict
+            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
             completion(nil, etxError)
         })
         
