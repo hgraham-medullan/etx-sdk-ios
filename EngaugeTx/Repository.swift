@@ -57,6 +57,8 @@ class Repository<T> : Service where T: ETXModel {
     
     let keychainInstance: KeychainWrapper = KeychainWrapper(serviceName:  Bundle.main.bundleIdentifier ?? "engaugetx", accessGroup: nil)
     
+    var ignoreAccessToken = false
+    
     private var additionalHeaders: [String:String]? {
         didSet {
             // Rerun existing configuration closure using new value
@@ -85,7 +87,13 @@ class Repository<T> : Service where T: ETXModel {
         configure {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
-            $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            
+            // Some requests may need to be made without the presence of the access token
+            if self.ignoreAccessToken == false {
+                $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            } else {
+                EngaugeTxLog.debug("Ignoring the access token for the request to \(String(describing: self._etxResource?.url.absoluteString))")
+            }
             if let additionalHeaders = self.additionalHeaders {
                 for (headerName, headerValue) in additionalHeaders {
                     $0.headers[headerName] = headerValue;
@@ -183,7 +191,7 @@ class Repository<T> : Service where T: ETXModel {
     
     func getAccessToken() -> String? {
         cleanUpOldAccessTokenRefs()
-        print("Getting Access Token")
+        EngaugeTxLog.debug("Getting the Access Token")
         var accessToken: String?
         if AccesssTokenCache.tokenCached {
             accessToken = AccesssTokenCache.accessToken
@@ -211,11 +219,11 @@ class Repository<T> : Service where T: ETXModel {
                 self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
             }
         }
-        print("Saved Access Token")
+        EngaugeTxLog.debug("Saved the Access Token")
     }
     
     func deleteAccessToken() {
-        print("Deleting Access Token")
+        EngaugeTxLog.debug("Deleting the Access Token")
         AccesssTokenCache.accessToken = nil
         AccesssTokenCache.tokenCached = false
         cleanUpOldAccessTokenRefs()

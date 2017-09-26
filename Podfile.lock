@@ -34,6 +34,7 @@ PODS:
     - Siesta/Core
   - Siesta/Core (1.1.1)
   - SwiftKeychainWrapper (3.0.1)
+  - SwiftyBeaver (1.3.0)
 
 DEPENDENCIES:
   - Google (= 2.0.4)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Siesta (= 1.1.1)
   - Siesta/Alamofire (= 1.1.1)
   - SwiftKeychainWrapper (= 3.0.1)
+  - SwiftyBeaver
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -56,7 +58,8 @@ SPEC CHECKSUMS:
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   Siesta: 920372f09b7cfd798074d85d8f3cf8505529a56e
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftyBeaver: d4b551ba34b4206c52cc4684ae90444b8aaa5afd
 
-PODFILE CHECKSUM: 2c767d7432e6bccb9a3ab2c15d0ac0f6703b8758
+PODFILE CHECKSUM: 3fdaa8f8874b68d10cef47156591015e2629b4f1
 
 COCOAPODS: 1.2.1

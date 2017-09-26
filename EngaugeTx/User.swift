@@ -86,15 +86,18 @@ open class ETXUser: ETXPersistedModel {
         self.email = ""
         self.username = ""
         self.password = ""
+        
         do {
-            try self.password = map.value("password")
+            if map["password"].isKeyPresent == true {
+                try self.password = map.value("password")
+            }
             try self.username = map.value("username")
             try self.email = map.value("email")
         }
         catch {
-            print("Err occured while mapping to an ETXUser")
+            EngaugeTxLog.error("Err occured while mapping to an ETXUser", context: error)
         }
-        
+
         super.init(map: map)
     }
     
@@ -140,7 +143,7 @@ open class ETXUser: ETXPersistedModel {
      The sevice class responsible for making API calls on behalf of the model
     **/
     open override class func getDataSvc<ETXUser>() -> ETXUserService<ETXUser> {
-        return ETXUserService<ETXUser>() // self.userService
+        return ETXUserService<ETXUser>()
     }
     
     public func delete(hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {

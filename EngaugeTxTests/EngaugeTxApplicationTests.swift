@@ -17,6 +17,8 @@ class EngaugeTxApplicationTests: XCTestCase {
     let testClientKey: String = "test-client-key"
     let testBaseUrl: String = "test-base-url"
     let defaultBaseUrl: String = "https://api.us1.engaugetx.com/v1"
+    let defaultTTL = 1200
+    let rememberMeTTL = 5000
     
     override func setUp() {
         super.setUp()
@@ -41,6 +43,24 @@ class EngaugeTxApplicationTests: XCTestCase {
         XCTAssertEqual(testBaseUrl, EngaugeTxApplication.baseUrl)
         
     }
+    
+    func testInitializationWithAppIdClientKeyAndBaseUrlAndTTL() {
+        self.engaugeTxApllication = EngaugeTxApplication(
+            appId: testAppId,
+            clientKey: testClientKey,
+            baseUrl: testBaseUrl,
+            defaultTTL: defaultTTL,
+            rememberMeTTL: rememberMeTTL)
+        
+        XCTAssertEqual(testAppId, EngaugeTxApplication.appId)
+        XCTAssertEqual(testClientKey, EngaugeTxApplication.clientKey)
+        XCTAssertEqual(testBaseUrl, EngaugeTxApplication.baseUrl)
+        
+        XCTAssertEqual(defaultTTL, EngaugeTxApplication.defaultTTL)
+        XCTAssertEqual(rememberMeTTL, EngaugeTxApplication.rememberMeTTL)
+        
+    }
+    
     
     override func tearDown() {
         super.tearDown()
