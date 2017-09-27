@@ -41,10 +41,10 @@ open class ETXAggregatableModel: ETXPersistedModel, ETXAggregatable {
     
     override open func mapping(map: Map) {
         super.mapping(map: map)
-        value <- map["value"]
-        count <- map["count"]
-        _nodata <- map["_nodata"]
-        date <- (map["date"], ETXDateOnlyTransform())
+        value <- ignoreOnNull("value", map:map)
+        count <- ignoreOnNull("count", map:map)
+        _nodata <- ignoreOnNull("_nodata", map:map)
+        date <- ignoreOnNull("date", map: map, transformType: ETXDateOnlyTransform())
     }
     
     override open class func getDataSvc<ETXAggregatableModel>() -> ETXDataService<ETXAggregatableModel>? {

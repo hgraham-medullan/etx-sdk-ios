@@ -33,7 +33,7 @@ class GenericDataObjectTests: XCTestCase {
         profile.id = profileId
         profile.fullName = fullName
         
-        XCTAssertEqual(jsonString, profile.toJSONString(), "Serialized object should match expect String")
+        XCTAssertEqual(jsonString, profile.toJSONString(), "Serialized object should match expected String")
     }
     
     func testMappingFromAJsonObject() {

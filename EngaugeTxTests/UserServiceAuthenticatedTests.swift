@@ -18,7 +18,7 @@ class UserServiceAuthenticatedTests: AuthenticatedTestCase {
     
     func testChangeEmailAddressWhenTheNewEmailIsTheSameAsTheCurrent() {
         let emailUpdatedExpectation = expectation(description: "User email updated successsful")
-        self.currentUser.updateEmailAddress(self.currentUser.email, currentPassword: self.defaultTestUser.password) {
+        self.currentUser.updateEmailAddress(self.currentUser.email, currentPassword: self.defaultTestUser.password!) {
             (err: ETXError?) in
             XCTAssertNil(err)
             emailUpdatedExpectation.fulfill()
@@ -36,13 +36,13 @@ class UserServiceAuthenticatedTests: AuthenticatedTestCase {
         let newEmail = "sean+updatedEmail@medullan.com"
         
         self.currentUser.updateEmailAddress(
-        newEmail, currentPassword: self.defaultTestUser.password) {
+        newEmail, currentPassword: self.defaultTestUser.password!) {
             
             (err: ETXError?) in
             XCTAssertNil(err)
             
             // Set back to the old email
-            self.currentUser.updateEmailAddress(oldEmail, currentPassword: self.defaultTestUser.password) {
+            self.currentUser.updateEmailAddress(oldEmail, currentPassword: self.defaultTestUser.password!) {
                 (err: ETXError?) in
                 XCTAssertNil(err)
                 emailUpdatedExpectation.fulfill()
