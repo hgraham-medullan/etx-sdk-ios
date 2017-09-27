@@ -39,12 +39,15 @@ class SerializationTests: ETXTestCase {
         print((sc as ETXModel).toJSON())
         print((sc as ETXModel).toJSONString())
         sc.save { (err) in
+            defer {
+                loginExpectation.fulfill()
+            }
             guard err == nil else {
                 print("\(err)")
                 return
             }
             print("\(sc.rawJson)")
-            loginExpectation.fulfill()
+            
         }
         
         waitForExpectations(timeout: 10000) {

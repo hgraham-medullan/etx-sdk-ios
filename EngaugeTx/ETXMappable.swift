@@ -49,7 +49,7 @@ open class ETXMappable: Mappable {
         return (map[jsonPropertyName], transformType)
     }
 }
-
+//
 
 public extension ETXMappable {
     func toJSON() -> [String : Any] {

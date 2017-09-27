@@ -98,7 +98,7 @@ class GenericDataServiceTests: ETXTestCase {
         
         let vitalExpectation = expectation(description: "Successful vital")
         let v = Vital()
-        v.reading = nil
+        v.reading = 200
         v.save(){
             (err) in
             XCTAssertNotNil(v.id)

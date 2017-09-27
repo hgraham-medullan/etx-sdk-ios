@@ -46,7 +46,7 @@ open class ETXUser: ETXPersistedModel {
     /**
      The user's Password
      */
-    public var password: String
+    public var password: String?
     
     /**
      Create a new instance
@@ -64,7 +64,7 @@ open class ETXUser: ETXPersistedModel {
     public init(user: ETXAffiliatedUser) {
         self.email = ""
         self.username = ""
-        self.password = ""
+//        self.password = ""
         super.init()
         self.firstName = user.firstName
         self.lastName = user.lastName
@@ -75,7 +75,7 @@ open class ETXUser: ETXPersistedModel {
     public override init() {
         self.email = ""
         self.username = ""
-        self.password = ""
+//        self.password = ""
         super.init()
     }
     
@@ -85,7 +85,7 @@ open class ETXUser: ETXPersistedModel {
     required public init?(map: Map) {
         self.email = ""
         self.username = ""
-        self.password = ""
+//        self.password = ""
         
         do {
             if map["password"].isKeyPresent == true {
@@ -111,6 +111,7 @@ open class ETXUser: ETXPersistedModel {
         username <- map["username"]
         email <- map["email"]
         password <- map["password"]
+//        password <- ignoreOnNull("password", map:map)
     }
     
     /**
