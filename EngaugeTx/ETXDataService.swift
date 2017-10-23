@@ -8,8 +8,9 @@
 
 import Foundation
 
-protocol PersistenceService {
+public protocol PersistenceService {
     associatedtype T : ETXModel
+    typealias DSType = Self
     func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void)
     func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void)
     func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void)
@@ -17,29 +18,31 @@ protocol PersistenceService {
     func save(model: T, completion: @escaping (T?, ETXError?) -> Void)
 }
 
-
 /**
- Service that provides CRUD operations on a model
+ Service that provides CRUD operations for a model
  */
-public class ETXDataService<T: ETXModel>: PersistenceService {
+open class ETXDataService<T: ETXModel>: PersistenceService {
     
-    var repository: Repository<T>!
+    public var repository: Repository<T>!
+    private var modelType: T.Type = T.self
     
-    init(){
+    init() {
         
     }
     
-    init(repository: Repository<T>) {
+    required public init(repository: Repository<T>) {
         self.repository = repository
     }
     
-//    init(type: ETXPersistedModel.Type) {
-//        self.repository = Repository<T>(resourcePath: type.resourcePath)
-//    }
-    
-    init(resourcePath: String) {
-        self.repository = Repository<T>(resourcePath: resourcePath)
+    public convenience init(repository: Repository<T>, modelType: T.Type, typeAsString: String) {
+        self.init(repository: repository)
+        self.modelType = modelType
     }
+    
+    convenience init(resourcePath: String) {
+        self.init(repository: Repository<T>(resourcePath: resourcePath))
+    }
+
     
     /**
      Find a model by it's ID
@@ -49,7 +52,7 @@ public class ETXDataService<T: ETXModel>: PersistenceService {
      - parameter err: If an error occurred while finding the item
      */
     public func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
-        self.repository.getById(id, completion: completion)
+        self.getRepository().getById(id, completion: completion)
     }
     
     /**
@@ -60,7 +63,7 @@ public class ETXDataService<T: ETXModel>: PersistenceService {
      - parameter err: If an error occurred while getting all items. Will be ```nil``` if get all was successful
      */
     public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
-        self.repository.findWhere(filter, completion: completion)
+        self.getRepository().findWhere(filter, completion: completion)
     }
     
     /**
@@ -70,7 +73,7 @@ public class ETXDataService<T: ETXModel>: PersistenceService {
      - parameter err: If an error occurred while getting all items. Will be ```nil``` if get all was successful
     */
     public func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void) {
-        self.repository.findWhere(ETXSearchFilter(), completion: completion)
+        self.getRepository().findWhere(ETXSearchFilter(), completion: completion)
     }
     
     /**
@@ -79,12 +82,12 @@ public class ETXDataService<T: ETXModel>: PersistenceService {
      - parameter completion: Callback when the request completes
      - parameter err: If an error occurred while deleting the item
      */
-    func delete(model: T, completion: @escaping (ETXError?) -> Void) {
+    public func delete(model: T, completion: @escaping (ETXError?) -> Void) {
         guard let modelId = model.id, modelId.isEmpty != true else {
             completion(ETXError())
             return
         }
-        self.repository.delete(model: model, completion: completion)
+        self.getRepository().delete(model: model, completion: completion)
     }
     
     /**
@@ -94,7 +97,23 @@ public class ETXDataService<T: ETXModel>: PersistenceService {
      - parameter model: The model, if found.
      - parameter err: If an error occurred while savinga the item
      */
-    func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
-        self.repository.save(model: model, completion: completion)
+    public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        self.getRepository().save(model: model, completion: completion)
     }
+    
+    private func getRepository() -> Repository<T> {
+        let s: String = String(describing: self.modelType)
+        //let s1: String = String(describing: type(of:T))
+        if let customDefinedRepoType = EngaugeTxApplication.getInstance().customDataRepositories[s] {
+            EngaugeTxLog.debug("A custom repos is defined")
+            return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
+        }
+        return self.repository
+    }
+    
+    static func useCustomDataRepository<M: ETXModel, R: Repo>(_ repoType: R.Type, forModelType: M.Type) {
+        EngaugeTxApplication.addCustomRepository(modelType: forModelType, repositoryType: repoType)
+    }
+    
+    
 }

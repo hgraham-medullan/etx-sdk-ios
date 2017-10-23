@@ -42,7 +42,12 @@ class AccesssTokenCache {
     static var accessToken: String? = nil
 }
 
-class Repository<T> : Service where T: ETXModel {
+public protocol Repo {
+    typealias RepoType = Self
+    init(resourcePath: String)
+}
+
+open class Repository<T> : Service, Repo where T: ETXModel {
     
      let KEY_HEADER_APP_ID: String = "app-id"
      let KEY_HEADER_CLIENT_KEY: String = "client-key"
@@ -80,7 +85,7 @@ class Repository<T> : Service where T: ETXModel {
         set { _etxResource = newValue }
     }
     
-    init(resourcePath: String) {
+    required public init(resourcePath: String) {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
 
@@ -103,6 +108,12 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
+    private static var unsavedModelError: ETXError {
+        let err = ETXError(message: "The model is not assigned an ID and may be unsaved")
+        err.name = "UnsavedModelError"
+        return err
+    }
+    
     func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
             self.update(model: model, completion: completion)
@@ -111,23 +122,29 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
-    func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
-        let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
-        req.onFailure({ (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            etxError?.rawJson = err.jsonDict
-            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
-            completion(nil, etxError)
-        })
-        req.onSuccess({ (m) in
-            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-            completion(model, nil)
-        })
+    public func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        beforeResourceRequest(self.etxResource) {
+            let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
+            req.onFailure({ (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                etxError?.rawJson = err.jsonDict
+                etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+                completion(nil, etxError)
+            })
+            req.onSuccess({ (m) in
+                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                completion(model, nil)
+            })
+        }
     }
     
-    func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
-        if let id = model.id {
-            let req = self.etxResource.child(id).request(.put, json: ((model as? ETXModel)?.toJSON())!)
+    public func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
+        guard let id = model.id else {
+            completion(nil, Repository.unsavedModelError)
+            return
+        }
+        beforeResourceRequest(self.etxResource.child(id)) {
+            let req = self.etxResource.request(.put, json: ((model as? ETXModel)?.toJSON())!)
             req.onFailure({ (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
                 etxError?.rawJson = err.jsonDict
@@ -140,9 +157,13 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
-    func delete(model: T, completion: @escaping (ETXError?) -> Void) {
-        if let id = model.id {
-            let req  = self.etxResource.child(id).request(.delete)
+    public func delete(model: T, completion: @escaping (ETXError?) -> Void) {
+        guard let id = model.id else {
+            completion(Repository.unsavedModelError)
+            return
+        }
+        beforeResourceRequest(self.etxResource.child(id)) {
+            let req  = self.etxResource.request(.delete)
             req.onFailure({ (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
                 etxError?.rawJson = err.jsonDict
@@ -155,37 +176,50 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
-    func getById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
-        let req  = self.etxResource.child(id).request(.get)
-        req.onFailure({ (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            etxError?.rawJson = err.jsonDict
-            completion(nil, etxError)
-        })
-        req.onSuccess({ (m) in
-            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-            completion(model, nil)
-        })
+    public func getById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
+        beforeResourceRequest(self.etxResource.child(id)){
+            let req  = self.etxResource.request(.get)
+            req.onFailure({ (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                etxError?.rawJson = err.jsonDict
+                completion(nil, etxError)
+            })
+            req.onSuccess({ (m) in
+                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                completion(model, nil)
+            })
+        }
     }
     
-    func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
-        let req = self.etxResource.withParam("filter", filter.toJsonString()).request(.get)
-        
-        req.onFailure({ (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            etxError?.rawJson = err.jsonDict
-            completion(nil, etxError)
-        })
-        
-        req.onSuccess({ (m) in
-            var models: [T]?
-            if let content = m.content as? [String : Any], let result: [[String : Any]] = content["result"] as! [[String : Any]]?  {
-                models = Mapper<T>().mapArray(JSONObject: result)
-            } else {
-                models = Mapper<T>().mapArray(JSONArray: [m.content as! [String : Any]])
-            }
-            completion(models, nil)
-        })
+    public func findById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
+        self.getById(id, completion: completion)
+    }
+    
+    public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
+        beforeResourceRequest(self.etxResource.withParam("filter", filter.toJsonString())) {
+            let req = self.etxResource.request(.get)
+            
+            req.onFailure({ (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                etxError?.rawJson = err.jsonDict
+                completion(nil, etxError)
+            })
+            
+            req.onSuccess({ (m) in
+                var models: [T]?
+                if let content = m.content as? [String : Any], let result: [[String : Any]] = content["result"] as! [[String : Any]]?  {
+                    models = Mapper<T>().mapArray(JSONObject: result)
+                } else {
+                    models = Mapper<T>().mapArray(JSONArray: [m.content as! [String : Any]])
+                }
+                completion(models, nil)
+            })
+        }
+    }
+    
+    public func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
+        // Default behaviour. No modification, return true for the request to continue
+        completion()
     }
     
     
@@ -253,5 +287,4 @@ class Repository<T> : Service where T: ETXModel {
         additionalHeaders[headerKey] = value
         self.additionalHeaders = additionalHeaders
     }
-    
 }

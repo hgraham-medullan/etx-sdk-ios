@@ -85,9 +85,10 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
         
     }
     
-    open override class func getDataSvc<T: ETXPersistedModel>() -> ETXDataService<T>? {
-        let genericDataObjectRepository = GenericDataObjectRepository<ModelType>(className: modelName)
-        return ETXDataService<T>(repository: Repository<T>(resourcePath: genericDataObjectRepository.genericModelResourcePath))
+    open override class func getDataSvc<T: ModelType>() -> ETXDataService<T>? {
+        let genericDataObjectRepository = ETXGenericDataObjectRepository<ModelType>(className: modelName)
+        let defaultDataSvc = ETXGenericDataService<ModelType>(repository: genericDataObjectRepository, forModelType: self)
+        return defaultDataSvc as! ETXDataService<T>
     }
 }
 

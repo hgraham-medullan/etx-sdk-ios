@@ -9,15 +9,22 @@
 import Foundation
 //import Siesta
 import ObjectMapper
-class TrendRepository: Repository<ETXModel> {
-    
-    private let TRENDS_URL = "/trends"
+open class TrendRepository: Repository<ETXModel> {
     
     private var keyToTypeMapping: [String: ETXAggregatableModel.Type]
     
-    init() {
+    static var trendsUrl: String {
+        return "/trends"
+    }
+    
+    public required convenience init() {
+        let TRENDS_URL = "/trends"
+        self.init(resourcePath: TRENDS_URL)
+    }
+    
+    required public init(resourcePath: String) {
         self.keyToTypeMapping = [String: ETXAggregatableModel.Type]()
-        super.init(resourcePath: TRENDS_URL)
+        super.init(resourcePath: resourcePath)
         
         self.keyToTypeMapping[ETXSteps.resultKey] = ETXSteps.self
         self.keyToTypeMapping[ETXIndoorAirQuality.resultKey] = ETXIndoorAirQuality.self
@@ -26,7 +33,7 @@ class TrendRepository: Repository<ETXModel> {
         self.keyToTypeMapping[ETXOutdoorHumidity.resultKey] = ETXOutdoorHumidity.self
         self.keyToTypeMapping[ETXOxygenSaturation.resultKey] = ETXOxygenSaturation.self
         
-        self.configureTransformer(TRENDS_URL) {
+        self.configureTransformer(resourcePath) {
             Mapper<ETXResponse>().map(JSON: $0.content)
         }
 
@@ -58,31 +65,33 @@ class TrendRepository: Repository<ETXModel> {
         if let forUser = forUser {
             let a = ETXSearchFilter(condition: ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: forUser.id!)).toJsonString()
             trendsResource = trendsResource.withParam("shared", "true")
-            .withParam("shared", "true")
-            .withParam("filter", a)
+                .withParam("shared", "true")
+                .withParam("filter", a)
         }
         
-        
-        let req = trendsResource.request(.get)
-        
-                req.onFailure { (err) in
-                    let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                    completion(nil, etxError)
+        beforeResourceRequest(trendsResource) {
+            
+            let req = trendsResource.request(.get)
+            
+            req.onFailure { (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                completion(nil, etxError)
+            }
+            
+            req.onSuccess { (obj) in
+                
+                let res: ETXResponse = (obj.content as! ETXResponse)
+                let results: [ETXClassTrendResultSet] = Mapper<ETXClassTrendResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])
+                
+                let trendResultSet: ETXTrendResultSet = ETXTrendResultSet()
+                
+                for result in results {
+                    trendResultSet.classTrends[result.className!] = result
                 }
-        
-                req.onSuccess { (obj) in
-                    
-                    let res: ETXResponse = (obj.content as! ETXResponse)
-                    let results: [ETXClassTrendResultSet] = Mapper<ETXClassTrendResultSet>().mapArray(JSONArray: res.result as! [[String : Any]])
-                    
-                    let trendResultSet: ETXTrendResultSet = ETXTrendResultSet()
-                    
-                    for result in results {
-                        trendResultSet.classTrends[result.className!] = result
-                    }
-                    
-                    completion(trendResultSet, nil)
-        
-                }
+                
+                completion(trendResultSet, nil)
+                
+            }
+        }
     }
 }

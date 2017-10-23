@@ -45,6 +45,9 @@ public class EngaugeTxApplication {
     private static let CONFIG_FILE_TYPE = "plist"
     private static let DEFAULT_BASE_URL = "https://api.us1.engaugetx.com/v1"
     
+    private static var instance: EngaugeTxApplication!
+    private var singletons_store : [String:Any] = [String:Any]()
+    
     private var application: UIApplication?
     
     static var consoleLogDestination: ConsoleDestination?
@@ -72,7 +75,7 @@ public class EngaugeTxApplication {
             EngaugeTxApplication.consoleLogDestination = consoleLogDestination
             SwiftyBeaver.addDestination(consoleLogDestination)
         }
-        
+        EngaugeTxApplication.instance = self
     }
     
     /**
@@ -150,6 +153,20 @@ public class EngaugeTxApplication {
         self.init(application: nil)
     }
     
+    public var customDataRepositories: [String:Repo.Type] = [String:Repository<ETXModel>.Type]()
+    public var customDataRepositoriesForClasses: [String:ETXModel.Type] = [String:ETXModel.Type]()
+    static func getInstance() -> EngaugeTxApplication {
+        return instance
+    }
+    
+    static func addCustomRepository<M: ETXModel, R: Repo>(modelType: M.Type, repositoryType: R.Type) {
+        let classTypeAsString: String = String(describing: modelType)
+        let engaugetxApplication = EngaugeTxApplication.getInstance()
+        engaugetxApplication.customDataRepositories[classTypeAsString] = repositoryType
+        engaugetxApplication.customDataRepositoriesForClasses[classTypeAsString] = modelType
+        EngaugeTxLog.debug("added")
+    }
+    
     static func getValueForKey<T>(key: String) -> T? {
         return getValueForKey(key: key, plistFileName: CONFIG_FILENAME)
     }
@@ -174,4 +191,7 @@ public class EngaugeTxApplication {
     public func setLogLevel(level: LogLevel) {
         EngaugeTxApplication.consoleLogDestination?.minLevel = SwiftyBeaver.Level(rawValue: level.value)!
     }
+    
+    var customTrendRepositoryType: TrendRepository.Type?
+    
 }

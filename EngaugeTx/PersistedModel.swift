@@ -11,7 +11,6 @@ import ObjectMapper
 /// Defines the rules for persisting to the platform
 public protocol ETXPersistableModel: ETXModelable {
     typealias ModelType = Self
-    //static func getDataSvc() -> ETXDataService<ETXPersistedModel>?
 }
 
 /// A model that can be stored on the platform
@@ -100,5 +99,16 @@ public extension ETXPersistableModel where Self: ETXPersistedModel {
             completion(err)
         }
     }
+    
+    /**
+     
+     */
+    public func getDataSvc<M: ETXPersistedModel>() -> ETXDataService<M>?{
+//        let dataDataSvc: ETXDataService<M> = ETXDataService<M>();
+//        return dataDataSvc
+        return nil;
+    }
+    
+    
     
 }

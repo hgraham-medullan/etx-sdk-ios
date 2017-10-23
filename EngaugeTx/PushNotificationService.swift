@@ -11,10 +11,14 @@ class PushNotificationService: ETXDataService<ETXDeviceToken> {
     
     var deviceTokenRepository: Repository<ETXDeviceToken>
     
-    override init() {
+    convenience override init() {
         let deviceTokenResourcePath = "/notifications/token"
-        self.deviceTokenRepository = Repository<ETXDeviceToken>(resourcePath: deviceTokenResourcePath)
-        super.init(repository: deviceTokenRepository)
+        self.init(repository: Repository<ETXDeviceToken>(resourcePath: deviceTokenResourcePath))
+    }
+    
+    required public init(repository: Repository<T>) {
+        self.deviceTokenRepository = repository
+        super.init(repository: repository)
     }
     
     override func save(model: ETXDeviceToken, completion: @escaping (ETXDeviceToken?, ETXError?) -> Void) {

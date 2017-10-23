@@ -15,18 +15,27 @@ class CurrentUserCache {
     static var currentUserId: String?
 }
 
-class UserRepository<T: ETXUser>: Repository<T> {
+open class UserRepository<T: ETXUser>: Repository<T> {
     
-    private let URL_USERS: String = "/users"
+//    private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
     private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
     private let QUERY_PARAM_TTL: String = "ttl"
     
     
-    var users: Resource { return resource(URL_USERS) }
+    var users: Resource { return resource(self.resourcePath) }
     
-    init() {
-        super.init(resourcePath: URL_USERS)
+    static var URL_USERS: String {
+        return "/users"
+    }
+    
+    convenience init() {
+        let URL_USERS: String = UserRepository.URL_USERS
+        self.init(resourcePath: URL_USERS)
+    }
+    
+    required public init(resourcePath: String) {
+        super.init(resourcePath: resourcePath)
         self.configureTransformer(URL_USER_LOGIN) {
             Mapper<ETXAccessToken>().map(JSON: $0.content)
         }

@@ -40,7 +40,7 @@ import ObjectMapper
  ```repos
  
  */
-internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
+open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
     
     var modelName: String
     
@@ -48,22 +48,47 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
      Create an instance GenericDataService with a custom model name
      - parameter modelName: The custom name for the model. Used as part of the api URL
      */
-    public init(modelName: String) throws {
-        if ETXGenericDataService.isValidClassName(modelName) == true {
-            self.modelName = modelName
-            super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
-        } else {
-            EngaugeTxLog.error("\(modelName) is not a valid model name for a Generic Object")
-            throw ETXInvalidModelNameError()
-        }
-    }
+//    public required convenience init(modelName: String) throws {
+//        if ETXGenericDataService.isValidClassName(modelName) == true {
+//            self.init(repository:  ETXGenericDataObjectRepository<T>(className: modelName))
+//            self.modelName = modelName
+//        } else {
+//            EngaugeTxLog.error("\(modelName) is not a valid model name for a Generic Object")
+//            throw ETXInvalidModelNameError()
+//        }
+//    }
     
     /**
      Create an instance GenericDataService
      */
-    public override init() {
+    public convenience override init() {
+        self.init(repository: ETXGenericDataObjectRepository<T>(className: String(describing: T.self)))
+    }
+    
+    required public init(repository: ETXGenericDataObjectRepository<T>, forModelType: T.Type) {
         self.modelName = String(describing: T.self)
-        super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
+        //let b = String(describing: T.ModelType)
+        
+        let r = ETXGenericDataService.getRepository(defaultRepo: repository, forModelType: forModelType)
+        super.init(repository: r)
+    }
+    
+    required public init(repository: Repository<T>) {
+        self.modelName = String(describing: T.self)
+        //let b = String(describing: T.ModelType)
+        
+        let r = ETXGenericDataService.getRepository(defaultRepo: repository as! ETXGenericDataObjectRepository<T>, forModelType: T.self)
+        super.init(repository: r)
+    }
+    
+    private static func getRepository<T: ETXModel>(defaultRepo: ETXGenericDataObjectRepository<T>, forModelType: T.Type) -> ETXGenericDataObjectRepository<T>{
+        let s: String = String(describing: forModelType)
+        let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[s]
+        if let repoClassType = repoClassType {
+            let customRepository = repoClassType.init(resourcePath: defaultRepo.resourcePath)
+            return customRepository as! ETXGenericDataObjectRepository<T>
+        }
+        return defaultRepo
     }
     
     /**
@@ -87,7 +112,7 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
      - parameter model: The model, if found.
      - parameter err: If an error occurred while savinga the item
      */
-    override func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    override public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
             super.save(model: model) {
                 (model, err) in

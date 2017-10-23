@@ -39,7 +39,7 @@ open class ETXSteps: ETXMeasurement {
     
     open override class func getDataSvc<ETXSteps>() -> ETXDataService<ETXSteps>? {
         
-        return ETXDataService<ETXSteps>(repository: Repository<ETXSteps>(resourcePath: "/steps"))
+        return ETXDataService<ETXSteps>(repository: Repository<ETXSteps>(resourcePath: "/steps"), modelType: ETXSteps.self, typeAsString: String(describing: ETXSteps.self))
     }
     
     

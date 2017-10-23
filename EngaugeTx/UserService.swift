@@ -15,14 +15,30 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     
     private let HEADER_KEY_DELETE_ALL_USER_DATA: String = "X-Tx-Delete-All-Data"
     
-    let userRepository: UserRepository<T>
+    var userRepository: UserRepository<T>
+    
+    private static func getRepository<T: ETXUser>(defaultRepo: UserRepository<T>) -> UserRepository<T> {
+        let s: String = String(describing: T.self)
+        let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[s]
+        
+        if let repoClassType = repoClassType {
+            let customRepository = repoClassType.init(resourcePath: UserRepository.URL_USERS)
+            return customRepository as! UserRepository<T>
+        }
+        return defaultRepo
+    }
     
     /**
      Create an instance of ETXUserService
      */
-    public override init() {
-        self.userRepository = UserRepository()
-        super.init(repository: self.userRepository)
+    public convenience override init() {
+        self.init(repository: ETXUserService.getRepository(defaultRepo: UserRepository<T>()))
+    }
+    
+    required public init(repository: Repository<T>) {
+        let r  = ETXUserService.getRepository(defaultRepo: repository as! UserRepository)
+        self.userRepository = r //repository as! UserRepository
+        super.init(repository: r)
     }
     
     /** Login with username.

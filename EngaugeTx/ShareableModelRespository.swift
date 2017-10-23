@@ -22,7 +22,7 @@ class ETXShareableModelRespository<T: ETXShareableModel>: Repository<T> {
 //        super.init(resourcePath: self.resourceUrl)
 //    }
     
-    override init(resourcePath: String) {
+    required init(resourcePath: String) {
         self.resourceUrl = resourcePath
         super.init(resourcePath: self.resourceUrl)
     
