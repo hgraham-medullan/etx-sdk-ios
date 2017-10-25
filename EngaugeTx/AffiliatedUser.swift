@@ -19,7 +19,7 @@ public class ETXAffiliatedUser : ETXModel {
     var myRole: ETXRole?
     var role: ETXRole?
     
-    public override init() {
+    public required init() {
         super.init()
     }
     

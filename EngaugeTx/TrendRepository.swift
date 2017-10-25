@@ -9,7 +9,7 @@
 import Foundation
 //import Siesta
 import ObjectMapper
-open class TrendRepository: Repository<ETXModel> {
+open class TrendRepository: Repository<ETXPersistedModel> {
     
     private var keyToTypeMapping: [String: ETXAggregatableModel.Type]
     

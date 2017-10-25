@@ -7,7 +7,40 @@
 //
 
 import Foundation
+import Siesta
 
-class CustomStandaloneFunctionRepository<M: ETXModel>: Repository<M> {
+open class ETXCustomStandaloneFunctionRepository<M: ETXModel>: Repository<M>, CustomizableRepository {
+    public var httpPath: String!
     
+    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+        return nil
+    }
+    required public init(resourcePath: String) {
+        super.init(resourcePath: resourcePath)
+    }
+    
+    
+    public override func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
+        self.httpPath = resource.url.absoluteString
+    }
+    
+    override public func create(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+        self.post(model: model, completion: completion)
+    }
+    
+    override func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+        self.post(model: model, completion: completion)
+    }
+    
+    public override func getById(_ id: String, completion: @escaping (M?, ETXError?) -> Void) {
+        self.get(completion:completion)
+    }
+    
+    public func get(completion: @escaping (M?, ETXError?) -> Void) {
+        super.getById("", completion: completion)
+    }
+    
+    public func post(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+        super.create(model: model, completion: completion)
+    }
 }

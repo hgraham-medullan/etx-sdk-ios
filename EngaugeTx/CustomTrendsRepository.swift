@@ -10,11 +10,8 @@ import Foundation
 import Siesta
 
 open class CustomTrendRepository: TrendRepository, CustomizableRepository {
-    var httpPath: String!
-    
-    required public init() {
-        super.init(resourcePath: TrendRepository.trendsUrl)
-    }
+
+    public var httpPath: String!
     
     required public init(resourcePath: String) {
         super.init(resourcePath: resourcePath)
@@ -35,4 +32,7 @@ open class CustomTrendRepository: TrendRepository, CustomizableRepository {
         self.httpPath = resource.url.absoluteString
     }
     
+    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+        return nil
+    }
 }

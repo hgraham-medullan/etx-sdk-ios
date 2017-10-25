@@ -18,7 +18,7 @@ open class ETXPrescription: ETXShareableModel{
     public var medication: ETXMedication?
     public var medicationId: String?
     
-    public override init() {
+    public required init() {
         super.init()
     }
     
@@ -41,8 +41,8 @@ open class ETXPrescription: ETXShareableModel{
         medicationId <- map["medicationId"]
     }
     
-    open override class func getDataSvc<ETXPrescription>() -> ETXDataService<ETXPrescription>? {
-        
-        return ETXDataService<ETXPrescription>(repository: Repository<ETXPrescription>(resourcePath: "/med/data/prescriptions"))
-    }
+//    open override class func getDataSvc<ETXPrescription>() -> ETXDataService<ETXPrescription>? {
+//        
+//        return ETXDataService<ETXPrescription>(repository: Repository<ETXPrescription>(resourcePath: "/med/data/prescriptions"))
+//    }
 }

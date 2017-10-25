@@ -7,10 +7,12 @@
 //
 
 import Foundation
-
 public protocol PersistenceService {
-    associatedtype T : ETXModel
-    typealias DSType = Self
+    func asQueryable<T: QueryablePersistenceService>() -> T
+}
+
+public protocol QueryablePersistenceService {
+    associatedtype T : ETXPersistableModel
     func findById(_ id: String, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void)
     func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void)
     func findAll(completion: @escaping (_ models: [T]?, _ err: ETXError?) -> Void)
@@ -21,14 +23,27 @@ public protocol PersistenceService {
 /**
  Service that provides CRUD operations for a model
  */
-open class ETXDataService<T: ETXModel>: PersistenceService {
+open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, PersistenceService {
+    
+    private var modelType2: ETXPersistedModel.Type?
+    
+    public func asQueryable<T>() -> T where T : QueryablePersistenceService {
+        return self as! T
+    }
+
     
     public var repository: Repository<T>!
     private var modelType: T.Type = T.self
     
-    init() {
-        
+    public init() {
+        //self.repository = Repository<T>(resourcePath: "/")
     }
+    
+    init(modelType2: ETXPersistedModel.Type? = nil) {
+        self.modelType2 = modelType2
+        print("as")
+    }
+
     
     required public init(repository: Repository<T>) {
         self.repository = repository
@@ -102,16 +117,37 @@ open class ETXDataService<T: ETXModel>: PersistenceService {
     }
     
     private func getRepository() -> Repository<T> {
-        let s: String = String(describing: self.modelType)
-        //let s1: String = String(describing: type(of:T))
-        if let customDefinedRepoType = EngaugeTxApplication.getInstance().customDataRepositories[s] {
+
+        let s1: String = String(describing: T.self)
+        
+        if self.modelType is ETXSteps.Type {
+            print("Ada")
+        }
+        
+        if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self) {
             EngaugeTxLog.debug("A custom repos is defined")
             return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
         }
         return self.repository
     }
     
-    static func useCustomDataRepository<M: ETXModel, R: Repo>(_ repoType: R.Type, forModelType: M.Type) {
+    private func getCustomRepoType(forModelType: T.Type) -> Repo.Type? {
+        let appInstance = EngaugeTxApplication.getInstance()
+        let modelTypeAsString: String = String(describing: T.self)
+        // Check if there is repository for this specific type
+        if let customRepoType = appInstance.customDataRepositories[modelTypeAsString] {
+            return customRepoType
+        }
+        
+        EngaugeTxLog.debug("Finding a custom repository set for a parent model for \(modelTypeAsString)")
+        for(key, val) in appInstance.customDataRepositoriesForClasses {
+            EngaugeTxLog.debug("Checking model type: \(key)")
+            EngaugeTxLog.debug("Checking model type: \(val)")
+        }
+        return nil
+    }
+    
+    static func useCustomDataRepository<M: ETXModel, R: CustomizableRepository>(_ repoType: R.Type, forModelType: M.Type) {
         EngaugeTxApplication.addCustomRepository(modelType: forModelType, repositoryType: repoType)
     }
     

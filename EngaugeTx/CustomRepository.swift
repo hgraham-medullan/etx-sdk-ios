@@ -9,10 +9,13 @@
 import Foundation
 import Siesta
 
-protocol CustomizableRepository {
+public protocol CustomizableRepository: Repo {
     var httpPath: String! { get set}
     func getHttpPath() -> String
     func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void)
+    
+    func provideInstance<T>(resourcePath: String) -> Repository<T>?
+    
 }
 
 extension CustomizableRepository {
@@ -23,10 +26,20 @@ extension CustomizableRepository {
 }
 
 open class ETXCustomRepository<M: ETXModel>: Repository<M>, CustomizableRepository {
-    var httpPath: String!
+    
+    required public init(resourcePath: String) {
+        super.init(resourcePath: resourcePath)
+    }
+
+    public var httpPath: String!
     
     override public func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
         self.httpPath = resource.url.absoluteString
+    }
+    
+    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+        return nil
+//        return ETXCustomStandaloneFunctionRepository<T>(resourcePath: resourcePath)
     }
 
 }

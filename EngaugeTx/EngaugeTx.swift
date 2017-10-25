@@ -153,13 +153,17 @@ public class EngaugeTxApplication {
         self.init(application: nil)
     }
     
-    public var customDataRepositories: [String:Repo.Type] = [String:Repository<ETXModel>.Type]()
+    public var customDataRepositories: [String:CustomizableRepository.Type] = [String:CustomizableRepository.Type]()
     public var customDataRepositoriesForClasses: [String:ETXModel.Type] = [String:ETXModel.Type]()
     static func getInstance() -> EngaugeTxApplication {
         return instance
     }
     
-    static func addCustomRepository<M: ETXModel, R: Repo>(modelType: M.Type, repositoryType: R.Type) {
+    public var customDataRepository: Repo.Type? = nil
+    
+    public var customStandaloneFunctionRepositoryType: CustomizableRepository.Type? = nil
+    
+    static func addCustomRepository<M: ETXModel, R: CustomizableRepository>(modelType: M.Type, repositoryType: R.Type) {
         let classTypeAsString: String = String(describing: modelType)
         let engaugetxApplication = EngaugeTxApplication.getInstance()
         engaugetxApplication.customDataRepositories[classTypeAsString] = repositoryType
@@ -174,7 +178,7 @@ public class EngaugeTxApplication {
     static func getValueForKey<T>(key: String, plistFileName: String) -> T? {
         var value: T?
         guard let path = Bundle.main.path(forResource: plistFileName, ofType: CONFIG_FILE_TYPE) else {
-            EngaugeTxLog.info("The specifed plist file was not found: \(plistFileName)")
+            EngaugeTxLog.info("The specified plist file was not found: \(plistFileName)")
             return nil
         }
         EngaugeTxLog.debug("Path to the plist file \(path)")

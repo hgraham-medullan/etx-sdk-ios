@@ -10,7 +10,17 @@ import Foundation
 import Siesta
 open class ETXCustomUserRepository<M: ETXUser>: UserRepository<M>, CustomizableRepository {
     
-    var httpPath: String!
+    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+        return nil
+    }
+
+    
+    required public init(resourcePath: String) {
+        super.init(resourcePath: resourcePath)
+    }
+
+    
+    public var httpPath: String!
     
     public override func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
         self.httpPath = resource.url.absoluteString

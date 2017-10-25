@@ -17,7 +17,7 @@ open class ETXMeasurementDevice: ETXModel {
         super.init()
         self.id = deviceId
     }
-    public override init(){
+    public required init(){
         super.init()
     }
     required public init?(map: Map) {

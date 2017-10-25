@@ -143,7 +143,8 @@ open class Repository<T> : Service, Repo where T: ETXModel {
             completion(nil, Repository.unsavedModelError)
             return
         }
-        beforeResourceRequest(self.etxResource.child(id)) {
+        self.etxResource = self.etxResource.child(id)
+        beforeResourceRequest(self.etxResource) {
             let req = self.etxResource.request(.put, json: ((model as? ETXModel)?.toJSON())!)
             req.onFailure({ (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
@@ -162,7 +163,8 @@ open class Repository<T> : Service, Repo where T: ETXModel {
             completion(Repository.unsavedModelError)
             return
         }
-        beforeResourceRequest(self.etxResource.child(id)) {
+        self.etxResource = self.etxResource.child(id)
+        beforeResourceRequest(self.etxResource) {
             let req  = self.etxResource.request(.delete)
             req.onFailure({ (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
@@ -177,7 +179,12 @@ open class Repository<T> : Service, Repo where T: ETXModel {
     }
     
     public func getById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
-        beforeResourceRequest(self.etxResource.child(id)){
+        self.findById(id, completion: completion)
+    }
+    
+    public func findById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
+        self.etxResource = self.etxResource.child(id)
+        beforeResourceRequest(self.etxResource){
             let req  = self.etxResource.request(.get)
             req.onFailure({ (err) in
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
@@ -191,12 +198,9 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         }
     }
     
-    public func findById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
-        self.getById(id, completion: completion)
-    }
-    
     public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
-        beforeResourceRequest(self.etxResource.withParam("filter", filter.toJsonString())) {
+        self.etxResource = self.etxResource.withParam("filter", filter.toJsonString())
+        beforeResourceRequest(self.etxResource) {
             let req = self.etxResource.request(.get)
             
             req.onFailure({ (err) in

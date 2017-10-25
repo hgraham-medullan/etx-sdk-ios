@@ -48,47 +48,53 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
      Create an instance GenericDataService with a custom model name
      - parameter modelName: The custom name for the model. Used as part of the api URL
      */
-//    public required convenience init(modelName: String) throws {
-//        if ETXGenericDataService.isValidClassName(modelName) == true {
-//            self.init(repository:  ETXGenericDataObjectRepository<T>(className: modelName))
-//            self.modelName = modelName
-//        } else {
-//            EngaugeTxLog.error("\(modelName) is not a valid model name for a Generic Object")
-//            throw ETXInvalidModelNameError()
-//        }
-//    }
+    public required init(modelName: String) throws {
+        if ETXGenericDataService.isValidClassName(modelName) == true {
+            self.modelName = modelName
+            super.init(repository:  ETXGenericDataObjectRepository<T>(className: modelName))
+        } else {
+            EngaugeTxLog.error("\(modelName) is not a valid model name for a Generic Object")
+            throw ETXInvalidModelNameError()
+        }
+    }
     
     /**
      Create an instance GenericDataService
      */
-    public convenience override init() {
-        self.init(repository: ETXGenericDataObjectRepository<T>(className: String(describing: T.self)))
+    public override init() {
+        self.modelName = String(describing: T.self)
+        super.init(repository:  ETXGenericDataObjectRepository<T>(className: self.modelName))
     }
     
-    required public init(repository: ETXGenericDataObjectRepository<T>, forModelType: T.Type) {
-        self.modelName = String(describing: T.self)
-        //let b = String(describing: T.ModelType)
-        
-        let r = ETXGenericDataService.getRepository(defaultRepo: repository, forModelType: forModelType)
-        super.init(repository: r)
-    }
     
     required public init(repository: Repository<T>) {
         self.modelName = String(describing: T.self)
-        //let b = String(describing: T.ModelType)
-        
         let r = ETXGenericDataService.getRepository(defaultRepo: repository as! ETXGenericDataObjectRepository<T>, forModelType: T.self)
         super.init(repository: r)
     }
     
-    private static func getRepository<T: ETXModel>(defaultRepo: ETXGenericDataObjectRepository<T>, forModelType: T.Type) -> ETXGenericDataObjectRepository<T>{
-        let s: String = String(describing: forModelType)
-        let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[s]
+    private static func getRepository<T: ETXGenericDataObject>(defaultRepo: ETXGenericDataObjectRepository<T>, forModelType: T.Type) -> ETXGenericDataObjectRepository<T>{
+        let repoClassType = EngaugeTxApplication.getInstance().customDataRepository
         if let repoClassType = repoClassType {
             let customRepository = repoClassType.init(resourcePath: defaultRepo.resourcePath)
-            return customRepository as! ETXGenericDataObjectRepository<T>
+            return customRepository as! ETXGenericDataObjectRepository<T> 
         }
         return defaultRepo
+    }
+    
+     static func useCustomDataRepositoryx<M: ETXGenericDataObject, R: CustomizableRepository>(_ repoType: R.Type, forModelType: M.Type) {
+        EngaugeTxApplication.addCustomRepository(modelType: forModelType, repositoryType: repoType)
+//        EngaugeTxApplication.getInstance().customDataRepository = repoType as! ETXGenericDataObjectRepository<ETXGenericDataObject>.Type
+    }
+    
+    private func getRepository() -> Repository<T> {
+//        let s: String = String(describing: self.modelType)
+        let s1: String = String(describing: type(of:T.self))
+        if let customDefinedRepoType = EngaugeTxApplication.getInstance().customDataRepositories[s1] {
+            EngaugeTxLog.debug("A custom repo is defined")
+            return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
+        }
+        return self.repository
     }
     
     /**

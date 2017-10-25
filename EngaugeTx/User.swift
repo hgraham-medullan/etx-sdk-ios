@@ -72,7 +72,7 @@ open class ETXUser: ETXPersistedModel {
         
     }
     
-    public override init() {
+    public required init() {
         self.email = ""
         self.username = ""
         self.password = ""
@@ -142,9 +142,9 @@ open class ETXUser: ETXPersistedModel {
     /**
      The sevice class responsible for making API calls on behalf of the model
     **/
-    open override class func getDataSvc<ETXUser>() -> ETXUserService<ETXUser> {
-        return ETXUserService<ETXUser>()
-    }
+//    open override class func getDataSvc<ETXUser>() -> ETXUserService<ETXUser> {
+//        return ETXUserService<ETXUser>()
+//    }
     
     public func delete(hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {
         self.userService.delete(model: self, hardDelete: hardDelete, completion: completion)

@@ -49,6 +49,10 @@ open class ETXOxygenSaturation: ETXMeasurement {
         super.init(map: map)
     }
     
+    public required init() {
+        super.init()
+    }
+    
     override open func mapping(map: Map) {
         super.mapping(map: map)
         spo2 <- map["spo2"]

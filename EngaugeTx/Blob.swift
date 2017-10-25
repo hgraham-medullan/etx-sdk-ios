@@ -66,17 +66,38 @@ public class ETXBlob: ETXPersistedModel, FirstClassModel {
         super.init(map: map)
     }
     
+    public required init() {
+        super.init()
+    }
+    
     override open func mapping(map: Map) {
         super.mapping(map: map)
         name <- map["name"]
         size <- map["size"]
         contentType <- map["contentType"]
     }
+    
+//    public override func getDataSvc<T:QueryablePersistenceService>() -> T {
+//        let blobRepository: Repository<ETXBlob> = BlobRepository(resourcePath: "/blobs")
+//        let ds = ETXDataService<ETXBlob>(repository: blobRepository)
+//        return ds as! T
+//    }
+    
+//    public override func getDataSvc() -> ETXDataService<ModelType> {
+//        
+//        let blobRepository: Repository<ETXBlob> = BlobRepository(resourcePath: "/blobs")
+//        let ds = ETXDataService<ETXBlob>(repository: blobRepository)
+//        
+//        return ds
+//    }
+    
+    
+//    public func getDataSvc() -> ETXDataService<ModelType> {
 
-    open override class func getDataSvc<ETXBlob>() -> ETXDataService<ETXBlob>? {
-        let blobRepository: Repository<ETXBlob> = BlobRepository<ETXBlob>(resourcePath: blobsUrl)
-        return ETXDataService<ETXBlob>(repository: blobRepository)
-    }
+//     override public func getDataSvc() -> ETXDataService<ModelType>? {
+//        let blobRepository: Repository<ETXBlob> = BlobRepository<ETXBlob>(resourcePath: "")
+//        return ETXDataService<ETXBlob>(repository: blobRepository)
+//    }
     
     
     

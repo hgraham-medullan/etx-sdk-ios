@@ -32,13 +32,17 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      Create an instance of ETXUserService
      */
     public convenience override init() {
-        self.init(repository: ETXUserService.getRepository(defaultRepo: UserRepository<T>()))
+//        self.init(repository: ETXUserService.getRepository(defaultRepo: UserRepository<T>()))
+        self.init(repository: UserRepository<T>())
     }
     
     required public init(repository: Repository<T>) {
         let r  = ETXUserService.getRepository(defaultRepo: repository as! UserRepository)
         self.userRepository = r //repository as! UserRepository
-        super.init(repository: r)
+        let rp: Repository<T>  = r
+        super.init(repository: rp)
+//        super.init(repository: self.userRepository as Repository<T>)
+
     }
     
     /** Login with username.

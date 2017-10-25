@@ -17,7 +17,7 @@ open class ETXShareableModel: ETXPersistedModel {
         return "/"
     }
     
-    public override init() {
+    public required init() {
         super.init()
     }
     
