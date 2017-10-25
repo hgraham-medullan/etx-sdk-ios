@@ -120,10 +120,6 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
 
         let s1: String = String(describing: T.self)
         
-        if self.modelType is ETXSteps.Type {
-            print("Ada")
-        }
-        
         if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self) {
             EngaugeTxLog.debug("A custom repos is defined")
             return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>

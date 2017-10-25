@@ -34,7 +34,7 @@ open class ETXPersistedModel : ETXModel, ETXPersistableModel {
     
     required public init?(map: Map) {
         self.dataSvc = ETXDataService<ModelType>()
-        super.init()
+        super.init(map: map)
     }
     
     public func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {

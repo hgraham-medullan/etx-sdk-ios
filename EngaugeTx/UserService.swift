@@ -31,9 +31,9 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     /**
      Create an instance of ETXUserService
      */
-    public convenience override init() {
-//        self.init(repository: ETXUserService.getRepository(defaultRepo: UserRepository<T>()))
-        self.init(repository: UserRepository<T>())
+    public  override init() {
+        self.userRepository = UserRepository()
+         super.init(repository: self.userRepository)
     }
     
     required public init(repository: Repository<T>) {

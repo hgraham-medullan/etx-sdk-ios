@@ -37,10 +37,11 @@ open class ETXSteps: ETXMeasurement {
         return "/Steps"
     }
     
-//    open override class func getDataSvc<ETXSteps>() -> ETXDataService<ETXSteps>? {
-//        return ETXDataService<ETXSteps>(repository: Repository<ETXSteps>(resourcePath: "/steps"), modelType: ETXSteps.self, typeAsString: String(describing: ETXSteps.self))
-//    }
-    
+    public override func getDataSvc<M: ETXSteps, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repository = Repository<M>(resourcePath: "/steps")
+        let defaultDataSvc = ETXDataService<M>(repository: repository)
+        return defaultDataSvc as! T
+    }
     
     override open func mapping(map: Map) {
         super.mapping(map: map)
