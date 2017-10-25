@@ -54,9 +54,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "CustomGenericDataObjectRepository">
-               </Test>
-               <Test
                   Identifier = "LocalRepositoryTests">
                </Test>
             </SkippedTests>

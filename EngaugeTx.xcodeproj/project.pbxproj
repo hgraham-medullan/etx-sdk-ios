@@ -58,6 +58,7 @@
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
+		087BEF3B1FA0929400FDD72F /* CustomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */; };
 		08879B3F1F9CE893001928D1 /* CustomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B3E1F9CE893001928D1 /* CustomUserRepository.swift */; };
 		08879B411F9D90EF001928D1 /* CustomRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B401F9D90EF001928D1 /* CustomRepository.swift */; };
 		08879B431F9DB10F001928D1 /* CustomGenericRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B421F9DB10F001928D1 /* CustomGenericRepository.swift */; };
@@ -204,6 +205,7 @@
 		08783D291DEC927900A08343 /* EngaugeTxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngaugeTxTests.swift; sourceTree = "<group>"; };
 		08783D2B1DEC927900A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
+		087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserRepository.swift; sourceTree = "<group>"; };
 		08879B3E1F9CE893001928D1 /* CustomUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserRepository.swift; sourceTree = "<group>"; };
 		08879B401F9D90EF001928D1 /* CustomRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRepository.swift; sourceTree = "<group>"; };
 		08879B421F9DB10F001928D1 /* CustomGenericRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGenericRepository.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				0864C2C11FA06C7B00052B2E /* CustomStandaloneFunctionRepository.swift */,
 				0864C2C31FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift */,
 				0864C2C51FA06E2400052B2E /* CustomTrendsRepository.swift */,
+				087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1054,6 +1057,7 @@
 				085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
 				1874859D1E9FEFD900B8CEDD /* AffiliationServiceUnauthenticatedTests.swift in Sources */,
+				087BEF3B1FA0929400FDD72F /* CustomUserRepository.swift in Sources */,
 				0811CFF21EB38DD2008B4B30 /* CaregiverTests.swift in Sources */,
 				08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */,
 				081755D31F9651FD00E867A6 /* LocalRepositoryTests.swift in Sources */,

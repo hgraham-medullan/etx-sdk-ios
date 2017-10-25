@@ -51,17 +51,6 @@ class LocalRepositoryTests: ETXTestCase {
     
 }
 
-public class LocalUserRepository<M: ETXUser>: ETXCustomUserRepository<M> {
-    override public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([M]?, ETXError?) -> Void) {
-        super.findWhere(filter, completion: completion)
-        let path = self.getHttpPath()
-        var users = [ETXUser]()
-        users.append(ETXUser(email: "blag", username: "user", password: "pwd"))
-        completion(users as! [M], nil)
-        print("this is it")
-    }
-    
-}
 
 
 

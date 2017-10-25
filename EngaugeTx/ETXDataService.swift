@@ -116,13 +116,15 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
         self.getRepository().save(model: model, completion: completion)
     }
     
-    private func getRepository() -> Repository<T> {
+    func getRepository() -> Repository<T> {
 
         let s1: String = String(describing: T.self)
         
         if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self) {
             EngaugeTxLog.debug("A custom repos is defined")
-            return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
+            let c = customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! CustomizableRepository
+            return c.provideInstance(resourcePath: self.repository.resourcePath) as! Repository<T>
+            
         }
         return self.repository
     }
@@ -143,7 +145,7 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
         return nil
     }
     
-    static func useCustomDataRepository<M: ETXModel, R: CustomizableRepository>(_ repoType: R.Type, forModelType: M.Type) {
+    public static func useCustomDataRepository<M: ETXModel, R: CustomizableRepository>(_ repoType: R.Type, forModelType: M.Type) {
         EngaugeTxApplication.addCustomRepository(modelType: forModelType, repositoryType: repoType)
     }
     

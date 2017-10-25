@@ -48,33 +48,35 @@ open class UserRepository<T: ETXUser>: Repository<T> {
     private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
         self.deleteCurrentUser()
         var ttl: Int? = EngaugeTxApplication.defaultTTL
-        var resource = self.users.child("/login").withParam("include", "user")
         
+        var resource = self.users.child("/login").withParam("include", "user")
         if (rememberMe && EngaugeTxApplication.rememberMeTTL != nil) {
             ttl = EngaugeTxApplication.rememberMeTTL
         }
         
         if let ttl = ttl {
-            resource = resource.withParam(QUERY_PARAM_TTL, "\(ttl)")
+            resource = resource.withParam(self.QUERY_PARAM_TTL, "\(ttl)")
         }
         
-        let req = resource.request(.post, json: credentials.toJSON())
-        req.onFailure { (err) in
-            
-            var etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
-                let authErr: ETXAuthenticationError? = Mapper<ETXAuthenticationError>().map(JSON: err.jsonDict)
-                etxError = authErr
+        beforeResourceRequest(resource) {
+            let req = resource.request(.post, json: credentials.toJSON())
+            req.onFailure { (err) in
+                
+                var etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                if let httpStatusCode = err.httpStatusCode, httpStatusCode == 401 {
+                    let authErr: ETXAuthenticationError? = Mapper<ETXAuthenticationError>().map(JSON: err.jsonDict)
+                    etxError = authErr
+                }
+                EngaugeTxLog.info("User login failed.", context: err.jsonDict)
+                completion(nil, etxError)
             }
-            EngaugeTxLog.info("User login failed.", context: err.jsonDict)
-            completion(nil, etxError)
-        }
-        
-        req.onSuccess { (obj) in
-            let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
-            self.saveCurrentUser(accessToken, rememberUser: rememberMe)
             
-            completion(Mapper<T>().map(JSON: (accessToken.user?.rawJson)!), nil)
+            req.onSuccess { (obj) in
+                let accessToken: ETXAccessToken = (obj.content as! ETXAccessToken)
+                self.saveCurrentUser(accessToken, rememberUser: rememberMe)
+                
+                completion(Mapper<T>().map(JSON: (accessToken.user?.rawJson)!), nil)
+            }
         }
     }
     
@@ -83,24 +85,27 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         if(id.isEmpty){
             completion(nil, ETXError(message: "A logged in user is required"))
         } else {
-            let req = self.users.child(id).child("/affiliatedUsers").request(.get)
-            
-            req.onFailure { (err) in
-                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                completion(nil, etxError)
-            }
-            
-            req.onSuccess { (obj) in
-                let res: ETXResponse = (obj.content as! ETXResponse)
-                let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])
-                var users: [ETXUser] = [ETXUser]()
-                for affiliatedUser in affiliatedUsers {
-                    if(affiliatedUser.role == withRole) {
-                        let user: ETXUser = ETXUser(user: affiliatedUser)
-                        users.append(user)
-                    }
+            let resource = self.users.child(id).child("/affiliatedUsers")
+            beforeResourceRequest(resource) {
+                let req = resource.request(.get)
+                
+                req.onFailure { (err) in
+                    let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                    completion(nil, etxError)
                 }
-                completion(users, nil)
+                
+                req.onSuccess { (obj) in
+                    let res: ETXResponse = (obj.content as! ETXResponse)
+                    let affiliatedUsers: [ETXAffiliatedUser] = Mapper<ETXAffiliatedUser>().mapArray(JSONArray: res.result as! [[String : Any]])
+                    var users: [ETXUser] = [ETXUser]()
+                    for affiliatedUser in affiliatedUsers {
+                        if(affiliatedUser.role == withRole) {
+                            let user: ETXUser = ETXUser(user: affiliatedUser)
+                            users.append(user)
+                        }
+                    }
+                    completion(users, nil)
+                }
             }
         }
         
@@ -150,44 +155,54 @@ open class UserRepository<T: ETXUser>: Repository<T> {
     }
     
     func logout(completion: @escaping (ETXError?) ->Void) {
-        let req = self.users.child("/logout").request(.post)
-        req.onFailure { (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            completion(etxError)
-        }
-        
-        req.onSuccess { (obj) in
-            self.deleteCurrentUser()
-            self.wipeResources()
-            completion(nil)
+        let resource = self.users.child("/logout")
+        beforeResourceRequest(resource) {
+            let req = resource.request(.post)
+            req.onFailure { (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                completion(etxError)
+            }
+            
+            req.onSuccess { (obj) in
+                self.deleteCurrentUser()
+                self.wipeResources()
+                completion(nil)
+            }
         }
     }
     
     func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.deleteCurrentUser()
         let reqBody:[String:String] = ["email": emailAddress]
-        let req = self.users.child("/reset").request(.post, json: reqBody)
-        
-        req.onFailure { (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            completion(etxError)
-        }
-        
-        req.onSuccess { (obj) in
-            completion(nil)
+        let resource = self.users.child("/reset")
+        beforeResourceRequest(resource) {
+            let req = resource.request(.post, json: reqBody)
+            
+            req.onFailure { (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                completion(etxError)
+            }
+            
+            req.onSuccess { (obj) in
+                completion(nil)
+            }
         }
     }
     
     func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, completion: @escaping (_ err: ETXError?)->Void) {
-        let req = self.users.child("/changePassword").request(.post, json: passwordUpdateCredentials.toJSON())
         
-        req.onFailure { (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            completion(etxError)
-        }
-        
-        req.onSuccess { (obj) in
-            completion(nil)
+        let resource = self.users.child("/changePassword")
+        beforeResourceRequest(resource) {
+            let req = resource.request(.post, json: passwordUpdateCredentials.toJSON())
+            
+            req.onFailure { (err) in
+                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                completion(etxError)
+            }
+            
+            req.onSuccess { (obj) in
+                completion(nil)
+            }
         }
     }
     

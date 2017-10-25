@@ -87,15 +87,15 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
 //        EngaugeTxApplication.getInstance().customDataRepository = repoType as! ETXGenericDataObjectRepository<ETXGenericDataObject>.Type
     }
     
-    private func getRepository() -> Repository<T> {
-//        let s: String = String(describing: self.modelType)
-        let s1: String = String(describing: type(of:T.self))
-        if let customDefinedRepoType = EngaugeTxApplication.getInstance().customDataRepositories[s1] {
-            EngaugeTxLog.debug("A custom repo is defined")
-            return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
-        }
-        return self.repository
-    }
+//    private func getRepository() -> Repository<T> {
+////        let s: String = String(describing: self.modelType)
+//        let s1: String = String(describing: type(of:T.self))
+//        if let customDefinedRepoType = EngaugeTxApplication.getInstance().customDataRepositories[s1] {
+//            EngaugeTxLog.debug("A custom repo is defined")
+//            return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
+//        }
+//        return self.repository
+//    }
     
     /**
      Find a model by it's ID
