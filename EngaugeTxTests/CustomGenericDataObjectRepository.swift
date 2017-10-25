@@ -13,9 +13,14 @@ import ObjectMapper
 
 class CustomGenericDataObjectRepository: ETXTestCase {
     
+    override func tearDown() {
+        super.tearDown()
+        EngaugeTxApplication.clearCustomRepositories()
+    }
+    
     func testFindByIdWithCustomRepositoryForGDOs() {
         let findByIdExpectation = expectation(description: "findById Expectation")
-        ETXGenericDataService.useCustomDataRepositoryx(LocalGdoRepository<MyGdo>.self, forModelType: MyGdo.self)
+        ETXGenericDataService.useCustomDataRepositoryx(LocalGdoRepository<ETXGenericDataObject>.self, forModelType: ETXGenericDataObject.self)
         
         MyGdo.findById("foo-id") {
             (myGdo, err) in

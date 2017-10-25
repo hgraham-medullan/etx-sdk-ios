@@ -13,6 +13,11 @@ import ObjectMapper
 
 class CustomTrendsRepository: ETXTestCase {
     
+    override func tearDown() {
+        super.tearDown()
+        EngaugeTxApplication.clearCustomRepositories()
+    }
+    
     func testTrends() {
         let findByIdExpectation = expectation(description: "findById Expectation")
         ETXTrendService.useCustomDataRepository(LocalTrendRepo.self)

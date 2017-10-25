@@ -121,7 +121,7 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
         let s1: String = String(describing: T.self)
         
         if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self) {
-            EngaugeTxLog.debug("A custom repos is defined")
+            EngaugeTxLog.debug("A custom repo is defined")
             let c = customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! CustomizableRepository
             return c.provideInstance(resourcePath: self.repository.resourcePath) as! Repository<T>
             
@@ -131,11 +131,20 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
     
     private func getCustomRepoType(forModelType: T.Type) -> Repo.Type? {
         let appInstance = EngaugeTxApplication.getInstance()
-        let modelTypeAsString: String = String(describing: T.self)
+        var modelTypeAsString: String = String(describing: T.self)
         // Check if there is repository for this specific type
         if let customRepoType = appInstance.customDataRepositories[modelTypeAsString] {
             return customRepoType
         }
+        
+        let modelInst = T.self.init()
+        if modelInst is ETXGenericDataObject {
+             modelTypeAsString = String(describing: ETXGenericDataObject.self)
+        } else if modelInst is ETXPersistedModel {
+            modelTypeAsString = String(describing: ETXPersistedModel.self)
+        }
+        
+        return appInstance.customDataRepositories[modelTypeAsString]
         
         EngaugeTxLog.debug("Finding a custom repository set for a parent model for \(modelTypeAsString)")
         for(key, val) in appInstance.customDataRepositoriesForClasses {

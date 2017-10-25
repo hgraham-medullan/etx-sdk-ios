@@ -168,7 +168,14 @@ public class EngaugeTxApplication {
         let engaugetxApplication = EngaugeTxApplication.getInstance()
         engaugetxApplication.customDataRepositories[classTypeAsString] = repositoryType
         engaugetxApplication.customDataRepositoriesForClasses[classTypeAsString] = modelType
-        EngaugeTxLog.debug("added")
+    }
+    
+    public static func clearCustomRepositories() {
+        let appInstance = EngaugeTxApplication.getInstance()
+        appInstance.customDataRepository = nil
+        appInstance.customStandaloneFunctionRepositoryType = nil
+        appInstance.customDataRepositories = [String:CustomizableRepository.Type]()
+        appInstance.customDataRepositoriesForClasses = [String:ETXModel.Type]()
     }
     
     static func getValueForKey<T>(key: String) -> T? {

@@ -12,6 +12,12 @@ import XCTest
 import ObjectMapper
 
 class CustomStandaloneFunctionRepository: ETXTestCase {
+    
+    override func tearDown() {
+        super.tearDown()
+        EngaugeTxApplication.clearCustomRepositories()
+    }
+    
     func testGetRequestWhenUsingCustomStandaloneFunctionRepository() {
         let getReqExpectation = expectation(description: "getReq Expectation")
         ETXCustomFunction.useCustomRepository(repositoryType: LocalSfRepo<ETXModel>.self)

@@ -13,6 +13,11 @@ import ObjectMapper
 
 class CustomUserRepository: ETXTestCase {
     
+    override func tearDown() {
+        super.tearDown()
+        EngaugeTxApplication.clearCustomRepositories()
+    }
+    
     func testUserLogin() {
         ETXUserService.useCustomDataRepository(LocalUserRepository.self, forModelType: ETXUser.self)
         
