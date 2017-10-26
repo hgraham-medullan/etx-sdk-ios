@@ -17,7 +17,6 @@ class CurrentUserCache {
 
 open class UserRepository<T: ETXUser>: Repository<T> {
     
-//    private let URL_USERS: String = "/users"
     private let URL_USER_LOGIN: String = "/users/login"
     private let URL_USER_AFFILIATED_USERS: String = "/users/*/affiliatedUsers"
     private let QUERY_PARAM_TTL: String = "ttl"

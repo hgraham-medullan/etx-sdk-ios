@@ -66,36 +66,10 @@ open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
         super.init(repository:  ETXGenericDataObjectRepository<T>(className: self.modelName))
     }
     
-    
     required public init(repository: Repository<T>) {
         self.modelName = String(describing: T.self)
-        let r = ETXGenericDataService.getRepository(defaultRepo: repository as! ETXGenericDataObjectRepository<T>, forModelType: T.self)
-        super.init(repository: r)
+        super.init(repository: repository)
     }
-    
-    private static func getRepository<T: ETXGenericDataObject>(defaultRepo: ETXGenericDataObjectRepository<T>, forModelType: T.Type) -> ETXGenericDataObjectRepository<T>{
-        let repoClassType = EngaugeTxApplication.getInstance().customDataRepository
-        if let repoClassType = repoClassType {
-            let customRepository = repoClassType.init(resourcePath: defaultRepo.resourcePath)
-            return customRepository as! ETXGenericDataObjectRepository<T> 
-        }
-        return defaultRepo
-    }
-    
-     static func useCustomDataRepositoryx<M: ETXGenericDataObject, R: CustomizableRepository>(_ repoType: R.Type, forModelType: M.Type) {
-        EngaugeTxApplication.addCustomRepository(modelType: forModelType, repositoryType: repoType)
-//        EngaugeTxApplication.getInstance().customDataRepository = repoType as! ETXGenericDataObjectRepository<ETXGenericDataObject>.Type
-    }
-    
-//    private func getRepository() -> Repository<T> {
-////        let s: String = String(describing: self.modelType)
-//        let s1: String = String(describing: type(of:T.self))
-//        if let customDefinedRepoType = EngaugeTxApplication.getInstance().customDataRepositories[s1] {
-//            EngaugeTxLog.debug("A custom repo is defined")
-//            return customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! Repository<T>
-//        }
-//        return self.repository
-//    }
     
     /**
      Find a model by it's ID

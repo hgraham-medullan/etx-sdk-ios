@@ -20,7 +20,7 @@ class CustomGenericDataObjectRepository: ETXTestCase {
     
     func testFindByIdWithCustomRepositoryForGDOs() {
         let findByIdExpectation = expectation(description: "findById Expectation")
-        ETXGenericDataService.useCustomDataRepositoryx(LocalGdoRepository<ETXGenericDataObject>.self, forModelType: ETXGenericDataObject.self)
+        ETXGenericDataService.useCustomDataRepository(LocalGdoRepository<ETXGenericDataObject>.self, forModelType: ETXGenericDataObject.self)
         
         MyGdo.findById("foo-id") {
             (myGdo, err) in
@@ -38,7 +38,7 @@ class CustomGenericDataObjectRepository: ETXTestCase {
     
     func testFindByIdWithCustomRepositoryForGDOs2() {
         let findByIdExpectation = expectation(description: "findById Expectation")
-        ETXGenericDataService.useCustomDataRepositoryx(LocalGdoRepository<MyGdo>.self, forModelType: MyGdo.self)
+        ETXGenericDataService.useCustomDataRepository(LocalGdoRepository<MyGdo>.self, forModelType: MyGdo.self)
         
         MyGdo.findById("foo-id") {
             (myGdo, err) in

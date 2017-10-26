@@ -19,7 +19,6 @@ open class ETXCustomStandaloneFunctionRepository<M: ETXModel>: Repository<M>, Cu
         super.init(resourcePath: resourcePath)
     }
     
-    
     public override func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
         self.httpPath = resource.url.absoluteString
     }

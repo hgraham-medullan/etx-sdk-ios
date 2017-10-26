@@ -9,29 +9,29 @@
 import Foundation
 import Siesta
 
+/**
+ * Represent a repository that can be replaced with a custom implmentation
+ */
 public protocol CustomizableRepository: Repo {
     var httpPath: String! { get set}
     func getHttpPath() -> String
     func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void)
-    
     func provideInstance<T>(resourcePath: String) -> Repository<T>?
-    
 }
 
 extension CustomizableRepository {
     public func getHttpPath() -> String {
         return self.httpPath.replacingOccurrences(of: EngaugeTxApplication.baseUrl, with: "")
     }
-
 }
 
 open class ETXCustomRepository<M: ETXModel>: Repository<M>, CustomizableRepository {
     
+    public var httpPath: String!
+    
     required public init(resourcePath: String) {
         super.init(resourcePath: resourcePath)
     }
-
-    public var httpPath: String!
     
     override public func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
         self.httpPath = resource.url.absoluteString
@@ -39,7 +39,5 @@ open class ETXCustomRepository<M: ETXModel>: Repository<M>, CustomizableReposito
     
     public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
         return nil
-//        return ETXCustomStandaloneFunctionRepository<T>(resourcePath: resourcePath)
     }
-
 }

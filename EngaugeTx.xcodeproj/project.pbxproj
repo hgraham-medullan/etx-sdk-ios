@@ -16,7 +16,6 @@
 		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
 		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
 		0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0812228A1DF73A2900586B7D /* ETXAccessToken.swift */; };
-		081755D11F963FBA00E867A6 /* LocalDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081755D01F963FBA00E867A6 /* LocalDataServices.swift */; };
 		081755D31F9651FD00E867A6 /* LocalRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081755D21F9651FD00E867A6 /* LocalRepositoryTests.swift */; };
 		08365F191F6F6308002DD6E9 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08365F181F6F6308002DD6E9 /* RepositoryTests.swift */; };
 		083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE511DF0685D00A3CB8D /* TxModel.swift */; };
@@ -160,7 +159,6 @@
 		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		0812228A1DF73A2900586B7D /* ETXAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXAccessToken.swift; sourceTree = "<group>"; };
-		081755D01F963FBA00E867A6 /* LocalDataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataServices.swift; sourceTree = "<group>"; };
 		081755D21F9651FD00E867A6 /* LocalRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepositoryTests.swift; sourceTree = "<group>"; };
 		08365F181F6F6308002DD6E9 /* RepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
 		083DEE511DF0685D00A3CB8D /* TxModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxModel.swift; sourceTree = "<group>"; };
@@ -474,7 +472,6 @@
 				085184D91E74DBC800BFD227 /* DateService.swift */,
 				188548FA1EA68A03007442B5 /* Constants.swift */,
 				08BCB0711EF116A100BC8733 /* data.json */,
-				081755D01F963FBA00E867A6 /* LocalDataServices.swift */,
 			);
 			path = EngaugeTx;
 			sourceTree = "<group>";
@@ -955,7 +952,6 @@
 				1874859B1E9FE22300B8CEDD /* TxResponse.swift in Sources */,
 				185691BE1EA7C5A700754AC4 /* GenericDataObjectConfiguration.swift in Sources */,
 				18B99DE01EA82A1500D81212 /* ETXMappable.swift in Sources */,
-				081755D11F963FBA00E867A6 /* LocalDataServices.swift in Sources */,
 				18D0DFF21EAB02DF00856F2D /* DataForPeriod.swift in Sources */,
 				18B99DDA1EA825AD00D81212 /* Measurement.swift in Sources */,
 				084A24471E267D6A003BBCAB /* CombinedCondition.swift in Sources */,

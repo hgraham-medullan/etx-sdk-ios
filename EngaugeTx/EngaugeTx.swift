@@ -46,7 +46,6 @@ public class EngaugeTxApplication {
     private static let DEFAULT_BASE_URL = "https://api.us1.engaugetx.com/v1"
     
     private static var instance: EngaugeTxApplication!
-    private var singletons_store : [String:Any] = [String:Any]()
     
     private var application: UIApplication?
     
@@ -185,7 +184,7 @@ public class EngaugeTxApplication {
     static func getValueForKey<T>(key: String, plistFileName: String) -> T? {
         var value: T?
         guard let path = Bundle.main.path(forResource: plistFileName, ofType: CONFIG_FILE_TYPE) else {
-            EngaugeTxLog.info("The specified plist file was not found: \(plistFileName)")
+            EngaugeTxLog.warn("The specified plist file was not found: \(plistFileName)")
             return nil
         }
         EngaugeTxLog.debug("Path to the plist file \(path)")

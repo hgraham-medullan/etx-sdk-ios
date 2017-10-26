@@ -28,7 +28,7 @@ open class ETXPersistedModel : ETXModel, ETXPersistableModel {
     }
     
     override public required init() {
-        self.dataSvc = ETXDataService<ModelType>(modelType2: type(of:self))
+        self.dataSvc = ETXDataService<ModelType>()
         super.init()
     }
     
@@ -91,7 +91,6 @@ extension ETXPersistableModel where Self: ETXPersistedModel  {
      - parameter err: If an error occurred while finding the item
      */
     public static func findById(_ id: String, completion: @escaping (ModelType?, ETXError?)->Void) {
-        print("The type is; \(String(describing:Self.self))")
         let m = Self.init()
         let  ds: ETXDataService<ModelType> = m.getDataSvc(m)
         
@@ -125,5 +124,3 @@ extension ETXPersistableModel where Self: ETXPersistedModel  {
         }
     }
 }
-
-

@@ -41,23 +41,19 @@ public class ETXCustomFunction<T: ETXModel> {
     }
     
     private func getRepo<T: ETXModel>() -> Repository<T> {
+        let resourcePath = "\(urlPrefix)/\(self.functionName)"
+        // If there is a custom repository set up
         if let repositoryType = EngaugeTxApplication.getInstance().customStandaloneFunctionRepositoryType {
-            let resourcePath = "\(urlPrefix)/\(self.functionName)"
-            
-            let customRepo = repositoryType.init(resourcePath: resourcePath
-            )
-            print(type(of: customRepo))
-            
-            print(String(describing: T.self))
-            let p = customRepo
-            guard let m: Repository<T> = p.provideInstance(resourcePath: resourcePath) else {
-                EngaugeTxLog.error("Please ensure that your custom repository \(customRepo) overrides 'provideInstance' successfully")
+        
+            let customRepository = repositoryType.init(resourcePath: resourcePath)
+            guard let customRepositoryInstance: Repository<T> = customRepository.provideInstance(resourcePath: resourcePath) else {
+                EngaugeTxLog.error("Please ensure that your custom repository \(customRepository) overrides 'provideInstance' successfully")
                 return Repository<T>(resourcePath: "\(urlPrefix)/\(functionName)")
             }
-            return m
+            return customRepositoryInstance
             
         }
-        return Repository<T>(resourcePath: "\(urlPrefix)/\(functionName)")
+        return Repository<T>(resourcePath: resourcePath)
     }
     
     /**

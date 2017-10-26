@@ -86,7 +86,6 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     }
     
     override public func getDataSvc<M: ETXGenericDataObject, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        
         let genericDataObjectRepository = ETXGenericDataObjectRepository<M>(className: ETXGenericDataObject.modelName)
         let defaultDataSvc = ETXGenericDataService<M>(repository: genericDataObjectRepository)
         return defaultDataSvc as! T
@@ -99,8 +98,6 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
  */
 public protocol ETXPersistentGenericObject {
     typealias ModelType = Self
-    
-    
     static var customModelName: String? { get }
     static var modelName: String { get }
 }

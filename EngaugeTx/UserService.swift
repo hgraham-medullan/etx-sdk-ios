@@ -22,18 +22,8 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     }
     
     private static func getRepository<T: ETXUser>(defaultRepo: UserRepository<T>) -> UserRepository<T> {
-        
-//            let repoClassType = EngaugeTxApplication.getInstance().
-//            if let repoClassType = repoClassType {
-//                let customRepository = repoClassType.init(resourcePath: defaultRepo.resourcePath)
-//                return customRepository as! ETXGenericDataObjectRepository<T>
-//            }
-//            return defaultRepo
-        
-        
-        
-        let s: String = String(describing: T.self)
-        let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[s]
+        let classNameAsString: String = String(describing: T.self)
+        let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[classNameAsString]
         
         if let repoClassType = repoClassType {
             let customRepository = repoClassType.init(resourcePath: UserRepository.URL_USERS)
@@ -51,11 +41,8 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     }
     
     required public init(repository: Repository<T>) {
-        let r  = ETXUserService.getRepository(defaultRepo: repository as! UserRepository)
-        self.userRepository = r //repository as! UserRepository
-        let rp: Repository<T>  = r
-        super.init(repository: rp)
-//        super.init(repository: self.userRepository as Repository<T>)
+        self.userRepository = ETXUserService.getRepository(defaultRepo: repository as! UserRepository)
+        super.init(repository: self.userRepository)
 
     }
     

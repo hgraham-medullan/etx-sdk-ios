@@ -25,8 +25,6 @@ public protocol QueryablePersistenceService {
  */
 open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, PersistenceService {
     
-    private var modelType2: ETXPersistedModel.Type?
-    
     public func asQueryable<T>() -> T where T : QueryablePersistenceService {
         return self as! T
     }
@@ -36,14 +34,8 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
     private var modelType: T.Type = T.self
     
     public init() {
-        //self.repository = Repository<T>(resourcePath: "/")
+        
     }
-    
-    init(modelType2: ETXPersistedModel.Type? = nil) {
-        self.modelType2 = modelType2
-        print("as")
-    }
-
     
     required public init(repository: Repository<T>) {
         self.repository = repository
@@ -117,14 +109,10 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
     }
     
     func getRepository() -> Repository<T> {
-
-        let s1: String = String(describing: T.self)
-        
         if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self) {
-            EngaugeTxLog.debug("A custom repo is defined")
+            EngaugeTxLog.debug("A custom repository is defined")
             let c = customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! CustomizableRepository
-            return c.provideInstance(resourcePath: self.repository.resourcePath) as! Repository<T>
-            
+            return c.provideInstance(resourcePath: self.repository.resourcePath)!
         }
         return self.repository
     }
@@ -145,13 +133,6 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
         }
         
         return appInstance.customDataRepositories[modelTypeAsString]
-        
-        EngaugeTxLog.debug("Finding a custom repository set for a parent model for \(modelTypeAsString)")
-        for(key, val) in appInstance.customDataRepositoriesForClasses {
-            EngaugeTxLog.debug("Checking model type: \(key)")
-            EngaugeTxLog.debug("Checking model type: \(val)")
-        }
-        return nil
     }
     
     public static func useCustomDataRepository<M: ETXModel, R: CustomizableRepository>(_ repoType: R.Type, forModelType: M.Type) {

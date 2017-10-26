@@ -9,7 +9,6 @@
 import Foundation
 
 open class ETXGenericDataObjectRepository<T: ETXGenericDataObject> : Repository<T> {
-    typealias GenericDataObjectRepository = ETXGenericDataObjectRepository<T>
     
     var genericModelResourcePath: String
     
@@ -22,7 +21,4 @@ open class ETXGenericDataObjectRepository<T: ETXGenericDataObject> : Repository<
         self.genericModelResourcePath = resourcePath
         super.init(resourcePath: resourcePath)
     }
-    
 }
-
-
