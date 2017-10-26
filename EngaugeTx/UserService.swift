@@ -140,7 +140,9 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
             (user, err) in
             if let err = err, let rawJson = err.rawJson {
                 EngaugeTxLog.error("User creation failed:", context: rawJson)
-                completion(user, ETXRegistrationError(JSON: rawJson))
+                let regErrs = ETXRegistrationError(JSON: rawJson)
+                regErrs?.statusCode = err.statusCode
+                completion(user, regErrs)
             } else {
                 completion(user, nil)
             }
