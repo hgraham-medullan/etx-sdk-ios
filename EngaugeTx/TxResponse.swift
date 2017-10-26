@@ -17,12 +17,12 @@ public class ETXResponse : ETXModel {
     var result: Any?
     var meta: ETXResponseMeta?
     
-    public override init() {
-        super.init()
-    }
-    
     required public init?(map: Map) {
         super.init(map: map)
+    }
+    
+    required public init() {
+        super.init()
     }
     
     open override func mapping(map: Map) {

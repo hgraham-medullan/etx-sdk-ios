@@ -19,6 +19,10 @@ public class ETXTrendMeta: ETXModel {
         super.init(map: map)
     }
     
+    required public override init() {
+        super.init()
+    }
+    
     public override func mapping(map: Map) {
         super.mapping(map: map)
         groupBy <- map["groupBy"]

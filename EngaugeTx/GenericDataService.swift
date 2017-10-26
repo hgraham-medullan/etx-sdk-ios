@@ -40,7 +40,7 @@ import ObjectMapper
  ```repos
  
  */
-internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
+open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
     
     var modelName: String
     
@@ -48,10 +48,10 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
      Create an instance GenericDataService with a custom model name
      - parameter modelName: The custom name for the model. Used as part of the api URL
      */
-    public init(modelName: String) throws {
+    public required init(modelName: String) throws {
         if ETXGenericDataService.isValidClassName(modelName) == true {
             self.modelName = modelName
-            super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
+            super.init(repository:  ETXGenericDataObjectRepository<T>(className: modelName))
         } else {
             EngaugeTxLog.error("\(modelName) is not a valid model name for a Generic Object")
             throw ETXInvalidModelNameError()
@@ -63,7 +63,12 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
      */
     public override init() {
         self.modelName = String(describing: T.self)
-        super.init(repository:  GenericDataObjectRepository<T>(className: self.modelName))
+        super.init(repository:  ETXGenericDataObjectRepository<T>(className: self.modelName))
+    }
+    
+    required public init(repository: Repository<T>) {
+        self.modelName = String(describing: T.self)
+        super.init(repository: repository)
     }
     
     /**
@@ -87,7 +92,7 @@ internal class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T>
      - parameter model: The model, if found.
      - parameter err: If an error occurred while savinga the item
      */
-    override func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    override public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
             super.save(model: model) {
                 (model, err) in

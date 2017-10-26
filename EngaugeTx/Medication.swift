@@ -14,7 +14,7 @@ open class ETXMedication: ETXShareableModel {
     public var form: String?
     public var strength: [ETXDose]?
     
-    public override init() {
+    public required init() {
         super.init()
     }
     

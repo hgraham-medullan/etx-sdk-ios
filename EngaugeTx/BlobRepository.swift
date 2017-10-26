@@ -11,11 +11,11 @@ import Siesta
 import Alamofire
 import ObjectMapper
 
-class BlobRepository<M: ETXModel>: Repository<M> {
+class BlobRepository<M: ETXBlob>: Repository<M> {
     let fieldNameForFile = "file"
     
     override func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
-        let blob = model as! ETXBlob
+        let blob = model
         self.saveFile(imgData: blob.fileData!, filename: blob.fileName!, mimeType: blob.mimeType!, progress: nil, completion: completion)
     }
     

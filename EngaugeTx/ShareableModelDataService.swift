@@ -13,8 +13,7 @@ import Foundation
  */
 public class ETXShareableModelDataService<T: ETXShareableModel>: ETXDataService<T> {
     
-    init(repository: ETXShareableModelRespository<T>) {
-        super.init()
-        self.repository = repository
+    required public init(repository: Repository<T>) {
+        super.init(repository: repository)
     }
 }

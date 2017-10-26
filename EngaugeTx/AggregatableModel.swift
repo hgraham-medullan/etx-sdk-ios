@@ -46,16 +46,12 @@ open class ETXAggregatableModel: ETXPersistedModel, ETXAggregatable {
         _nodata <- map["_nodata"]
         date <- (map["date"], ETXDateOnlyTransform())
     }
-    
-    override open class func getDataSvc<ETXAggregatableModel>() -> ETXDataService<ETXAggregatableModel>? {
-        return nil
-    }
 }
 
 /**
  
  */
-protocol ETXAggregatable : ETXPersistableModel{
+public protocol ETXAggregatable : ETXPersistableModel{
     static var trendResultKey: String? { get }
     //static var modelResourcePath: String? { get }
     var value: Double? {get set}

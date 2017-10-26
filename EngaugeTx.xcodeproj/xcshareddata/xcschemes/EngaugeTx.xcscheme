@@ -52,6 +52,11 @@
                BlueprintName = "EngaugeTxTests"
                ReferencedContainer = "container:EngaugeTx.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "LocalRepositoryTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

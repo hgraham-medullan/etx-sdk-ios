@@ -10,7 +10,7 @@ import Foundation
 import Siesta
 
 @available(*, renamed: "ETXCustomFunction", deprecated: 0.0.12)
-typealias CustomFunction = ETXCustomFunction<ETXModel>
+typealias CustomFunction = ETXCustomFunction<ETXPersistedModel>
 
 /**
  Provides the ability to execute add-on functionality created via Custom Logic
@@ -40,8 +40,20 @@ public class ETXCustomFunction<T: ETXModel> {
         self.repo = Repository<T>(resourcePath: "\(urlPrefix)/\(functionName)")
     }
     
-    private func getRepo() -> Repository<T> {
-        return Repository<T>(resourcePath: "\(urlPrefix)/\(functionName)")
+    private func getRepo<T: ETXModel>() -> Repository<T> {
+        let resourcePath = "\(urlPrefix)/\(self.functionName)"
+        // If there is a custom repository set up
+        if let repositoryType = EngaugeTxApplication.getInstance().customStandaloneFunctionRepositoryType {
+        
+            let customRepository = repositoryType.init(resourcePath: resourcePath)
+            guard let customRepositoryInstance: Repository<T> = customRepository.provideInstance(resourcePath: resourcePath) else {
+                EngaugeTxLog.error("Please ensure that your custom repository \(customRepository) overrides 'provideInstance' successfully")
+                return Repository<T>(resourcePath: "\(urlPrefix)/\(functionName)")
+            }
+            return customRepositoryInstance
+            
+        }
+        return Repository<T>(resourcePath: resourcePath)
     }
     
     /**
@@ -74,7 +86,7 @@ public class ETXCustomFunction<T: ETXModel> {
      - parameter err: The err as t why the request failed
      */
     public func performGet(queryStrings: [String:String]? = nil, asUnauthenticatedReq: Bool = false, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
-        let repo = getRepo()
+        let repo: Repository<T> = getRepo()
         repo.ignoreAccessToken = asUnauthenticatedReq 
         self.addQueryStrings(queryStrings, toResource: &repo.etxResource)
         repo.getById("", completion: completion)
@@ -91,10 +103,10 @@ public class ETXCustomFunction<T: ETXModel> {
      - parameter err: The err as t why the request failed
      */
     public func performPost(model: T, queryStrings: [String:String]? = nil, asUnauthenticatedReq: Bool = false, completion: @escaping (T?, ETXError?) -> Void) {
-        let repo = self.getRepo()
+        let repo: Repository<T> = self.getRepo()
         self.addQueryStrings(queryStrings, toResource: &repo.etxResource)
         repo.ignoreAccessToken = asUnauthenticatedReq
-        repo.save(model: model, completion: completion)
+        repo.create(model: model, completion: completion)
         self.lastUsedRepo = repo
     }
     
@@ -112,4 +124,9 @@ public class ETXCustomFunction<T: ETXModel> {
         }
         return true
     }
+    
+    public static func useCustomRepository(repositoryType: CustomizableRepository.Type) {
+        EngaugeTxApplication.getInstance().customStandaloneFunctionRepositoryType = repositoryType
+    }
+
 }

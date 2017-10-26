@@ -72,7 +72,7 @@ open class ETXUser: ETXPersistedModel {
         
     }
     
-    public override init() {
+    public required init() {
         self.email = ""
         self.username = ""
         self.password = ""
@@ -142,8 +142,10 @@ open class ETXUser: ETXPersistedModel {
     /**
      The sevice class responsible for making API calls on behalf of the model
     **/
-    open override class func getDataSvc<ETXUser>() -> ETXUserService<ETXUser> {
-        return ETXUserService<ETXUser>()
+    public override func getDataSvc<M: ETXUser, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let userRepository = UserRepository<M>(resourcePath: "/users")
+        let defaultDataSvc = ETXUserService<M>(repository: userRepository)
+        return defaultDataSvc as! T
     }
     
     public func delete(hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {

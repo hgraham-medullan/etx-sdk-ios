@@ -15,14 +15,35 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     
     private let HEADER_KEY_DELETE_ALL_USER_DATA: String = "X-Tx-Delete-All-Data"
     
-    let userRepository: UserRepository<T>
+    var userRepository: UserRepository<T>
+    
+    override func getRepository() -> UserRepository<T> {
+        return super.getRepository() as! UserRepository<T>
+    }
+    
+    private static func getRepository<T: ETXUser>(defaultRepo: UserRepository<T>) -> UserRepository<T> {
+        let classNameAsString: String = String(describing: T.self)
+        let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[classNameAsString]
+        
+        if let repoClassType = repoClassType {
+            let customRepository = repoClassType.init(resourcePath: UserRepository.URL_USERS)
+            return customRepository as! UserRepository<T>
+        }
+        return defaultRepo
+    }
     
     /**
      Create an instance of ETXUserService
      */
-    public override init() {
+    public  override init() {
         self.userRepository = UserRepository()
+         super.init(repository: self.userRepository)
+    }
+    
+    required public init(repository: Repository<T>) {
+        self.userRepository = ETXUserService.getRepository(defaultRepo: repository as! UserRepository)
         super.init(repository: self.userRepository)
+
     }
     
     /** Login with username.
@@ -35,7 +56,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      */
     public func loginUserWithUsername(_ username: String, password: String, rememberMe: Bool, completion: @escaping (_ user: T?, _ err: ETXError?) -> Void) {
         
-        self.userRepository.loginWithUsername(username, password: password, rememberMe: rememberMe, done: completion)
+        self.getRepository().loginWithUsername(username, password: password, rememberMe: rememberMe, done: completion)
     }
     
     /**
@@ -48,7 +69,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      - parameter err: The error object
      */
     public func loginUserWithEmail(_ email: String, password: String, rememberMe: Bool, completion: @escaping (_ object: T?, _ err: ETXError?) -> Void) {
-        self.userRepository.loginWithEmail(email, password: password, rememberMe: rememberMe, done: completion)
+        self.getRepository().loginWithEmail(email, password: password, rememberMe: rememberMe, done: completion)
     }
     
     
@@ -58,7 +79,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      - parameter err: The error object. Will be `nil` if the request was successful
      */
     public func logout(completion: @escaping (_ err: ETXError?)->Void) {
-        self.userRepository.logout(completion: completion)
+        self.getRepository().logout(completion: completion)
     }
     
     /**
@@ -67,7 +88,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      */
     public func getCurrentUser(completion:@escaping (T?)->Void) {
         if let userId = self.userRepository.getCurrentUserId() {
-            self.userRepository.getById(userId) {
+            self.getRepository().getById(userId) {
                 (user: T?, err: ETXError?) in
                 completion(user)
             }
@@ -115,7 +136,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      */
     public func createUser(_ user: T, completion: @escaping (_ user: T?, _ err: ETXRegistrationError?)->Void) {
         self.userRepository.deleteCurrentUser()
-        self.userRepository.save(model: user){
+        self.getRepository().save(model: user){
             (user, err) in
             if let err = err, let rawJson = err.rawJson {
                 EngaugeTxLog.error("User creation failed:", context: rawJson)
@@ -137,14 +158,14 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
 
     */
     public func initiatePasswordResetWithEmail(_ emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
-        self.userRepository.initiatePasswordReset(emailAddress: emailAddress, completion: completion)
+        self.getRepository().initiatePasswordReset(emailAddress: emailAddress, completion: completion)
     }
     
     func changePassword(_ newPassword: String, currentPassword: String, currentUser: T, completion: @escaping (_ err: ETXError?)->Void) {
         if newPassword == currentPassword {
             completion(nil)
         } else {
-            self.userRepository.changePassword(
+            self.getRepository().changePassword(
                 PasswordUpdateCredentials(currentPassword: currentPassword, newPassword: newPassword),
                 completion: completion)
         }
@@ -154,13 +175,13 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
         if newEmailAddress == currentUser.email {
             completion(nil)
         } else {
-            self.userRepository.changeEmailAddress(EmailUpdateCredentials(newEmailAddress: newEmailAddress, currentPassword: currentPassword), userId: currentUser.id!, completion: completion)
+            self.getRepository().changeEmailAddress(EmailUpdateCredentials(newEmailAddress: newEmailAddress, currentPassword: currentPassword), userId: currentUser.id!, completion: completion)
         }
     }
     
      func delete(model: T, hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {
         // Ensure that headers are only added for this req
-        let isolatedUserRepository = UserRepository()
+        let isolatedUserRepository = getRepository()
         if hardDelete == true {
             isolatedUserRepository.addAdditionalHeader(HEADER_KEY_DELETE_ALL_USER_DATA, value: "true")
         }

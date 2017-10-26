@@ -8,13 +8,17 @@
 
 import Foundation
 
-class GenericDataObjectRepository<T: ETXGenericDataObject> : Repository<T> {
+open class ETXGenericDataObjectRepository<T: ETXGenericDataObject> : Repository<T> {
     
     var genericModelResourcePath: String
     
-    init(className: String) {
-        self.genericModelResourcePath = "/data/class/\(className)"
-        super.init(resourcePath: self.genericModelResourcePath)
+    convenience init(className: String) {
+        let genericModelResourcePath = "/data/class/\(className)"
+        self.init(resourcePath: genericModelResourcePath)
     }
     
+    required public init(resourcePath: String) {
+        self.genericModelResourcePath = resourcePath
+        super.init(resourcePath: resourcePath)
+    }
 }

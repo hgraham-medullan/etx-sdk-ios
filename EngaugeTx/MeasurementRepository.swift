@@ -12,11 +12,17 @@ import ObjectMapper
 public class ETXMeasurementRepository<T: ETXMeasurement>: Repository<T> {
     
     private let resourceUrl: String
-    private let type: ETXAggregatableModel.Type
-    init(type: ETXAggregatableModel.Type) {
-        self.resourceUrl = type.resourcePath
+    private var type: ETXAggregatableModel.Type
+    convenience init(type: ETXAggregatableModel.Type) {
+        let resourceUrl: String  = type.resourcePath
+        self.init(resourcePath: resourceUrl)
         self.type = type
-        super.init(resourcePath: self.resourceUrl)
+    }
+    
+    required public init(resourcePath: String) {
+        self.resourceUrl = resourcePath
+        self.type = ETXMeasurement.self
+        super.init(resourcePath: resourcePath)
         
     }
 

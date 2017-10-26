@@ -63,7 +63,7 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     /**
      Create an instance of GenericData Object
      */
-    override public init() {
+    required public init() {
         super.init()
     }
     
@@ -85,9 +85,10 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
         
     }
     
-    open override class func getDataSvc<T: ETXPersistedModel>() -> ETXDataService<T>? {
-        let genericDataObjectRepository = GenericDataObjectRepository<ModelType>(className: modelName)
-        return ETXDataService<T>(repository: Repository<T>(resourcePath: genericDataObjectRepository.genericModelResourcePath))
+    override public func getDataSvc<M: ETXGenericDataObject, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let genericDataObjectRepository = ETXGenericDataObjectRepository<M>(className: ETXGenericDataObject.modelName)
+        let defaultDataSvc = ETXGenericDataService<M>(repository: genericDataObjectRepository)
+        return defaultDataSvc as! T
     }
 }
 
@@ -102,6 +103,9 @@ public protocol ETXPersistentGenericObject {
 }
 
 extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
+    
+    typealias RepositoryType = ETXGenericDataObjectRepository<Self>
+    typealias DataServiceType = ETXGenericDataService<Self>
     
     internal func getModelName() -> String {
         var s: String

@@ -45,6 +45,8 @@ public class EngaugeTxApplication {
     private static let CONFIG_FILE_TYPE = "plist"
     private static let DEFAULT_BASE_URL = "https://api.us1.engaugetx.com/v1"
     
+    private static var instance: EngaugeTxApplication!
+    
     private var application: UIApplication?
     
     static var consoleLogDestination: ConsoleDestination?
@@ -72,7 +74,7 @@ public class EngaugeTxApplication {
             EngaugeTxApplication.consoleLogDestination = consoleLogDestination
             SwiftyBeaver.addDestination(consoleLogDestination)
         }
-        
+        EngaugeTxApplication.instance = self
     }
     
     /**
@@ -150,6 +152,31 @@ public class EngaugeTxApplication {
         self.init(application: nil)
     }
     
+    public var customDataRepositories: [String:CustomizableRepository.Type] = [String:CustomizableRepository.Type]()
+    public var customDataRepositoriesForClasses: [String:ETXModel.Type] = [String:ETXModel.Type]()
+    static func getInstance() -> EngaugeTxApplication {
+        return instance
+    }
+    
+    public var customDataRepository: Repo.Type? = nil
+    
+    public var customStandaloneFunctionRepositoryType: CustomizableRepository.Type? = nil
+    
+    static func addCustomRepository<M: ETXModel, R: CustomizableRepository>(modelType: M.Type, repositoryType: R.Type) {
+        let classTypeAsString: String = String(describing: modelType)
+        let engaugetxApplication = EngaugeTxApplication.getInstance()
+        engaugetxApplication.customDataRepositories[classTypeAsString] = repositoryType
+        engaugetxApplication.customDataRepositoriesForClasses[classTypeAsString] = modelType
+    }
+    
+    public static func clearCustomRepositories() {
+        let appInstance = EngaugeTxApplication.getInstance()
+        appInstance.customDataRepository = nil
+        appInstance.customStandaloneFunctionRepositoryType = nil
+        appInstance.customDataRepositories = [String:CustomizableRepository.Type]()
+        appInstance.customDataRepositoriesForClasses = [String:ETXModel.Type]()
+    }
+    
     static func getValueForKey<T>(key: String) -> T? {
         return getValueForKey(key: key, plistFileName: CONFIG_FILENAME)
     }
@@ -157,7 +184,7 @@ public class EngaugeTxApplication {
     static func getValueForKey<T>(key: String, plistFileName: String) -> T? {
         var value: T?
         guard let path = Bundle.main.path(forResource: plistFileName, ofType: CONFIG_FILE_TYPE) else {
-            EngaugeTxLog.info("The specifed plist file was not found: \(plistFileName)")
+            EngaugeTxLog.warn("The specified plist file was not found: \(plistFileName)")
             return nil
         }
         EngaugeTxLog.debug("Path to the plist file \(path)")
@@ -174,4 +201,7 @@ public class EngaugeTxApplication {
     public func setLogLevel(level: LogLevel) {
         EngaugeTxApplication.consoleLogDestination?.minLevel = SwiftyBeaver.Level(rawValue: level.value)!
     }
+    
+    var customTrendRepositoryType: TrendRepository.Type?
+    
 }
