@@ -158,6 +158,8 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         beforeResourceRequest(resource) {
             let req = resource.request(.post)
             req.onFailure { (err) in
+                self.deleteCurrentUser()
+                self.wipeResources()
                 let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
                 completion(etxError)
             }

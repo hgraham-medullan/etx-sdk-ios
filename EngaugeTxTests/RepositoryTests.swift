@@ -71,4 +71,22 @@ class RepositoryTests: ETXTestCase {
             print("Request Expectation \(String(describing: err))")
         }
     }
+    
+    func testUserLogoutWhenItFails() {
+        let logoutExpectation = expectation(description: "Logout Expectation")
+        let userRepo = UserRepository()
+        let dummyToken = self.getUniqueId()
+        userRepo.setAccessToken(dummyToken, rememberUser: true)
+        XCTAssertEqual(dummyToken, userRepo.getAccessToken(), "The access token should be set to a dummy value")
+        userRepo.logout {
+            (err) in
+            XCTAssertEqual(err?.code, "INVALID_ACCESS_TOKEN", "Logout should fail with an invalid access token error")
+            XCTAssertNil(userRepo.getAccessToken(), "The user's access token should be removed when logout fails")
+            logoutExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 10) {
+            (err) in
+            print("Logout Expectation \(String(describing: err))")
+        }
+    }
 }
