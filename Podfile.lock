@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.5.0)
+  - Alamofire (4.5.1)
   - GGLInstanceID (1.2.1)
   - Google (2.0.4):
     - Google/Core (= 2.0.4)
@@ -34,7 +34,7 @@ PODS:
     - Siesta/Core
   - Siesta/Core (1.1.1)
   - SwiftKeychainWrapper (3.0.1)
-  - SwiftyBeaver (1.3.0)
+  - SwiftyBeaver (1.4.0)
 
 DEPENDENCIES:
   - Google (= 2.0.4)
@@ -43,10 +43,10 @@ DEPENDENCIES:
   - Siesta (= 1.1.1)
   - Siesta/Alamofire (= 1.1.1)
   - SwiftKeychainWrapper (= 3.0.1)
-  - SwiftyBeaver
+  - SwiftyBeaver (= 1.4.0)
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d536877ec602555b755cc28ce6fed104825c693c
   GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
@@ -58,8 +58,8 @@ SPEC CHECKSUMS:
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   Siesta: 920372f09b7cfd798074d85d8f3cf8505529a56e
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
-  SwiftyBeaver: d4b551ba34b4206c52cc4684ae90444b8aaa5afd
+  SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
 
-PODFILE CHECKSUM: 3fdaa8f8874b68d10cef47156591015e2629b4f1
+PODFILE CHECKSUM: e45c2c8638cba05f0abf2e29a4a26063074d47ce
 
 COCOAPODS: 1.2.1

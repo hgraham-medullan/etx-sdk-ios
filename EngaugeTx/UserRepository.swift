@@ -143,17 +143,17 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
     }
     
-    func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
+    public func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
         let userCredentials = UserEmailCredentials(email, password: password)
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
+    public func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
         let userCredentials = UsernameCredentials(username, password: password)
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    func logout(completion: @escaping (ETXError?) ->Void) {
+    public func logout(completion: @escaping (ETXError?) ->Void) {
         let resource = self.users.child("/logout")
         beforeResourceRequest(resource) {
             let req = resource.request(.post)
@@ -172,7 +172,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
+    public func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.deleteCurrentUser()
         let reqBody:[String:String] = ["email": emailAddress]
         let resource = self.users.child("/reset")
@@ -190,7 +190,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, completion: @escaping (_ err: ETXError?)->Void) {
+    public func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, completion: @escaping (_ err: ETXError?)->Void) {
         
         let resource = self.users.child("/changePassword")
         beforeResourceRequest(resource) {

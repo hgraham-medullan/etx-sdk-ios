@@ -39,7 +39,7 @@ open class TrendRepository: Repository<ETXPersistedModel> {
 
     }
     
-    func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
+    public func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) ->Void) {
         var classesAsString: String = ""
         classes.forEach {
             (t) in
