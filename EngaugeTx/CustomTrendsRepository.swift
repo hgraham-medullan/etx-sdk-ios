@@ -17,7 +17,7 @@ open class CustomTrendRepository: TrendRepository, CustomizableRepository {
         super.init(resourcePath: resourcePath)
     }
     
-    override func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) -> Void) {
+    override public func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) -> Void) {
         super.getTrends(startDate: startDate, endDate: endDate, classes: classes, gdoConfig: gdoConfig, forUser: forUser, completion: completion)
         self.getAggregatedData(startDate: startDate, endDate: endDate, classes: classes, gdoConfig: gdoConfig, forUser: forUser, completion: completion)
     }
