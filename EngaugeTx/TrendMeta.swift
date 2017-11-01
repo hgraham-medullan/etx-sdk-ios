@@ -19,7 +19,7 @@ public class ETXTrendMeta: ETXModel {
         super.init(map: map)
     }
     
-    required public override init() {
+    required public init() {
         super.init()
     }
     

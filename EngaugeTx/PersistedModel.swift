@@ -27,7 +27,7 @@ open class ETXPersistedModel : ETXModel, ETXPersistableModel {
         return nil
     }
     
-    override public required init() {
+    public required init() {
         self.dataSvc = ETXDataService<ModelType>()
         super.init()
     }

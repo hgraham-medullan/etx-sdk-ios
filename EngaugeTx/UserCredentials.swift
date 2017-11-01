@@ -51,7 +51,7 @@ class UsernameCredentials: UserCredentials {
     }
 }
 
-class PasswordUpdateCredentials: UserCredentials {
+public class PasswordUpdateCredentials: UserCredentials {
     
     var oldPassword: String
     var password: String
