@@ -12,7 +12,7 @@ open class ETXCustomUserRepository<M: ETXUser>: UserRepository<M>, CustomizableR
     
     public var httpPath: String!
     
-    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+    open func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
         return nil
     }
     

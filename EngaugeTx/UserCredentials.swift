@@ -24,7 +24,7 @@ class UserEmailCredentials: UserCredentials {
         self.password = password
     }
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
     }
     
     public func mapping(map: Map) {
@@ -51,7 +51,7 @@ class UsernameCredentials: UserCredentials {
     }
 }
 
-public class PasswordUpdateCredentials: UserCredentials {
+open class PasswordUpdateCredentials: UserCredentials {
     
     var oldPassword: String
     var password: String
@@ -72,6 +72,10 @@ public class PasswordUpdateCredentials: UserCredentials {
         password <- map["password"]
     }
 }
+
+/**
+ Credentials required to perform
+ */
 
 class EmailUpdateCredentials: UserEmailCredentials {
     

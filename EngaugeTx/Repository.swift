@@ -122,7 +122,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         }
     }
     
-    public func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    open func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         beforeResourceRequest(self.etxResource) {
             let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
             req.onFailure({ (err) in
@@ -138,7 +138,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         }
     }
     
-    public func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
+    open func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
         guard let id = model.id else {
             completion(nil, Repository.unsavedModelError)
             return
@@ -158,7 +158,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         }
     }
     
-    public func delete(model: T, completion: @escaping (ETXError?) -> Void) {
+    open func delete(model: T, completion: @escaping (ETXError?) -> Void) {
         guard let id = model.id else {
             completion(Repository.unsavedModelError)
             return
@@ -182,7 +182,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         self.findById(id, completion: completion)
     }
     
-    public func findById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
+    open func findById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
         self.etxResource = self.etxResource.child(id)
         beforeResourceRequest(self.etxResource){
             let req  = self.etxResource.request(.get)
@@ -199,7 +199,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         }
     }
     
-    public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
+    open func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
         self.etxResource = self.etxResource.withParam("filter", filter.toJsonString())
         beforeResourceRequest(self.etxResource) {
             let req = self.etxResource.request(.get)

@@ -37,7 +37,7 @@ open class ETXCustomRepository<M: ETXModel>: Repository<M>, CustomizableReposito
         self.httpPath = resource.url.absoluteString
     }
     
-    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+    open func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
         return nil
     }
 }

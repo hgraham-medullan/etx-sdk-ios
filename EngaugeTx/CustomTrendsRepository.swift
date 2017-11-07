@@ -17,14 +17,14 @@ open class CustomTrendRepository: TrendRepository, CustomizableRepository {
         super.init(resourcePath: resourcePath)
     }
     
-    override public func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) -> Void) {
+    override open func getTrends(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) -> Void) {
         super.getTrends(startDate: startDate, endDate: endDate, classes: classes, gdoConfig: gdoConfig, forUser: forUser, completion: completion)
         self.getAggregatedData(startDate: startDate, endDate: endDate, classes: classes, gdoConfig: gdoConfig, forUser: forUser, completion: completion)
     }
     
     
 
-    public func getAggregatedData(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) -> Void) {
+    open func getAggregatedData(startDate: Date, endDate: Date, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (ETXTrendResultSet?, ETXError?) -> Void) {
         //self.getTrends(startDate: startDate, endDate: endDate, classes: classes, gdoConfig: gdoConfig, forUser: forUser, completion: completion)
     }
     
@@ -32,7 +32,7 @@ open class CustomTrendRepository: TrendRepository, CustomizableRepository {
         self.httpPath = resource.url.absoluteString
     }
     
-    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+    open func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
         return nil
     }
 }

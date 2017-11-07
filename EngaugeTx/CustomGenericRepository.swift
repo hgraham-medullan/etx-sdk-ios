@@ -13,7 +13,7 @@ open class ETXCustomGenericObjectRepository<M:ETXGenericDataObject>: ETXGenericD
     
     public var httpPath: String!
     
-    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+    open func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
         return nil
     }
     
