@@ -11,7 +11,7 @@ import XCTest
 @testable import EngaugeTx
 import ObjectMapper
 
-class GenericDataObjectTests: ETXTestCase {
+class GenericDataObjectTests: XCTestCase {
     
     class UserProfile : ETXGenericDataObject {
         var fullName: String?
@@ -50,13 +50,5 @@ class GenericDataObjectTests: ETXTestCase {
         
         XCTAssertEqual(expectedProfile.fullName, actualProfile?.fullName)
     }
-    
-    func testWhenGeneratingTheUrlToTheGdoThenItShouldHaveTheCorrectModelName() {
-        let userProfile = UserProfile()
-        let dataSvc: ETXGenericDataService<UserProfile> = userProfile.getDataSvc(userProfile)
-        let expectedResourcePath = "/data/class/UserProfile"
-        XCTAssertEqual(dataSvc.repository.resourcePath, expectedResourcePath, "The path the generic data object should match \(expectedResourcePath)")
-    }
-    
     
 }
