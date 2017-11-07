@@ -44,7 +44,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    private func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
+    func login(credentials: UserCredentials, rememberMe: Bool, completion: @escaping (T?, ETXError?) ->Void) {
         self.deleteCurrentUser()
         var ttl: Int? = EngaugeTxApplication.defaultTTL
         
@@ -122,7 +122,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    func getCurrentUserId() -> String? {
+    public func getCurrentUserId() -> String? {
         cleanUpOldCurrentUserRefs()
         if CurrentUserCache.currentUserId != nil {
            return CurrentUserCache.currentUserId
@@ -131,19 +131,19 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    func deleteCurrentUser() {
+    public func deleteCurrentUser() {
         CurrentUserCache.currentUserId = nil
         keychainInstance.removeObject(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
         self.deleteAccessToken()
         cleanUpOldCurrentUserRefs()
     }
     
-    private func cleanUpOldCurrentUserRefs() {
+    public func cleanUpOldCurrentUserRefs() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
     }
     
-    public func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
+    open func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
         let userCredentials = UserEmailCredentials(email, password: password)
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
@@ -190,7 +190,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    public func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, completion: @escaping (_ err: ETXError?)->Void) {
+    open func changePassword(_ passwordUpdateCredentials: PasswordUpdateCredentials, completion: @escaping (_ err: ETXError?)->Void) {
         
         let resource = self.users.child("/changePassword")
         beforeResourceRequest(resource) {

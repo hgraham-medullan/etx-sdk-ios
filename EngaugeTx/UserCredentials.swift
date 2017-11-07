@@ -51,7 +51,7 @@ class UsernameCredentials: UserCredentials {
     }
 }
 
-public class PasswordUpdateCredentials: UserCredentials {
+open class PasswordUpdateCredentials: UserCredentials {
     
     var oldPassword: String
     var password: String
@@ -73,7 +73,7 @@ public class PasswordUpdateCredentials: UserCredentials {
     }
 }
 
-class EmailUpdateCredentials: UserEmailCredentials {
+open class EmailUpdateCredentials: UserEmailCredentials {
     
     init(newEmailAddress: String, currentPassword: String) {
         super.init(newEmailAddress, password: currentPassword)
