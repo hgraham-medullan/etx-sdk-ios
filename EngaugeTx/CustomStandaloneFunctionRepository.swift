@@ -23,7 +23,7 @@ open class ETXCustomStandaloneFunctionRepository<M: ETXModel>: Repository<M>, Cu
         self.httpPath = resource.url.absoluteString
     }
     
-    override public func create(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+    override open func create(model: M, completion: @escaping (M?, ETXError?) -> Void) {
         self.post(model: model, completion: completion)
     }
     
@@ -31,15 +31,15 @@ open class ETXCustomStandaloneFunctionRepository<M: ETXModel>: Repository<M>, Cu
         self.post(model: model, completion: completion)
     }
     
-    public override func getById(_ id: String, completion: @escaping (M?, ETXError?) -> Void) {
+    open override func getById(_ id: String, completion: @escaping (M?, ETXError?) -> Void) {
         self.get(completion:completion)
     }
     
-    public func get(completion: @escaping (M?, ETXError?) -> Void) {
+    open func get(completion: @escaping (M?, ETXError?) -> Void) {
         super.getById("", completion: completion)
     }
     
-    public func post(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+    open func post(model: M, completion: @escaping (M?, ETXError?) -> Void) {
         super.create(model: model, completion: completion)
     }
 }

@@ -24,7 +24,7 @@ class UserEmailCredentials: UserCredentials {
         self.password = password
     }
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
     }
     
     public func mapping(map: Map) {
@@ -73,7 +73,11 @@ open class PasswordUpdateCredentials: UserCredentials {
     }
 }
 
-open class EmailUpdateCredentials: UserEmailCredentials {
+/**
+ Credentials required to perform
+ */
+
+class EmailUpdateCredentials: UserEmailCredentials {
     
     init(newEmailAddress: String, currentPassword: String) {
         super.init(newEmailAddress, password: currentPassword)

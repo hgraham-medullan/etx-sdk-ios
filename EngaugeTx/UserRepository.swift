@@ -79,7 +79,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ( [ETXUser]?, ETXError?)->Void) {
+    open func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ( [ETXUser]?, ETXError?)->Void) {
         let id = getCurrentUserId() ?? ""
         if(id.isEmpty){
             completion(nil, ETXError(message: "A logged in user is required"))
@@ -148,12 +148,12 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    public func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
+    open func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {
         let userCredentials = UsernameCredentials(username, password: password)
         self.login(credentials: userCredentials, rememberMe: rememberMe, completion: done)
     }
     
-    public func logout(completion: @escaping (ETXError?) ->Void) {
+    open func logout(completion: @escaping (ETXError?) ->Void) {
         let resource = self.users.child("/logout")
         beforeResourceRequest(resource) {
             let req = resource.request(.post)
@@ -172,7 +172,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    public func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
+    open func initiatePasswordReset(emailAddress: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.deleteCurrentUser()
         let reqBody:[String:String] = ["email": emailAddress]
         let resource = self.users.child("/reset")
