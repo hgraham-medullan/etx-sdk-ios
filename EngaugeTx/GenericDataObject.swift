@@ -86,20 +86,18 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     }
     
     override public func getDataSvc<M: ETXGenericDataObject, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let genericDataObjectRepository = ETXGenericDataObjectRepository<M>(className: ETXGenericDataObject.modelName)
+        let genericDataObjectRepository = ETXGenericDataObjectRepository<M>(className: (forModel as ETXGenericDataObject).modelName)
         let defaultDataSvc = ETXGenericDataService<M>(repository: genericDataObjectRepository)
         return defaultDataSvc as! T
     }
 }
-
 
 /**
  Provides persistence functionalities for a generic object
  */
 public protocol ETXPersistentGenericObject {
     typealias ModelType = Self
-    static var customModelName: String? { get }
-    static var modelName: String { get }
+    var modelName: String { get }
 }
 
 extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
@@ -120,10 +118,11 @@ extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
     /**
      The name of the model as persisted on the platform
     */
-    public static var modelName: String {
+    public var modelName: String {
         if let customModelName = Self.customModelName {
             return customModelName
         }
-        return String(describing: self)
+        // Get the name of the class without the project name prefix
+        return String(describing: (Mirror(reflecting: self)).subjectType)
     }
 }
