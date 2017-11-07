@@ -60,13 +60,13 @@ class GenericDataServiceTests: ETXTestCase {
     class GenericObjectWithDefaultModelName: ETXGenericDataObject { }
     
     func testGenericObjectWithDefaultModelName() {
-        
         let expectedClassName = "GenericObjectWithDefaultModelName"
-        XCTAssertEqual(expectedClassName, GenericObjectWithDefaultModelName.modelName, "Should able to retrieve the corect model name statically")
-        
         let genericObjectWithDefaultModelName = GenericObjectWithDefaultModelName()
-        //XCTAssertNotNil(genericObjectWithDefaultModelName.dataSvc)
+        XCTAssertEqual(expectedClassName, genericObjectWithDefaultModelName.modelName, "Should able to retrieve the corect model name statically")
         XCTAssertEqual(expectedClassName, genericObjectWithDefaultModelName.getModelName(), "Should able to retrieve the corect model name from an instance")
+        let dataSvc = genericObjectWithDefaultModelName.getDataSvc(genericObjectWithDefaultModelName) as ETXGenericDataService<GenericObjectWithDefaultModelName>
+        let resourcePath = dataSvc.getRepository().resourcePath
+        XCTAssertEqual("/data/class/\(expectedClassName)", resourcePath, "The resource URL should match the custom model name that was set")
     }
     
     class GenericObjectWithCustomModelName: ETXGenericDataObject {
@@ -81,11 +81,9 @@ class GenericDataServiceTests: ETXTestCase {
     func testGenericObjectWithCustomModelName() {
         let expectedClassName = "CustomModel"
         
-        
-        XCTAssertEqual(expectedClassName, GenericObjectWithCustomModelName.modelName, "Should able to retrieve the corect model name statically")
-        
         let genericObjectWithCustomModelName = GenericObjectWithCustomModelName()
-        //XCTAssertNotNil(genericObjectWithCustomModelName.dataSvc)
+        XCTAssertEqual(expectedClassName, genericObjectWithCustomModelName.modelName, "Should able to retrieve the corect model name")
+    
         XCTAssertEqual(expectedClassName, genericObjectWithCustomModelName.getModelName())
     }
     
