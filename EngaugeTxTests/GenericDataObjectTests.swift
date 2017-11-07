@@ -55,7 +55,6 @@ class GenericDataObjectTests: ETXTestCase {
         let userProfile = UserProfile()
         let dataSvc: ETXGenericDataService<UserProfile> = userProfile.getDataSvc(userProfile)
         let expectedResourcePath = "/data/class/UserProfile"
-        print(dataSvc.repository.resourcePath)
         XCTAssertEqual(dataSvc.repository.resourcePath, expectedResourcePath, "The path the generic data object should match \(expectedResourcePath)")
     }
     
