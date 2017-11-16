@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.46"
+  s.version      = "1.0.0"
   s.summary      = "SDK for the EngaugeTx platform"
 
   # This description is used to generate tags and improve search results.
@@ -66,7 +66,7 @@ Pod::Spec.new do |s|
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.11"
+  # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
