@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.45"
+  s.version      = "0.0.46"
   s.summary      = "SDK for the EngaugeTx platform"
 
   # This description is used to generate tags and improve search results.
@@ -66,7 +66,7 @@ Pod::Spec.new do |s|
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
-  # s.osx.deployment_target = "10.7"
+  s.osx.deployment_target = "10.11"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
@@ -128,8 +128,8 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
- s.dependency 'Siesta', '=1.1.1'
- s.dependency 'Siesta/Alamofire', '=1.1.1'
+ s.dependency 'Siesta', '=1.3.0'
+ s.dependency 'Siesta/Alamofire', '=1.3.0'
  s.dependency 'ObjectMapper', '=2.2.7'
  s.dependency 'SwiftKeychainWrapper', '3.0.1'
  s.dependency 'SwiftyBeaver', '=1.4.0'
