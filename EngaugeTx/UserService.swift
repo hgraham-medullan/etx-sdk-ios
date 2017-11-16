@@ -187,4 +187,15 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
         }
         isolatedUserRepository.delete(model: model, completion: completion)
     }
+    
+    /**
+     * Returns a list of Users associated with the currrently logged in user.
+     *
+     * @param withRole  The role of the users to be returned
+     * @param forMyRole Which role for the current user should be used
+     * @param callback  Callback when the request completes
+     */
+    public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping (_ object: [ETXUser]?, _ err: ETXError?) -> Void) {
+        getRepository().getAffiliatedUsers(withRole: withRole, forMyRole: forMyRole, completion: completion);
+    }
 }

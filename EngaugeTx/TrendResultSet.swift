@@ -18,7 +18,7 @@ public class ETXTrendResultSet {
      */
     public var classTrends: [String: ETXClassTrendResultSet]
     
-    init() {
+    public init() {
         self.classTrends = [String: ETXClassTrendResultSet]()
         
     }

@@ -122,7 +122,7 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    public func getCurrentUserId() -> String? {
+    open func getCurrentUserId() -> String? {
         cleanUpOldCurrentUserRefs()
         if CurrentUserCache.currentUserId != nil {
            return CurrentUserCache.currentUserId
