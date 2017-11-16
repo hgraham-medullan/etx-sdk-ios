@@ -10,7 +10,7 @@ import Foundation
 
 /**
  * Service class for retrieving affiliations among users
- * @available(0.0.46, deprecated, message: "Use ETXUserService instead")
+ * @available(1.0.0, deprecated, message: "Use ETXUserService instead")
  */
 public class ETXAffiliationService<T: ETXUser> {
     let userService: ETXUserService<T>
