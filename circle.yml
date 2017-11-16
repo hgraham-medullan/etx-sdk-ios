@@ -1,6 +1,6 @@
 machine:
     xcode:
-        version: 8.3.2
+        version: 9.1
 dependencies:
     pre:
         - gem install jazzy
