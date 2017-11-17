@@ -78,6 +78,7 @@
 		08BCB0721EF116A100BC8733 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0711EF116A100BC8733 /* data.json */; };
 		08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0731EF144F800BC8733 /* test-upload-file.json */; };
 		08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0751EF18DB900BC8733 /* BlobTests.swift */; };
+		08CD38C61FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */; };
 		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
@@ -224,6 +225,7 @@
 		08BCB0711EF116A100BC8733 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		08BCB0731EF144F800BC8733 /* test-upload-file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-upload-file.json"; sourceTree = "<group>"; };
 		08BCB0751EF18DB900BC8733 /* BlobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobTests.swift; sourceTree = "<group>"; };
+		08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserRepositoryWithFailedResponses.swift; sourceTree = "<group>"; };
 		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				0864C2C31FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift */,
 				0864C2C51FA06E2400052B2E /* CustomTrendsRepository.swift */,
 				087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */,
+				08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";
@@ -1052,6 +1055,7 @@
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
+				08CD38C61FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift in Sources */,
 				1874859D1E9FEFD900B8CEDD /* AffiliationServiceUnauthenticatedTests.swift in Sources */,
 				087BEF3B1FA0929400FDD72F /* CustomUserRepository.swift in Sources */,
 				0811CFF21EB38DD2008B4B30 /* CaregiverTests.swift in Sources */,

@@ -9,16 +9,17 @@
 import Foundation
 
 /**
- Service class for retrieving affiliations among users
+ * Service class for retrieving affiliations among users
+ * @available(1.0.0, deprecated, message: "Use ETXUserService instead")
  */
 public class ETXAffiliationService<T: ETXUser> {
-    let userRepository: UserRepository<T>
+    let userService: ETXUserService<T>
     
     /**
      Create an instance of ETXUserService
      */
     public init() {
-        self.userRepository = UserRepository()
+        self.userService = ETXUserService<T>()
     }
     
     /**
@@ -27,19 +28,11 @@ public class ETXAffiliationService<T: ETXUser> {
      * @param withRole  The role of the users to be returned
      * @param forMyRole Which role for the current user should be used
      * @param callback  Callback when the request completes
+     * @available(1.0.0, deprecated, message: "Use ETXUserService#getAffiliatedUsers instead")
      */
     public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping (_ object: [ETXUser]?, _ err: ETXError?) -> Void) {
-        self.userRepository.getAffiliatedUsers(withRole: withRole, forMyRole: forMyRole, completion: completion);
+        self.userService.getAffiliatedUsers(withRole: withRole, forMyRole: forMyRole, completion: completion)
     }
-    
-    /**
-     * Returns a list of Users associated with the currrently logged in user.
-     *
-     * @param withRole The role of the users to be returned
-     * @param callback Callback when the request completes
-     */
-    //    public func getAffiliatedUsers(withRole: Role, completion: @escaping (_ object: T?, _ err: ETXError?) -> Void) {
-    //        self.userRepository.getAffiliatedUsers(withRole, completion);
-    //    }
+
 }
 

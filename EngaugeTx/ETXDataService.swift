@@ -126,9 +126,14 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
         }
         
         let modelInst = T.self.init()
-        if modelInst is ETXGenericDataObject {
-             modelTypeAsString = String(describing: ETXGenericDataObject.self)
-        } else if modelInst is ETXPersistedModel {
+        switch modelInst {
+        case is ETXUser :
+            modelTypeAsString = String(describing: ETXUser.self)
+            break
+        case is ETXGenericDataObject:
+            modelTypeAsString = String(describing: ETXGenericDataObject.self)
+            break
+        default:
             modelTypeAsString = String(describing: ETXPersistedModel.self)
         }
         

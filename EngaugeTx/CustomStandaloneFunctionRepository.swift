@@ -12,7 +12,7 @@ import Siesta
 open class ETXCustomStandaloneFunctionRepository<M: ETXModel>: Repository<M>, CustomizableRepository {
     public var httpPath: String!
     
-    public func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
+    open func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXModel {
         return nil
     }
     required public init(resourcePath: String) {

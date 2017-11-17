@@ -212,7 +212,7 @@ public class ETXTrendService {
         return TrendRepository() as! R
     }
     
-    class func useCustomDataRepository<R: TrendRepository>(_ repoType: R.Type) {
+    public class func useCustomDataRepository<R: TrendRepository>(_ repoType: R.Type) {
         EngaugeTxApplication.getInstance().customTrendRepositoryType = repoType
     }
     
