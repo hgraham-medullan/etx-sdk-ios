@@ -114,7 +114,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         return err
     }
     
-    func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    open func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
             self.update(model: model, completion: completion)
         } else {

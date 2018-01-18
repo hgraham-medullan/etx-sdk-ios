@@ -27,7 +27,7 @@ open class ETXCustomStandaloneFunctionRepository<M: ETXModel>: Repository<M>, Cu
         self.post(model: model, completion: completion)
     }
     
-    override func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+    override open func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
         self.post(model: model, completion: completion)
     }
     

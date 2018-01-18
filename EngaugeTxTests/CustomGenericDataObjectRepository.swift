@@ -60,8 +60,8 @@ class CustomGenericDataObjectRepository: ETXTestCase {
         
         MyGdo.findWhere(filter: ETXSearchFilter()) {
             (items, err) in
-            XCTAssertEqual(1, items?.count)
-            XCTAssertEqual(items?.first?.id, "gdo-from-custom-repo")
+            XCTAssertEqual(1, items?.count, "One result should be return")
+            XCTAssertEqual(items?.first?.id, "gdo-from-custom-repo", "The return result should have 'gdo-from-custom-repo' as the ID")
             findByIdExpectation.fulfill()
         }
         
@@ -69,7 +69,48 @@ class CustomGenericDataObjectRepository: ETXTestCase {
             (err) in
             print("findById Expectation \(String(describing: err))")
         }
+    }
+    
+    func testGdoSaveForNewModelWhenUsingTheBaseTypeWithTheCustomRepository() {
+        let saveExpectation = expectation(description: "save Expectation")
+        ETXGenericDataService.useCustomDataRepository(LocalGdoRepository.self, forModelType: MyGdo.self)
         
+        let gdoToSave = MyGdo();
+        gdoToSave.foo = "This is foo"
+        gdoToSave.save {
+            (err) in
+            XCTAssertNil(err, "The GDO should save successfully")
+            XCTAssertNotNil(gdoToSave, "The saved object should not be nil")
+            XCTAssertEqual(gdoToSave.foo, "This is foo", "The 'foo' property should be set")
+            XCTAssertEqual(gdoToSave.id, "model-saved", "The model should be assigned an ID")
+            saveExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 10) {
+            (err) in
+            print("save Expectation \(String(describing: err))")
+        }
+    }
+    
+    func testGdoSaveForNewModel() {
+        let saveExpectation = expectation(description: "save Expectation")
+        ETXGenericDataService.useCustomDataRepository(LocalGdoRepository.self, forModelType: ETXGenericDataObject.self)
+        
+        let gdoToSave = MyGdo();
+        gdoToSave.foo = "This is foo"
+        gdoToSave.save {
+            (err) in
+            XCTAssertNil(err, "The GDO should save successfully")
+            XCTAssertNotNil(gdoToSave, "The saved object should not be nil")
+            XCTAssertEqual(gdoToSave.foo, "This is foo", "The 'foo' property should be set")
+            XCTAssertEqual(gdoToSave.id, "model-saved", "The model should be assigned an ID")
+            saveExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 10) {
+            (err) in
+            print("save Expectation \(String(describing: err))")
+        }
     }
 }
 
@@ -96,6 +137,12 @@ public class LocalGdoRepository<M: ETXGenericDataObject>: ETXCustomGenericObject
     
     public override func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXGenericDataObject {
         return LocalGdoRepository<T>(resourcePath:resourcePath)
+    }
+    
+    open override func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+        super.save(model: model, completion: completion)
+        model.id = "model-saved"
+        completion(model, nil)
     }
     
     

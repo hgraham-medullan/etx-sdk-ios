@@ -54,8 +54,8 @@ open class ETXPersistedModel : ETXModel, ETXPersistableModel {
         let  dataSvc: ETXDataService<ModelType> = self.getDataSvc(self)
         dataSvc.save(model: self) {
             (model, err) in
-            if let model = model {
-                let map = Map(mappingType: .fromJSON, JSON: model.rawJson!)
+            if let model = model, let rawJson = model.rawJson {
+                let map = Map(mappingType: .fromJSON, JSON: rawJson)
                 self.mapping(map: map)
             }
             completion(err)

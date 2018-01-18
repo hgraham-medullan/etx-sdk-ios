@@ -105,11 +105,11 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
      - parameter err: If an error occurred while savinga the item
      */
     public func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
-        self.getRepository().save(model: model, completion: completion)
+        self.getRepository(model).save(model: model, completion: completion)
     }
     
-    func getRepository() -> Repository<T> {
-        if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self) {
+    func getRepository(_ model: T? = nil) -> Repository<T> {
+        if let customDefinedRepoType = self.getCustomRepoType(forModelType: T.self, model) {
             EngaugeTxLog.debug("A custom repository is defined")
             let c = customDefinedRepoType.init(resourcePath: self.repository.resourcePath) as! CustomizableRepository
             return c.provideInstance(resourcePath: self.repository.resourcePath)!
@@ -117,16 +117,23 @@ open class ETXDataService<T: ETXPersistedModel>: QueryablePersistenceService, Pe
         return self.repository
     }
     
-    private func getCustomRepoType(forModelType: T.Type) -> Repo.Type? {
+    private func getCustomRepoType(forModelType: T.Type, _ modelInst: T? = nil) -> Repo.Type? {
         let appInstance = EngaugeTxApplication.getInstance()
-        var modelTypeAsString: String = String(describing: T.self)
+        var modelTypeAsString: String
+        var model: T
+        if modelInst == nil {
+            model = T.self.init()
+            modelTypeAsString = String(describing: T.self)
+        } else {
+            model = modelInst!
+            modelTypeAsString = String(describing: type(of:model))
+        }
         // Check if there is repository for this specific type
         if let customRepoType = appInstance.customDataRepositories[modelTypeAsString] {
             return customRepoType
         }
         
-        let modelInst = T.self.init()
-        switch modelInst {
+        switch model {
         case is ETXUser :
             modelTypeAsString = String(describing: ETXUser.self)
             break
