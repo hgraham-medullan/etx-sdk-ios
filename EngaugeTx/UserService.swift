@@ -15,14 +15,16 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     
     private let HEADER_KEY_DELETE_ALL_USER_DATA: String = "X-Tx-Delete-All-Data"
     
-    var userRepository: UserRepository<T>
-    
-    override func getRepository() -> UserRepository<T> {
-        return super.getRepository() as! UserRepository<T>
+    override func getRepository(_ model: T? = nil) -> UserRepository<T> {
+        return super.getRepository(model) as! UserRepository<T>
     }
     
-    private static func getRepository<T: ETXUser>(defaultRepo: UserRepository<T>) -> UserRepository<T> {
-        let classNameAsString: String = String(describing: T.self)
+    private static func getRepository<T: ETXUser>(defaultRepo: UserRepository<T>, _ forModel: T? = nil) -> UserRepository<T> {
+        var classNameAsString: String = String(describing: T.self)
+        
+        if let forModel = forModel {
+            classNameAsString = String(describing: forModel)
+        }
         let repoClassType = EngaugeTxApplication.getInstance().customDataRepositories[classNameAsString]
         
         if let repoClassType = repoClassType {
@@ -36,14 +38,12 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      Create an instance of ETXUserService
      */
     public  override init() {
-        self.userRepository = UserRepository()
-         super.init(repository: self.userRepository)
+
+         super.init(repository: UserRepository<T>())
     }
     
     required public init(repository: Repository<T>) {
-        self.userRepository = ETXUserService.getRepository(defaultRepo: repository as! UserRepository)
-        super.init(repository: self.userRepository)
-
+        super.init(repository: repository)
     }
     
     /** Login with username.
@@ -87,7 +87,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      - parameter completion: Callback when the request completes
      */
     public func getCurrentUser(completion:@escaping (T?)->Void) {
-        if let userId = self.userRepository.getCurrentUserId() {
+        if let userId = self.getRepository().getCurrentUserId() {
             self.getRepository().getById(userId) {
                 (user: T?, err: ETXError?) in
                 completion(user)
@@ -135,8 +135,9 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
      - parameter err: Error containing details as to the registration process failed. This will be ```nil``` if registration was successful. Details about the error can be found in the ```details``` property and will contain a Dictionary of validation errors.
      */
     public func createUser(_ user: T, completion: @escaping (_ user: T?, _ err: ETXRegistrationError?)->Void) {
-        self.userRepository.deleteCurrentUser()
-        self.getRepository().save(model: user){
+        let repo = self.getRepository(user)
+        repo.deleteCurrentUser()
+        repo.save(model: user){
             (user, err) in
             if let err = err, let rawJson = err.rawJson {
                 EngaugeTxLog.error("User creation failed:", context: rawJson)
@@ -181,7 +182,7 @@ public class ETXUserService<T: ETXUser> : ETXDataService<T> {
     
      func delete(model: T, hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {
         // Ensure that headers are only added for this req
-        let isolatedUserRepository = getRepository()
+        let isolatedUserRepository = getRepository(model)
         if hardDelete == true {
             isolatedUserRepository.addAdditionalHeader(HEADER_KEY_DELETE_ALL_USER_DATA, value: "true")
         }

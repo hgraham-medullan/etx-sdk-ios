@@ -27,22 +27,25 @@ fileprivate class CustomUserRepository<M: ETXUser>: ETXCustomUserRepository<M> {
     
     override func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (M?, ETXError?) -> Void) {
         super.loginWithUsername(username, password: password, rememberMe: rememberMe, done: done)
+        XCTAssertEqual(self.getHttpPath(), "/users/login?include=user&ttl=1200", "The HTTP path should be set")
         done(nil, requestError)
     }
     
     override public func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (M?, ETXError?) -> Void) {
         super.loginWithEmail(email, password: password, rememberMe: rememberMe, done: done)
+        XCTAssertEqual(self.getHttpPath(), "/users/login?include=user&ttl=1200", "The HTTP path should be set")
         done(nil, requestError)
     }
     
     override public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([M]?, ETXError?) -> Void) {
         super.findWhere(filter, completion: completion)
-        XCTAssertNotNil(self.getHttpPath(), "The HTTP path should be set")
+        XCTAssertEqual(self.getHttpPath(), "/users?filter=%7B%7D", "The HTTP path should be set")
         completion(nil, requestError)
     }
     
     override public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ([ETXUser]?, ETXError?) -> Void) {
         super.getAffiliatedUsers(withRole: withRole, forMyRole: forMyRole, completion: completion)
+        XCTAssertEqual(self.getHttpPath(), "/users/user-id/affiliatedUsers", "The HTTP path should be set")
         completion(nil, requestError)
     }
     

@@ -17,36 +17,39 @@ fileprivate class DerivedUser: ETXUser {
 
 fileprivate class CustomUserRepository<M: ETXUser>: ETXCustomUserRepository<M> {
     
-    let dummyUser = M()
-    
     required init(resourcePath: String) {
         super.init(resourcePath:resourcePath)
-        dummyUser.firstName = "Dummy"
-        dummyUser.lastName = "User"
+    }
+    
+    func getDummyUser() -> M {
+        let user: M = M()
+        user.firstName = "Dummy"
+        user.lastName = "User"
+        return user 
     }
     
     override func loginWithUsername(_ username: String, password: String, rememberMe: Bool, done: @escaping (M?, ETXError?) -> Void) {
         super.loginWithUsername(username, password: password, rememberMe: rememberMe, done: done)
-        done(self.dummyUser, nil)
+        done(self.getDummyUser(), nil)
     }
     
     override public func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (M?, ETXError?) -> Void) {
         super.loginWithEmail(email, password: password, rememberMe: rememberMe, done: done)
-        done(self.dummyUser, nil)
+        done(self.getDummyUser(), nil)
     }
     
     override public func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([M]?, ETXError?) -> Void) {
         super.findWhere(filter, completion: completion)
         XCTAssertNotNil(self.getHttpPath(), "The HTTP path should be set")
         var users = [M]()
-        users.append(self.dummyUser)
+        users.append(self.getDummyUser())
         completion(users, nil)
     }
     
     override public func getAffiliatedUsers(withRole: ETXRole, forMyRole: ETXRole, completion: @escaping ([ETXUser]?, ETXError?) -> Void) {
         super.getAffiliatedUsers(withRole: withRole, forMyRole: forMyRole, completion: completion)
         var affiliatedUsers: [ETXUser] = [ETXUser]()
-        affiliatedUsers.append(dummyUser)
+        affiliatedUsers.append(self.getDummyUser())
         completion(affiliatedUsers, nil)
     }
     
@@ -56,6 +59,12 @@ fileprivate class CustomUserRepository<M: ETXUser>: ETXCustomUserRepository<M> {
     
     public override func provideInstance<T>(resourcePath: String) -> Repository<T>? where T : ETXUser {
         return CustomUserRepository<T>(resourcePath: resourcePath)
+    }
+    
+    open override func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
+        super.save(model: model, completion: completion)
+        model.id = "new-user-id";
+        completion(model, nil)
     }
 }
 
@@ -141,6 +150,22 @@ class CustomUserRepositoryTests: ETXTestCase {
             XCTAssertEqual("\(user.firstName!) \(user.lastName!)", "Dummy User", "The dummy user account should be returned")
             reqExpectation.fulfill()
         }
+        waitForExpectations(timeout: 10) {
+            (err) in
+            print("Request Expectation \(String(describing: err))")
+        }
+    }
+    
+    func testSave() {
+        let reqExpectation = expectation(description: "Request Expectation")
+        let user = ETXUser();
+        user.email = "sean@med.com"
+        user.save {
+            (err) in
+            XCTAssertEqual(user.id, "new-user-id", "The saved user should be assigned the ID 'new-user-id'")
+            reqExpectation.fulfill()
+        }
+        
         waitForExpectations(timeout: 10) {
             (err) in
             print("Request Expectation \(String(describing: err))")
