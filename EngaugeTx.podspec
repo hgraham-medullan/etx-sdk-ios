@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "EngaugeTx"
   s.version      = "1.0.1"
-  s.summary      = "SDK for the EngaugeTx platform"
+  s.summary      = "iOS SDK for the Vara platform"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "EngaugeTx Medullan Platform Solutions"
 
-  s.homepage     = "https://developer.engaugetx.com/"
+  s.homepage     = "https://developer.vara.io/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
