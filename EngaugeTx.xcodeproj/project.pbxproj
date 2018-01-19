@@ -94,6 +94,8 @@
 		08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */; };
 		08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B71E043A21008B5D0E /* ETXDataService.swift */; };
 		08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B91E04412B008B5D0E /* ETXTestCase.swift */; };
+		127C64332010E94B00F6F9DC /* RequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C64322010E94B00F6F9DC /* RequestUtils.swift */; };
+		127C64352010E9FA00F6F9DC /* RequestUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
 		180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */; };
 		180743EA1EAEDF21009D4B06 /* BucketSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E91EAEDF21009D4B06 /* BucketSize.swift */; };
@@ -241,6 +243,8 @@
 		08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObjectRepository.swift; sourceTree = "<group>"; };
 		08FE53B71E043A21008B5D0E /* ETXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXDataService.swift; sourceTree = "<group>"; };
 		08FE53B91E04412B008B5D0E /* ETXTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXTestCase.swift; sourceTree = "<group>"; };
+		127C64322010E94B00F6F9DC /* RequestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUtils.swift; sourceTree = "<group>"; };
+		127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUtilsTests.swift; sourceTree = "<group>"; };
 		180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedAdherenceTests.swift; sourceTree = "<group>"; };
 		180743E91EAEDF21009D4B06 /* BucketSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketSize.swift; sourceTree = "<group>"; };
 		180743EB1EAEE013009D4B06 /* AdherenceResultMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceResultMeta.swift; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				127C64362012389B00F6F9DC /* Sharing */,
 				08365F171F6F62D2002DD6E9 /* Repositories */,
 				0867649F1F50C7410024F5AA /* Logger */,
 				08BCB06B1EF1120700BC8733 /* Blobs */,
@@ -598,6 +603,13 @@
 			name = GenericDataObject;
 			sourceTree = "<group>";
 		};
+		127C64362012389B00F6F9DC /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sharing;
+			sourceTree = "<group>";
+		};
 		180743E61EAECEE6009D4B06 /* Medications */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +670,7 @@
 				18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */,
 				08FE53B71E043A21008B5D0E /* ETXDataService.swift */,
 				18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */,
+				127C64322010E94B00F6F9DC /* RequestUtils.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -697,6 +710,7 @@
 			isa = PBXGroup;
 			children = (
 				18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */,
+				127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -891,9 +905,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Siesta/Siesta.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -921,13 +946,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EngaugeTx-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F73FAD52D41D4D311651F35B /* [CP] Check Pods Manifest.lock */ = {
@@ -936,13 +964,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EngaugeTxTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -999,6 +1030,7 @@
 				085184DA1E74DBC800BFD227 /* DateService.swift in Sources */,
 				084A24431E267CFC003BBCAB /* Condtion.swift in Sources */,
 				185691BA1EA6E43800754AC4 /* OxygenSaturation.swift in Sources */,
+				127C64332010E94B00F6F9DC /* RequestUtils.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				1813AE6A1E9F22D600A08F22 /* AffiliatedUser.swift in Sources */,
 				18D0DFE01EAAF9E700856F2D /* Timing.swift in Sources */,
@@ -1051,6 +1083,7 @@
 				0864C2C61FA06E2400052B2E /* CustomTrendsRepository.swift in Sources */,
 				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
 				086764A11F50C7560024F5AA /* EngaugeTxLogger.swift in Sources */,
+				127C64352010E9FA00F6F9DC /* RequestUtilsTests.swift in Sources */,
 				08A7C54B1E4CCE7800852D62 /* DateTests.swift in Sources */,
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */,

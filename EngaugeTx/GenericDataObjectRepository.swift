@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class ETXGenericDataObjectRepository<T: ETXGenericDataObject> : Repository<T> {
+open class ETXGenericDataObjectRepository<T: ETXGenericDataObject> : ETXShareableModelRespository<T> {
     
     var genericModelResourcePath: String
     

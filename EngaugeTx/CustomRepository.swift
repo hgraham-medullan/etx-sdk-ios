@@ -25,7 +25,7 @@ extension CustomizableRepository {
     }
 }
 
-open class ETXCustomRepository<M: ETXModel>: Repository<M>, CustomizableRepository {
+open class ETXCustomRepository<M: ETXShareableModel>: ETXShareableModelRespository<M>, CustomizableRepository {
     
     public var httpPath: String!
     

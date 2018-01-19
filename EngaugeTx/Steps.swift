@@ -38,8 +38,8 @@ open class ETXSteps: ETXMeasurement {
     }
     
     public override func getDataSvc<M: ETXSteps, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let repository = Repository<M>(resourcePath: "/steps")
-        let defaultDataSvc = ETXDataService<M>(repository: repository)
+        let repository = ETXShareableModelRespository<M>(resourcePath: "/steps")
+        let defaultDataSvc = ETXShareableModelDataService<M>(repository: repository)
         return defaultDataSvc as! T
     }
     

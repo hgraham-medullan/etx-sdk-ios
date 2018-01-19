@@ -11,9 +11,25 @@ import Foundation
 /**
  Service class for handling shareable models
  */
-public class ETXShareableModelDataService<T: ETXShareableModel>: ETXDataService<T> {
+open class ETXShareableModelDataService<T: ETXShareableModel>: ETXDataService<T> {
+    public override init() {
+        super.init()
+    }
     
     required public init(repository: Repository<T>) {
         super.init(repository: repository)
+    }
+ 
+    override func getRepository(_ model: T? = nil) -> ETXShareableModelRespository<T> {
+        return super.getRepository(model) as! ETXShareableModelRespository<T>
+    }
+    
+    public func findById(_ id: String, onBehalfOfUser: ETXUser, completion: @escaping (_ model: T?, _ err: ETXError?) -> Void) {
+        self.getRepository().findById(id, onBehalfOfUser: onBehalfOfUser, completion: completion)
+    }
+    
+    public func findWhere(_ filter: ETXSearchFilter, onBehalfOfUser: ETXUser, completion: @escaping (_ model: [T]?, _ err: ETXError?) -> Void) {
+        self.getRepository().findWhere(filter, onBehalfOfUser: onBehalfOfUser, completion: completion)
+        
     }
 }

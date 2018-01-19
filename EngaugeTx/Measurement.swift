@@ -25,6 +25,10 @@ open class ETXMeasurement: ETXAggregatableModel {
         super.init(map: map)
     }
     
+    public override init(owner: ETXUser) {
+        super.init(owner: owner)
+    }
+    
     open override func mapping(map: Map) {
         super.mapping(map: map)
         source <- map["source"]

@@ -40,7 +40,7 @@ import ObjectMapper
  ```repos
  
  */
-open class ETXGenericDataService<T: ETXGenericDataObject>: ETXDataService<T> {
+open class ETXGenericDataService<T: ETXGenericDataObject>: ETXShareableModelDataService<T> {
     
     var modelName: String
     

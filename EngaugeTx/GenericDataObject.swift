@@ -75,6 +75,10 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
         super.init(map: map)
     }
     
+    public override init(owner: ETXUser) {
+        super.init(owner: owner)
+    }
+    
     /**
      Describes how the object should be desearialized
      - parameter map: The data as a Map
@@ -82,7 +86,6 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     override open func mapping(map: Map) {
         super.mapping(map: map)
         className <- map["className"]
-        
     }
     
     override public func getDataSvc<M: ETXGenericDataObject, T: QueryablePersistenceService>(_ forModel: M) -> T {

@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents an aggregated data set
  */
-open class ETXAggregatableModel: ETXPersistedModel, ETXAggregatable {
+open class ETXAggregatableModel: ETXShareableModel, ETXAggregatable {
     
     override class var modelResourcePath: String? {
         return "/"

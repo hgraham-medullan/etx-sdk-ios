@@ -59,4 +59,10 @@ open class ETXOxygenSaturation: ETXMeasurement {
         spo2Unit <- map["spo2Unit"]
         bpm <- map["bpm"]
     }
+    
+    public override func getDataSvc<M: ETXOxygenSaturation, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repository = ETXShareableModelRespository<M>(resourcePath: "/OxygenSaturation")
+        let defaultDataSvc = ETXShareableModelDataService<M>(repository: repository)
+        return defaultDataSvc as! T
+    }
 }
