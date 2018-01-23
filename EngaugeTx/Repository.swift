@@ -277,9 +277,12 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         if filter.usesCustomFilter {
             return self.appendOwnerIdToWhereFilter(filter: filter.toJsonString(), ownerId: ownerId)
         } else  {
-        filter.whereCondtions?.append(ETXWhereCondition(property: FILTER_PROP_OWNER_ID, comparator: ETXComparator.eq, value: ownerId))
-            return filter.toJsonString()
-        }
+            if (filter.whereCondtions == nil) {
+                filter.whereCondtions = [ETXWhereCondition]()
+            }
+            filter.whereCondtions?.append(ETXWhereCondition(property: FILTER_PROP_OWNER_ID, comparator: ETXComparator.eq, value: ownerId))
+                return filter.toJsonString()
+            }
     }
     
     private func appendOwnerIdToWhereFilter(filter: String, ownerId: String) -> String{

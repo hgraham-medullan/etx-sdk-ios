@@ -89,4 +89,19 @@ class RepositoryTests: ETXTestCase {
             print("Logout Expectation \(String(describing: err))")
         }
     }
+    
+    func testAppendOwnerIdtoFilterWhereFilterHasNoWhereCondArray() {
+        let repo = Repository(resourcePath: "/non-existent-path")
+        let expected = "{\"where\":{\"ownerId\":\"testing\"}}"
+        let result = repo.appendOwnerIdToWhereFilter(filter: ETXSearchFilter(), ownerId: "testing")
+        XCTAssertEqual(result, expected)
+    }
+    func testAppendOwnerIdtoFilterWhereFilterHasAWhereCondArrayInitialized() {
+        let repo = Repository(resourcePath: "/non-existent-path")
+        let expected = "{\"where\":{\"ownerId\":\"testing\"}}"
+        let filter: ETXSearchFilter = ETXSearchFilter()
+        filter.whereCondtions = [ETXWhereCondition]()
+        let result = repo.appendOwnerIdToWhereFilter(filter: filter, ownerId: "testing")
+        XCTAssertEqual(result, expected)
+    }
 }
