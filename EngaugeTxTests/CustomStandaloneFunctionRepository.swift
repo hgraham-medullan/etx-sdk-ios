@@ -16,6 +16,7 @@ class CustomStandaloneFunctionRepository: ETXTestCase {
     override func tearDown() {
         super.tearDown()
         EngaugeTxApplication.clearCustomRepositories()
+        XCTAssertFalse(EngaugeTxApplication.isUsingCustomRepsoitories())
     }
     
     func testGetRequestWhenUsingCustomStandaloneFunctionRepository() {

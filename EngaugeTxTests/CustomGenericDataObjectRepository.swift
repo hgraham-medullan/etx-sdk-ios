@@ -16,6 +16,7 @@ class CustomGenericDataObjectRepository: ETXTestCase {
     override func tearDown() {
         super.tearDown()
         EngaugeTxApplication.clearCustomRepositories()
+        XCTAssertFalse(EngaugeTxApplication.isUsingCustomRepsoitories())
     }
     
     func testFindByIdWithCustomRepositoryForGDOs() {

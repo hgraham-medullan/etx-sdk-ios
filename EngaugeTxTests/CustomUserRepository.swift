@@ -77,7 +77,8 @@ class CustomUserRepositoryTests: ETXTestCase {
     
     override func tearDown() {
         super.tearDown()
-        EngaugeTxApplication.clearCustomRepositories();
+        EngaugeTxApplication.clearCustomRepositories()
+        XCTAssertFalse(EngaugeTxApplication.isUsingCustomRepsoitories())
     }
     
     func testUserLoginWithEmail() {

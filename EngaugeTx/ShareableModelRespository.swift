@@ -46,12 +46,9 @@ open class ETXShareableModelRespository<T: ETXShareableModel>: Repository<T> {
         self.performFindWhere(resource, completion)
         
     }
-    open func getCurrentUserId() -> String {
-        return CurrentUserCache.currentUserId!
-    }
     
     func isOwnedByCurrentUser(_ model: ETXShareableModel) -> Bool{
-        if(model.ownerId != nil && getCurrentUserId() != model.ownerId){
+        if(model.ownerId != nil && self.getCurrentUserId() != model.ownerId){
             return false
         }
         return true

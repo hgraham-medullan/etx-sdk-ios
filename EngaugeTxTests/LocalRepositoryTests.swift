@@ -12,7 +12,13 @@ import XCTest
 import ObjectMapper
 
 class LocalRepositoryTests: ETXTestCase {
-
+    
+    override func tearDown() {
+        super.tearDown()
+        EngaugeTxApplication.clearCustomRepositories()
+        XCTAssertFalse(EngaugeTxApplication.isUsingCustomRepsoitories())
+    }
+    
     func testFindStepsById() {
         let findByIdExpectation = expectation(description: "findById Expectation")
         ETXDataService.useCustomDataRepository(LocalRepo.self, forModelType: ETXPersistedModel.self)

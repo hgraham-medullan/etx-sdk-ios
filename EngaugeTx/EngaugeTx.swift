@@ -152,15 +152,15 @@ public class EngaugeTxApplication {
         self.init(application: nil)
     }
     
-    public var customDataRepositories: [String:CustomizableRepository.Type] = [String:CustomizableRepository.Type]()
-    public var customDataRepositoriesForClasses: [String:ETXModel.Type] = [String:ETXModel.Type]()
     static func getInstance() -> EngaugeTxApplication {
         return instance
     }
     
+    public var customDataRepositories: [String:CustomizableRepository.Type] = [String:CustomizableRepository.Type]()
+    public var customDataRepositoriesForClasses: [String:ETXModel.Type] = [String:ETXModel.Type]()
     public var customDataRepository: Repo.Type? = nil
-    
     public var customStandaloneFunctionRepositoryType: CustomizableRepository.Type? = nil
+    public var customTrendRepositoryType: TrendRepository.Type? = nil
     
     static func addCustomRepository<M: ETXModel, R: CustomizableRepository>(modelType: M.Type, repositoryType: R.Type) {
         let classTypeAsString: String = String(describing: modelType)
@@ -173,8 +173,18 @@ public class EngaugeTxApplication {
         let appInstance = EngaugeTxApplication.getInstance()
         appInstance.customDataRepository = nil
         appInstance.customStandaloneFunctionRepositoryType = nil
+        appInstance.customTrendRepositoryType = nil
         appInstance.customDataRepositories = [String:CustomizableRepository.Type]()
         appInstance.customDataRepositoriesForClasses = [String:ETXModel.Type]()
+    }
+    
+    public static func isUsingCustomRepsoitories() -> Bool {
+        let appInstance = EngaugeTxApplication.getInstance()
+        return !(appInstance.customDataRepository == nil &&
+            appInstance.customStandaloneFunctionRepositoryType == nil &&
+            appInstance.customTrendRepositoryType == nil &&
+            appInstance.customDataRepositories.isEmpty &&
+            appInstance.customDataRepositoriesForClasses.isEmpty)
     }
     
     static func getValueForKey<T>(key: String) -> T? {
@@ -202,6 +212,5 @@ public class EngaugeTxApplication {
         EngaugeTxApplication.consoleLogDestination?.minLevel = SwiftyBeaver.Level(rawValue: level.value)!
     }
     
-    var customTrendRepositoryType: TrendRepository.Type?
     
 }

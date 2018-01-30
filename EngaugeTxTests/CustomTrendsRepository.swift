@@ -16,6 +16,7 @@ class CustomTrendsRepository: ETXTestCase {
     override func tearDown() {
         super.tearDown()
         EngaugeTxApplication.clearCustomRepositories()
+        XCTAssertFalse(EngaugeTxApplication.isUsingCustomRepsoitories())
     }
     
     func testTrends() {

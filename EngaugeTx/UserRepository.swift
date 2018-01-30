@@ -122,25 +122,11 @@ open class UserRepository<T: ETXUser>: Repository<T> {
         }
     }
     
-    open func getCurrentUserId() -> String? {
-        cleanUpOldCurrentUserRefs()
-        if CurrentUserCache.currentUserId != nil {
-           return CurrentUserCache.currentUserId
-        } else {
-            return keychainInstance.string(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
-        }
-    }
-    
     public func deleteCurrentUser() {
         CurrentUserCache.currentUserId = nil
         keychainInstance.removeObject(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
         self.deleteAccessToken()
-        cleanUpOldCurrentUserRefs()
-    }
-    
-    public func cleanUpOldCurrentUserRefs() {
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
+        self.cleanUpOldCurrentUserRefs()
     }
     
     open func loginWithEmail(_ email: String, password: String, rememberMe: Bool, done: @escaping (T?, ETXError?) ->Void) {

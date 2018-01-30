@@ -313,6 +313,20 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         EngaugeTxLog.debug("Saved the Access Token")
     }
     
+    open func cleanUpOldCurrentUserRefs() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
+    }
+    
+    open func getCurrentUserId() -> String? {
+        cleanUpOldCurrentUserRefs()
+        if CurrentUserCache.currentUserId != nil {
+            return CurrentUserCache.currentUserId
+        } else {
+            return keychainInstance.string(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+        }
+    }
+    
     func deleteAccessToken() {
         EngaugeTxLog.debug("Deleting the Access Token")
         AccesssTokenCache.accessToken = nil
