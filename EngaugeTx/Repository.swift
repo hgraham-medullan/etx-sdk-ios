@@ -52,6 +52,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
      let KEY_HEADER_APP_ID: String = "app-id"
      let KEY_HEADER_CLIENT_KEY: String = "client-key"
      let KEY_HEADER_AUTHORIZATION: String = "Authorization"
+     let KEY_HEADER_ACCEPT_LANGUAGE: String = "Accept-Language"
      let QUERY_STRING_APP_ID = "appId"
      let QUERY_STRING_FILTER = "filter"
      let QUERY_STRING_CLIENT_KEY = "clientKey"
@@ -97,6 +98,7 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         configure {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
+            $0.headers[self.KEY_HEADER_ACCEPT_LANGUAGE] = self.getpreferredLanguages()
             
             // Some requests may need to be made without the presence of the access token
             if self.ignoreAccessToken == false {
@@ -356,5 +358,12 @@ open class Repository<T> : Service, Repo where T: ETXModel {
         }
         additionalHeaders[headerKey] = value
         self.additionalHeaders = additionalHeaders
+    }
+    
+    func getpreferredLanguages() -> String? {
+        guard Locale.preferredLanguages.count > 0 else {
+            return nil
+        }
+        return Locale.preferredLanguages.joined(separator: ",")
     }
 }
