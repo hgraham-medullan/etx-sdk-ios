@@ -338,12 +338,12 @@ class UserServiceTest: ETXTestCase {
         
         let userSvc = ETXUserService()
         
-        userSvc.loginUserWithEmail(softDeletedUser.email, password: softDeletedUser.password, rememberMe: false) { (user, err) in
+        userSvc.loginUserWithEmail(softDeletedUser.email, password: softDeletedUser.password!, rememberMe: false) { (user, err) in
             XCTAssertNil(err, "User login should not fail")
             user!.delete {
                 (err) in
                 XCTAssertNil(err, "User deletion should be successful")
-                userSvc.loginUserWithEmail(self.softDeletedUser.email, password: self.softDeletedUser.password, rememberMe: false) { (user, err) in
+                userSvc.loginUserWithEmail(self.softDeletedUser.email, password: self.softDeletedUser.password!, rememberMe: false) { (user, err) in
                     XCTAssertNil(user, "User login should not be successful")
                     XCTAssertNotNil(err, "User login should failed")
                     XCTAssertTrue(err! is ETXAuthenticationError, "User login should fail with an authentication error")
@@ -368,12 +368,12 @@ class UserServiceTest: ETXTestCase {
         
         let userSvc = ETXUserService()
         
-        userSvc.loginUserWithEmail(hardDeletedUser.email, password: hardDeletedUser.password, rememberMe: false) { (user, err) in
+        userSvc.loginUserWithEmail(hardDeletedUser.email, password: hardDeletedUser.password!, rememberMe: false) { (user, err) in
             XCTAssertNil(err, "User login should not fail")
             user!.delete(hardDelete: true) {
                 (err) in
                 XCTAssertNil(err, "User deletion should be successful")
-                userSvc.loginUserWithEmail(self.hardDeletedUser.email, password: self.hardDeletedUser.password, rememberMe: false) { (user, err) in
+                userSvc.loginUserWithEmail(self.hardDeletedUser.email, password: self.hardDeletedUser.password!, rememberMe: false) { (user, err) in
                     XCTAssertNil(user, "User login should not be successful")
                     XCTAssertNotNil(err, "User login should failed")
                     XCTAssertTrue(err! is ETXAuthenticationError, "User login should fail with an authentication error")

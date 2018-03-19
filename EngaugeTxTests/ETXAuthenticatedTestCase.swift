@@ -22,7 +22,7 @@ class AuthenticatedTestCase: ETXTestCase {
         userSvc = ETXUserService()
         let loginExpectation = expectation(description: "Successful Login")
         userSvc.loginUserWithEmail(self.defaultTestUser.email,
-                                   password: self.defaultTestUser.password,
+                                   password: self.defaultTestUser.password!,
                                    rememberMe: false) {
                                     (user, err) in
                                     XCTAssertNotNil(user, "User should be successfully logged in")
@@ -40,7 +40,7 @@ class AuthenticatedTestCase: ETXTestCase {
         userSvc = ETXUserService()
         let loginExpectation = expectation(description: "Successful Login")
         userSvc.loginUserWithEmail(user.email,
-                                   password: user.password,
+                                   password: user.password!,
                                    rememberMe: false) {
                                     (user, err) in
                                     XCTAssertNotNil(user, "User should be successfully logged in")
