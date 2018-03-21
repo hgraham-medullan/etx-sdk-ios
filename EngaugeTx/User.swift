@@ -46,7 +46,12 @@ open class ETXUser: ETXPersistedModel {
     /**
      The user's Password
      */
-    public var password: String
+    public var password: String?
+    
+    /**
+     The User's preferred locale
+    */
+    public var locale: String?
     
     /**
      Create a new instance
@@ -64,7 +69,6 @@ open class ETXUser: ETXPersistedModel {
     public init(user: ETXAffiliatedUser) {
         self.email = ""
         self.username = ""
-        self.password = ""
         super.init()
         self.firstName = user.firstName
         self.lastName = user.lastName
@@ -75,7 +79,6 @@ open class ETXUser: ETXPersistedModel {
     public required init() {
         self.email = ""
         self.username = ""
-        self.password = ""
         super.init()
     }
     
@@ -85,12 +88,7 @@ open class ETXUser: ETXPersistedModel {
     required public init?(map: Map) {
         self.email = ""
         self.username = ""
-        self.password = ""
-        
         do {
-            if map["password"].isKeyPresent == true {
-                try self.password = map.value("password")
-            }
             try self.username = map.value("username")
             try self.email = map.value("email")
         }
@@ -111,6 +109,7 @@ open class ETXUser: ETXPersistedModel {
         username <- map["username"]
         email <- map["email"]
         password <- map["password"]
+        locale <- map["locale"]
     }
     
     /**
