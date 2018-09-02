@@ -18,9 +18,12 @@ jobs:
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: EngaugeTx
-    deploy:
-      steps:
-        - run:
+  deploy:
+    macos:
+      xcode: "9.1.0"
+    steps:
+      - checkout
+      - run:
           name: Deploment Script
           command: ./deploy_release.sh
 workflows:
@@ -29,8 +32,10 @@ workflows:
     jobs:
       - build-and-test
       - deploy:
-        requires:
-          - build-and-test
-        filters:
-          tags:
-              only: /[0-9]+(\.[0-9]+)*/
+          requires:
+            - build-and-test
+          filters:
+            tags:
+                only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
