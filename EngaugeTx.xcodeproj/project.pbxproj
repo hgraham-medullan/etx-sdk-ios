@@ -79,7 +79,6 @@
 		08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0731EF144F800BC8733 /* test-upload-file.json */; };
 		08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0751EF18DB900BC8733 /* BlobTests.swift */; };
 		08CD38C61FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */; };
-		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
 		08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */; };
@@ -228,7 +227,6 @@
 		08BCB0731EF144F800BC8733 /* test-upload-file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-upload-file.json"; sourceTree = "<group>"; };
 		08BCB0751EF18DB900BC8733 /* BlobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobTests.swift; sourceTree = "<group>"; };
 		08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserRepositoryWithFailedResponses.swift; sourceTree = "<group>"; };
-		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTokenTests.swift; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
-				08EC60E41DF98B6500235E5C /* circle.yml */,
 				083DEEB51DF1D83E00A3CB8D /* Podfile */,
 				080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */,
 				080520E41DEF078600245C4D /* LICENSE */,
@@ -865,7 +862,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08EC60E51DF98B6500235E5C /* circle.yml in Resources */,
 				083DEEB61DF1D83E00A3CB8D /* Podfile in Resources */,
 				080520E91DEF078600245C4D /* LICENSE in Resources */,
 				08BCB0721EF116A100BC8733 /* data.json in Resources */,

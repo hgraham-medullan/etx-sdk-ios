@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  build-and-test:
+    macos:
+      xcode: "9.1.0"
+    steps:
+      - checkout
+      - run:
+          name: Fetch CocoaPods Specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Install CocoaPods
+          command: pod install --verbose
+      - run:
+          name: Build and run tests
+          command: fastlane scan
+          environment:
+            SCAN_DEVICE: iPhone 8
+            SCAN_SCHEME: EngaugeTx
+    deploy:
+      steps:
+        - run:
+          name: Deploment Script
+          command: ./deploy_release.sh
+workflows:
+  version: 2
+  normal:
+    jobs:
+      - build-and-test
+      - deploy:
+        requires:
+          - build-and-test
+        filters:
+          tags:
+              only: /[0-9]+(\.[0-9]+)*/
