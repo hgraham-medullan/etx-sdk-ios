@@ -28,10 +28,7 @@ jobs:
           command: ./deploy_release.sh
 workflows:
   version: 2
-  normal:
-    jobs:
-      - build-and-test
-  deploy:
+  deploy2:
     jobs:
       - build-and-test
       - deploy:
@@ -39,6 +36,6 @@ workflows:
             - build-and-test
           filters:
             tags:
-                only: /^[0-9]+(\.[0-9]+)*/
+                only: /^v.*/
             branches:
               ignore: /.*/
