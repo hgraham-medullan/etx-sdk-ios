@@ -1,29 +1,37 @@
 PODS:
-  - Alamofire (4.5.1)
-  - ObjectMapper (3.1.0)
-  - Siesta (1.3.0):
-    - Siesta/Core (= 1.3.0)
-  - Siesta/Alamofire (1.3.0):
+  - Alamofire (4.8.2)
+  - ObjectMapper (3.4.2)
+  - Siesta (1.4.2):
+    - Siesta/Core (= 1.4.2)
+  - Siesta/Alamofire (1.4.2):
     - Alamofire (> 4.1)
     - Siesta/Core
-  - Siesta/Core (1.3.0)
+  - Siesta/Core (1.4.2)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftyBeaver (1.4.0)
 
 DEPENDENCIES:
-  - ObjectMapper (= 3.1.0)
-  - Siesta (= 1.3.0)
-  - Siesta/Alamofire (= 1.3.0)
+  - ObjectMapper (= 3.4.2)
+  - Siesta (~> 1.4)
+  - Siesta/Alamofire (~> 1.4)
   - SwiftKeychainWrapper (= 3.0.1)
   - SwiftyBeaver (= 1.4.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - ObjectMapper
+    - Siesta
+    - SwiftKeychainWrapper
+    - SwiftyBeaver
+
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  Siesta: 90cb487ebcabdc1ee0201842f027cd37df2532be
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  Siesta: 337a9c39c9b78bba904286310c86562a886efdab
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
 
-PODFILE CHECKSUM: f994afda40ab9ee792a7d4267ab982df2ecd0182
+PODFILE CHECKSUM: 07f9225ce06c0ec46cdaa477885cc64c5a0cc086
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.6.1
