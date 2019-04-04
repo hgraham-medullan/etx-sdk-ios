@@ -11,7 +11,7 @@ PODS:
   - SwiftyBeaver (1.4.0)
 
 DEPENDENCIES:
-  - ObjectMapper (= 3.4.2)
+  - ObjectMapper (~> 3.4)
   - Siesta (~> 1.4)
   - Siesta/Alamofire (~> 1.4)
   - SwiftKeychainWrapper (= 3.0.1)
@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
 
-PODFILE CHECKSUM: 07f9225ce06c0ec46cdaa477885cc64c5a0cc086
+PODFILE CHECKSUM: 9e1c2b784c54d4e26fb7693ceee34c3d2a7fcb36
 
 COCOAPODS: 1.6.1
