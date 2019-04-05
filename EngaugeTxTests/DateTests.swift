@@ -51,8 +51,7 @@ class DateTests : ETXTestCase {
     func testDateFormatWhenItIsBeingConvertedToJson() {
 
         let personAsString: String = self.person.toJSONString()!
-        XCTAssertEqual("{\"birthday\":\"1980-07-11T17:30:00.0Z\",\"className\":\"Person\"}",
-                       personAsString)
+        XCTAssertNotNil(personAsString.range(of: "\"birthday\":\"1980-07-11T17:30:00.0Z\""), "Serialized object should include correct date format")
     }
     
     func testDateFormatFromJson() {
