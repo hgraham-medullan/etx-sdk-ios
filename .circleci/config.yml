@@ -24,13 +24,7 @@ jobs:
             # Run tests.
             - run:
                 name: Build and run tests
-                command: xcodebuild \
-                            -workspace 'EngaugeTx.xcworkspace' \
-                            -scheme 'EngaugeTx' \
-                            -sdk iphonesimulator \
-                            -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' \
-                            CODE_SIGNING_REQUIRED=NO \
-                            clean build test
+                command: xcodebuild -workspace 'EngaugeTx.xcworkspace' -scheme 'EngaugeTx' clean build test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= PROVISIONING_PROFILE= | tee $CIRCLE_ARTIFACTS/xcode_raw.log | xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
 
 
             - store_test_results:
