@@ -32,7 +32,8 @@ jobs:
             - store_artifacts:
                 path: output
 
-    deploy_to_cocoapods:
+    # Deploys to the SDK repository: https://github.com/medullan/engauge-tx-pod-specs/tree/master/EngaugeTx
+    deploy_to_repo:
         macos:
             xcode: "10.1.0"
         steps:
@@ -48,9 +49,12 @@ workflows:
                 filters:
                     tags:
                         only: /[0-9]+(\.[0-9]+)*/
-            - deploy_to_cocoapods:
+            - deploy_to_repo:
                 requires:
                     - build_and_test
                 filters:
+                    branches:
+                        ignore:
+                            - /.*/
                     tags:
                         only: /[0-9]+(\.[0-9]+)*/
