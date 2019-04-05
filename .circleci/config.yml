@@ -24,14 +24,13 @@ jobs:
             # Run tests.
             - run:
                 name: Build and run tests
-                command: set -o pipefail && \
-                    xcodebuild \
-                        -workspace 'EngaugeTx.xcworkspace' \
-                        -scheme 'EngaugeTx' \
-                        -sdk iphonesimulator \
-                        -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' \
-                        CODE_SIGNING_REQUIRED=NO \
-                        clean build test
+                command: xcodebuild \
+                            -workspace 'EngaugeTx.xcworkspace' \
+                            -scheme 'EngaugeTx' \
+                            -sdk iphonesimulator \
+                            -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' \
+                            CODE_SIGNING_REQUIRED=NO \
+                            clean build test
 
 
             - store_test_results:
