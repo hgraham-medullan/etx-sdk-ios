@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "iOS SDK for the Vara platform"
 
   # This description is used to generate tags and improve search results.
@@ -128,9 +128,9 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
- s.dependency 'Siesta', '=1.3.0'
- s.dependency 'Siesta/Alamofire', '=1.3.0'
- s.dependency 'ObjectMapper', '=2.2.7'
+ s.dependency 'Siesta', '=1.4.2'
+ s.dependency 'Siesta/Alamofire', '=1.4.2'
+ s.dependency 'ObjectMapper', '=3.4.2'
  s.dependency 'SwiftKeychainWrapper', '3.0.1'
  s.dependency 'SwiftyBeaver', '=1.4.0'
 
