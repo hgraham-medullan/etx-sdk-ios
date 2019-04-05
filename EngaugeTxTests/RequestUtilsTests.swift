@@ -53,10 +53,9 @@ class RequestUtilsTests: XCTestCase {
         result!["where"] = whereCond
         
         let convertedString = ETXRequestUtils.convertJSONDataToString(result)
-        let expectedString: String = "{\"where\":{\"age\":{\"gt\":20},\"ownerId\":\"testout\"}}"
         
-        XCTAssertEqual(convertedString, expectedString)
-        
+        XCTAssertNotNil(convertedString.range(of:"\"age\":{\"gt\":20}"), "Expected converted string to include age")
+        XCTAssertNotNil(convertedString.range(of:"\"ownerId\":\"testout\""), "Expected converted string to include ownerId")
     }
     
     
