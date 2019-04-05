@@ -16,8 +16,9 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "1.1.1"
+  s.version      = "1.1.1-rc-1"
   s.summary      = "iOS SDK for the Vara platform"
+  s.swift_version = "4.2"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
