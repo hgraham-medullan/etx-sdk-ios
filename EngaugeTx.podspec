@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "1.1.1"
+  s.version      = "1.1.1-rc-3"
   s.summary      = "iOS SDK for the VARA platform"
   s.swift_version = "4.2"
 
