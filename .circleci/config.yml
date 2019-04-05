@@ -17,10 +17,6 @@ jobs:
                     curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
                     pod install --verbose
 
-            # - run:
-            #     name: Install Jazzy
-            #     command: gem install jazzy
-
             # Run tests.
             - run:
                 name: Build and run tests
