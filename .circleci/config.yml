@@ -10,12 +10,20 @@ jobs:
         steps:
             - checkout
 
+            - restore_cache:
+                key: ios-pods-{{ .Branch }}-{{ checksum "Podfile" }}-{{ checksum "Podfile.lock" }}
+
             # Download CocoaPods specs via HTTPS (faster than Git) and install CocoaPods.
             - run:
                 name: Fetch CocoaPods Specs
                 command: |
                     curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
                     pod install --verbose
+
+            - save_cache:
+                paths:
+                    - ./Pods
+                key: ios-pods-{{ .Branch }}-{{ checksum "Podfile" }}-{{ checksum "Podfile.lock" }}
 
             # Run tests.
             - run:
@@ -35,6 +43,9 @@ jobs:
             xcode: "10.1.0"
         steps:
             - checkout
+
+            - restore_cache:
+                key: ios-pods-{{ .Branch }}-{{ checksum "Podfile" }}-{{ checksum "Podfile.lock" }}
 
              # Download CocoaPods specs via HTTPS (faster than Git) and install CocoaPods.
             - run:
