@@ -29,13 +29,16 @@ jobs:
                 path: output
 
     # Deploys to the SDK repository: https://github.com/medullan/engauge-tx-pod-specs/tree/master/EngaugeTx
+    # This consists of pushing te podspec file.
     build_and_push_to_repo:
         macos:
             xcode: "10.1.0"
         steps:
+            - checkout
+
             - run:
                 name: Deploy Script
-                command: ./deploy_release.sh
+                command: sh deploy_release.sh
 
 workflows:
     version: 2
