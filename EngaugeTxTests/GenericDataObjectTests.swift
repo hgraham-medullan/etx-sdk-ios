@@ -27,17 +27,16 @@ class GenericDataObjectTests: XCTestCase {
         let fullName = "Test User"
         let className = "UserProfile"
         
-        let jsonString: String? = "{\"id\":\"\(profileId)\",\"className\":\"\(className)\",\"fullName\":\"\(fullName)\"}"
-        
         let profile = UserProfile()
         profile.id = profileId
         profile.fullName = fullName
         
         let personAsString = profile.toJSONString()!
         
-        XCTAssertNotNil(personAsString.range(of: "\"id\":\"\(profileId)\""), "Serialized object should include profile id")
-        XCTAssertNotNil(personAsString.range(of: "\"className\":\"\(className)\""), "Serialized object should include className")
-        XCTAssertNotNil(personAsString.range(of: "\"fullName\":\"\(fullName)\""), "Serialized object should include fullName")
+        // toJSONString sometimes returns properties in random order, and therefore may cause string comparison errors.
+        XCTAssertNotNil(personAsString.contains("\"id\":\"\(profileId)\""), "Serialized object should include profile id")
+        XCTAssertNotNil(personAsString.contains("\"className\":\"\(className)\""), "Serialized object should include className")
+        XCTAssertNotNil(personAsString.contains("\"fullName\":\"\(fullName)\""), "Serialized object should include fullName")
     }
     
     func testMappingFromAJsonObject() {

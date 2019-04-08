@@ -29,6 +29,8 @@ class RegistrationErrorTests: XCTestCase {
             "email": ["uniqueness":"Email already exists"]
         ]
         let err = ETXRegistrationError(JSONString: jsonError)
+        
+        // Comparison of dictionary elements rather than string description
         XCTAssertEqual(expected, err?.validationErrors)
     }
     
@@ -42,6 +44,8 @@ class RegistrationErrorTests: XCTestCase {
             "password": ["minLength": "Password must be at least 8 characters long"]
         ]
         let err = ETXRegistrationError(JSONString: jsonError)
+        
+        // Comparison of dictionary elements rather than string description
         XCTAssertEqual(expected, err?.validationErrors)
     }
 }
