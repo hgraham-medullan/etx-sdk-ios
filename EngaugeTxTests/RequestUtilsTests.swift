@@ -55,8 +55,8 @@ class RequestUtilsTests: XCTestCase {
         let convertedString = ETXRequestUtils.convertJSONDataToString(result)
         
         // toJSONString sometimes returns properties in random order, and therefore may cause string comparison errors.
-        XCTAssertNotNil(convertedString.contains("\"age\":{\"gt\":20}"), "Expected converted string to include age")
-        XCTAssertNotNil(convertedString.contains("\"ownerId\":\"testout\""), "Expected converted string to include ownerId")
+        XCTAssertTrue(convertedString.contains("\"age\":{\"gt\":20}"), "Expected converted string to include age")
+        XCTAssertTrue(convertedString.contains("\"ownerId\":\"testout\""), "Expected converted string to include ownerId")
     }
     
     
