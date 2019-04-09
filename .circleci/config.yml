@@ -39,9 +39,6 @@ jobs:
     # Deploys to the SDK repository: https://github.com/medullan/engauge-tx-pod-specs/tree/master/EngaugeTx
     # This consists of pushing the podspec file.
     build_and_push_to_repo:
-        environment:
-            GIT_USERNAME: $GIT_USERNAME
-            GIT_EMAIL: $GIT_EMAIL
         macos:
             xcode: "10.1.0"
         steps:
@@ -56,6 +53,12 @@ jobs:
                 command: |
                     curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
                     pod install --verbose
+
+            - run:
+                name: Set Git User
+                command: |
+                    export GIT_USERNAME="$GIT_USERNAME"
+                    export GIT_EMAIL="$GIT_EMAIL"
 
             - run:
                 name: Deploy Script
