@@ -4,11 +4,11 @@
 
 ## Getting Started
 
-**Minimum Xcode version required: 9.1**
+**Minimum Xcode version required: 10.1**
 
 ### CocoaPods
 ```
-platform :ios, "8.0"
+platform :ios, "12.2"
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/medullan/engauge-tx-pod-specs.git'
 

@@ -14,9 +14,9 @@ set -o pipefail
 #cd docs
 
 #echo "Deploying docs..."
-#git config --global user.name "Medullan Platform Solutions"
-#git config --global user.email "mps@medullan.com"
-#git add . 
+git config --global user.name "$GIT_USERNAME"
+git config --global user.email "$GIT_EMAIL"
+#git add .
 #git commit -m "Release for v$CIRCLE_TAG $LAST_COMMIT_HASH"
 #git tag v$CIRCLE_TAG
 #git push origin master --tags

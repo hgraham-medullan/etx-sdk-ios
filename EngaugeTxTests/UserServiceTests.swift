@@ -205,10 +205,10 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testGetCurrentUserWhenTheUserExtendETXUser() {
-        let email: String = "sean+extendedUser@medullan.com"
+        let email: String = "unittestuser@example.com"
         let password: String = "P@ssw0rd"
-        let firstName: String = "Extended"
-        let lastName: String = "User"
+        let firstName: String = "UnitTestUser"
+        let lastName: String = "UnitTestUser"
         let oldName: String = "Old Name"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
