@@ -63,7 +63,7 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     /**
      Create an instance of GenericData Object
      */
-    override public init() {
+    required public init() {
         super.init()
     }
     
@@ -75,6 +75,10 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
         super.init(map: map)
     }
     
+    public override init(owner: ETXUser) {
+        super.init(owner: owner)
+    }
+    
     /**
      Describes how the object should be desearialized
      - parameter map: The data as a Map
@@ -82,26 +86,27 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
     override open func mapping(map: Map) {
         super.mapping(map: map)
         className <- map["className"]
-        
     }
     
-    open override class func getDataSvc<T: ETXPersistedModel>() -> ETXDataService<T>? {
-        let genericDataObjectRepository = GenericDataObjectRepository<ModelType>(className: modelName)
-        return ETXDataService<T>(repository: Repository<T>(resourcePath: genericDataObjectRepository.genericModelResourcePath))
+    override public func getDataSvc<M: ETXGenericDataObject, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let genericDataObjectRepository = ETXGenericDataObjectRepository<M>(className: (forModel as ETXGenericDataObject).modelName)
+        let defaultDataSvc = ETXGenericDataService<M>(repository: genericDataObjectRepository)
+        return defaultDataSvc as! T
     }
 }
-
 
 /**
  Provides persistence functionalities for a generic object
  */
 public protocol ETXPersistentGenericObject {
     typealias ModelType = Self
-    static var customModelName: String? { get }
-    static var modelName: String { get }
+    var modelName: String { get }
 }
 
 extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
+    
+    typealias RepositoryType = ETXGenericDataObjectRepository<Self>
+    typealias DataServiceType = ETXGenericDataService<Self>
     
     internal func getModelName() -> String {
         var s: String
@@ -116,10 +121,11 @@ extension ETXPersistentGenericObject where Self: ETXGenericDataObject {
     /**
      The name of the model as persisted on the platform
     */
-    public static var modelName: String {
+    public var modelName: String {
         if let customModelName = Self.customModelName {
             return customModelName
         }
-        return String(describing: self)
+        // Get the name of the class without the project name prefix
+        return String(describing: (Mirror(reflecting: self)).subjectType)
     }
 }

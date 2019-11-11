@@ -16,8 +16,9 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "EngaugeTx"
-  s.version      = "0.0.36"
-  s.summary      = "SDK for the EngaugeTx platform"
+  s.version      = "1.2.2"
+  s.summary      = "iOS SDK for the VARA platform"
+  s.swift_version = "4.2"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,7 +27,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "EngaugeTx Medullan Platform Solutions"
 
-  s.homepage     = "https://developer.engaugetx.com/"
+  s.homepage     = "https://developer.vara.io/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -77,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "git@github.com:medullan/etx-sdk-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/medullan/etx-sdk-ios.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -128,9 +129,10 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
- s.dependency 'Siesta', '=1.1.1'
- s.dependency 'Siesta/Alamofire', '=1.1.1'
- s.dependency 'ObjectMapper', '=2.2.7'
+ s.dependency 'Siesta', '=1.4.2'
+ s.dependency 'Siesta/Alamofire', '=1.4.2'
+ s.dependency 'ObjectMapper', '=3.4.2'
  s.dependency 'SwiftKeychainWrapper', '3.0.1'
+ s.dependency 'SwiftyBeaver', '=1.4.0'
 
 end

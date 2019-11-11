@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Represents a user of an application on the platform
  */
-open class ETXUser: ETXModel {
+open class ETXUser: ETXPersistedModel {
     
     // TODO: Ensure that the type is Generic
     private var _userSvc: ETXUserService<ETXUser>?
@@ -46,7 +46,12 @@ open class ETXUser: ETXModel {
     /**
      The user's Password
      */
-    public var password: String
+    public var password: String?
+    
+    /**
+     The User's preferred locale
+    */
+    public var locale: String?
     
     /**
      Create a new instance
@@ -64,7 +69,6 @@ open class ETXUser: ETXModel {
     public init(user: ETXAffiliatedUser) {
         self.email = ""
         self.username = ""
-        self.password = ""
         super.init()
         self.firstName = user.firstName
         self.lastName = user.lastName
@@ -72,10 +76,9 @@ open class ETXUser: ETXModel {
         
     }
     
-    public override init() {
+    public required init() {
         self.email = ""
         self.username = ""
-        self.password = ""
         super.init()
     }
     
@@ -85,16 +88,14 @@ open class ETXUser: ETXModel {
     required public init?(map: Map) {
         self.email = ""
         self.username = ""
-        self.password = ""
         do {
-            try self.password = map.value("password")
             try self.username = map.value("username")
             try self.email = map.value("email")
         }
         catch {
-            print("Err occured while mapping to an ETXUser")
+            EngaugeTxLog.error("Err occured while mapping to an ETXUser", context: error)
         }
-        
+
         super.init(map: map)
     }
     
@@ -108,6 +109,7 @@ open class ETXUser: ETXModel {
         username <- map["username"]
         email <- map["email"]
         password <- map["password"]
+        locale <- map["locale"]
     }
     
     /**
@@ -134,5 +136,18 @@ open class ETXUser: ETXModel {
      */
     public func updateEmailAddress(_ newEmailAddress: String, currentPassword: String, completion: @escaping (_ err: ETXError?)->Void) {
         self.userService.changeEmailAddress(newEmailAddress, currentPassword: currentPassword, currentUser: self, completion: completion)
+    }
+    
+    /**
+     The sevice class responsible for making API calls on behalf of the model
+    **/
+    public override func getDataSvc<M: ETXUser, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let userRepository = UserRepository<M>(resourcePath: "/users")
+        let defaultDataSvc = ETXUserService<M>(repository: userRepository)
+        return defaultDataSvc as! T
+    }
+    
+    public func delete(hardDelete: Bool, completion: @escaping (ETXError?) -> Void) {
+        self.userService.delete(model: self, hardDelete: hardDelete, completion: completion)
     }
 }

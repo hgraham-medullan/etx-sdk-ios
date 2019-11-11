@@ -51,6 +51,10 @@ public class ETXSearchFilter {
         self.customFilter = customFilter
     }
     
+    public var usesCustomFilter: Bool {
+        return self.customFilter != nil
+    }
+    
     /**
      Create a new instance of SearchFilter
      - parameter conditions: The list of conditions to be applied to the filter

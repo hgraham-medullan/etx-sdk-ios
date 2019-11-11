@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  The device token used for receiving push notifications
  */
-public class ETXDeviceToken: ETXModel {
+public class ETXDeviceToken: ETXPersistedModel {
     
     var type: String = "ios"
     var token: String
@@ -40,6 +40,11 @@ public class ETXDeviceToken: ETXModel {
         super.init(map: map)
     }
     
+    public required init() {
+        self.token = ""
+        super.init()
+    }
+    
     /**
      Describes how the object should be desearialized
      - parameter map: The data as a Map
@@ -50,7 +55,7 @@ public class ETXDeviceToken: ETXModel {
         self.token <- map["token"]
     }
     
-    public func save(completion: @escaping (ETXError?) -> Void) {
+    public override func save(completion: @escaping (ETXError?) -> Void) {
         self.pushNotificationSvc.save(model: self) {
             (model, err) in
             if let model = model {

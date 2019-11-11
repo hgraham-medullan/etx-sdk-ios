@@ -16,6 +16,8 @@
 		081222871DF701A700586B7D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222861DF701A700586B7D /* Repository.swift */; };
 		081222891DF7025600586B7D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081222881DF7025600586B7D /* AuthError.swift */; };
 		0812228B1DF73A2900586B7D /* ETXAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0812228A1DF73A2900586B7D /* ETXAccessToken.swift */; };
+		081755D31F9651FD00E867A6 /* LocalRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081755D21F9651FD00E867A6 /* LocalRepositoryTests.swift */; };
+		08365F191F6F6308002DD6E9 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08365F181F6F6308002DD6E9 /* RepositoryTests.swift */; };
 		083DEE521DF0685D00A3CB8D /* TxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE511DF0685D00A3CB8D /* TxModel.swift */; };
 		083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE531DF0687F00A3CB8D /* TxError.swift */; };
 		083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */; };
@@ -45,10 +47,22 @@
 		085184E21E75AD4900BFD227 /* Timeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085184E11E75AD4900BFD227 /* Timeframe.swift */; };
 		085C69E21EB233DB007F0F38 /* ResourceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085C69E11EB233DB007F0F38 /* ResourceObserver.swift */; };
 		0862A2A01EB0E3A200869160 /* StepsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A29F1EB0E3A200869160 /* StepsTests.swift */; };
+		0864C2C01F9DFDAA00052B2E /* StandaloneFunctionDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864C2BF1F9DFDAA00052B2E /* StandaloneFunctionDataService.swift */; };
+		0864C2C21FA06C7B00052B2E /* CustomStandaloneFunctionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864C2C11FA06C7B00052B2E /* CustomStandaloneFunctionRepository.swift */; };
+		0864C2C41FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864C2C31FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift */; };
+		0864C2C61FA06E2400052B2E /* CustomTrendsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864C2C51FA06E2400052B2E /* CustomTrendsRepository.swift */; };
+		0867649E1F50C1FA0024F5AA /* EngaugeTxLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867649D1F50C1FA0024F5AA /* EngaugeTxLogger.swift */; };
+		086764A11F50C7560024F5AA /* EngaugeTxLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086764A01F50C7560024F5AA /* EngaugeTxLogger.swift */; };
 		08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08783D1B1DEC927800A08343 /* EngaugeTx.framework */; };
 		08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D291DEC927900A08343 /* EngaugeTxTests.swift */; };
 		08783D2C1DEC927900A08343 /* EngaugeTx.h in Headers */ = {isa = PBXBuildFile; fileRef = 08783D1E1DEC927800A08343 /* EngaugeTx.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08783D391DECAA3B00A08343 /* EngaugeTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08783D381DECAA3B00A08343 /* EngaugeTx.swift */; };
+		087BEF3B1FA0929400FDD72F /* CustomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */; };
+		08879B3F1F9CE893001928D1 /* CustomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B3E1F9CE893001928D1 /* CustomUserRepository.swift */; };
+		08879B411F9D90EF001928D1 /* CustomRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B401F9D90EF001928D1 /* CustomRepository.swift */; };
+		08879B431F9DB10F001928D1 /* CustomGenericRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B421F9DB10F001928D1 /* CustomGenericRepository.swift */; };
+		08879B451F9DB5FF001928D1 /* CustomStandaloneFunctionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B441F9DB5FF001928D1 /* CustomStandaloneFunctionRepository.swift */; };
+		08879B471F9DBC70001928D1 /* CustomTrendsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08879B461F9DBC70001928D1 /* CustomTrendsRepository.swift */; };
 		089898F21E0D64F3005CB45D /* FilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089898F11E0D64F3005CB45D /* FilterTests.swift */; };
 		089E0FA91E733F49009154DE /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E0FA81E733F49009154DE /* Steps.swift */; };
 		089E0FAB1E733FAD009154DE /* AggregatableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E0FAA1E733FAD009154DE /* AggregatableModel.swift */; };
@@ -64,7 +78,7 @@
 		08BCB0721EF116A100BC8733 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0711EF116A100BC8733 /* data.json */; };
 		08BCB0741EF144F800BC8733 /* test-upload-file.json in Resources */ = {isa = PBXBuildFile; fileRef = 08BCB0731EF144F800BC8733 /* test-upload-file.json */; };
 		08BCB0761EF18DB900BC8733 /* BlobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCB0751EF18DB900BC8733 /* BlobTests.swift */; };
-		08EC60E51DF98B6500235E5C /* circle.yml in Resources */ = {isa = PBXBuildFile; fileRef = 08EC60E41DF98B6500235E5C /* circle.yml */; };
+		08CD38C61FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */; };
 		08EFD9421E45F7F9005F0B50 /* DeviceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */; };
 		08EFD9441E45FA50005F0B50 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */; };
 		08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */; };
@@ -79,6 +93,8 @@
 		08FE53B61E0439E0008B5D0E /* GenericDataObjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */; };
 		08FE53B81E043A21008B5D0E /* ETXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B71E043A21008B5D0E /* ETXDataService.swift */; };
 		08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B91E04412B008B5D0E /* ETXTestCase.swift */; };
+		127C64332010E94B00F6F9DC /* RequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C64322010E94B00F6F9DC /* RequestUtils.swift */; };
+		127C64352010E9FA00F6F9DC /* RequestUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */; };
 		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
 		180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */; };
 		180743EA1EAEDF21009D4B06 /* BucketSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E91EAEDF21009D4B06 /* BucketSize.swift */; };
@@ -145,6 +161,8 @@
 		081222861DF701A700586B7D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		081222881DF7025600586B7D /* AuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		0812228A1DF73A2900586B7D /* ETXAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXAccessToken.swift; sourceTree = "<group>"; };
+		081755D21F9651FD00E867A6 /* LocalRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepositoryTests.swift; sourceTree = "<group>"; };
+		08365F181F6F6308002DD6E9 /* RepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
 		083DEE511DF0685D00A3CB8D /* TxModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxModel.swift; sourceTree = "<group>"; };
 		083DEE531DF0687F00A3CB8D /* TxError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxError.swift; sourceTree = "<group>"; };
 		083DEE551DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxApplicationTests.swift; sourceTree = "<group>"; };
@@ -174,6 +192,12 @@
 		085184E11E75AD4900BFD227 /* Timeframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeframe.swift; sourceTree = "<group>"; };
 		085C69E11EB233DB007F0F38 /* ResourceObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceObserver.swift; sourceTree = "<group>"; };
 		0862A29F1EB0E3A200869160 /* StepsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTests.swift; sourceTree = "<group>"; };
+		0864C2BF1F9DFDAA00052B2E /* StandaloneFunctionDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandaloneFunctionDataService.swift; sourceTree = "<group>"; };
+		0864C2C11FA06C7B00052B2E /* CustomStandaloneFunctionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStandaloneFunctionRepository.swift; sourceTree = "<group>"; };
+		0864C2C31FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGenericDataObjectRepository.swift; sourceTree = "<group>"; };
+		0864C2C51FA06E2400052B2E /* CustomTrendsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTrendsRepository.swift; sourceTree = "<group>"; };
+		0867649D1F50C1FA0024F5AA /* EngaugeTxLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxLogger.swift; sourceTree = "<group>"; };
+		086764A01F50C7560024F5AA /* EngaugeTxLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTxLogger.swift; sourceTree = "<group>"; };
 		08783D1B1DEC927800A08343 /* EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08783D1E1DEC927800A08343 /* EngaugeTx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngaugeTx.h; sourceTree = "<group>"; };
 		08783D1F1DEC927800A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +205,12 @@
 		08783D291DEC927900A08343 /* EngaugeTxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngaugeTxTests.swift; sourceTree = "<group>"; };
 		08783D2B1DEC927900A08343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08783D381DECAA3B00A08343 /* EngaugeTx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngaugeTx.swift; sourceTree = "<group>"; };
+		087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserRepository.swift; sourceTree = "<group>"; };
+		08879B3E1F9CE893001928D1 /* CustomUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUserRepository.swift; sourceTree = "<group>"; };
+		08879B401F9D90EF001928D1 /* CustomRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRepository.swift; sourceTree = "<group>"; };
+		08879B421F9DB10F001928D1 /* CustomGenericRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGenericRepository.swift; sourceTree = "<group>"; };
+		08879B441F9DB5FF001928D1 /* CustomStandaloneFunctionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStandaloneFunctionRepository.swift; sourceTree = "<group>"; };
+		08879B461F9DBC70001928D1 /* CustomTrendsRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTrendsRepository.swift; sourceTree = "<group>"; };
 		089898F11E0D64F3005CB45D /* FilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTests.swift; sourceTree = "<group>"; };
 		089E0FA81E733F49009154DE /* Steps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
 		089E0FAA1E733FAD009154DE /* AggregatableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AggregatableModel.swift; sourceTree = "<group>"; };
@@ -196,7 +226,7 @@
 		08BCB0711EF116A100BC8733 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		08BCB0731EF144F800BC8733 /* test-upload-file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-upload-file.json"; sourceTree = "<group>"; };
 		08BCB0751EF18DB900BC8733 /* BlobTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlobTests.swift; sourceTree = "<group>"; };
-		08EC60E41DF98B6500235E5C /* circle.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
+		08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserRepositoryWithFailedResponses.swift; sourceTree = "<group>"; };
 		08EFD9411E45F7F9005F0B50 /* DeviceToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceToken.swift; sourceTree = "<group>"; };
 		08EFD9431E45FA50005F0B50 /* PushNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		08EFD9461E46048D005F0B50 /* DeviceTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTokenTests.swift; sourceTree = "<group>"; };
@@ -211,6 +241,8 @@
 		08FE53B51E0439E0008B5D0E /* GenericDataObjectRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataObjectRepository.swift; sourceTree = "<group>"; };
 		08FE53B71E043A21008B5D0E /* ETXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXDataService.swift; sourceTree = "<group>"; };
 		08FE53B91E04412B008B5D0E /* ETXTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETXTestCase.swift; sourceTree = "<group>"; };
+		127C64322010E94B00F6F9DC /* RequestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUtils.swift; sourceTree = "<group>"; };
+		127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUtilsTests.swift; sourceTree = "<group>"; };
 		180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedAdherenceTests.swift; sourceTree = "<group>"; };
 		180743E91EAEDF21009D4B06 /* BucketSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketSize.swift; sourceTree = "<group>"; };
 		180743EB1EAEE013009D4B06 /* AdherenceResultMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceResultMeta.swift; sourceTree = "<group>"; };
@@ -302,6 +334,20 @@
 			name = Auth;
 			sourceTree = "<group>";
 		};
+		08365F171F6F62D2002DD6E9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				08365F181F6F6308002DD6E9 /* RepositoryTests.swift */,
+				081755D21F9651FD00E867A6 /* LocalRepositoryTests.swift */,
+				0864C2C11FA06C7B00052B2E /* CustomStandaloneFunctionRepository.swift */,
+				0864C2C31FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift */,
+				0864C2C51FA06E2400052B2E /* CustomTrendsRepository.swift */,
+				087BEF3A1FA0929400FDD72F /* CustomUserRepository.swift */,
+				08CD38C51FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
 		084A24411E267CD5003BBCAB /* DataFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				084A244F1E270563003BBCAB /* CustomFunction.swift */,
+				0864C2BF1F9DFDAA00052B2E /* StandaloneFunctionDataService.swift */,
 			);
 			name = CustomFunction;
 			sourceTree = "<group>";
@@ -357,6 +404,14 @@
 			name = Trends;
 			sourceTree = "<group>";
 		};
+		085D1C791F546EEA00529589 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				0867649D1F50C1FA0024F5AA /* EngaugeTxLogger.swift */,
+			);
+			name = Logger;
+			sourceTree = "<group>";
+		};
 		0862A29E1EB0E38D00869160 /* Measurement */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,10 +420,17 @@
 			name = Measurement;
 			sourceTree = "<group>";
 		};
+		0867649F1F50C7410024F5AA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				086764A01F50C7560024F5AA /* EngaugeTxLogger.swift */,
+			);
+			name = Logger;
+			sourceTree = "<group>";
+		};
 		08783D111DEC927800A08343 = {
 			isa = PBXGroup;
 			children = (
-				08EC60E41DF98B6500235E5C /* circle.yml */,
 				083DEEB51DF1D83E00A3CB8D /* Podfile */,
 				080520EB1DEF0D6E00245C4D /* EngaugeTx.podspec */,
 				080520E41DEF078600245C4D /* LICENSE */,
@@ -392,6 +454,8 @@
 		08783D1D1DEC927800A08343 /* EngaugeTx */ = {
 			isa = PBXGroup;
 			children = (
+				08879B3D1F9CE85C001928D1 /* CustomRepositories */,
+				085D1C791F546EEA00529589 /* Logger */,
 				08BCB06C1EF1121100BC8733 /* Blobs */,
 				18B99DE11EA82E0200D81212 /* DataTypes */,
 				18B99DE81EA8644200D81212 /* Repositories */,
@@ -419,6 +483,9 @@
 		08783D281DEC927800A08343 /* EngaugeTxTests */ = {
 			isa = PBXGroup;
 			children = (
+				127C64362012389B00F6F9DC /* Sharing */,
+				08365F171F6F62D2002DD6E9 /* Repositories */,
+				0867649F1F50C7410024F5AA /* Logger */,
 				08BCB06B1EF1120700BC8733 /* Blobs */,
 				0811CFEE1EB382FC008B4B30 /* Affiliations */,
 				0862A29E1EB0E38D00869160 /* Measurement */,
@@ -457,6 +524,18 @@
 				1813AE6B1E9F230A00A08F22 /* Role.swift */,
 			);
 			name = Auth;
+			sourceTree = "<group>";
+		};
+		08879B3D1F9CE85C001928D1 /* CustomRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				08879B3E1F9CE893001928D1 /* CustomUserRepository.swift */,
+				08879B401F9D90EF001928D1 /* CustomRepository.swift */,
+				08879B421F9DB10F001928D1 /* CustomGenericRepository.swift */,
+				08879B441F9DB5FF001928D1 /* CustomStandaloneFunctionRepository.swift */,
+				08879B461F9DBC70001928D1 /* CustomTrendsRepository.swift */,
+			);
+			name = CustomRepositories;
 			sourceTree = "<group>";
 		};
 		089E0FA71E733F24009154DE /* Measurements */ = {
@@ -521,6 +600,13 @@
 			name = GenericDataObject;
 			sourceTree = "<group>";
 		};
+		127C64362012389B00F6F9DC /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sharing;
+			sourceTree = "<group>";
+		};
 		180743E61EAECEE6009D4B06 /* Medications */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +667,7 @@
 				18D0DFD41EAAEFCD00856F2D /* StringUtils.swift */,
 				08FE53B71E043A21008B5D0E /* ETXDataService.swift */,
 				18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */,
+				127C64322010E94B00F6F9DC /* RequestUtils.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -620,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				18D0DFD71EAAF1DB00856F2D /* StringUtilsTests.swift */,
+				127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -698,7 +786,6 @@
 				08783D171DEC927800A08343 /* Frameworks */,
 				08783D181DEC927800A08343 /* Headers */,
 				08783D191DEC927800A08343 /* Resources */,
-				99CF089D3D210FB3938250D8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -718,7 +805,6 @@
 				08783D211DEC927800A08343 /* Frameworks */,
 				08783D221DEC927800A08343 /* Resources */,
 				6CA73C83C164E03CAF84E6CA /* [CP] Embed Pods Frameworks */,
-				1E5E2D13A530C760784D603B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -737,16 +823,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Medullan Platform Solutions";
 				TargetAttributes = {
 					08783D1A1DEC927800A08343 = {
 						CreatedOnToolsVersion = 8.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					08783D231DEC927800A08343 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -774,7 +861,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08EC60E51DF98B6500235E5C /* circle.yml in Resources */,
 				083DEEB61DF1D83E00A3CB8D /* Podfile in Resources */,
 				080520E91DEF078600245C4D /* LICENSE in Resources */,
 				08BCB0721EF116A100BC8733 /* data.json in Resources */,
@@ -793,49 +879,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E5E2D13A530C760784D603B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6CA73C83C164E03CAF84E6CA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Siesta/Siesta.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		99CF089D3D210FB3938250D8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C032F08ADFC41248DAA26897 /* [CP] Check Pods Manifest.lock */ = {
@@ -844,13 +911,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EngaugeTx-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F73FAD52D41D4D311651F35B /* [CP] Check Pods Manifest.lock */ = {
@@ -859,13 +929,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EngaugeTxTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -898,6 +971,7 @@
 				188548FB1EA68A03007442B5 /* Constants.swift in Sources */,
 				18B99DDE1EA8280400D81212 /* MeasurementDevice.swift in Sources */,
 				18B99DEC1EA867F400D81212 /* TxResponseMeta.swift in Sources */,
+				0864C2C01F9DFDAA00052B2E /* StandaloneFunctionDataService.swift in Sources */,
 				18D0DFF81EAB097200856F2D /* AdherenceService.swift in Sources */,
 				18D0DFDA1EAAF4D000856F2D /* Administration.swift in Sources */,
 				089E0FAB1E733FAD009154DE /* AggregatableModel.swift in Sources */,
@@ -916,10 +990,12 @@
 				18D0DFDE1EAAF97E00856F2D /* Dose.swift in Sources */,
 				08F897CC1EAFE4E100F41DC4 /* FirstClassModel.swift in Sources */,
 				180743EA1EAEDF21009D4B06 /* BucketSize.swift in Sources */,
+				08879B431F9DB10F001928D1 /* CustomGenericRepository.swift in Sources */,
 				18D0DFDC1EAAF84200856F2D /* PrescriptionDosage.swift in Sources */,
 				085184DA1E74DBC800BFD227 /* DateService.swift in Sources */,
 				084A24431E267CFC003BBCAB /* Condtion.swift in Sources */,
 				185691BA1EA6E43800754AC4 /* OxygenSaturation.swift in Sources */,
+				127C64332010E94B00F6F9DC /* RequestUtils.swift in Sources */,
 				083DEE541DF0687F00A3CB8D /* TxError.swift in Sources */,
 				1813AE6A1E9F22D600A08F22 /* AffiliatedUser.swift in Sources */,
 				18D0DFE01EAAF9E700856F2D /* Timing.swift in Sources */,
@@ -932,6 +1008,9 @@
 				18D0DFF41EAB039D00856F2D /* AdherenceResultSet.swift in Sources */,
 				083DEEC21DF5B03800A3CB8D /* UserRepository.swift in Sources */,
 				085184DE1E75ACAC00BFD227 /* ClassTrendResultSet.swift in Sources */,
+				08879B451F9DB5FF001928D1 /* CustomStandaloneFunctionRepository.swift in Sources */,
+				08879B471F9DBC70001928D1 /* CustomTrendsRepository.swift in Sources */,
+				0867649E1F50C1FA0024F5AA /* EngaugeTxLogger.swift in Sources */,
 				18B99DEA1EA8647700D81212 /* ShareableModelRespository.swift in Sources */,
 				08A7C5491E4CCD1900852D62 /* Date.swift in Sources */,
 				08A904C01EBA5A4E005DF48D /* KeychainService.swift in Sources */,
@@ -941,6 +1020,7 @@
 				085C69E21EB233DB007F0F38 /* ResourceObserver.swift in Sources */,
 				089E0FB11E7343C0009154DE /* OutdoorAirQuality.swift in Sources */,
 				18D0DFF61EAB05B100856F2D /* AdherenceRepository.swift in Sources */,
+				08879B411F9D90EF001928D1 /* CustomRepository.swift in Sources */,
 				08FE53A81E003A26008B5D0E /* RegistrationError.swift in Sources */,
 				1813AE681E9F229E00A08F22 /* AffiliationService.swift in Sources */,
 				085184CD1E74288F00BFD227 /* TrendService.swift in Sources */,
@@ -952,6 +1032,7 @@
 				18D0DFEA1EAAFE8E00856F2D /* Medication.swift in Sources */,
 				085184D61E7441A000BFD227 /* TrendRepository.swift in Sources */,
 				084A244B1E267E2F003BBCAB /* Comparator.swift in Sources */,
+				08879B3F1F9CE893001928D1 /* CustomUserRepository.swift in Sources */,
 				1813AE6C1E9F230A00A08F22 /* Role.swift in Sources */,
 				08BCB06A1EF1042600BC8733 /* BlobRepository.swift in Sources */,
 				08BCB0671EF0F92900BC8733 /* Blob.swift in Sources */,
@@ -964,20 +1045,29 @@
 			files = (
 				084A24531E271073003BBCAB /* CustomFunctionTests.swift in Sources */,
 				08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */,
+				0864C2C61FA06E2400052B2E /* CustomTrendsRepository.swift in Sources */,
 				083DEEC01DF2225300A3CB8D /* UserServiceTests.swift in Sources */,
+				086764A11F50C7560024F5AA /* EngaugeTxLogger.swift in Sources */,
+				127C64352010E9FA00F6F9DC /* RequestUtilsTests.swift in Sources */,
 				08A7C54B1E4CCE7800852D62 /* DateTests.swift in Sources */,
 				083DEEB81DF2031E00A3CB8D /* TxModelTests.swift in Sources */,
 				085184D81E74D64900BFD227 /* TrendRepositoryTests.swift in Sources */,
 				08783D2A1DEC927900A08343 /* EngaugeTxTests.swift in Sources */,
+				08CD38C61FBE44E2007513C3 /* CustomUserRepositoryWithFailedResponses.swift in Sources */,
 				1874859D1E9FEFD900B8CEDD /* AffiliationServiceUnauthenticatedTests.swift in Sources */,
+				087BEF3B1FA0929400FDD72F /* CustomUserRepository.swift in Sources */,
 				0811CFF21EB38DD2008B4B30 /* CaregiverTests.swift in Sources */,
 				08EFD9471E46048D005F0B50 /* DeviceTokenTests.swift in Sources */,
+				081755D31F9651FD00E867A6 /* LocalRepositoryTests.swift in Sources */,
 				08FE53B41E0392C5008B5D0E /* GenericDataServiceTests.swift in Sources */,
 				0811CFF01EB38334008B4B30 /* AffiliationTests.swift in Sources */,
 				085184DC1E75680A00BFD227 /* DateServiceTests.swift in Sources */,
 				08EFD9491E460576005F0B50 /* ETXAuthenticatedTestCase.swift in Sources */,
+				08365F191F6F6308002DD6E9 /* RepositoryTests.swift in Sources */,
 				089898F21E0D64F3005CB45D /* FilterTests.swift in Sources */,
+				0864C2C41FA06CEA00052B2E /* CustomGenericDataObjectRepository.swift in Sources */,
 				0862A2A01EB0E3A200869160 /* StepsTests.swift in Sources */,
+				0864C2C21FA06C7B00052B2E /* CustomStandaloneFunctionRepository.swift in Sources */,
 				083DEE561DF06BDC00A3CB8D /* EngaugeTxApplicationTests.swift in Sources */,
 				081222851DF6FC8100586B7D /* UserEmailCredentialsTests.swift in Sources */,
 				08FE53AA1E003EBB008B5D0E /* RegistrationErrorTests.swift in Sources */,
@@ -1011,15 +1101,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1064,15 +1163,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1118,7 +1226,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1138,7 +1247,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1151,7 +1261,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1164,7 +1275,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

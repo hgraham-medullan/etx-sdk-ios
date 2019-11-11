@@ -11,15 +11,19 @@ import ObjectMapper
 
 class ETXAdherenceRepository: Repository<ETXModel> {
     
-    internal let repositoryResourcePath = "/med/adherence"
     
-    init() {
-        super.init(resourcePath: repositoryResourcePath)
+    
+    convenience init() {
+        let repositoryResourcePath = "/med/adherence"
+        self.init(resourcePath: repositoryResourcePath)
+    }
+    
+    required public init(resourcePath: String) {
+        super.init(resourcePath: resourcePath)
         
-        self.configureTransformer(repositoryResourcePath) {
+        self.configureTransformer(resourcePath) {
             Mapper<ETXResponse>().map(JSON: $0.content)
         }
-        
     }
     
     func getMedicationAdherence(medicationId: String?, startDate: Date, endDate: Date, forUser: ETXUser?, completion: @escaping ([ETXAdherenceResultSet]?, ETXError?) ->Void) {

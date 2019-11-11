@@ -29,7 +29,7 @@ class UserServiceTest: ETXTestCase {
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
         
-        self.userSvc.loginUserWithUsername(username, password: password, rememberMe: false) {
+        self.userSvc.loginUserWithUsername(username, password: password, rememberMe: true) {
             (user: ETXUser?, err: ETXError?) in
             if let user:ETXUser = user {
                 XCTAssertEqual(user.username, username, "Login username and username on the oject should be the same.")
@@ -47,7 +47,6 @@ class UserServiceTest: ETXTestCase {
             }
         }
     }
-    
     
     /** 
      Failing on the CI server for some unknown reason. Spent enough time
@@ -206,10 +205,10 @@ class UserServiceTest: ETXTestCase {
     }
     
     func testGetCurrentUserWhenTheUserExtendETXUser() {
-        let email: String = "sean+extendedUser@medullan.com"
+        let email: String = "unittestuser@example.com"
         let password: String = "P@ssw0rd"
-        let firstName: String = "Extended"
-        let lastName: String = "User"
+        let firstName: String = "UnitTestUser"
+        let lastName: String = "UnitTestUser"
         let oldName: String = "Old Name"
         
         let successfulUserLoginExpectation = expectation(description: "User login is successsful")
@@ -290,13 +289,13 @@ class UserServiceTest: ETXTestCase {
         // Login
         userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
             (user, err) in
-            XCTAssertNotNil(user, "Should have a logged in user (\(err?.message))")
+            XCTAssertNotNil(user, "Should have a logged in user (\(String(describing: err?.message)))")
             if let user = user {
                 
                 // Change Password
                 user.updatePassword(newPassword, currentPassword: oldPassword) {
                     (err) in
-                    XCTAssertNil(err, "Password should be updated successfully (\(err?.message))")
+                    XCTAssertNil(err, "Password should be updated successfully (\(String(describing: err?.message)))")
                     
                     // Test with old Password. Login should fail
                     userSvc.loginUserWithEmail(emailAddress, password: oldPassword, rememberMe: true) {
@@ -332,4 +331,66 @@ class UserServiceTest: ETXTestCase {
             }
         }
     }
+    
+    // Will need to be a manual test
+    func xtestUserSoftDelete() {
+        let userDeletionExpectation = expectation(description: "User deletion")
+        
+        let userSvc = ETXUserService()
+        
+        userSvc.loginUserWithEmail(softDeletedUser.email, password: softDeletedUser.password!, rememberMe: false) { (user, err) in
+            XCTAssertNil(err, "User login should not fail")
+            user!.delete {
+                (err) in
+                XCTAssertNil(err, "User deletion should be successful")
+                userSvc.loginUserWithEmail(self.softDeletedUser.email, password: self.softDeletedUser.password!, rememberMe: false) { (user, err) in
+                    XCTAssertNil(user, "User login should not be successful")
+                    XCTAssertNotNil(err, "User login should failed")
+                    XCTAssertTrue(err! is ETXAuthenticationError, "User login should fail with an authentication error")
+                    let authErr = err as! ETXAuthenticationError
+                    XCTAssertEqual(authErr.reason, ETXAuthenticationError.Reason.AccountDisabled, "The user's account should be disabled")
+                    userDeletionExpectation.fulfill()
+                }
+                
+            }
+        }
+        
+        waitForExpectations(timeout: TIMEOUT_DEFAULT) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
+    
+    // Will need to be a manual test
+    func xtestUserHardDelete() {
+        let userDeletionExpectation = expectation(description: "User deletion")
+        
+        let userSvc = ETXUserService()
+        
+        userSvc.loginUserWithEmail(hardDeletedUser.email, password: hardDeletedUser.password!, rememberMe: false) { (user, err) in
+            XCTAssertNil(err, "User login should not fail")
+            user!.delete(hardDelete: true) {
+                (err) in
+                XCTAssertNil(err, "User deletion should be successful")
+                userSvc.loginUserWithEmail(self.hardDeletedUser.email, password: self.hardDeletedUser.password!, rememberMe: false) { (user, err) in
+                    XCTAssertNil(user, "User login should not be successful")
+                    XCTAssertNotNil(err, "User login should failed")
+                    XCTAssertTrue(err! is ETXAuthenticationError, "User login should fail with an authentication error")
+                    let authErr = err as! ETXAuthenticationError
+                    XCTAssertEqual(authErr.reason, ETXAuthenticationError.Reason.InvalidUsernameOrPassword, "The user's account should be disabled")
+                    userDeletionExpectation.fulfill()
+                }
+                
+            }
+        }
+        
+        waitForExpectations(timeout: 10000) { error in
+            if let error = error {
+                XCTFail("Expectations not resolved: \(error)")
+            }
+        }
+    }
+
+    
 }

@@ -33,6 +33,10 @@ public class ETXClassTrendResultSet: ETXModel {
         super.init(map: map)
     }
     
+    required public init() {
+        super.init()
+    }
+    
     public override func mapping(map: Map) {
         super.mapping(map: map)
         values <- map["values"]

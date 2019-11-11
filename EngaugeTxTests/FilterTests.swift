@@ -64,7 +64,9 @@ class FilterTests: XCTestCase {
             ETXWhereCondition(property: "age", comparator: .lte, value: 20)
             ])
         searchFilter.setLimit(20)
-        XCTAssertEqual("{\"where\":{\"age\":{\"lte\":20}},\"limit\":20}", searchFilter.toJsonString())
+        let searchFilterJson = searchFilter.toJsonString()
+        XCTAssertTrue(searchFilterJson.contains("\"age\":{\"lte\":20}"), "Serialized object should include age filter")
+        XCTAssertTrue(searchFilterJson.contains("\"limit\":20"), "Serialized object should include limit filter")
     }
     
     func testWhenFilterUsesAndCombination() {

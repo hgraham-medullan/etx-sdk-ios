@@ -12,14 +12,9 @@ import XCTest
 
 class AuthenticatedTestCase: ETXTestCase {
     
+    
+    
     var userSvc: ETXUserService<ETXUser>!
-    var currentUser: ETXUser!
-    let defaultTestUser:ETXUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
-    var testUserUnverified:ETXUser = ETXUser(email: "sean+unverified@medullan.com", username: "sean+unverified@medullan.com", password: "P@ssw0rd")
-    var caregiverUser = ETXUser(email: "sean@medullan.com", username: "sean@medullan.com", password: "P@ssw0rd")
-    var patientUser = ETXUser(email: "sean+patient@medullan.com", username: "sean+patient@medullan.com", password: "P@ssw0rd")
-    
-    
     
     override func setUp() {
         super.setUp()
@@ -27,7 +22,7 @@ class AuthenticatedTestCase: ETXTestCase {
         userSvc = ETXUserService()
         let loginExpectation = expectation(description: "Successful Login")
         userSvc.loginUserWithEmail(self.defaultTestUser.email,
-                                   password: self.defaultTestUser.password,
+                                   password: self.defaultTestUser.password!,
                                    rememberMe: false) {
                                     (user, err) in
                                     XCTAssertNotNil(user, "User should be successfully logged in")
@@ -45,7 +40,7 @@ class AuthenticatedTestCase: ETXTestCase {
         userSvc = ETXUserService()
         let loginExpectation = expectation(description: "Successful Login")
         userSvc.loginUserWithEmail(user.email,
-                                   password: user.password,
+                                   password: user.password!,
                                    rememberMe: false) {
                                     (user, err) in
                                     XCTAssertNotNil(user, "User should be successfully logged in")

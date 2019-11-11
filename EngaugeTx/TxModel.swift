@@ -22,7 +22,7 @@ open class ETXModel: ETXMappable {
     */
     public var id: String? = nil
     
-    public override init() {
+    required public override init() {
         super.init()
     }
     

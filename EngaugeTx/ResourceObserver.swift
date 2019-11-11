@@ -11,20 +11,14 @@ import Siesta
 
 class TxResourceObserver: ResourceObserver{
     func resourceChanged(_ resource: Resource, event: ResourceEvent) {
-        print("asds")
         switch(event) {
         case ResourceEvent.observerAdded:
-            print("Observer added")
+            EngaugeTxLog.debug("Resource Observer added")
         default:
-            print(event)
+            EngaugeTxLog.debug("resource Event", context: event)
         }
         if let latestError = resource.latestError {
-            //latestError.httpStatusCode
-            print("err: \(latestError.httpStatusCode)")
+            EngaugeTxLog.debug("An http error occurred with status code: \(String(describing: latestError.httpStatusCode))")
         }
     }
-    
-//    func resourceRequestProgress(for resource: Resource, progress: Double) {
-//        
-//    }
 }

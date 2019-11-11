@@ -29,7 +29,7 @@ class RegistrationErrorTests: XCTestCase {
             "email": ["uniqueness":"Email already exists"]
         ]
         let err = ETXRegistrationError(JSONString: jsonError)
-        XCTAssertEqual(expected.description, err?.validationErrors?.description)
+        XCTAssertEqual(expected, err?.validationErrors)
     }
     
     func testGetValidationErrorsWhenThereAreFieldValidationErrorsPresent() {
@@ -42,6 +42,6 @@ class RegistrationErrorTests: XCTestCase {
             "password": ["minLength": "Password must be at least 8 characters long"]
         ]
         let err = ETXRegistrationError(JSONString: jsonError)
-        XCTAssertEqual(expected.description, err?.validationErrors?.description)
+        XCTAssertEqual(expected, err?.validationErrors)
     }
 }

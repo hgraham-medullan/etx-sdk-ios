@@ -49,10 +49,20 @@ open class ETXOxygenSaturation: ETXMeasurement {
         super.init(map: map)
     }
     
+    public required init() {
+        super.init()
+    }
+    
     override open func mapping(map: Map) {
         super.mapping(map: map)
         spo2 <- map["spo2"]
         spo2Unit <- map["spo2Unit"]
         bpm <- map["bpm"]
+    }
+    
+    public override func getDataSvc<M: ETXOxygenSaturation, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repository = ETXShareableModelRespository<M>(resourcePath: "/OxygenSaturation")
+        let defaultDataSvc = ETXShareableModelDataService<M>(repository: repository)
+        return defaultDataSvc as! T
     }
 }

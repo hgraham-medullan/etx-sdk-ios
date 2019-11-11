@@ -42,21 +42,42 @@ class AccesssTokenCache {
     static var accessToken: String? = nil
 }
 
-class Repository<T> : Service where T: ETXModel {
+public protocol Repo {
+    typealias RepoType = Self
+    init(resourcePath: String)
+}
+
+open class Repository<T> : Service, Repo where T: ETXModel {
     
      let KEY_HEADER_APP_ID: String = "app-id"
      let KEY_HEADER_CLIENT_KEY: String = "client-key"
      let KEY_HEADER_AUTHORIZATION: String = "Authorization"
+     let KEY_HEADER_ACCEPT_LANGUAGE: String = "Accept-Language"
      let QUERY_STRING_APP_ID = "appId"
+     let QUERY_STRING_FILTER = "filter"
      let QUERY_STRING_CLIENT_KEY = "clientKey"
      let QUERY_STRING_ACCESS_TOKEN = "accessToken"
+    
+    let FILTER_PROP_WHERE = "where"
+    
+    let FILTER_PROP_OWNER_ID = "ownerId"
     
     let KEY_DEFAULTS_ACCESS_TOKEN: String = "accessToken"
     
     var resourcePath: String
     
-    
     let keychainInstance: KeychainWrapper = KeychainWrapper(serviceName:  Bundle.main.bundleIdentifier ?? "engaugetx", accessGroup: nil)
+    
+    var ignoreAccessToken = false
+    
+    private var additionalHeaders: [String:String]? {
+        didSet {
+            // Rerun existing configuration closure using new value
+            invalidateConfiguration()
+            // Wipe any cached state if auth token changes
+            wipeResources()
+        }
+    }
     
     private var _etxResource: Resource?
     var etxResource: Resource {
@@ -70,19 +91,37 @@ class Repository<T> : Service where T: ETXModel {
         set { _etxResource = newValue }
     }
     
-    init(resourcePath: String) {
+    required public init(resourcePath: String) {
         self.resourcePath = resourcePath
         super.init(baseURL:EngaugeTxApplication.baseUrl)
 
         configure {
             $0.headers[self.KEY_HEADER_APP_ID] = EngaugeTxApplication.appId
             $0.headers[self.KEY_HEADER_CLIENT_KEY] = EngaugeTxApplication.clientKey
-            $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            $0.headers[self.KEY_HEADER_ACCEPT_LANGUAGE] = self.getPreferredLanguages()
+            
+            // Some requests may need to be made without the presence of the access token
+            if self.ignoreAccessToken == false {
+                $0.headers[self.KEY_HEADER_AUTHORIZATION] = self.getAccessToken()
+            } else {
+                EngaugeTxLog.debug("Ignoring the access token for the request to \(String(describing: self._etxResource?.url.absoluteString))")
+            }
+            if let additionalHeaders = self.additionalHeaders {
+                for (headerName, headerValue) in additionalHeaders {
+                    $0.headers[headerName] = headerValue;
+                }
+            }
             $0.pipeline[.decoding].add(ChangeEmptyResponseContentType())
         }
     }
     
-    func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+    private static var unsavedModelError: ETXError {
+        let err = ETXError(message: "The model is not assigned an ID and may be unsaved")
+        err.name = "UnsavedModelError"
+        return err
+    }
+    
+    open func save(model: T, completion: @escaping (T?, ETXError?) -> Void) {
         if let _ = model.id {
             self.update(model: model, completion: completion)
         } else {
@@ -90,87 +129,143 @@ class Repository<T> : Service where T: ETXModel {
         }
     }
     
-    func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
-        let req = self.etxResource.request(.post, json: ((model as? ETXModel)?.toJSON())!)
-        req.onFailure({ (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            etxError?.rawJson = err.jsonDict
-            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
-            completion(nil, etxError)
-        })
-        req.onSuccess({ (m) in
-            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-            completion(model, nil)
-        })
+    open func create(model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        self.makeRequest(resource: self.etxResource,
+                         httpMethod: .post,
+                         model: model,
+                         errorListener: { (err) in
+                            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                            etxError?.rawJson = err.jsonDict
+                            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+                            completion(nil, etxError)
+                         },
+                         successListener: { (m) in
+                            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                            completion(model, nil)
+                         })
     }
     
-    func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
-        if let id = model.id {
-            let req = self.etxResource.child(id).request(.put, json: ((model as? ETXModel)?.toJSON())!)
-            req.onFailure({ (err) in
-                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                etxError?.rawJson = err.jsonDict
-                completion(nil, etxError)
-            })
-            req.onSuccess({ (m) in
-                let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-                completion(model, nil)
-            })
-        }
-    }
-    
-    func delete(model: T, completion: @escaping (ETXError?) -> Void) {
-        if let id = model.id {
-            let req  = self.etxResource.child(id).request(.delete)
-            req.onFailure({ (err) in
-                let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-                etxError?.rawJson = err.jsonDict
-                completion(etxError)
-            })
-            
-            req.onSuccess({ (m) in
-                completion(nil)
-            })
-        }
-    }
-    
-    func getById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
-        let req  = self.etxResource.child(id).request(.get)
-        req.onFailure({ (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            etxError?.rawJson = err.jsonDict
-            completion(nil, etxError)
-        })
-        req.onSuccess({ (m) in
-            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
-            completion(model, nil)
-        })
-    }
-    
-    func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
-        let req = self.etxResource.withParam("filter", filter.toJsonString()).request(.get)
-        
-        req.onFailure({ (err) in
-            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
-            etxError?.rawJson = err.jsonDict
-            completion(nil, etxError)
-        })
-        
-        req.onSuccess({ (m) in
-            var models: [T]?
-            if let content = m.content as? [String : Any], let result: [[String : Any]] = content["result"] as! [[String : Any]]?  {
-                models = Mapper<T>().mapArray(JSONObject: result)
+    public func makeRequest(resource: Resource,
+                     httpMethod: RequestMethod,
+                     model: T?,
+                     errorListener: @escaping (RequestError) -> Void,
+                     successListener: @escaping (Entity<Any>) -> Void){
+        beforeResourceRequest(resource) {
+            if (httpMethod == .put || httpMethod == .post) {
+                let reqWithData = resource.request(httpMethod, json: ((model as? ETXModel)?.toJSON())!)
+                reqWithData.onFailure(errorListener)
+                reqWithData.onSuccess(successListener)
             } else {
-                models = Mapper<T>().mapArray(JSONArray: [m.content as! [String : Any]])
+                let req = resource.request(httpMethod)
+                req.onFailure(errorListener)
+                req.onSuccess(successListener)
             }
-            completion(models, nil)
-        })
+        }
+    }
+    
+    public func performUpdate(_ resource: Resource, model: T, completion: @escaping (T?, ETXError?) -> Void) {
+        self.makeRequest(resource: resource,
+                         httpMethod: .put,
+                         model: model,
+                         errorListener: { (err) in
+                            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                            etxError?.rawJson = err.jsonDict
+                            completion(nil, etxError)
+                         },
+                         successListener: { (m) in
+                            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                            completion(model, nil)
+                         })
+    }
+    
+    open func update(model: T, completion: @escaping (T?, ETXError?)-> Void) {
+        guard let id = model.id else {
+            completion(nil, Repository.unsavedModelError)
+            return
+        }
+        self.etxResource = self.etxResource.child(id)
+        performUpdate(self.etxResource, model: model, completion: completion)
+    }
+    
+    open func delete(model: T, completion: @escaping (ETXError?) -> Void) {
+        guard let id = model.id else {
+            completion(Repository.unsavedModelError)
+            return
+        }
+        
+        self.makeRequest(resource: self.etxResource.child(id),
+                         httpMethod: .delete,
+                         model: model,
+                         errorListener: { (err) in
+                            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                            etxError?.rawJson = err.jsonDict
+                            completion(etxError)
+                         },
+                         successListener: { (m) in
+                            completion(nil)
+                         })
+    }
+    
+    public func getById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
+        self.findById(id, completion: completion)
+    }
+    
+    public func performFindById(_ resource: Resource, _ completion: @escaping (T?, ETXError?) -> Void) {
+        self.makeRequest(resource: resource,
+                         httpMethod: .get,
+                         model: nil,
+                         errorListener: { (err) in
+                            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                            etxError?.rawJson = err.jsonDict
+                            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+                            completion(nil, etxError)
+                         },
+                         successListener: { (m) in
+                            let model = Mapper<T>().map(JSON: m.content as! [String : Any])
+                            completion(model, nil)
+                         })
+    }
+    
+    open func findById(_ id: String, completion: @escaping (T?, ETXError?) -> Void) {
+        self.etxResource = self.etxResource.child(id)
+        performFindById(self.etxResource, completion)
+    }
+    
+    public func performFindWhere(_ resource: Resource,_ completion: @escaping ([T]?, ETXError?) -> Void) {
+        self.makeRequest(resource: resource,
+                         httpMethod: .get,
+                         model: nil,
+                         errorListener: { (err) in
+                            let etxError = Mapper<ETXError>().map(JSON: err.jsonDict)
+                            etxError?.rawJson = err.jsonDict
+                            etxError?.statusCode = etxError?.statusCode ?? err.httpStatusCode
+                            completion(nil, etxError)
+                         },
+                         successListener: { (m) in
+                            var models: [T]?
+                            if let content = m.content as? [String : Any], let result: [[String : Any]] = content["result"] as! [[String : Any]]?  {
+                                models = Mapper<T>().mapArray(JSONObject: result)
+                            } else {
+                                models = Mapper<T>().mapArray(JSONArray: [m.content as! [String : Any]])
+                            }
+                            completion(models, nil)
+                        })
+    }
+    
+    open func findWhere(_ filter: ETXSearchFilter, completion: @escaping ([T]?, ETXError?) -> Void) {
+        self.etxResource = self.etxResource.withParam(QUERY_STRING_FILTER, filter.toJsonString())
+        performFindWhere(self.etxResource, completion)
+    }
+    
+    public func beforeResourceRequest(_ resource: Resource, completion: @escaping () -> Void) {
+        // Default behaviour. No modification, return true for the request to continue
+        completion()
     }
     
     
     func getAccessToken() -> String? {
         cleanUpOldAccessTokenRefs()
-        print("Getting Access Token")
+        EngaugeTxLog.debug("Getting the Access Token")
         var accessToken: String?
         if AccesssTokenCache.tokenCached {
             accessToken = AccesssTokenCache.accessToken
@@ -181,11 +276,30 @@ class Repository<T> : Service where T: ETXModel {
     }
     
     func appendOwnerIdToWhereFilter(filter: ETXSearchFilter, ownerId: String) -> String{
-        if filter.whereCondtions == nil {
-            filter.whereCondtions = [ETXWhereCondition]()
+        if filter.usesCustomFilter {
+            return self.appendOwnerIdToWhereFilter(filter: filter.toJsonString(), ownerId: ownerId)
+        } else  {
+            if (filter.whereCondtions == nil) {
+                filter.whereCondtions = [ETXWhereCondition]()
+            }
+            filter.whereCondtions?.append(ETXWhereCondition(property: FILTER_PROP_OWNER_ID, comparator: ETXComparator.eq, value: ownerId))
+                return filter.toJsonString()
+            }
+    }
+    
+    private func appendOwnerIdToWhereFilter(filter: String, ownerId: String) -> String{
+        var ownerIdFilter: [String: String] = [String: String]()
+        ownerIdFilter[FILTER_PROP_OWNER_ID] = ownerId
+        
+        var filterDict = ETXRequestUtils.jsonStringToDictionary(json: filter)
+        var whereCond = filterDict![FILTER_PROP_WHERE] as? [String: Any];
+        if whereCond != nil {
+            whereCond![FILTER_PROP_OWNER_ID] = ownerId
+            filterDict![FILTER_PROP_WHERE] = whereCond
+        } else {
+            filterDict![FILTER_PROP_WHERE] = ownerIdFilter
         }
-        filter.whereCondtions?.append(ETXWhereCondition(property: "ownerId", comparator: ETXComparator.eq, value: ownerId))
-        return filter.toJsonString()
+        return ETXRequestUtils.convertJSONDataToString(filterDict)
     }
     
     func setAccessToken(_ accessToken: String?, rememberUser: Bool) {
@@ -198,16 +312,29 @@ class Repository<T> : Service where T: ETXModel {
                 self.keychainInstance.set(accessToken, forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
             }
         }
-        print("Saved Access Token")
+        EngaugeTxLog.debug("Saved the Access Token")
+    }
+    
+    open func cleanUpOldCurrentUserRefs() {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: ETXConstants.KEY_DEFAULTS_CURRENT_USER)
+    }
+    
+    open func getCurrentUserId() -> String? {
+        cleanUpOldCurrentUserRefs()
+        if CurrentUserCache.currentUserId != nil {
+            return CurrentUserCache.currentUserId
+        } else {
+            return keychainInstance.string(forKey: ETXConstants.KEY_DEFAULTS_USER_ID)
+        }
     }
     
     func deleteAccessToken() {
-        print("Deleting Access Token")
+        EngaugeTxLog.debug("Deleting the Access Token")
         AccesssTokenCache.accessToken = nil
         AccesssTokenCache.tokenCached = false
         cleanUpOldAccessTokenRefs()
         keychainInstance.removeObject(forKey: self.KEY_DEFAULTS_ACCESS_TOKEN)
-        
     }
     
     private func cleanUpOldAccessTokenRefs() {
@@ -224,4 +351,22 @@ class Repository<T> : Service where T: ETXModel {
         return EngaugeTxApplication.clientKey
     }
     
+    func addAdditionalHeader(_ headerKey: String, value: String) {
+        guard var additionalHeaders = self.additionalHeaders else {
+            self.additionalHeaders = [headerKey:value]
+            return
+        }
+        additionalHeaders[headerKey] = value
+        self.additionalHeaders = additionalHeaders
+    }
+    
+    /**
+     Get the comma separated language tags for the user's preferred languages
+    */
+    func getPreferredLanguages() -> String? {
+        guard Locale.preferredLanguages.count > 0 else {
+            return nil
+        }
+        return Locale.preferredLanguages.joined(separator: ",")
+    }
 }

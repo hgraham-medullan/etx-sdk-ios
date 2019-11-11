@@ -16,7 +16,7 @@ open class ETXMeasurement: ETXAggregatableModel {
     
     public var source: ETXMeasurementSource?
     
-    public override init() {
+    public required init() {
         super.init()
         self.date = Date()
     }
@@ -25,13 +25,12 @@ open class ETXMeasurement: ETXAggregatableModel {
         super.init(map: map)
     }
     
+    public override init(owner: ETXUser) {
+        super.init(owner: owner)
+    }
+    
     open override func mapping(map: Map) {
         super.mapping(map: map)
         source <- map["source"]
-    }
-    
-    open override class func getDataSvc<T: ETXMeasurement>() -> ETXDataService<T>? {
-        return nil
-    }
-    
+    }    
 }

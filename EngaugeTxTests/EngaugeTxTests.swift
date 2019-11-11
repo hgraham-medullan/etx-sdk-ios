@@ -21,12 +21,12 @@ class EngaugeTxTests: XCTestCase {
     }
     
     func testGetValueForKeyWhenTheKeyDoesNotExist() {
-        let valueForNonExistentKey = EngaugeTxApplication.getValueForKey(key: "non-existent-key")
+        let valueForNonExistentKey: String? = EngaugeTxApplication.getValueForKey(key: "non-existent-key")
         XCTAssertEqual(valueForNonExistentKey, nil)
     }
     
     func testGetValueForKeyWhenFileDoesNotExist() {
-        let valueForNonExistentKey = EngaugeTxApplication.getValueForKey(key: "non-existent-key", plistFileName: "Info")
+        let valueForNonExistentKey: String? = EngaugeTxApplication.getValueForKey(key: "non-existent-key", plistFileName: "Info")
         XCTAssertEqual(valueForNonExistentKey, nil)
     }
     

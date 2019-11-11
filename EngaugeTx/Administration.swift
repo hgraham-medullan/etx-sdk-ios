@@ -19,7 +19,7 @@ open class ETXAdministration: ETXShareableModel{
     public var dosage: ETXPrescriptionDosage?
     public var prescription: ETXPrescription?
     
-    public override init() {
+    public required init() {
         super.init()
     }
     

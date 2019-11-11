@@ -11,11 +11,11 @@ import Siesta
 import Alamofire
 import ObjectMapper
 
-class BlobRepository<M: ETXModel>: Repository<M> {
+class BlobRepository<M: ETXBlob>: Repository<M> {
     let fieldNameForFile = "file"
     
     override func save(model: M, completion: @escaping (M?, ETXError?) -> Void) {
-        let blob = model as! ETXBlob
+        let blob = model
         self.saveFile(imgData: blob.fileData!, filename: blob.fileName!, mimeType: blob.mimeType!, progress: nil, completion: completion)
     }
     
@@ -45,13 +45,13 @@ class BlobRepository<M: ETXModel>: Repository<M> {
                 upload.responseJSON { response in
                     
                     guard response.result.isSuccess else {
-                        print("Error while uploading file: \(response.result.error)")
+                        EngaugeTxLog.error("Error while uploading file '\(filename)'", context: etxError)
                         completion(nil, etxError)
                         return
                     }
                     
                     guard let responseJSON = response.result.value as? [String: Any] else {
-                        print("No data available in success save response")
+                        EngaugeTxLog.debug("No data available in success save response for the blob upload")
                         completion(nil, nil)
                         return
                     }
@@ -60,7 +60,7 @@ class BlobRepository<M: ETXModel>: Repository<M> {
                 }
             case .failure(let encodingError):
                 let etxError = ETXError.init(message: encodingError.localizedDescription)
-                print("An encoding error occurred while attempting to upload the file")
+                EngaugeTxLog.error("An encoding error occurred while attempting to upload the file")
                 completion(nil, etxError)
             }
         })

@@ -31,4 +31,9 @@ open class ETXOutdoorHumidity: ETXMeasurement {
         super.mapping(map: map)
         level <- map["level"]
     }
+    public override func getDataSvc<M: ETXOutdoorHumidity, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repository = ETXShareableModelRespository<M>(resourcePath: "/OutdoorHumidity")
+        let defaultDataSvc = ETXShareableModelDataService<M>(repository: repository)
+        return defaultDataSvc as! T
+    }
 }

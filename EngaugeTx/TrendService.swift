@@ -201,8 +201,19 @@ public class ETXTrendService {
     
     private class func getAggregatedData(timeframe: ETXTimeframe, classes: [ETXAggregatableModel.Type], gdoConfig: ETXGenericDataObjectConfiguration?, forUser: ETXUser?, completion: @escaping (_ trendResultSet: ETXTrendResultSet?, _ err: ETXError?)->Void) {
         
-        let trendRepo = TrendRepository()
+        let trendRepo = getRepository()
         trendRepo.getTrends(startDate: timeframe.startDate!, endDate: timeframe.endDate!, classes: classes, gdoConfig: gdoConfig, forUser: forUser, completion: completion)
+    }
+    
+    private class func getRepository<R: TrendRepository>() -> R {
+        if let customTrendRepositoryType = EngaugeTxApplication.getInstance().customTrendRepositoryType  {
+            return customTrendRepositoryType.init() as! R
+        }
+        return TrendRepository() as! R
+    }
+    
+    public class func useCustomDataRepository<R: TrendRepository>(_ repoType: R.Type) {
+        EngaugeTxApplication.getInstance().customTrendRepositoryType = repoType
     }
     
 }

@@ -11,9 +11,6 @@ import XCTest
 @testable import EngaugeTx
 import ObjectMapper
 
-
-
-
 class AffiliationServiceTestCase: AuthenticatedTestCase  {
     override func setUp() {
         super.setUp()

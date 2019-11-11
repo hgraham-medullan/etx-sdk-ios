@@ -27,13 +27,16 @@ class GenericDataObjectTests: XCTestCase {
         let fullName = "Test User"
         let className = "UserProfile"
         
-        let jsonString: String? = "{\"id\":\"\(profileId)\",\"className\":\"\(className)\",\"fullName\":\"\(fullName)\"}"
-        
         let profile = UserProfile()
         profile.id = profileId
         profile.fullName = fullName
         
-        XCTAssertEqual(jsonString, profile.toJSONString(), "Serialized object should match expect String")
+        let personAsString = profile.toJSONString()!
+        
+        // toJSONString sometimes returns properties in random order, and therefore may cause string comparison errors.
+        XCTAssertTrue(personAsString.contains("\"id\":\"\(profileId)\""), "Serialized object should include profile id")
+        XCTAssertTrue(personAsString.contains("\"className\":\"\(className)\""), "Serialized object should include className")
+        XCTAssertTrue(personAsString.contains("\"fullName\":\"\(fullName)\""), "Serialized object should include fullName")
     }
     
     func testMappingFromAJsonObject() {
