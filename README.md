@@ -413,3 +413,10 @@ user.delete(hardDelete: true) { (err) in
 	print("User account and associated data has been deleted")
 }
 ```
+
+### Development
+
+For new developers seeking to contribute to this project and/or fork the source code, here's a list of helpful resources:
+
+  - [Environment setup and deployment](https://docs.google.com/document/d/1bMDOelxWpmRDoYLMyRoqbuEdDnKo51-Tay5PKnLvXOs/edit)
+  - [Manually running iOS tests](https://docs.google.com/document/d/1raSsmT8X7Sh6aiK0kQnwZPAjDyR5HfoRoJLsEemB0Jk/edit)
