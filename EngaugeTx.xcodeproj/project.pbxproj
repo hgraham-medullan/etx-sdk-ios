@@ -95,7 +95,6 @@
 		08FE53BA1E04412B008B5D0E /* ETXTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE53B91E04412B008B5D0E /* ETXTestCase.swift */; };
 		127C64332010E94B00F6F9DC /* RequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C64322010E94B00F6F9DC /* RequestUtils.swift */; };
 		127C64352010E9FA00F6F9DC /* RequestUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C64342010E9FA00F6F9DC /* RequestUtilsTests.swift */; };
-		1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */; };
 		180743E81EAECF16009D4B06 /* MedAdherenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E71EAECF16009D4B06 /* MedAdherenceTests.swift */; };
 		180743EA1EAEDF21009D4B06 /* BucketSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743E91EAEDF21009D4B06 /* BucketSize.swift */; };
 		180743EC1EAEE013009D4B06 /* AdherenceResultMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180743EB1EAEE013009D4B06 /* AdherenceResultMeta.swift */; };
@@ -138,7 +137,8 @@
 		18D0DFF61EAB05B100856F2D /* AdherenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */; };
 		18D0DFF81EAB097200856F2D /* AdherenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFF71EAB097200856F2D /* AdherenceService.swift */; };
 		18D0DFFE1EAB25E900856F2D /* ShareableModelDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */; };
-		8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */; };
+		435CFC992CF5D4D427BFE06F /* Pods_EngaugeTxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F0AF70CCA1BC886C1844A5 /* Pods_EngaugeTxTests.framework */; };
+		F474B2430D8E336FEE692D99 /* Pods_EngaugeTx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D805C7EEE5EE21C347EBEB2 /* Pods_EngaugeTx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,12 +285,12 @@
 		18D0DFF51EAB05B100856F2D /* AdherenceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceRepository.swift; sourceTree = "<group>"; };
 		18D0DFF71EAB097200856F2D /* AdherenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdherenceService.swift; sourceTree = "<group>"; };
 		18D0DFFD1EAB25E900856F2D /* ShareableModelDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareableModelDataService.swift; sourceTree = "<group>"; };
-		34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
-		393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
-		7840D80D020613A0A323F417 /* Pods-EngaugeTxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTxTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A1E2BD6AD938D29CAFFD9363 /* Pods-EngaugeTxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTxTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests.release.xcconfig"; sourceTree = "<group>"; };
-		E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D805C7EEE5EE21C347EBEB2 /* Pods_EngaugeTx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		546C2B9030ABDD89EFCD4D59 /* Pods-EngaugeTx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.debug.xcconfig"; path = "Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.debug.xcconfig"; sourceTree = "<group>"; };
+		75E982E8C0DF51765B9810EC /* Pods-EngaugeTx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTx.release.xcconfig"; path = "Target Support Files/Pods-EngaugeTx/Pods-EngaugeTx.release.xcconfig"; sourceTree = "<group>"; };
+		B079472EE9D88BBBA0C23EB9 /* Pods-EngaugeTxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTxTests.release.xcconfig"; path = "Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests.release.xcconfig"; sourceTree = "<group>"; };
+		BFA9B945FC0EF39DFD44081C /* Pods-EngaugeTxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngaugeTxTests.debug.xcconfig"; path = "Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4F0AF70CCA1BC886C1844A5 /* Pods_EngaugeTxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EngaugeTxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,7 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1540E46461B3A1AB3726DD84 /* Pods_EngaugeTx.framework in Frameworks */,
+				F474B2430D8E336FEE692D99 /* Pods_EngaugeTx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08783D251DEC927800A08343 /* EngaugeTx.framework in Frameworks */,
-				8633DBCC3D1BE6B3A91B3485 /* Pods_EngaugeTxTests.framework in Frameworks */,
+				435CFC992CF5D4D427BFE06F /* Pods_EngaugeTxTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,8 +437,8 @@
 				08783D1D1DEC927800A08343 /* EngaugeTx */,
 				08783D281DEC927800A08343 /* EngaugeTxTests */,
 				08783D1C1DEC927800A08343 /* Products */,
-				ACEA3926C27F54D1E3FADCA2 /* Pods */,
-				4DBBDE8C41B28DFC338673AD /* Frameworks */,
+				EAE578DEE4290E194ED14A79 /* Pods */,
+				0B882587597BD30713991FC7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -600,6 +600,15 @@
 			name = GenericDataObject;
 			sourceTree = "<group>";
 		};
+		0B882587597BD30713991FC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D805C7EEE5EE21C347EBEB2 /* Pods_EngaugeTx.framework */,
+				E4F0AF70CCA1BC886C1844A5 /* Pods_EngaugeTxTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		127C64362012389B00F6F9DC /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,24 +752,15 @@
 			name = Types;
 			sourceTree = "<group>";
 		};
-		4DBBDE8C41B28DFC338673AD /* Frameworks */ = {
+		EAE578DEE4290E194ED14A79 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E7C9676E087AEA2440F5D956 /* Pods_EngaugeTx.framework */,
-				393617213DDDFD12689FC3AC /* Pods_EngaugeTxTests.framework */,
+				546C2B9030ABDD89EFCD4D59 /* Pods-EngaugeTx.debug.xcconfig */,
+				75E982E8C0DF51765B9810EC /* Pods-EngaugeTx.release.xcconfig */,
+				BFA9B945FC0EF39DFD44081C /* Pods-EngaugeTxTests.debug.xcconfig */,
+				B079472EE9D88BBBA0C23EB9 /* Pods-EngaugeTxTests.release.xcconfig */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		ACEA3926C27F54D1E3FADCA2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */,
-				4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */,
-				7840D80D020613A0A323F417 /* Pods-EngaugeTxTests.debug.xcconfig */,
-				A1E2BD6AD938D29CAFFD9363 /* Pods-EngaugeTxTests.release.xcconfig */,
-			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -781,7 +781,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08783D2F1DEC927900A08343 /* Build configuration list for PBXNativeTarget "EngaugeTx" */;
 			buildPhases = (
-				C032F08ADFC41248DAA26897 /* [CP] Check Pods Manifest.lock */,
+				FD045D6FACEC812544B17AD9 /* [CP] Check Pods Manifest.lock */,
 				08783D161DEC927800A08343 /* Sources */,
 				08783D171DEC927800A08343 /* Frameworks */,
 				08783D181DEC927800A08343 /* Headers */,
@@ -800,11 +800,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08783D321DEC927900A08343 /* Build configuration list for PBXNativeTarget "EngaugeTxTests" */;
 			buildPhases = (
-				F73FAD52D41D4D311651F35B /* [CP] Check Pods Manifest.lock */,
+				3845BEEC8A797D600F1C5200 /* [CP] Check Pods Manifest.lock */,
 				08783D201DEC927800A08343 /* Sources */,
 				08783D211DEC927800A08343 /* Frameworks */,
 				08783D221DEC927800A08343 /* Resources */,
-				6CA73C83C164E03CAF84E6CA /* [CP] Embed Pods Frameworks */,
+				DBBAA126BDFABC8C04A7F85D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -823,7 +823,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Medullan Platform Solutions";
 				TargetAttributes = {
 					08783D1A1DEC927800A08343 = {
@@ -843,6 +843,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 08783D111DEC927800A08343;
@@ -879,7 +880,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6CA73C83C164E03CAF84E6CA /* [CP] Embed Pods Frameworks */ = {
+		3845BEEC8A797D600F1C5200 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EngaugeTxTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBBAA126BDFABC8C04A7F85D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -905,36 +928,22 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EngaugeTxTests/Pods-EngaugeTxTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C032F08ADFC41248DAA26897 /* [CP] Check Pods Manifest.lock */ = {
+		FD045D6FACEC812544B17AD9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-EngaugeTx-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F73FAD52D41D4D311651F35B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-EngaugeTxTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1096,6 +1105,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1158,6 +1168,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1211,7 +1222,7 @@
 		};
 		08783D301DEC927900A08343 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34701F6D27D96601DF278718 /* Pods-EngaugeTx.debug.xcconfig */;
+			baseConfigurationReference = 546C2B9030ABDD89EFCD4D59 /* Pods-EngaugeTx.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1221,7 +1232,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = EngaugeTx/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1233,7 +1244,7 @@
 		};
 		08783D311DEC927900A08343 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EB49A611A755B0F9EC39DC7 /* Pods-EngaugeTx.release.xcconfig */;
+			baseConfigurationReference = 75E982E8C0DF51765B9810EC /* Pods-EngaugeTx.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1243,7 +1254,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = EngaugeTx/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1254,11 +1265,11 @@
 		};
 		08783D331DEC927900A08343 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7840D80D020613A0A323F417 /* Pods-EngaugeTxTests.debug.xcconfig */;
+			baseConfigurationReference = BFA9B945FC0EF39DFD44081C /* Pods-EngaugeTxTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				INFOPLIST_FILE = EngaugeTxTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1268,11 +1279,11 @@
 		};
 		08783D341DEC927900A08343 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1E2BD6AD938D29CAFFD9363 /* Pods-EngaugeTxTests.release.xcconfig */;
+			baseConfigurationReference = B079472EE9D88BBBA0C23EB9 /* Pods-EngaugeTxTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				INFOPLIST_FILE = EngaugeTxTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enguagetx.sdk.ios.EngaugeTxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

@@ -138,12 +138,14 @@ open class ETXUser: ETXPersistedModel {
         self.userService.changeEmailAddress(newEmailAddress, currentPassword: currentPassword, currentUser: self, completion: completion)
     }
     
+    
+    // ETXUser
     /**
      The sevice class responsible for making API calls on behalf of the model
     **/
-    public override func getDataSvc<M: ETXUser, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let userRepository = UserRepository<M>(resourcePath: "/users")
-        let defaultDataSvc = ETXUserService<M>(repository: userRepository)
+    public override func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let userRepository = UserRepository<ETXUser>(resourcePath: "/users")
+        let defaultDataSvc = ETXUserService<ETXUser>(repository: userRepository)
         return defaultDataSvc as! T
     }
     

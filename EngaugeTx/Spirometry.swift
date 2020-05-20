@@ -81,9 +81,10 @@ open class ETXSpirometry: ETXMeasurement, FirstClassModel {
         ffRatio <- map["ffRatio"]
     }
     
-    public override func getDataSvc<M: ETXSpirometry, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let repository = ETXShareableModelRespository<M>(resourcePath: "/Spirometry")
-        let defaultDataSvc = ETXShareableModelDataService<M>(repository: repository)
+    //ETXSpirometry
+    public override func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repository = ETXShareableModelRespository<ETXSpirometry>(resourcePath: "/Spirometry")
+        let defaultDataSvc = ETXShareableModelDataService<ETXSpirometry>(repository: repository)
         return defaultDataSvc as! T
     }
     

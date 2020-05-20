@@ -88,9 +88,12 @@ open class ETXGenericDataObject: ETXAggregatableModel, ETXPersistentGenericObjec
         className <- map["className"]
     }
     
-    override public func getDataSvc<M: ETXGenericDataObject, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let genericDataObjectRepository = ETXGenericDataObjectRepository<M>(className: (forModel as ETXGenericDataObject).modelName)
-        let defaultDataSvc = ETXGenericDataService<M>(repository: genericDataObjectRepository)
+    //ETXGenericDataObject
+    override public func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        
+        let convertedModel = forModel as! ETXGenericDataObject
+        let genericDataObjectRepository = ETXGenericDataObjectRepository<ETXGenericDataObject>(className: (convertedModel).modelName)
+        let defaultDataSvc = ETXGenericDataService<ETXGenericDataObject>(repository: genericDataObjectRepository)
         return defaultDataSvc as! T
     }
 }

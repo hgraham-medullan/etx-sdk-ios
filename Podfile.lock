@@ -18,7 +18,7 @@ DEPENDENCIES:
   - SwiftyBeaver (= 1.4.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - ObjectMapper
     - Siesta
@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
 
-PODFILE CHECKSUM: 9e1c2b784c54d4e26fb7693ceee34c3d2a7fcb36
+PODFILE CHECKSUM: 173ec4022dcc6107dacaca8329826f39d33e3259
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.1

@@ -61,9 +61,10 @@ open class ETXOutdoorAirQuality: ETXAirQuality {
         ozoneUnit <- map["ozoneUnit"]
     }
     
-    public override func getDataSvc<M: ETXOutdoorAirQuality, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let repository = ETXShareableModelRespository<M>(resourcePath: "/OutdoorAirQuality")
-        let defaultDataSvc = ETXShareableModelDataService<M>(repository: repository)
+    // ETXOutdoorAirQuality
+    public override func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repository = ETXShareableModelRespository<ETXOutdoorAirQuality>(resourcePath: "/OutdoorAirQuality")
+        let defaultDataSvc = ETXShareableModelDataService<ETXOutdoorAirQuality>(repository: repository)
         return defaultDataSvc as! T
     }
 }

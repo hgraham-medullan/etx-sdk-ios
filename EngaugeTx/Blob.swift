@@ -77,9 +77,10 @@ public class ETXBlob: ETXPersistedModel, FirstClassModel {
         contentType <- map["contentType"]
     }
     
-    public override func getDataSvc<M: ETXBlob, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let blobRepository = BlobRepository<M>(resourcePath: ETXBlob.blobsUrl)
-        let defaultDataSvc = ETXDataService<M>(repository: blobRepository)
+    //ETXBlob
+    public override func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let blobRepository = BlobRepository<ETXBlob>(resourcePath: ETXBlob.blobsUrl)
+        let defaultDataSvc = ETXDataService<ETXBlob>(repository: blobRepository)
         return defaultDataSvc as! T
     }
     

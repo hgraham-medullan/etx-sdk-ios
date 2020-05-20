@@ -41,9 +41,10 @@ open class ETXPrescription: ETXShareableModel{
         medicationId <- map["medicationId"]
     }
     
-    public override func getDataSvc<M: ETXPrescription, T: QueryablePersistenceService>(_ forModel: M) -> T {
-        let repo = Repository<M>(resourcePath: "/med/data/prescriptions")
-        let defaultDataSvc = ETXDataService<M>(repository: repo)
+    //ETXPrescription
+    public override func getDataSvc<M: ETXModel, T: QueryablePersistenceService>(_ forModel: M) -> T {
+        let repo = Repository<ETXPrescription>(resourcePath: "/med/data/prescriptions")
+        let defaultDataSvc = ETXDataService<ETXPrescription>(repository: repo)
         return defaultDataSvc as! T
     }
 }

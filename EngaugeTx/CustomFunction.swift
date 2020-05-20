@@ -9,7 +9,7 @@
 import Foundation
 import Siesta
 
-@available(*, renamed: "ETXCustomFunction", deprecated: 0.0.12)
+@available(*, renamed: "ETXCustomFunction", deprecated)
 typealias CustomFunction = ETXCustomFunction<ETXPersistedModel>
 
 /**
